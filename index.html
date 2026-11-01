@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お得情報・調べものまとめ</title>
+  <meta name="description" content="気になったことやお得情報を調べて、出典付きでまとめるサイトです。">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="index.html">お得情報・調べものまとめ</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>お得情報・調べものまとめ</h1>
+      <p>
+        気になったことやお得情報を調べて、出典付きでまとめています。
+        公的機関・公式サイトの情報を優先し、各記事に調査日を記載しています。
+      </p>
+    </section>
+
+    <h2>記事一覧</h2>
+
+    <!--
+      記事を追加するときは、新しい記事が上になるように <li> を1件追加する。
+      書式:
+      <li>
+        <a class="article-card" href="articles/ファイル名.html">
+          <span class="article-card-title">記事タイトル</span>
+          <span class="article-card-desc">一言説明</span>
+          <span class="article-card-date">調査日: <time datetime="YYYY-MM-DD">YYYY年M月D日</time></span>
+        </a>
+      </li>
+      記事が1件以上になったら、下の「まだ記事はありません」(.empty) は削除する。
+    -->
+    <ul class="article-list">
+    </ul>
+
+    <p class="empty">まだ記事はありません。</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p>手続きや申し込みの前に、必ず出典先の最新情報をご確認ください。</p>
+    </div>
+  </footer>
+</body>
+</html>
