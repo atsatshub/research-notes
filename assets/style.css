@@ -19,6 +19,7 @@
   --note-border: #3b82f6;
   --warning-bg: #fff6e5;
   --warning-border: #e0a100;
+  --warn-text: #7a4b00;
   --table-head: #f3f4f6;
 
   --radius: 10px;
@@ -43,6 +44,7 @@
     --note-border: #5b9bff;
     --warning-bg: #2e2614;
     --warning-border: #e0b030;
+    --warn-text: #f0c860;
     --table-head: #252a30;
   }
 }
@@ -297,6 +299,73 @@ main {
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
+}
+
+/* 状態ラベル（新制度・改悪・終了） */
+.label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 0 6px;
+  border-radius: 4px;
+  vertical-align: 0.15em;
+  white-space: nowrap;
+}
+
+.label-new {
+  background: var(--note-bg);
+  color: var(--link);
+}
+
+.label-warn {
+  background: var(--warning-bg);
+  color: var(--warn-text);
+}
+
+.label-end {
+  background: var(--table-head);
+  color: var(--text-muted);
+}
+
+.label-legend {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 目次・シリーズナビ */
+.toc,
+.series-nav {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin: 0 0 24px;
+  font-size: 0.92rem;
+}
+
+.toc-title,
+.series-nav-title {
+  font-weight: 700;
+  margin: 0 0 0.3em;
+}
+
+.toc ol,
+.series-nav ol {
+  margin: 0;
+}
+
+.series-nav {
+  margin-top: 32px;
+}
+
+.series-nav [aria-current="page"] {
+  font-weight: 700;
+}
+
+.article-group-title {
+  font-size: 1.05rem;
+  margin: 1.6em 0 0.6em;
 }
 
 /* 要点まとめ */
