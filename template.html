@@ -1,0 +1,135 @@
+<!doctype html>
+<!--
+  記事ひな形（template.html）
+  使い方:
+    1. このファイルを articles/ にコピーする（例: articles/furusato-nozei-basics.html）
+       ※ CSS・リンクのパスは articles/ に置く前提（../）で書いてあります。
+    2. 【 】で囲まれた部分をすべて書き換える。使わないサンプルは削除する。
+    3. index.html の記事一覧に追加する。
+  ルールは CLAUDE.md を参照（個人情報禁止・出典必須・調査日必須）。
+-->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>【記事タイトル】｜お得情報・調べものまとめ</title>
+  <meta name="description" content="【記事の内容を1〜2文で】">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
+      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 【カテゴリ】</p>
+
+      <h1>【記事タイトル】</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="YYYY-MM-DD">YYYY年M月D日</time></li>
+        <!-- 更新した場合のみ:
+        <li>更新日: <time datetime="YYYY-MM-DD">YYYY年M月D日</time></li>
+        -->
+        <li><span class="tag">【カテゴリ】</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>【結論1（例: 対象者・もらえる金額）】<a class="ref" href="#src-1">[1]</a></li>
+          <li>【結論2（例: 期限・申込方法）】<a class="ref" href="#src-2">[2]</a></li>
+          <li>【結論3（例: 注意点）】</li>
+        </ul>
+      </section>
+
+      <h2>【見出し: 制度・サービスの概要】</h2>
+      <p>
+        【本文。短い段落で書く。事実には出典番号を付ける。】<a class="ref" href="#src-1">[1]</a>
+      </p>
+
+      <h2>【見出し: 条件・金額の比較】</h2>
+      <!-- 表は必ず .table-wrap で囲む（スマホで横スクロールできるように） -->
+      <div class="table-wrap">
+        <table>
+          <caption>【表の説明】（金額は税込）出典: [1]</caption>
+          <thead>
+            <tr>
+              <th scope="col">【項目】</th>
+              <th scope="col">【A】</th>
+              <th scope="col">【B】</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">【対象者】</th>
+              <td>【 】</td>
+              <td>【 】</td>
+            </tr>
+            <tr>
+              <th scope="row">【金額（税込）】</th>
+              <td>【 】</td>
+              <td>【 】</td>
+            </tr>
+            <tr>
+              <th scope="row">【期限】</th>
+              <td>【YYYY年M月D日まで】</td>
+              <td>【終了日未定】</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>【見出し: 手続き・使い方】</h2>
+      <ol>
+        <li>【手順1】</li>
+        <li>【手順2】</li>
+        <li>【手順3】</li>
+      </ol>
+
+      <div class="note">
+        <p class="box-title">補足</p>
+        <p>【補足情報】</p>
+      </div>
+
+      <div class="warning">
+        <p class="box-title">注意</p>
+        <p>【注意点（例: エントリーが必要、上限あり、併用不可など）】</p>
+      </div>
+
+      <h2 id="sources">出典</h2>
+      <!-- 公的機関・公式サイトを優先。発行元・ページ名・URL・閲覧日をセットで書く -->
+      <ol class="sources">
+        <li id="src-1">
+          【発行元（例: 〇〇省）】「【ページ名】」<br>
+          <a href="https://example.go.jp/" rel="noopener">https://example.go.jp/</a>
+          <span class="source-date">（閲覧日: YYYY年M月D日）</span>
+        </li>
+        <li id="src-2">
+          【発行元（例: 〇〇株式会社 公式サイト）】「【ページ名】」<br>
+          <a href="https://example.com/" rel="noopener">https://example.com/</a>
+          <span class="source-date">（閲覧日: YYYY年M月D日）</span>
+        </li>
+      </ol>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は調査日時点の情報をもとにまとめたものです。制度・キャンペーン・価格は変更・終了されることがあります。
+          申し込みや手続きの前に、必ず出典先の最新情報をご確認ください。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="../index.html">トップに戻る</a></p>
+      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+    </div>
+  </footer>
+</body>
+</html>
