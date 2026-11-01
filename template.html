@@ -47,12 +47,54 @@
         </ul>
       </section>
 
+      <!-- 「くわしく」を一括で開閉するボタン（JS が有効なときだけ表示される） -->
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
       <h2>【見出し: 制度・サービスの概要】</h2>
-      <p>
-        【本文。短い段落で書く。事実には出典番号を付ける。】<a class="ref" href="#src-1">[1]</a>
-      </p>
+
+      <!--
+        項目カード: 1つの制度・サービス・割引ごとに1枚。
+        - h3: 短い見出し（必要なら状態ラベル label-new / label-warn / label-end）
+        - item-point: 「ひとことで」。35字以内の1文、最重要の数字を <strong> で強調
+        - change: 金額・条件が変わる場合だけ（改定前 → 改定後）
+        - item-more: 詳細は短い箇条書き（1文1項目、40字前後）を折りたたみに入れる
+      -->
+      <section class="item-card">
+        <h3><span class="label label-new">新制度・改正</span> 【見出し】</h3>
+        <p class="item-point">【ひとことで。例: 上限が<strong>月6.2万円</strong>に】<a class="ref" href="#src-1">[1]</a></p>
+        <div class="change">
+          <p class="change-what">【何の値か】</p>
+          <p class="change-values"><span class="sr-only">変更前：</span><span class="change-before">【改定前】</span><span class="change-arrow" aria-hidden="true">→</span><span class="sr-only">変更後：</span><span class="change-after">【改定後】</span></p>
+          <p class="change-when">【いつから】</p>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>【条件・期限など、短い箇条書き】<a class="ref" href="#src-1">[1]</a></li>
+            <li>【例外・注意点】<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
 
       <h2>【見出し: 条件・金額の比較】</h2>
+
+      <!--
+        数値の比較は横棒グラフ（CSSのみ）。棒の幅は「値 ÷ 最大値 × 100%」で style に書く。
+        注目する1本だけ is-key（アクセント色）。値は必ず文字でも表示し、aria-label に全データを書く。
+      -->
+      <section class="item-card">
+        <h3>【見出し】</h3>
+        <p class="item-point">【ひとことで】</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">【グラフの題名】 <span class="chart-sub">（【単位・注記】）</span><a class="ref" href="#src-1">[1]</a></figcaption>
+          <div role="img" aria-label="【A 100円、B 80円、C 50円 のように全データを文章で】">
+            <div class="bar-row"><span class="bar-label">【A】</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">【100円】</span></div>
+            <div class="bar-row"><span class="bar-label">【B】</span><span class="bar-track"><span class="bar" style="width:80%"></span></span><span class="bar-value">【80円】</span></div>
+            <div class="bar-row is-key"><span class="bar-label">【C（注目）】</span><span class="bar-track"><span class="bar" style="width:50%"></span></span><span class="bar-value">【50円】</span></div>
+          </div>
+        </figure>
+      </section>
+
       <!-- 表は必ず .table-wrap で囲む（スマホで横スクロールできるように） -->
       <div class="table-wrap">
         <table>
@@ -65,11 +107,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">【対象者】</th>
-              <td>【 】</td>
-              <td>【 】</td>
-            </tr>
             <tr>
               <th scope="row">【金額（税込）】</th>
               <td>【 】</td>
@@ -85,10 +122,10 @@
       </div>
 
       <h2>【見出し: 手続き・使い方】</h2>
-      <ol>
-        <li>【手順1】</li>
-        <li>【手順2】</li>
-        <li>【手順3】</li>
+      <!-- 手順や日程はタイムラインで -->
+      <ol class="timeline">
+        <li><span class="timeline-day">【ステップ1】</span><p class="timeline-title">【やること】</p><p class="timeline-note">【ポイント】</p></li>
+        <li><span class="timeline-day">【ステップ2】</span><p class="timeline-title">【やること】</p><p class="timeline-note">【ポイント】</p></li>
       </ol>
 
       <div class="note">
@@ -105,7 +142,7 @@
         出典一覧（普段は折りたたみ）。公的機関・公式サイトを優先。
         1件1行で「ページ名（リンク）（発行元）」。閲覧日は冒頭にまとめて書く
         （閲覧日が異なる出典がある場合は、その行の末尾に「閲覧日: YYYY年M月D日」を付ける）。
-        本文の [n] にマウスを乗せる・タップすると、assets/refs.js がこの内容を吹き出しで表示する。
+        本文の [n] にマウスを乗せる・タップすると、assets/article.js がこの内容を吹き出しで表示する。
       -->
       <details class="sources-box" id="sources">
         <summary>出典（【件数】件）</summary>
@@ -130,6 +167,6 @@
       <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
     </div>
   </footer>
-  <script src="../assets/refs.js" defer></script>
+  <script src="../assets/article.js" defer></script>
 </body>
 </html>

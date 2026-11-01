@@ -21,6 +21,10 @@
   --warning-border: #e0a100;
   --warn-text: #7a4b00;
   --table-head: #f3f4f6;
+  --marker: #fde68a;
+  --bar: #0b6e4f;
+  --bar-muted: #a7b0bb;
+  --grid: #d5d9de;
 
   --radius: 10px;
   --content-width: 720px;
@@ -46,6 +50,10 @@
     --warning-border: #e0b030;
     --warn-text: #f0c860;
     --table-head: #252a30;
+    --marker: rgba(250, 204, 21, 0.28);
+    --bar: #4cc79a;
+    --bar-muted: #6b7480;
+    --grid: #3a4048;
   }
 }
 
@@ -469,7 +477,357 @@ caption {
   margin-left: 1px;
 }
 
-/* 出典の吹き出し（assets/refs.js が表示） */
+/* ---------- 読みやすさ用の部品 ---------- */
+
+/* 強調（数字など）は黄色マーカー。文字色は本文のまま */
+article strong {
+  background: linear-gradient(transparent 58%, var(--marker) 58%);
+  padding: 0 1px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* すべて開く／閉じる（JS が有効なときだけ表示） */
+.expand-all {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  margin: 0 0 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.expand-all:hover {
+  border-color: var(--accent);
+}
+
+.expand-all:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 項目カード */
+.item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 0 0 14px;
+}
+
+.item-card > h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.item-point {
+  position: relative;
+  margin: 0;
+  padding-left: 1.1em;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.item-point::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.item-card > .table-wrap,
+.item-card > figure,
+.item-card > ol,
+.item-card > ul {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+/* 改定前 → 改定後 */
+.change {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.change + .change {
+  margin-top: 6px;
+}
+
+.change-what,
+.change-when {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.change-values {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 2px 0;
+}
+
+.change-before {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.change-arrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.change-after {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* くわしく（折りたたみ） */
+.item-more {
+  margin-top: 8px;
+}
+
+.item-more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 2px 0;
+  font-size: 0.88rem;
+  color: var(--link);
+  cursor: pointer;
+  list-style: none;
+}
+
+.item-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.item-more > summary::before {
+  content: "▸";
+  transition: transform 0.15s;
+}
+
+.item-more[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.item-more > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.item-more > ul {
+  margin: 6px 0 0;
+  padding-left: 1.2em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.item-more > ul > li + li {
+  margin-top: 0.35em;
+}
+
+/* 横棒グラフ（1系列。注目する棒だけアクセント色、他は控えめな灰色。値は文字で表示） */
+.bar-chart {
+  margin: 12px 0 0;
+}
+
+.chart-title {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.chart-sub {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(6.5em, 34%) 1fr auto;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.bar-row + .bar-row {
+  margin-top: 6px;
+}
+
+.bar-label {
+  color: var(--text-muted);
+}
+
+.bar-row.is-key .bar-label,
+.bar-row.is-key .bar-value {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.bar-track {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  height: 16px;
+  border-left: 1px solid var(--grid);
+}
+
+.bar {
+  display: block;
+  height: 14px;
+  background: var(--bar-muted);
+  border-radius: 0 4px 4px 0;
+}
+
+.bar-row.is-key .bar {
+  background: var(--bar);
+}
+
+/* 幅のある値（例: 40〜50%）は、最小値まで濃く、上限までを薄く */
+.bar.has-ext {
+  border-radius: 0;
+}
+
+.bar-ext {
+  display: block;
+  height: 14px;
+  background: var(--bar);
+  opacity: 0.35;
+  border-radius: 0 4px 4px 0;
+}
+
+.bar-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.chart-note {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* 合格ラインなどのゲージ（0〜満点の帯に、基準点以上の範囲を表示） */
+.gauge-row {
+  display: grid;
+  grid-template-columns: minmax(6.5em, 34%) 1fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.gauge-row + .gauge-row {
+  margin-top: 10px;
+}
+
+.gauge-track {
+  position: relative;
+  height: 14px;
+  background: var(--table-head);
+  border-radius: 4px;
+}
+
+.gauge-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.gauge-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* タイムライン（学習プランなど） */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.timeline > li {
+  position: relative;
+  padding: 0 0 14px 28px;
+  margin: 0;
+}
+
+.timeline > li::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0.6em;
+  bottom: -0.6em;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline > li:last-child::before {
+  display: none;
+}
+
+.timeline > li::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.35em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  box-sizing: border-box;
+}
+
+.timeline-day {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.timeline-title {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.timeline-note {
+  margin: 2px 0 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 出典の吹き出し（assets/article.js が表示） */
 .ref-pop {
   position: absolute;
   z-index: 20;
