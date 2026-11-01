@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- サイトのアイコン: 虫めがね（調べもの）＋黄色いレンズ（お得） -->
+  <rect width="64" height="64" rx="14" fill="#0b6e4f"/>
+  <circle cx="27" cy="27" r="14" fill="#fde68a" stroke="#ffffff" stroke-width="6"/>
+  <line x1="38" y1="38" x2="51" y2="51" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+</svg>

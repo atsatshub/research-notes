@@ -67,7 +67,7 @@
   - 可能なら `integrity`（SRI）属性を付ける。
 - デザインは共通の `assets/style.css` を使う。記事ごとの `<style>` は最小限にする。
 - アクセス解析・広告・トラッキングのスクリプトは入れない。
-- 文字コードは UTF-8、`<html lang="ja">`、viewport メタタグを必ず入れる（ひな形どおり）。
+- 文字コードは UTF-8、`<html lang="ja">`、viewport メタタグ、サイトのアイコン（`favicon.svg` などの `<link rel="icon">`）を必ず入れる（ひな形どおり）。
 
 ## 6. 記事の追加手順
 
