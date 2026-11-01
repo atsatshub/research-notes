@@ -436,7 +436,6 @@ main {
 table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 480px;
   font-size: 0.92rem;
   background: var(--surface);
 }
@@ -458,6 +457,11 @@ thead th {
 tbody tr:last-child th,
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* 列が多く横に長い表だけ、横スクロールさせる（.table-wrap.is-wide） */
+.table-wrap.is-wide table {
+  min-width: 480px;
 }
 
 caption {
@@ -728,6 +732,49 @@ article strong {
 .chart-note {
   margin: 6px 0 0;
   font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ラベルが長いグラフは、ラベルを棒の上に置く */
+.bar-chart.labels-above .bar-row {
+  grid-template-columns: 1fr auto;
+  row-gap: 2px;
+}
+
+.bar-chart.labels-above .bar-label {
+  grid-column: 1 / -1;
+}
+
+.bar-chart.labels-above .bar-row + .bar-row {
+  margin-top: 10px;
+}
+
+/* 縦並びのサービス一覧（スマホで表が窮屈になる場合の代わり） */
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.service-list > li {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.service-name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.service-what {
+  margin: 2px 0 0;
+}
+
+.service-cond {
+  margin: 2px 0 0;
+  font-size: 0.88rem;
   color: var(--text-muted);
 }
 
