@@ -101,20 +101,20 @@
         <p>【注意点（例: エントリーが必要、上限あり、併用不可など）】</p>
       </div>
 
-      <h2 id="sources">出典</h2>
-      <!-- 公的機関・公式サイトを優先。発行元・ページ名・URL・閲覧日をセットで書く -->
-      <ol class="sources">
-        <li id="src-1">
-          【発行元（例: 〇〇省）】「【ページ名】」<br>
-          <a href="https://example.go.jp/" rel="noopener">https://example.go.jp/</a>
-          <span class="source-date">（閲覧日: YYYY年M月D日）</span>
-        </li>
-        <li id="src-2">
-          【発行元（例: 〇〇株式会社 公式サイト）】「【ページ名】」<br>
-          <a href="https://example.com/" rel="noopener">https://example.com/</a>
-          <span class="source-date">（閲覧日: YYYY年M月D日）</span>
-        </li>
-      </ol>
+      <!--
+        出典一覧（普段は折りたたみ）。公的機関・公式サイトを優先。
+        1件1行で「ページ名（リンク）（発行元）」。閲覧日は冒頭にまとめて書く
+        （閲覧日が異なる出典がある場合は、その行の末尾に「閲覧日: YYYY年M月D日」を付ける）。
+        本文の [n] にマウスを乗せる・タップすると、assets/refs.js がこの内容を吹き出しで表示する。
+      -->
+      <details class="sources-box" id="sources">
+        <summary>出典（【件数】件）</summary>
+        <p class="sources-note">閲覧日はいずれも【YYYY年M月D日】</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://example.go.jp/" target="_blank" rel="noopener">【ページ名】</a>（【発行元（例: 〇〇省）】）</li>
+          <li id="src-2"><a href="https://example.com/" target="_blank" rel="noopener">【ページ名】</a>（【発行元（例: 〇〇株式会社）】）</li>
+        </ol>
+      </details>
 
       <aside class="disclaimer">
         <p>
@@ -130,5 +130,6 @@
       <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
     </div>
   </footer>
+  <script src="../assets/refs.js" defer></script>
 </body>
 </html>
