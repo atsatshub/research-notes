@@ -497,6 +497,27 @@ thead th {
   white-space: nowrap;
 }
 
+/* 行見出しが1文字ずつ折り返されないよう、4文字ぶんの幅を確保する */
+tbody th[scope="row"] {
+  min-width: calc(4.5em + 24px); /* 左右の余白 12px×2 を含む */
+}
+
+/* スマホ幅では表の余白を詰めて、横にはみ出さないようにする */
+@media (max-width: 480px) {
+  th,
+  td {
+    padding: 8px;
+  }
+
+  tbody th[scope="row"] {
+    min-width: calc(4.5em + 16px);
+  }
+
+  thead th {
+    white-space: normal;
+  }
+}
+
 tbody tr:last-child th,
 tbody tr:last-child td {
   border-bottom: none;
