@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>お得情報・調べものまとめ</title>
   <meta name="description" content="気になったことやお得情報を調べて、出典付きでまとめるサイトです。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:title" content="お得情報・調べものまとめ">
+  <meta property="og:description" content="気になったことやお得情報を調べて、出典付きでまとめるサイトです。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js"></script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -23,10 +32,20 @@
       <p>
         気になったことやお得情報を調べて、出典付きでまとめています。
         公的機関・公式サイトの情報を優先し、各記事に調査日を記載しています。
+        <a href="about.html">このサイトについて</a>
       </p>
     </section>
 
     <h2>記事一覧</h2>
+
+    <!-- 検索・カテゴリ絞り込み（assets/site.js が動くときだけ表示。カテゴリは下の h3.article-group-title から自動で作る） -->
+    <div class="article-search-box" hidden>
+      <label class="search-label" for="article-search">記事を探す</label>
+      <input type="search" id="article-search" class="search-input" placeholder="キーワード（例: 確定申告、北陸、英語）" autocomplete="off">
+      <div class="category-chips" role="group" aria-label="カテゴリで絞り込む"></div>
+      <p class="article-count" role="status" aria-live="polite"></p>
+    </div>
+    <p class="empty search-empty" hidden>該当する記事がありません。別のキーワードで探してみてください。</p>
 
     <!--
       記事を追加するときは、新しい記事が上になるように <li> を1件追加する。
@@ -137,6 +156,7 @@
 
   <footer class="site-footer">
     <div class="container">
+      <p><a href="about.html">このサイトについて</a></p>
       <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
     </div>
   </footer>

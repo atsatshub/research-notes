@@ -18,11 +18,18 @@
 
 ```
 .
-├── index.html         トップページ（記事一覧）
+├── index.html         トップページ（記事一覧・検索・カテゴリ絞り込み）
+├── about.html         このサイトについて（出典・調査日の方針、個人情報、免責）
+├── 404.html           ページが見つからないときの表示
 ├── template.html      記事のひな形（articles/ にコピーして使う）
 ├── articles/          記事ファイルを置くフォルダ
 ├── assets/
-│   └── style.css      共通デザイン（ライト/ダークモード対応）
+│   ├── style.css      共通デザイン（ライト/ダーク対応）
+│   ├── site.js        全ページ共通: 表示設定（文字の大きさ・配色）、読了の目安、共有、トップへ戻る、検索
+│   ├── article.js     記事ページ: 出典の吹き出し、「くわしく」の一括開閉
+│   ├── favicon.svg ほか  サイトのアイコン
+│   └── ogp.png        SNSで共有されたときの画像
+├── sitemap.xml        検索エンジン向けのページ一覧
 ├── CLAUDE.md          記事作成ルール
 ├── .nojekyll          GitHub Pages で Jekyll 処理をしないための設定
 └── README.md          このファイル
@@ -32,7 +39,7 @@
 
 1. `template.html` を `articles/` にコピーする（ファイル名は英小文字・数字・ハイフン。例: `articles/furusato-nozei-basics.html`）
 2. `【 】` の部分を書き換え、出典と調査日を記入する
-3. `index.html` の記事一覧に1件追加する
+3. `index.html` の記事一覧と `sitemap.xml` に1件追加する
 4. コミットしてプッシュする
 
 ## ローカルでの確認
