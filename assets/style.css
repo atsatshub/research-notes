@@ -819,6 +819,97 @@ article strong {
   color: var(--text-muted);
 }
 
+/* 書類の簡略図（源泉徴収票など）。番号付きの欄を格子で並べる */
+.slip {
+  margin: 12px 0 0;
+  padding: 10px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+}
+
+.slip-title {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.slip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+@media (min-width: 600px) {
+  .slip-grid.cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.slip-cell {
+  position: relative;
+  min-width: 0;
+  padding: 6px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.slip-cell.is-key {
+  border: 2px solid var(--accent);
+}
+
+.slip-cell.is-wide {
+  grid-column: 1 / -1;
+}
+
+.slip-label {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.slip-value {
+  display: block;
+  margin-top: 2px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.slip-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  margin-right: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--accent);
+  border-radius: 50%;
+  vertical-align: 0.05em;
+}
+
+:root[data-theme="dark"] .slip-num {
+  color: #10241c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .slip-num {
+    color: #10241c;
+  }
+}
+
+.slip-note {
+  margin: 8px 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 /* 合格ラインなどのゲージ（0〜満点の帯に、基準点以上の範囲を表示） */
 .gauge-row {
   display: grid;
