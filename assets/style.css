@@ -626,6 +626,30 @@ article strong {
   margin-bottom: 0;
 }
 
+/* カード内の基本データ（料金・予約・所要時間など。dt と dd を交互に並べる） */
+.item-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  background: var(--table-head);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.item-facts dt {
+  color: var(--text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.item-facts dd {
+  margin: 0;
+  min-width: 0;
+}
+
 /* 改定前 → 改定後 */
 .change {
   margin: 10px 0 0;
