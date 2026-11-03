@@ -1357,13 +1357,41 @@ article strong {
 
 /* ---------- 印刷 ---------- */
 @media print {
+  /* ダーク表示のまま印刷すると紙で読めないので、印刷は常にライト配色にする
+     （ダーク側の指定と同じ詳細度のセレクタを、後に書いて上書きする） */
+  :root,
+  :root:not([data-theme="light"]),
+  :root[data-theme="dark"] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --text: #1f2328;
+    --text-muted: #5b6370;
+    --border: #e3e5e8;
+    --accent: #0b6e4f;
+    --accent-soft: #e6f4ee;
+    --link: #0a58ca;
+    --link-visited: #6f42c1;
+    --note-bg: #eef5ff;
+    --note-border: #3b82f6;
+    --warning-bg: #fff6e5;
+    --warning-border: #e0a100;
+    --warn-text: #7a4b00;
+    --table-head: #f3f4f6;
+    --marker: #fde68a;
+    --bar: #0b6e4f;
+    --bar-muted: #a7b0bb;
+    --grid: #d5d9de;
+    color-scheme: light;
+  }
+
   .site-header,
   .site-footer,
   .read-progress,
   .to-top,
   .share-row,
   .expand-all,
-  .tools-panel {
+  .tools-panel,
+  .ref-pop {
     display: none;
   }
 
