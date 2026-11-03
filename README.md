@@ -30,6 +30,7 @@
 │   ├── favicon.svg ほか  サイトのアイコン
 │   └── ogp.png        SNSで共有されたときの画像
 ├── sitemap.xml        検索エンジン向けのページ一覧
+├── tools/             記事づくりの補助ツール（ビルド・チェック。サイト本体は依存しない）
 ├── CLAUDE.md          記事作成ルール
 ├── .nojekyll          GitHub Pages で Jekyll 処理をしないための設定
 └── README.md          このファイル
@@ -40,7 +41,7 @@
 1. `template.html` を `articles/` にコピーする（ファイル名は英小文字・数字・ハイフン。例: `articles/furusato-nozei-basics.html`）
 2. `【 】` の部分を書き換え、出典と調査日を記入する
 3. `index.html` の記事一覧と `sitemap.xml` に1件追加する
-4. コミットしてプッシュする
+4. `tools/check_site.py` と `tools/check_pages.js` で確認してから、コミットしてプッシュする（手順は [tools/README.md](tools/README.md)）
 
 ## ローカルでの確認
 
