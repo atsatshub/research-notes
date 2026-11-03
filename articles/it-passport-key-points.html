@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）｜お得情報・調べものまとめ</title>
+  <meta name="description" content="ITパスポート試験で具体的に覚えておきたい内容をまとめました。計算問題の解き方（稼働率・損益分岐点・転送時間・2進数・クリティカルパス・絶対参照）、過去問から覚える用語、法律の数字と区別、セキュリティの基本、シラバスVer.6.5の変更点。2026年11月3日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/it-passport-key-points.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:title" content="ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）">
+  <meta property="og:description" content="ITパスポート試験で具体的に覚えておきたい内容をまとめました。計算問題の解き方（稼働率・損益分岐点・転送時間・2進数・クリティカルパス・絶対参照）、過去問から覚える用語、法律の数字と区別、セキュリティの基本、シラバスVer.6.5の変更点。2026年11月3日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/it-passport-key-points.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
+      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 資格試験</p>
+
+      <h1>ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-03">2026年11月3日</time></li>
+        <li><span class="tag">資格試験</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>覚える範囲はシラバスの<strong>用語例</strong>。Ver.6.5で取適法が入った<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>計算は型が決まっている。稼働率の<strong>並列</strong>は「1−両方止まる確率」<a class="ref" href="#src-3">[3]</a></li>
+          <li>メールの暗号化に使うのは<strong>受信者の公開鍵</strong><a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+          <li>法律は数字で覚える。著作権は原則<strong>死後70年</strong><a class="ref" href="#src-6">[6]</a></li>
+          <li>10大脅威2026（組織）の1位は<strong>ランサム攻撃</strong><a class="ref" href="#src-7">[7]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">まず押さえる：範囲と最近の変更</a></li>
+          <li><a href="#sec-2">計算問題の型（過去問で確かめる）</a></li>
+          <li><a href="#sec-3">過去問の正解から覚える用語</a></li>
+          <li><a href="#sec-4">法律：数字と区別で覚える</a></li>
+          <li><a href="#sec-5">セキュリティの基本</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>試験の仕組みや1週間の学習計画は「<a href="it-passport-1week.html">ITパスポートに1週間で合格するための勉強法</a>」にまとめています。この記事は、試験に出る中身そのものを扱います。計算の解き方は筆者の解説で、答えはIPA（情報処理推進機構）が公表した正解と一致することを確かめています。</p>
+
+      <h2 id="sec-1">まず押さえる：範囲と最近の変更</h2>
+
+      <section class="item-card">
+        <h3>シラバスの「用語例」が覚える範囲</h3>
+        <p class="item-point">IPAのシラバスは、試験で問う知識の<strong>細目</strong>を分野ごとに並べた資料<a class="ref" href="#src-2">[2]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>最新はVer.6.5（2026年1月8日掲載）<a class="ref" href="#src-1">[1]</a></li>
+            <li>項目ごとに「用語例」と「活用例」が書かれている<a class="ref" href="#src-2">[2]</a></li>
+            <li>参考書に載っていない新しい用語は、シラバスで確かめるのが確実（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3><span class="label label-new">新制度・改正</span> 下請法が「中小受託取引適正化法」に</h3>
+        <p class="item-point">Ver.6.5で下請法を削除し、<strong>取適法</strong>を追加した<a class="ref" href="#src-1">[1]</a></p>
+        <div class="change">
+          <p class="change-what">法律の名前（通称）</p>
+          <p class="change-values"><span class="sr-only">変更前：</span><span class="change-before">下請法</span><span class="change-arrow" aria-hidden="true">→</span><span class="sr-only">変更後：</span><span class="change-after">中小受託取引適正化法（取適法）</span></p>
+          <p class="change-when">2026年1月1日施行<a class="ref" href="#src-8">[8]</a></p>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>親事業者は「委託事業者」、下請事業者は「中小受託事業者」に呼び名が変わった<a class="ref" href="#src-9">[9]</a></li>
+            <li>手形での支払いが禁止になった<a class="ref" href="#src-9">[9]</a><a class="ref" href="#src-8">[8]</a></li>
+            <li>価格の協議に応じない一方的な代金決定も禁止された<a class="ref" href="#src-8">[8]</a></li>
+            <li>シラバスでは、中小受託事業者への代金の支払遅延などを防ぐ法律として扱う<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>生成AIの用語も範囲に入っている</h3>
+        <p class="item-point">LLM、プロンプトエンジニアリング、<strong>ハルシネーション</strong>などが用語例にある<a class="ref" href="#src-2">[2]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>AI技術の用語例: 機械学習（教師あり・教師なし・強化学習）、ディープラーニング、ファインチューニングなど<a class="ref" href="#src-2">[2]</a></li>
+            <li>AIの出力には、誤った情報・偏った情報・古い情報が含まれる可能性があるとされている<a class="ref" href="#src-2">[2]</a></li>
+            <li>AIの出力に人間が関わる必要性も、留意事項として挙がっている<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-2">計算問題の型（過去問で確かめる）</h2>
+
+      <p>例は、IPAが公開している平成21〜23年度の公開問題です。出題は古いものの、計算の考え方は同じなので、型を覚えるのに向いています（筆者の見解）。<a class="ref" href="#src-10">[10]</a></p>
+
+      <section class="item-card">
+        <h3>稼働率：直列は掛け算、並列は「1−両方止まる確率」</h3>
+        <p class="item-point">稼働率0.90・0.95・0.95の装置で、最も高い構成を選ぶ問題<a class="ref" href="#src-3">[3]</a></p>
+        <figure class="bar-chart labels-above">
+          <figcaption class="chart-title">構成ごとの稼働率 <span class="chart-sub">（平成22年度秋期 問64・計算は筆者）</span><a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-11">[11]</a></figcaption>
+          <div role="img" aria-label="構成ごとの稼働率：ア AとBの直列0.855、イ AとBとCの直列0.812、ウ Aと（BとCの並列）の直列0.898、エ BとCの並列0.9975。正解はエ">
+            <div class="bar-row"><span class="bar-label">ア A・Bの直列</span><span class="bar-track"><span class="bar" style="width:85.7%"></span></span><span class="bar-value">0.855</span></div>
+            <div class="bar-row"><span class="bar-label">イ A・B・Cの直列</span><span class="bar-track"><span class="bar" style="width:81.4%"></span></span><span class="bar-value">0.812</span></div>
+            <div class="bar-row"><span class="bar-label">ウ A と（B・Cの並列）の直列</span><span class="bar-track"><span class="bar" style="width:90%"></span></span><span class="bar-value">0.898</span></div>
+            <div class="bar-row is-key"><span class="bar-label">エ B・Cの並列（正解）</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">0.9975</span></div>
+          </div>
+          <p class="chart-note">棒の長さは、最も高い0.9975を100%としたもの</p>
+        </figure>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>直列: どれか1つが止まると止まる。0.90×0.95＝0.855（筆者の計算）</li>
+            <li>並列: 両方止まったときだけ止まる。1−(1−0.95)×(1−0.95)＝0.9975（筆者の計算）</li>
+            <li>IPAの正解はエ<a class="ref" href="#src-11">[11]</a></li>
+            <li>MTBF（平均故障間動作時間）・MTTR（平均修復時間）も用語例にある<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>損益分岐点：固定費 ÷（1−変動費率）</h3>
+        <p class="item-point">売上高400、変動費240、固定費120なら損益分岐点は<strong>300</strong><a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">変動費を足す：材料費140＋外注費100＝240</p><p class="timeline-note">単位は百万円（平成21年度秋期 問13）<a class="ref" href="#src-12">[12]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">変動費率：240÷400＝0.6</p><p class="timeline-note">売上高に対する変動費の割合（筆者の解説）</p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">固定費を足す：製造固定費100＋販売固定費20＝120</p><p class="timeline-note">売上に関係なくかかる費用</p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">120÷(1−0.6)＝300</p><p class="timeline-note">IPAの正解もウ（300百万円）<a class="ref" href="#src-13">[13]</a></p></li>
+        </ol>
+      </section>
+
+      <section class="item-card">
+        <h3>転送時間：バイトは8倍してビットに、効率も掛ける</h3>
+        <p class="item-point">100Mビット/秒・効率20%で1Gバイトを送ると<strong>400秒</strong><a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>1Gバイト＝10<sup>9</sup>バイト＝8×10<sup>9</sup>ビット（問題文の条件）<a class="ref" href="#src-12">[12]</a></li>
+            <li>実際に使える速さ: 100×10<sup>6</sup>×0.2＝2×10<sup>7</sup>ビット/秒（筆者の計算）</li>
+            <li>8×10<sup>9</sup>÷(2×10<sup>7</sup>)＝400秒。IPAの正解はウ<a class="ref" href="#src-13">[13]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>2進数：桁の重みは右から1・2・4・8・16</h3>
+        <p class="item-point">2進数10110は16＋4＋2＝<strong>22</strong>。3倍の66は1000010<a class="ref" href="#src-14">[14]</a><a class="ref" href="#src-15">[15]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>平成21年度春期 問64。66＝64＋2なので1000010。正解はウ<a class="ref" href="#src-14">[14]</a><a class="ref" href="#src-15">[15]</a></li>
+            <li>小数点以下の重みは0.5・0.25・0.125…と半分ずつになる（筆者の解説）</li>
+            <li>2進数1.101は1＋0.5＋0.125＝1.625。正解はエ（平成22年度春期 問52）<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>論理演算：XORは「0とならそのまま、1となら反転」</h3>
+        <p class="item-point">データXと00001111のXORは、<strong>下位4ビットだけ</strong>が反転する<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-11">[11]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>XOR（排他的論理和）は、2つのビットが違うときだけ1になる<a class="ref" href="#src-3">[3]</a></li>
+            <li>例: 10101010 XOR 00001111 ＝ 10100101（筆者の計算）</li>
+            <li>平成22年度秋期 問68。IPAの正解はエ<a class="ref" href="#src-11">[11]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>クリティカルパス：いちばん長い経路の日数</h3>
+        <p class="item-point">先行作業をたどって経路ごとに足し、<strong>最長</strong>の経路が全体の日数<a class="ref" href="#src-16">[16]</a><a class="ref" href="#src-17">[17]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>作業の日数と先行作業（平成23年度秋期 問95）<a class="ref" href="#src-16">[16]</a></caption>
+            <thead><tr><th scope="col">作業</th><th scope="col">日数</th><th scope="col">先行する作業</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">テスト1</th><td>3</td><td>なし</td></tr>
+              <tr><th scope="row">テスト2</th><td>4</td><td>テスト1</td></tr>
+              <tr><th scope="row">テスト3</th><td>2</td><td>なし</td></tr>
+              <tr><th scope="row">テスト4</th><td>5</td><td>テスト1・テスト3</td></tr>
+              <tr><th scope="row">報告書作成</th><td>2</td><td>テスト2・テスト4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>テスト1→2→報告書＝9日、テスト1→4→報告書＝10日、テスト3→4→報告書＝9日（筆者の計算）</li>
+            <li>最長の10日がクリティカルパス。IPAの正解はエ（10日）<a class="ref" href="#src-17">[17]</a></li>
+            <li>クリティカルパス上の作業が遅れると、全体が遅れる（筆者の解説）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>表計算：固定したい側に「$」を付ける</h3>
+        <p class="item-point">列を固定するなら$B4、行を固定するならD$2<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>税抜き価格（B列）と税率（2行目）から、税込み価格の表を複写で作る問題<a class="ref" href="#src-4">[4]</a></li>
+            <li>価格はいつもB列なので$B4、税率はいつも2行目なのでD$2（筆者の解説）</li>
+            <li>平成22年度春期 問55。正解は「$B4*(1.0+D$2)」のウ<a class="ref" href="#src-5">[5]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>そのほかによく出る計算</h3>
+        <p class="item-point">期待値・発注量・人員の計算も、<strong>手順</strong>を覚えれば解ける</p>
+        <ul class="service-list">
+          <li><p class="service-name">期待値（平成21年度春期 問7）</p><p class="service-what">確率×値上がり幅を足し合わせる。株式Bは0.4×30＋0.4×20＋0.2×5＝21で最大</p><p class="service-cond">正解はイ<a class="ref" href="#src-14">[14]</a><a class="ref" href="#src-15">[15]</a></p></li>
+          <li><p class="service-name">定期発注方式の発注量（平成21年度秋期 問7）</p><p class="service-what">(発注サイクル10日＋リードタイム5日)×50個＋安全在庫30個−在庫300個＝480個</p><p class="service-cond">正解はウ<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+        </ul>
+      </section>
+
+      <h2 id="sec-3">過去問の正解から覚える用語</h2>
+
+      <p>用語問題は、正解の選択肢がそのまま用語の説明になります。IPAの公開問題で正解だった説明を、短く言い換えて並べました（言い換えは筆者）。</p>
+
+      <section class="item-card">
+        <h3>データベース・システム</h3>
+        <p class="item-point">正規化の目的は、データの<strong>重複をなくす</strong>こと<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-11">[11]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">正規化</p><p class="service-what">データの冗長性を排除して保守性を高める</p><p class="service-cond">平成22年度秋期 問63<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-11">[11]</a></p></li>
+          <li><p class="service-name">主キー</p><p class="service-what">複数の項目を組み合わせて主キーにしてもよい</p><p class="service-cond">平成21年度秋期 問84<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+          <li><p class="service-name">DRAM</p><p class="service-what">主記憶装置に使われるメモリ</p><p class="service-cond">平成21年度秋期 問83<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+          <li><p class="service-name">シングルサインオン</p><p class="service-what">一度の認証で、許可された複数のシステムを使える</p><p class="service-cond">平成22年度秋期 問62<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-11">[11]</a></p></li>
+        </ul>
+      </section>
+
+      <section class="item-card">
+        <h3>経営・組織</h3>
+        <p class="item-point">ROEは、<strong>自己資本</strong>に対してどれだけ利益を上げたかを示す指標<a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-19">[19]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">ROE</p><p class="service-what">投下した自己資本に対する利益で見る収益性の指標</p><p class="service-cond">平成23年度特別 問19<a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-19">[19]</a></p></li>
+          <li><p class="service-name">ファブレス</p><p class="service-what">自社で工場を持たずに企画し、生産はほかの企業に委託する</p><p class="service-cond">平成21年度秋期 問8<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+          <li><p class="service-name">マトリックス組織</p><p class="service-what">2人以上の上司から指揮命令を受け、プロジェクトと職能部門を両立させる</p><p class="service-cond">平成21年度秋期 問9<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+          <li><p class="service-name">CRM</p><p class="service-what">顧客への理解を深め、長期的な関係を築きやすくする</p><p class="service-cond">平成21年度秋期 問15<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+          <li><p class="service-name">データモデリング</p><p class="service-what">データの構造を分析し、E-R図などで整理する</p><p class="service-cond">平成21年度秋期 問14<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></p></li>
+        </ul>
+      </section>
+
+      <h2 id="sec-4">法律：数字と区別で覚える</h2>
+
+      <section class="item-card">
+        <h3>知的財産権の期間</h3>
+        <p class="item-point">著作権は原則<strong>死後70年</strong>。産業財産権は出願や登録から数える<a class="ref" href="#src-6">[6]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>権利が続く期間（法律の条文・文化庁の資料から）</caption>
+            <thead><tr><th scope="col">権利</th><th scope="col">期間</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">著作権</th><td>原則として著作者の死後70年<a class="ref" href="#src-6">[6]</a></td></tr>
+              <tr><th scope="row">特許権</th><td>出願の日から20年<a class="ref" href="#src-20">[20]</a></td></tr>
+              <tr><th scope="row">実用新案権</th><td>出願の日から10年<a class="ref" href="#src-21">[21]</a></td></tr>
+              <tr><th scope="row">意匠権</th><td>出願の日から25年<a class="ref" href="#src-22">[22]</a></td></tr>
+              <tr><th scope="row">商標権</th><td>登録の日から10年（更新できる）<a class="ref" href="#src-23">[23]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>著作権の期間は、亡くなった年の翌年1月1日から数える<a class="ref" href="#src-6">[6]</a></li>
+            <li>死後50年から70年への延長は、2018年12月30日に施行された<a class="ref" href="#src-6">[6]</a></li>
+            <li>プログラムの著作物でも、プログラム言語・規約・解法は保護されない<a class="ref" href="#src-24">[24]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>派遣と請負：指揮命令するのは誰か</h3>
+        <p class="item-point">請負では、発注者は受託者の労働者に<strong>指揮命令しない</strong><a class="ref" href="#src-25">[25]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>派遣と請負の違い（東京労働局の説明をもとに筆者が整理）<a class="ref" href="#src-25">[25]</a></caption>
+            <thead><tr><th scope="col"></th><th scope="col">労働者派遣</th><th scope="col">請負</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">働き方</th><td>派遣先の指揮命令を受けて働く</td><td>仕事の完成を目的とする</td></tr>
+              <tr><th scope="row">発注者の指揮命令</th><td>派遣先が指揮命令する</td><td>発注者は指揮命令しない</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>形式は請負でも、実態が労働者派遣なら「偽装請負」で違法<a class="ref" href="#src-25">[25]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>個人情報：「匿名加工」と「仮名加工」の違い</h3>
+        <p class="item-point">匿名加工情報は、個人を識別できず<strong>復元もできない</strong>ように加工した情報<a class="ref" href="#src-26">[26]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>仮名加工情報は、ほかの情報と照らし合わせない限り個人を識別できないように加工した情報<a class="ref" href="#src-26">[26]</a></li>
+            <li>シラバスの用語例には、個人識別符号・要配慮個人情報・匿名加工情報・オプトアウトなどがある<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>そのほかの法律</h3>
+        <p class="item-point">不正アクセス禁止法は、IDやパスワードの<strong>不正取得・保管</strong>も禁じる<a class="ref" href="#src-27">[27]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">不正アクセス禁止法</p><p class="service-what">他人のIDやパスワードを使った不正アクセスのほか、その不正取得・保管、助長する行為も禁止</p><p class="service-cond"><a class="ref" href="#src-27">[27]</a></p></li>
+          <li><p class="service-name">PL法（製造物責任法）</p><p class="service-what">対象は「製造又は加工された動産」。ソフトウェア自体は対象外</p><p class="service-cond">ソフトウェアを組み込んだ製造物は対象になる場合がある<a class="ref" href="#src-28">[28]</a></p></li>
+          <li><p class="service-name">情報流通プラットフォーム対処法</p><p class="service-what">発信者情報開示請求などを定める法律として、シラバスの用語例にある</p><p class="service-cond"><a class="ref" href="#src-2">[2]</a></p></li>
+        </ul>
+      </section>
+
+      <h2 id="sec-5">セキュリティの基本</h2>
+
+      <section class="item-card">
+        <h3>公開鍵暗号：暗号化は受信者の公開鍵</h3>
+        <p class="item-point">XさんがYさんに秘密のメールを送るときは、<strong>Yさんの公開鍵</strong>で暗号化<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>平成22年度春期 問54。IPAの正解はウ（Yさんの公開鍵）<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+            <li>共通鍵暗号方式は、暗号化と復号で同じ鍵を使う<a class="ref" href="#src-29">[29]</a></li>
+            <li>公開鍵暗号方式は、暗号化と復号で異なる鍵（公開鍵と秘密鍵）を使う<a class="ref" href="#src-29">[29]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>電子署名（デジタル署名）：署名は送信者の秘密鍵</h3>
+        <p class="item-point">作成者が<strong>自分の秘密鍵</strong>で作り、受信者は作成者の公開鍵で確かめる<a class="ref" href="#src-30">[30]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>シラバスの用語例は「デジタル署名（署名鍵、検証鍵）」<a class="ref" href="#src-2">[2]</a></li>
+            <li>認証局（CA）は、公開鍵が本人のものであることを示す証明書を発行する（平成21年度秋期 問85の正解）<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>多要素認証：3つの要素のうち2つ以上</h3>
+        <p class="item-point">「知っているもの」「持っているもの」「<strong>本人自身</strong>に関するもの」<a class="ref" href="#src-30">[30]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>2つの要素を使うものは「二要素認証」とも呼ぶ<a class="ref" href="#src-30">[30]</a></li>
+            <li>パスワードを2回入れても、要素は1つ（知っているもの）だけ（筆者の解説）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>情報セキュリティの要素</h3>
+        <p class="item-point">基本は<strong>機密性・完全性・可用性</strong>の3つ<a class="ref" href="#src-29">[29]</a><a class="ref" href="#src-2">[2]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>シラバスには、真正性・責任追跡性・否認防止・信頼性も要素として並んでいる<a class="ref" href="#src-2">[2]</a></li>
+            <li>ランサムウェア対策の活用例として、バックアップの「3-2-1ルール」がシラバスにある<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>情報セキュリティ10大脅威 2026（組織）</h3>
+        <p class="item-point">1位ランサム攻撃、2位サプライチェーン攻撃、3位は<strong>AI</strong>のリスク<a class="ref" href="#src-7">[7]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1位</span><p class="timeline-title">ランサム攻撃による被害</p><p class="timeline-note">11年連続11回目<a class="ref" href="#src-7">[7]</a></p></li>
+          <li><span class="timeline-day">2位</span><p class="timeline-title">サプライチェーンや委託先を狙った攻撃</p><p class="timeline-note">8年連続8回目<a class="ref" href="#src-7">[7]</a></p></li>
+          <li><span class="timeline-day">3位</span><p class="timeline-title">AIの利用をめぐるサイバーリスク</p><p class="timeline-note">2026年に初めて選ばれた<a class="ref" href="#src-7">[7]</a></p></li>
+        </ol>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>個人向けの脅威は順位を付けず、五十音順で載っている<a class="ref" href="#src-7">[7]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>令和4年度以降の公開問題（CBT方式の問題を載せたIPAのサイトに、今回の調査環境から接続できなかった）</li>
+          <li>Ver.6.5のシラバスが、どの試験日から適用されるか（IPAのページに記載なし）</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="it-passport-1week.html">ITパスポートに1週間で合格するための勉強法</a></li>
+          <li><a href="shakaijin-otoku-8-learning.html">社会人お得技ノート⑧ 図書館・学習・資格試験</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（30件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月3日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.ipa.go.jp/shiken/syllabus/gaiyou.html" target="_blank" rel="noopener">試験要綱・シラバス</a>（情報処理推進機構（IPA））</li>
+          <li id="src-2"><a href="https://www.ipa.go.jp/shiken/syllabus/omgdg50000005kn1-att/syllabus_ip_ver6_5.pdf" target="_blank" rel="noopener">ITパスポート試験 シラバス Ver.6.5</a>（情報処理推進機構（IPA））</li>
+          <li id="src-3"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000004d6f-att/2010h22a_ip_qs.pdf" target="_blank" rel="noopener">平成22年度秋期 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-4"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000004n2z-att/2010h22h_ip_qs.pdf" target="_blank" rel="noopener">平成22年度春期 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-5"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000004n2z-att/2010h22h_ip_ans.pdf" target="_blank" rel="noopener">平成22年度春期 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-6"><a href="https://www.bunka.go.jp/seisaku/chosakuken/hokaisei/kantaiheiyo_chosakuken/1411890.html" target="_blank" rel="noopener">著作物等の保護期間の延長に関するQ&A</a>（文化庁）</li>
+          <li id="src-7"><a href="https://www.ipa.go.jp/security/10threats/10threats2026.html" target="_blank" rel="noopener">情報セキュリティ10大脅威 2026</a>（情報処理推進機構（IPA））</li>
+          <li id="src-8"><a href="https://mirasapo-plus.go.jp/infomation/30416/" target="_blank" rel="noopener">【2026年1月1日施行】手形払い禁止など「取適法」がもたらす変化</a>（中小企業庁（ミラサポplus））</li>
+          <li id="src-9"><a href="https://www.mlit.go.jp/jidosha/content/001980298.pdf" target="_blank" rel="noopener">取適法の概要について</a>（公正取引委員会（国土交通省に掲載））</li>
+          <li id="src-10"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html" target="_blank" rel="noopener">過去問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-11"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000004d6f-att/2010h22a_ip_ans.pdf" target="_blank" rel="noopener">平成22年度秋期 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-12"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000f3yi-att/2009h21a_ip_qs.pdf" target="_blank" rel="noopener">平成21年度秋期 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-13"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000f3yi-att/2009h21a_ip_ans.pdf" target="_blank" rel="noopener">平成21年度秋期 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-14"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000009bhl-att/2009h21h_ip_qs.pdf" target="_blank" rel="noopener">平成21年度春期 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-15"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000009bhl-att/2009h21h_ip_ans.pdf" target="_blank" rel="noopener">平成21年度春期 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-16"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000003ojp-att/2011h23a_ip_qs.pdf" target="_blank" rel="noopener">平成23年度秋期 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-17"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000003ojp-att/2011h23a_ip_ans.pdf" target="_blank" rel="noopener">平成23年度秋期 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-18"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000003ya2-att/2011h23tokubetsu_ip_qs.pdf" target="_blank" rel="noopener">平成23年度特別試験 ITパスポート試験 問題</a>（情報処理推進機構（IPA））</li>
+          <li id="src-19"><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ug65p90000003ya2-att/2011h23tokubetsu_ip_ans.pdf" target="_blank" rel="noopener">平成23年度特別試験 ITパスポート試験 解答例</a>（情報処理推進機構（IPA））</li>
+          <li id="src-20"><a href="https://laws.e-gov.go.jp/law/334AC0000000121" target="_blank" rel="noopener">特許法（第67条 存続期間）</a>（e-Gov法令検索）</li>
+          <li id="src-21"><a href="https://laws.e-gov.go.jp/law/334AC0000000123" target="_blank" rel="noopener">実用新案法（第15条 存続期間）</a>（e-Gov法令検索）</li>
+          <li id="src-22"><a href="https://laws.e-gov.go.jp/law/334AC0000000125" target="_blank" rel="noopener">意匠法（第21条 存続期間）</a>（e-Gov法令検索）</li>
+          <li id="src-23"><a href="https://laws.e-gov.go.jp/law/334AC0000000127" target="_blank" rel="noopener">商標法（第19条 存続期間）</a>（e-Gov法令検索）</li>
+          <li id="src-24"><a href="https://laws.e-gov.go.jp/law/345AC0000000048" target="_blank" rel="noopener">著作権法（第10条 プログラムの著作物）</a>（e-Gov法令検索）</li>
+          <li id="src-25"><a href="https://jsite.mhlw.go.jp/tokyo-roudoukyoku/hourei_seido_tetsuzuki/roudousha_haken/001.html" target="_blank" rel="noopener">偽装請負について</a>（東京労働局）</li>
+          <li id="src-26"><a href="https://www.ppc.go.jp/all_faq_index/faq1-q14-1/" target="_blank" rel="noopener">匿名加工情報と仮名加工情報の違いは何ですか</a>（個人情報保護委員会）</li>
+          <li id="src-27"><a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/basic/legal/09/" target="_blank" rel="noopener">不正アクセス行為の禁止等に関する法律（国民のためのサイバーセキュリティサイト）</a>（総務省）</li>
+          <li id="src-28"><a href="https://www.caa.go.jp/policies/policy/consumer_safety/other/pl_qa.html" target="_blank" rel="noopener">製造物責任（PL）法の概要Q&A</a>（消費者庁）</li>
+          <li id="src-29"><a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_02/" target="_blank" rel="noopener">用語集（か行）（国民のためのサイバーセキュリティサイト）</a>（総務省）</li>
+          <li id="src-30"><a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" target="_blank" rel="noopener">用語集（た行）（国民のためのサイバーセキュリティサイト）</a>（総務省）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月3日時点の情報をもとにまとめたものです。法律や試験の範囲は変更されることがあります。計算の解き方と言い換えは筆者によるもので、答えはIPAの正解と照らし合わせています。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="../index.html">トップに戻る</a> ・ <a href="../about.html">このサイトについて</a></p>
+      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
