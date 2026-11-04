@@ -166,10 +166,15 @@ def check_article(f, s, idx, sm, out):
 def main():
     if not os.path.exists("CLAUDE.md"):
         sys.exit("リポジトリのルートで実行してください")
+    # Windows の端末（cp932 など）で「¥」などを表示できず止まらないようにする
+    sys.stdout.reconfigure(errors="backslashreplace")
     idx = open("index.html", encoding="utf-8").read()
     sm = open("sitemap.xml", encoding="utf-8").read()
     total = 0
-    for f in sorted(glob.glob("articles/*.html")) + ROOT_PAGES:
+    # Windows では glob が「articles\xxx.html」を返すので、区切りを「/」にそろえる
+    # （そろえないと記事として扱われず、記事のチェックが丸ごと飛ばされる）
+    articles = sorted(p.replace(os.sep, "/") for p in glob.glob("articles/*.html"))
+    for f in articles + ROOT_PAGES:
         s = open(f, encoding="utf-8").read()
         out = []
         check_common(f, s, out)
