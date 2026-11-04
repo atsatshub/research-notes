@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）｜お得情報・調べものまとめ</title>
+  <meta name="description" content="Navisworks Simulateの基本操作を、オートデスク公式ヘルプ（2027版）をもとに手順順にまとめました。Manageとの違いと価格、画面とファイル形式（NWD・NWF・NWC）、ナビゲーション、選択・検索セット、ビューポイント・断面・測定、TimeLinerの4D工程シミュレーション、Animator・Scripter、数量拾い、動画の書き出し。2026年11月4日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/navisworks-simulate-guide.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:title" content="Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）">
+  <meta property="og:description" content="Navisworks Simulateの基本操作を、オートデスク公式ヘルプ（2027版）をもとに手順順にまとめました。Manageとの違いと価格、画面とファイル形式（NWD・NWF・NWC）、ナビゲーション、選択・検索セット、ビューポイント・断面・測定、TimeLinerの4D工程シミュレーション、Animator・Scripter、数量拾い、動画の書き出し。2026年11月4日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/navisworks-simulate-guide.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
+      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › BIM・建設ソフト</p>
+
+      <h1>Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-04">2026年11月4日</time></li>
+        <li><span class="tag">BIM・建設ソフト</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>Simulateは干渉チェックのないManage。年額<strong>¥196,900</strong>（税込）<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></li>
+          <li>作業中は<strong>NWF</strong>、配布はNWD。NWDは無償のFreedomで閲覧可<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+          <li>4Dは<strong>TimeLiner</strong>。タスク作成→部材を付ける→再生<a class="ref" href="#src-6">[6]</a></li>
+          <li>部材の動きは<strong>Animator</strong>、操作への反応はScripter<a class="ref" href="#src-7">[7]</a></li>
+          <li>数量拾いは<strong>Quantification</strong>。結果はExcelに書き出せる<a class="ref" href="#src-8">[8]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">まず押さえる：Simulateでできること</a></li>
+          <li><a href="#sec-2">画面とファイルの基本</a></li>
+          <li><a href="#sec-3">モデルの中を動く（ナビゲーション）</a></li>
+          <li><a href="#sec-4">選ぶ・探す・見せ方を変える</a></li>
+          <li><a href="#sec-5">レビュー：ビューポイント・断面・測定・朱書き</a></li>
+          <li><a href="#sec-6">TimeLinerで工程（4D）シミュレーション</a></li>
+          <li><a href="#sec-7">AnimatorとScripterで動きを付ける</a></li>
+          <li><a href="#sec-8">数量拾い（Quantification）とレンダリング</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>オートデスクの公式ヘルプ（Navisworks 2027・日本語版）をもとに、Navisworks Simulateの操作を作業の順にまとめました。メニュー名はヘルプの表記に合わせています。<strong>筆者は実機での操作確認をしていません</strong>。バージョンによって、ボタンの名前や位置が変わることがあります。</p>
+      <p>覚える順番は「画面とファイル → ナビゲーション → 選択とセット → ビューポイント → TimeLiner」がおすすめです。TimeLinerは、セットとビューポイントを使いこなせると作業が速くなるためです（筆者の提案）。</p>
+
+      <h2 id="sec-1">まず押さえる：Simulateでできること</h2>
+
+      <section class="item-card">
+        <h3>Manageとの違いは「干渉チェック」だけ</h3>
+        <p class="item-point">Manageだけにあるのは<strong>干渉チェック</strong>と干渉管理<a class="ref" href="#src-1">[1]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>SimulateとManageの機能（○＝使える）<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-9">[9]</a><a class="ref" href="#src-10">[10]</a></caption>
+            <thead><tr><th scope="col">機能</th><th scope="col">Simulate</th><th scope="col">Manage</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">モデルのファイルとデータの統合</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">NWD・DWFのパブリッシュ</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">工程（4D）と費用（5D）のシミュレーション</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">フォトリアルなレンダリング</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">数量拾い（3Dモデル・2Dシート）</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">アニメーションの作成（Animator）</th><td>○</td><td>○</td></tr>
+              <tr><th scope="row">干渉チェック（Clash Detective）</th><td>×</td><td>○</td></tr>
+              <tr><th scope="row">時間ベースの干渉チェック（TimeLiner＋Clash Detective）</th><td>×</td><td>○</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>無償の<strong>Navisworks Freedom</strong>で、パブリッシュしたNWDを閲覧できる<a class="ref" href="#src-5">[5]</a><a class="ref" href="#src-4">[4]</a></li>
+            <li>TimeLinerとAnimatorの動きは、Freedomでも再生だけはできる<a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-10">[10]</a></li>
+            <li>Manage単体の契約には、Autodesk Formaのサービスが付く<a class="ref" href="#src-5">[5]</a></li>
+            <li>AEC Collection経由のManageには、Formaのサービスは付かない<a class="ref" href="#src-5">[5]</a></li>
+            <li>干渉チェックが不要で、工程の見える化や数量拾いが目的ならSimulateで足りる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>価格（オートデスク公式ストア）</h3>
+        <p class="item-point">Simulateは年額<strong>¥196,900</strong>（税込）。Manageの約4割<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">年間サブスクリプションの価格 <span class="chart-sub">（1ユーザー・税込・2026年11月4日の表示）</span><a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></figcaption>
+          <div role="img" aria-label="年間サブスクリプションの価格（税込）：Navisworks Simulate 196,900円、Navisworks Manage 487,300円">
+            <div class="bar-row is-key"><span class="bar-label">Simulate</span><span class="bar-track"><span class="bar" style="width:40.4%"></span></span><span class="bar-value">¥196,900</span></div>
+            <div class="bar-row"><span class="bar-label">Manage</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">¥487,300</span></div>
+          </div>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <caption>ほかのプラン（1ユーザー・税込）<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></caption>
+            <thead><tr><th scope="col">プラン</th><th scope="col">Simulate</th><th scope="col">Manage</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">月間サブスクリプション</th><td>¥24,200/月</td><td>¥60,500/月</td></tr>
+              <tr><th scope="row">年間（月あたり換算）</th><td>¥16,409/月</td><td>¥40,609/月</td></tr>
+              <tr><th scope="row">Flex（トークン制）</th><td>24時間ごとに4トークン消費</td><td>24時間ごとに9トークン消費</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>ストアの表示価格は消費税込み<a class="ref" href="#src-3">[3]</a></li>
+            <li>Flexのトークンは、33トークン¥17,061から買える（最小販売数）<a class="ref" href="#src-2">[2]</a></li>
+            <li>年間プランには3年契約の選択肢もある（金額は今回未確認）<a class="ref" href="#src-2">[2]</a></li>
+            <li>「約4割」は196,900÷487,300＝約40％（筆者の計算）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3><span class="label label-new">2027版</span> 最新版の主な変更点</h3>
+        <p class="item-point">アイコン刷新、外観プロファイラの改善、新しいファイル形式など<a class="ref" href="#src-11">[11]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>ファイル名を並べたテキスト（<strong>NWL形式</strong>）で、まとめて開ける<a class="ref" href="#src-12">[12]</a><a class="ref" href="#src-13">[13]</a></li>
+            <li>CATIA V6（3DXMLを含む）とUSDのファイルに対応した<a class="ref" href="#src-12">[12]</a></li>
+            <li>[プロパティ]で、前の項目と違う値がオレンジ色で強調される<a class="ref" href="#src-14">[14]</a></li>
+            <li>[セット]と[保存されたビューポイント]に編集モードが付いた<a class="ref" href="#src-14">[14]</a></li>
+            <li>[オプション エディタ]に設定項目の検索が付いた<a class="ref" href="#src-15">[15]</a></li>
+            <li>Clash Detectiveの再設計は、Manageだけに関係する<a class="ref" href="#src-11">[11]</a><a class="ref" href="#src-1">[1]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>動作環境</h3>
+        <p class="item-point">対応OSは<strong>Windows 10／11</strong>（64ビット）<a class="ref" href="#src-16">[16]</a></p>
+        <dl class="item-facts">
+          <dt>OS</dt><dd>Windows 10／11（64ビット）<a class="ref" href="#src-16">[16]</a></dd>
+          <dt>CPU</dt><dd>3.0GHz以上<a class="ref" href="#src-16">[16]</a></dd>
+          <dt>メモリ</dt><dd>最低2GB<a class="ref" href="#src-16">[16]</a></dd>
+          <dt>ディスク</dt><dd>インストールに15GB以上の空き<a class="ref" href="#src-16">[16]</a></dd>
+          <dt>画面</dt><dd>1,280×800以上（1,920×1,080を推奨）<a class="ref" href="#src-16">[16]</a></dd>
+        </dl>
+      </section>
+
+      <h2 id="sec-2">画面とファイルの基本</h2>
+
+      <section class="item-card">
+        <h3>画面は8つの部分でできている</h3>
+        <p class="item-point">上の<strong>リボン</strong>で操作し、中央のシーン ビューで見る<a class="ref" href="#src-17">[17]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>画面の構成<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-19">[19]</a></caption>
+            <thead><tr><th scope="col">部分</th><th scope="col">役割</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">アプリケーション ボタン</th><td>開く・保存・パブリッシュ・オプションなど</td></tr>
+              <tr><th scope="row">クイック アクセス ツールバー</th><td>新規・保存・リフレッシュなど、よく使うボタン</td></tr>
+              <tr><th scope="row">情報センター</th><td>ヘルプの検索など</td></tr>
+              <tr><th scope="row">リボン</th><td>タブごとにコマンドをまとめたもの</td></tr>
+              <tr><th scope="row">シーン ビュー</th><td>モデルを表示する中央の画面</td></tr>
+              <tr><th scope="row">ナビゲーション ツール</th><td>右上のナビゲーション バー（ViewCubeなど）</td></tr>
+              <tr><th scope="row">ドッキング可能ウィンドウ</th><td>選択ツリー・プロパティ・TimeLinerなどの作業用ウィンドウ</td></tr>
+              <tr><th scope="row">ステータス バー</th><td>画面下の状態表示</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>表示するウィンドウは[表示] &gt; [ワークスペース]で切り替える<a class="ref" href="#src-20">[20]</a></li>
+            <li>配色テーマは[オプション] &gt; [インタフェース]で変える<a class="ref" href="#src-17">[17]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>リボンのタブ早見表</h3>
+        <p class="item-point">主要ツールは<strong>[ホーム] &gt; [ツール]</strong>パネルにある<a class="ref" href="#src-20">[20]</a><a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-21">[21]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>タブと主な中身<a class="ref" href="#src-20">[20]</a></caption>
+            <thead><tr><th scope="col">タブ</th><th scope="col">主な中身</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">ホーム</th><td>追加・マージ・リフレッシュ、選択と検索、表示/非表示、ツール（TimeLiner・Quantification・外観プロファイラなど）</td></tr>
+              <tr><th scope="row">ビューポイント</th><td>ビューポイントの保存と再生、カメラ、ナビゲート（重力・衝突など）、断面化、画像の書き出し</td></tr>
+              <tr><th scope="row">レビュー</th><td>測定、朱書き、タグ、コメント</td></tr>
+              <tr><th scope="row">アニメーション</th><td>Animator、ビューポイント アニメーションの記録、再生、Scripter、動画の書き出し</td></tr>
+              <tr><th scope="row">表示</th><td>ナビゲーション支援（ViewCubeなど）、グリッドとレベル、ウィンドウの表示切り替え</td></tr>
+              <tr><th scope="row">出力</th><td>印刷、パブリッシュ、DWF・FBX・KMLなどへの書き出し、データの書き出し</td></tr>
+              <tr><th scope="row">レンダリング</th><td>Autodesk Renderingウィンドウ、レイ トレース</td></tr>
+              <tr><th scope="row">項目ツール</th><td>部材を選んだときだけ表示。色・透明度、移動・回転、注視点など</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="item-card">
+        <h3>ファイル形式は3つ（＋2027版のNWL）</h3>
+        <p class="item-point">作業中は<strong>NWF</strong>、配布用のスナップショットはNWD<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-13">[13]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Navisworksのファイル形式<a class="ref" href="#src-13">[13]</a><a class="ref" href="#src-4">[4]</a></caption>
+            <thead><tr><th scope="col">形式</th><th scope="col">中身</th><th scope="col">使いどころ</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">NWC</th><td>CADファイルを開くと自動で作られるキャッシュ</td><td>2回目以降の読み込みが速くなる。元ファイルが新しければ作り直される</td></tr>
+              <tr><th scope="row">NWF</th><td>元ファイルへのリンクと、ビューポイントなどのマークアップ。形状データは含まない</td><td>作業中の保存。開くと、変更された元ファイルを読み直す</td></tr>
+              <tr><th scope="row">NWD</th><td>形状データとマークアップをまとめた「その時点の状態」</td><td>人に渡す・保管する。パブリッシュも可能</td></tr>
+              <tr><th scope="row">NWL</th><td>読み込むファイル名を1行に1つ書いたテキスト（2027版から）</td><td>多数のファイルをまとめて開く。NWFや別のNWLは指定できない</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="item-card">
+        <h3>モデルを集めて1つにする</h3>
+        <p class="item-point">1つ目は[開く]、2つ目以降は<strong>[追加]</strong>で足す<a class="ref" href="#src-22">[22]</a><a class="ref" href="#src-23">[23]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">クイック アクセス ツールバーの[新規]</p><p class="timeline-note">起動直後は無題のファイルが自動で作られている<a class="ref" href="#src-24">[24]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">アプリケーション ボタン &gt; [開く] &gt; [開く]（Ctrl+O）</p><p class="timeline-note">CADファイルは対応するファイル リーダで自動変換される<a class="ref" href="#src-22">[22]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">[ホーム]タブ &gt; [プロジェクト]パネル &gt; [追加]</p><p class="timeline-note">ShiftやCtrlで複数選べる<a class="ref" href="#src-23">[23]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">クイック アクセス ツールバーの[保存]（Ctrl+S）でNWFを選ぶ</p><p class="timeline-note">ファイルの種類でNWFかNWDを選ぶ<a class="ref" href="#src-4">[4]</a></p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">元のCADが更新されたら[リフレッシュ]</p><p class="timeline-note">クイック アクセス ツールバーにある<a class="ref" href="#src-25">[25]</a></p></li>
+        </ol>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[開く]で複数選ぶと、無題ファイルにまとめて開かれる<a class="ref" href="#src-22">[22]</a></li>
+            <li>[開く]やドラッグ＆ドロップは<strong>新しいファイル</strong>を作る<a class="ref" href="#src-23">[23]</a></li>
+            <li>レビュー済みのNWF・NWDは、[マージ]で1つにできる<a class="ref" href="#src-26">[26]</a></li>
+            <li>マージでは、重複した形状やマークアップが自動で消える<a class="ref" href="#src-26">[26]</a></li>
+            <li>多数のCADをまとめて変換するなら[バッチ ユーティリティ]<a class="ref" href="#src-27">[27]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>人に渡すときはNWDを「パブリッシュ」</h3>
+        <p class="item-point">パブリッシュしたNWDには<strong>パスワード</strong>や期限を付けられる<a class="ref" href="#src-4">[4]</a></p>
+        <p>アプリケーション ボタン &gt; [パブリッシュ]を押し、[パブリッシュ]ダイアログでドキュメント情報と保護の設定をします。<a class="ref" href="#src-4">[4]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[出力] &gt; [シーンをエクスポート] &gt; [NWD]でも書き出せる<a class="ref" href="#src-28">[28]</a></li>
+            <li>非表示の部材や元CADのプロパティを除いて書き出せる<a class="ref" href="#src-28">[28]</a></li>
+            <li>シーンに追加したRPCは、パブリッシュするNWDに含められない<a class="ref" href="#src-4">[4]</a></li>
+            <li>古いバージョンで開くなら、そのバージョンの形式で保存する<a class="ref" href="#src-4">[4]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">モデルの中を動く（ナビゲーション）</h2>
+
+      <section class="item-card">
+        <h3>マウスのホイールだけで基本操作ができる</h3>
+        <p class="item-point">回すとズーム、押して画面移動、<strong>Shift＋押す</strong>で回転<a class="ref" href="#src-29">[29]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>ホイールでの操作（3Dの場合）<a class="ref" href="#src-29">[29]</a></caption>
+            <thead><tr><th scope="col">したいこと</th><th scope="col">操作</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">拡大・縮小</th><td>ホイールを前後に回す</td></tr>
+              <tr><th scope="row">画面移動</th><td>ホイールを押したままマウスを動かす</td></tr>
+              <tr><th scope="row">回転（オービット）</th><td>Shift＋ホイールを押したままマウスを動かす</td></tr>
+              <tr><th scope="row">回転の中心を変える</th><td>Ctrl＋Shift＋ホイールを押したまま、中心にしたい位置へドラッグ</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>2Dのシートでは、画面移動とズームだけ使える<a class="ref" href="#src-29">[29]</a></li>
+            <li>旧来の「従来のナビゲーション モード」では、ホイールの動きが違う<a class="ref" href="#src-29">[29]</a><a class="ref" href="#src-30">[30]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>ViewCubeとナビゲーション バー</h3>
+        <p class="item-point">ViewCubeの面をクリックすると、<strong>その方向</strong>から見える<a class="ref" href="#src-31">[31]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>ナビゲーション バーは、シーン ビューの右上にある<a class="ref" href="#src-18">[18]</a></li>
+            <li>ViewCubeはドラッグで自由に回せる。2Dでは使えない<a class="ref" href="#src-31">[31]</a></li>
+            <li>[Home]キーでホーム ビュー、Ctrl+Homeでモデル全体を表示<a class="ref" href="#src-32">[32]</a></li>
+            <li>部材を選ぶツールを使っている間は、ナビゲートできない<a class="ref" href="#src-33">[33]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>ウォークで歩く：衝突・重力・第三者</h3>
+        <p class="item-point">ウォークに<strong>衝突と重力</strong>を足すと、階段を上り下りできる<a class="ref" href="#src-30">[30]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>現実感を出す機能（[ビューポイント]タブ &gt; [ナビゲート]パネル &gt; [リアリズム]）<a class="ref" href="#src-34">[34]</a><a class="ref" href="#src-35">[35]</a><a class="ref" href="#src-36">[36]</a></caption>
+            <thead><tr><th scope="col">機能</th><th scope="col">内容</th><th scope="col">切り替え</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">衝突</th><td>自分に大きさを持たせ、壁などを通り抜けないようにする。体の高さの半分までの段差は越えられる</td><td>Ctrl+D（ウォーク・フライ中）</td></tr>
+              <tr><th scope="row">重力</th><td>下に引っ張られ、床に沿って歩く。衝突がオンのときだけ使える</td><td>Ctrl+G（ウォーク中）</td></tr>
+              <tr><th scope="row">第三者</th><td>自分を表すアバターを表示する</td><td>Ctrl+T</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>ウォークはCtrl+2で切り替えられます。<a class="ref" href="#src-32">[32]</a></p>
+      </section>
+
+      <section class="item-card">
+        <h3>覚えておくと速いショートカット</h3>
+        <p class="item-point">ツールは<strong>Ctrl＋数字</strong>、ウィンドウはCtrl＋Fキーで切り替え<a class="ref" href="#src-32">[32]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>既定のショートカット（抜粋）<a class="ref" href="#src-32">[32]</a></caption>
+            <thead><tr><th scope="col">キー</th><th scope="col">内容</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Ctrl+1</th><td>選択</td></tr>
+              <tr><th scope="row">Ctrl+2</th><td>ウォーク</td></tr>
+              <tr><th scope="row">Ctrl+6</th><td>画面移動</td></tr>
+              <tr><th scope="row">Ctrl+7</th><td>オービット</td></tr>
+              <tr><th scope="row">Ctrl+9</th><td>フライ</td></tr>
+              <tr><th scope="row">Ctrl+H</th><td>選んだ項目を非表示</td></tr>
+              <tr><th scope="row">Ctrl+F</th><td>クイック検索</td></tr>
+              <tr><th scope="row">Esc</th><td>選択をすべて解除</td></tr>
+              <tr><th scope="row">Ctrl+F3</th><td>TimeLinerウィンドウ</td></tr>
+              <tr><th scope="row">Ctrl+F5／F6</th><td>Animator／Scripterウィンドウ</td></tr>
+              <tr><th scope="row">Ctrl+F8</th><td>Quantificationワークブック</td></tr>
+              <tr><th scope="row">Ctrl+F11</th><td>保存されたビューポイント</td></tr>
+              <tr><th scope="row">Ctrl+F12</th><td>選択ツリー</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <h2 id="sec-4">選ぶ・探す・見せ方を変える</h2>
+
+      <section class="item-card">
+        <h3>選択は[選択ツリー]と[シーン ビュー]が連動する</h3>
+        <p class="item-point"><strong>Shift＋クリック</strong>で、選ぶ階層を1段ずつ下げられる<a class="ref" href="#src-33">[33]</a><a class="ref" href="#src-37">[37]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>シーン ビューで選ぶと、選択ツリーでも選ばれる<a class="ref" href="#src-33">[33]</a></li>
+            <li>選択ツリーの表示は[標準][コンパクト][プロパティ][セット]<a class="ref" href="#src-38">[38]</a></li>
+            <li>選ぶ階層の既定は[ホーム] &gt; [選択と検索] &gt; [選択レベル]<a class="ref" href="#src-37">[37]</a></li>
+            <li>[ボックス選択]で、囲んだ範囲の部材をまとめて選べる<a class="ref" href="#src-33">[33]</a></li>
+            <li>1つ選ぶと、そのプロパティが[プロパティ]ウィンドウに出る<a class="ref" href="#src-33">[33]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>同じものをまとめて選ぶ</h3>
+        <p class="item-point">[同じ項目を選択]で、<strong>同じ名前・タイプ</strong>をまとめて選ぶ<a class="ref" href="#src-39">[39]</a><a class="ref" href="#src-40">[40]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">同一名を選択</p><p class="service-what">選んだ部材と名前が同じものをすべて選ぶ</p><p class="service-cond"><a class="ref" href="#src-40">[40]</a></p></li>
+          <li><p class="service-name">同一タイプを選択</p><p class="service-what">タイプが同じものをすべて選ぶ</p><p class="service-cond"><a class="ref" href="#src-40">[40]</a></p></li>
+          <li><p class="service-name">同じ（プロパティ）を選択</p><p class="service-what">マテリアルなど、指定したプロパティが同じものを選ぶ</p><p class="service-cond"><a class="ref" href="#src-40">[40]</a></p></li>
+          <li><p class="service-name">複数インスタンスを選択・選択を反転</p><p class="service-what">同じ部材のコピーをすべて選ぶ／選択と非選択を入れ替える</p><p class="service-cond"><a class="ref" href="#src-40">[40]</a></p></li>
+        </ul>
+        <p>場所は[ホーム]タブ &gt; [選択と検索]パネル &gt; [同じ項目を選択]です。<a class="ref" href="#src-39">[39]</a></p>
+      </section>
+
+      <section class="item-card">
+        <h3>文字で探す：クイック検索と[項目を検索]</h3>
+        <p class="item-point">名前の一部なら<strong>クイック検索</strong>、条件で絞るなら[項目を検索]<a class="ref" href="#src-41">[41]</a><a class="ref" href="#src-42">[42]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>クイック検索はCtrl+F、次を探すのはF3<a class="ref" href="#src-41">[41]</a></li>
+            <li>入力欄は[ホーム] &gt; [選択と検索]パネルにある<a class="ref" href="#src-41">[41]</a></li>
+            <li>すべてのプロパティが対象で、大文字・小文字は区別しない<a class="ref" href="#src-41">[41]</a></li>
+            <li>[項目を検索]は「プロパティ・条件・値」の組み合わせで探す<a class="ref" href="#src-42">[42]</a></li>
+            <li>検索条件はXMLファイルで書き出し・読み込みできる<a class="ref" href="#src-42">[42]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>選択セットと検索セットを作る</h3>
+        <p class="item-point"><strong>検索セット</strong>は条件を保存するので、追加した部材も拾う<a class="ref" href="#src-43">[43]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>2種類のセット<a class="ref" href="#src-44">[44]</a><a class="ref" href="#src-45">[45]</a><a class="ref" href="#src-43">[43]</a></caption>
+            <thead><tr><th scope="col">種類</th><th scope="col">保存されるもの</th><th scope="col">作り方</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">選択セット</th><td>選んだ部材そのもの</td><td>部材を選ぶ → [ホーム] &gt; [選択と検索] &gt; [選択を保存] → 名前を入力</td></tr>
+              <tr><th scope="row">検索セット</th><td>検索の条件</td><td>[項目を検索]で[すべてを検索] → [セット]ウィンドウの[検索条件を保存] → 名前を入力</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[セット]ウィンドウは[セット] &gt; [セットを管理]で開く<a class="ref" href="#src-43">[43]</a></li>
+            <li>名前の変更はF2。フォルダに分けて整理できる<a class="ref" href="#src-44">[44]</a></li>
+            <li>検索セットはXMLで書き出して、他の人と共有できる<a class="ref" href="#src-46">[46]</a></li>
+            <li>タスク名と同じ名前のセットなら、TimeLinerで自動アタッチできる<a class="ref" href="#src-47">[47]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>隠す・色を変える</h3>
+        <p class="item-point">見たい部材だけ残すなら<strong>[選択されていない項目を非表示]</strong><a class="ref" href="#src-48">[48]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>表示を変える操作<a class="ref" href="#src-48">[48]</a><a class="ref" href="#src-49">[49]</a><a class="ref" href="#src-50">[50]</a></caption>
+            <thead><tr><th scope="col">したいこと</th><th scope="col">場所</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">選んだ部材を隠す</th><td>[ホーム] &gt; [可視性] &gt; [非表示]（Ctrl+H）。もう一度押すと戻る</td></tr>
+              <tr><th scope="row">選んだ部材以外を隠す</th><td>[ホーム] &gt; [可視性] &gt; [選択されていない項目を非表示]</td></tr>
+              <tr><th scope="row">色・透明度を変える</th><td>[項目ツール] &gt; [外観] &gt; [色]、[透明度]スライダ</td></tr>
+              <tr><th scope="row">選んだ部材の外観を戻す</th><td>[項目ツール] &gt; [外観] &gt; [外観をリセット]</td></tr>
+              <tr><th scope="row">すべての外観を戻す</th><td>[ホーム] &gt; [プロジェクト] &gt; [すべてをリセット] &gt; [外観]</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="item-card">
+        <h3>外観プロファイラで条件ごとに色分けする</h3>
+        <p class="item-point">プロパティやセットを条件に、<strong>色分け</strong>をまとめて設定<a class="ref" href="#src-51">[51]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">[ホーム] &gt; [ツール] &gt; [外観プロファイラ]</p><p class="timeline-note"><a class="ref" href="#src-51">[51]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">プロファイルを追加して名前を付ける</p><p class="timeline-note"><a class="ref" href="#src-52">[52]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">[プロパティ別]タブで、カテゴリ・プロパティ・条件を選ぶ</p><p class="timeline-note">例: システムの種類が「冷水」<a class="ref" href="#src-52">[52]</a><a class="ref" href="#src-51">[51]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">色と透明度を選び、[テスト選択] → [追加]</p><p class="timeline-note">必要な分だけ繰り返す。上から順に適用される<a class="ref" href="#src-52">[52]</a></p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">[プロファイルを適用]</p><p class="timeline-note"><a class="ref" href="#src-52">[52]</a></p></li>
+        </ol>
+        <p>最初に全体を透明度80％の灰色にすると、色分けが目立ちます（ヘルプのヒント）。設定はXMLで保存して共有できます。<a class="ref" href="#src-52">[52]</a><a class="ref" href="#src-51">[51]</a></p>
+      </section>
+
+      <h2 id="sec-5">レビュー：ビューポイント・断面・測定・朱書き</h2>
+
+      <section class="item-card">
+        <h3>ビューポイントで「見せたい場所」を保存する</h3>
+        <p class="item-point">視点に朱書きやコメントを付けて<strong>保存</strong>できる<a class="ref" href="#src-53">[53]</a></p>
+        <p>[ビューポイント]タブ &gt; [保存、ロード、再生]パネル &gt; [ビューポイントを保存]を押し、[保存されたビューポイント]ウィンドウで名前を入力します。<a class="ref" href="#src-54">[54]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>ビューポイントはNWFに保存され、元のCADが変わっても残る<a class="ref" href="#src-53">[53]</a></li>
+            <li>部材の表示・非表示や色の変更も一緒に保存できる<a class="ref" href="#src-53">[53]</a></li>
+            <li>XMLで書き出して、他の人と共有できる<a class="ref" href="#src-54">[54]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>断面で切って中を見る</h3>
+        <p class="item-point">断面は最大<strong>6枚</strong>。範囲を絞るなら断面ボックス<a class="ref" href="#src-55">[55]</a><a class="ref" href="#src-56">[56]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">[ビューポイント] &gt; [断面化] &gt; [断面化を有効にする]</p><p class="timeline-note">リボンに[断面化ツール]タブが出る。最初の断面は上面で切る<a class="ref" href="#src-57">[57]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">ギズモをドラッグして位置を調整</p><p class="timeline-note"><a class="ref" href="#src-57">[57]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">箱で切るなら[断面化ツール] &gt; [モード] &gt; [ボックス]</p><p class="timeline-note"><a class="ref" href="#src-56">[56]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">[断面化ツール] &gt; [保存] &gt; [ビューポイントを保存]</p><p class="timeline-note">断面の位置を残すには、断面化を有効にしたまま保存する<a class="ref" href="#src-55">[55]</a><a class="ref" href="#src-57">[57]</a></p></li>
+        </ol>
+      </section>
+
+      <section class="item-card">
+        <h3>測定する</h3>
+        <p class="item-point">[レビュー] &gt; [測定]から選び、<strong>部材の上</strong>をクリック<a class="ref" href="#src-58">[58]</a><a class="ref" href="#src-59">[59]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>測定ツール<a class="ref" href="#src-58">[58]</a></caption>
+            <thead><tr><th scope="col">ツール</th><th scope="col">測るもの</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">ポイントからポイント</th><td>2点間の距離</td></tr>
+              <tr><th scope="row">ポイントから複数ポイント</th><td>1つの基点から複数の点までの距離</td></tr>
+              <tr><th scope="row">ポイントライン</th><td>経路に沿った合計の長さ</td></tr>
+              <tr><th scope="row">累積</th><td>複数の2点間距離の合計</td></tr>
+              <tr><th scope="row">角度・面積</th><td>2本の線の角度、平面の面積</td></tr>
+              <tr><th scope="row">シングル ポイント</th><td>1点の座標</td></tr>
+              <tr><th scope="row">最短距離</th><td>選んだ2つの部材の間の最短距離</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>背景をクリックしても点は登録されない<a class="ref" href="#src-59">[59]</a></li>
+            <li><strong>右クリック</strong>で測り直しになる<a class="ref" href="#src-59">[59]</a></li>
+            <li>[朱書きに変換]で、測定結果を朱書きとして残せる<a class="ref" href="#src-58">[58]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>朱書き・タグ・コメントを残す</h3>
+        <p class="item-point">朱書きを描くと、<strong>ビューポイントが自動保存</strong>される<a class="ref" href="#src-60">[60]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>場所は[レビュー]タブ &gt; [朱書きツール]パネル<a class="ref" href="#src-60">[60]</a></li>
+            <li>描けるのは、テキスト・矢印・フリーハンド・線・楕円・雲形など<a class="ref" href="#src-60">[60]</a></li>
+            <li>線の太さと色の変更は、描いた後の朱書きには効かない<a class="ref" href="#src-60">[60]</a></li>
+            <li>コメントは、ビューポイント・セット・タスクなどに付けられる<a class="ref" href="#src-61">[61]</a></li>
+            <li>朱書きやタグを付けている間はナビゲートできない<a class="ref" href="#src-61">[61]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-6">TimeLinerで工程（4D）シミュレーション</h2>
+
+      <p>TimeLinerは、工程表のタスクとモデルの部材を結び付け、日付に沿って建物ができていく様子を再生する機能です。計画と実績の比較や、費用の管理（5D）もできます。<a class="ref" href="#src-9">[9]</a></p>
+
+      <section class="item-card">
+        <h3>全体の流れ</h3>
+        <p class="item-point">タスク作成 → 部材を付ける → <strong>再生</strong> → 書き出し<a class="ref" href="#src-6">[6]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">モデルを開き、[ホーム] &gt; [ツール] &gt; [TimeLiner]（Ctrl+F3）</p><p class="timeline-note"><a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-32">[32]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">タスクを作る</p><p class="timeline-note">手動・自動追加・工程表の取り込みの3通り<a class="ref" href="#src-62">[62]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">タスクに部材をアタッチ（結び付け）する</p><p class="timeline-note">手動、またはルールで自動<a class="ref" href="#src-6">[6]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">[シミュレート]タブで再生する</p><p class="timeline-note"><a class="ref" href="#src-63">[63]</a></p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">[設定]タブでタスクタイプの見え方を調整する</p><p class="timeline-note"><a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-64">[64]</a></p></li>
+          <li><span class="timeline-day">6</span><p class="timeline-title">画像やAVIに書き出し、NWFで保存する</p><p class="timeline-note">NWFを開いて工程表と同期すれば最新にできる<a class="ref" href="#src-6">[6]</a></p></li>
+        </ol>
+      </section>
+
+      <section class="item-card">
+        <h3>タスクの作り方は3通り</h3>
+        <p class="item-point">自動追加なら、<strong>部材がアタッチ済み</strong>で作られる<a class="ref" href="#src-62">[62]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">手動</p><p class="service-what">[タスク]タブ &gt; [タスクを追加] → 名前を入力してEnter</p><p class="service-cond">部材のアタッチは後で行う<a class="ref" href="#src-62">[62]</a></p></li>
+          <li><p class="service-name">自動追加</p><p class="service-what">[タスクの自動追加] &gt; [最上位の各画層]／[最上位の各項目]／[各セット]</p><p class="service-cond">日付は今日から1日ずつ、タイプは[建設]で作られるので、後で直す<a class="ref" href="#src-62">[62]</a></p></li>
+          <li><p class="service-name">工程表から</p><p class="service-what">Microsoft Projectなどの工程表を[データ ソース]タブで読み込む</p><p class="service-cond">下の「工程表を取り込む」を参照<a class="ref" href="#src-62">[62]</a><a class="ref" href="#src-65">[65]</a></p></li>
+        </ul>
+      </section>
+
+      <section class="item-card">
+        <h3>タスクタイプで「現れ方」が決まる</h3>
+        <p class="item-point">[建設]は作業中<strong>緑</strong>、終わると通常の表示になる<a class="ref" href="#src-64">[64]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>既定のタスクタイプ<a class="ref" href="#src-64">[64]</a></caption>
+            <thead><tr><th scope="col">タイプ</th><th scope="col">タスク開始時</th><th scope="col">タスク終了時</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">建設</th><td>緑で表示</td><td>モデル本来の表示</td></tr>
+              <tr><th scope="row">解体</th><td>赤で表示</td><td>非表示</td></tr>
+              <tr><th scope="row">仮設</th><td>黄で表示</td><td>非表示</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>既定の設定では、部材はすべて非表示から始まる<a class="ref" href="#src-66">[66]</a></li>
+            <li>[設定]タブで、独自のタスクタイプを追加できる<a class="ref" href="#src-64">[64]</a></li>
+            <li>見え方は「なし・非表示・モデルの外観・表現定義」から選ぶ<a class="ref" href="#src-67">[67]</a></li>
+            <li>複数のタスクは、右クリック &gt; [下にフィル]でタイプを一括変更<a class="ref" href="#src-66">[66]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>部材をタスクにアタッチする</h3>
+        <p class="item-point">追加は[現在の選択を追加]で。通常のアタッチは<strong>上書き</strong><a class="ref" href="#src-68">[68]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>基本は、タスクを右クリック &gt; [現在の選択をアタッチ]<a class="ref" href="#src-68">[68]</a></li>
+            <li>[現在の検索をアタッチ]や[セットをアタッチ]も使える<a class="ref" href="#src-68">[68]</a></li>
+            <li>間違えたときは、タスクを選んで[アタッチをクリア]<a class="ref" href="#src-68">[68]</a></li>
+            <li>ルールなら、タスク名と項目・セット・画層の名前で自動アタッチ<a class="ref" href="#src-47">[47]</a><a class="ref" href="#src-6">[6]</a></li>
+            <li>カテゴリとプロパティを指定して照合するルールもある<a class="ref" href="#src-47">[47]</a></li>
+            <li>付け忘れは[項目を検索] &gt; [アタッチされていない/含まれない項目]<a class="ref" href="#src-69">[69]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>工程表を取り込む</h3>
+        <p class="item-point">[データ ソース]タブ &gt; [追加]で<strong>工程表</strong>を読み込む<a class="ref" href="#src-65">[65]</a><a class="ref" href="#src-70">[70]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">Microsoft Project</p><p class="service-what">本体のインストールが必要（ヘルプの記載は2007〜2013）</p><p class="service-cond"><a class="ref" href="#src-71">[71]</a></p></li>
+          <li><p class="service-name">Microsoft Project MPX</p><p class="service-what">MPXファイルなら本体なしで読める</p><p class="service-cond"><a class="ref" href="#src-71">[71]</a></p></li>
+          <li><p class="service-name">Primavera</p><p class="service-what">P6（Web Services）、Project Management 6〜8</p><p class="service-cond"><a class="ref" href="#src-71">[71]</a></p></li>
+          <li><p class="service-name">Asta Power Project</p><p class="service-what">11〜12（本体のインストールが必要）</p><p class="service-cond"><a class="ref" href="#src-71">[71]</a></p></li>
+          <li><p class="service-name">CSV</p><p class="service-what">区切り文字は<strong>カンマ</strong>にする</p><p class="service-cond"><a class="ref" href="#src-72">[72]</a></p></li>
+        </ul>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>読み込んだら、右クリック &gt; [タスク階層を再構築]でタスクを作る<a class="ref" href="#src-70">[70]</a></li>
+            <li>工程表を直したら、[データ ソース]タブ &gt; [リフレッシュ]<a class="ref" href="#src-73">[73]</a></li>
+            <li>[同期]は日付などを更新、[タスク階層を再構築]は読み直し<a class="ref" href="#src-73">[73]</a></li>
+            <li>取り込んだタスクを直しても、リフレッシュで上書きされる<a class="ref" href="#src-6">[6]</a></li>
+            <li>データ ソースは右クリック &gt; [名前変更]で名前を付ける<a class="ref" href="#src-65">[65]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>再生する・設定を変える</h3>
+        <p class="item-point">[アクティブ]をオンにして、<strong>[シミュレート]</strong>タブで再生<a class="ref" href="#src-63">[63]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>再生中は、シミュレーション上の日付が画面に重なって出る<a class="ref" href="#src-63">[63]</a></li>
+            <li>[設定]で、開始・終了日の上書きや1ステップの間隔を決める<a class="ref" href="#src-74">[74]</a></li>
+            <li>全体の再生時間（秒）と、日付表示の位置も設定できる<a class="ref" href="#src-74">[74]</a></li>
+            <li>ビューポイント アニメーションやカメラを再生に連動できる<a class="ref" href="#src-74">[74]</a></li>
+            <li>ガント チャートは計画・実績・比較を切り替えられる<a class="ref" href="#src-75">[75]</a></li>
+            <li>ガント チャートのバーをドラッグすると、日付が変わる<a class="ref" href="#src-75">[75]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>費用（5D）を入れる</h3>
+        <p class="item-point">4種類の費用を入れると、合計が<strong>[総費用]</strong>になる<a class="ref" href="#src-76">[76]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>入れる費用は、材料費・労務費・装置費・外注費<a class="ref" href="#src-76">[76]</a></li>
+            <li>費用はタスクの終了時にまとめて計上される（開始時は0）<a class="ref" href="#src-76">[76]</a></li>
+            <li>通貨の指定はない。小数点以下は2桁で表示される<a class="ref" href="#src-76">[76]</a></li>
+            <li>費用の列は、[列セット] &gt; [拡張]で表示する<a class="ref" href="#src-76">[76]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>動画に書き出す</h3>
+        <p class="item-point">ソースに<strong>[TimeLiner シミュレーション]</strong>を選んで書き出す<a class="ref" href="#src-77">[77]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[シミュレート]タブ &gt; [アニメーションをエクスポート]から<a class="ref" href="#src-77">[77]</a></li>
+            <li>静止画は、[シミュレート]タブを開いたまま画像を書き出す<a class="ref" href="#src-77">[77]</a></li>
+            <li>形式や解像度は、下の「動画・画像の書き出し」を参照</li>
+            <li>工程中の干渉を自動で調べる機能は、Manageだけ<a class="ref" href="#src-9">[9]</a><a class="ref" href="#src-78">[78]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-7">AnimatorとScripterで動きを付ける</h2>
+
+      <section class="item-card">
+        <h3>Animatorの基本：シーン → セット → キーフレーム</h3>
+        <p class="item-point">時刻ごとに部材を動かし、<strong>キーフレーム</strong>で記録する<a class="ref" href="#src-79">[79]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">[アニメーション] &gt; [作成] &gt; [Animator]（Ctrl+F5）</p><p class="timeline-note"><a class="ref" href="#src-80">[80]</a><a class="ref" href="#src-32">[32]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">ツリー ビューを右クリック &gt; [シーンを追加]</p><p class="timeline-note"><a class="ref" href="#src-80">[80]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">動かす部材を選び、シーンを右クリック &gt; [アニメーション セットを追加] &gt; [現在の選択から]</p><p class="timeline-note"><a class="ref" href="#src-81">[81]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">タイム スライダを動かし、ツールバーの移動・回転などで部材を変える</p><p class="timeline-note">移動・回転・尺度・色・透明度のモードがある<a class="ref" href="#src-82">[82]</a></p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">[キーフレームをキャプチャ]を押す</p><p class="timeline-note">4と5を繰り返す<a class="ref" href="#src-79">[79]</a></p></li>
+          <li><span class="timeline-day">6</span><p class="timeline-title">シーンを選んで[再生]</p><p class="timeline-note"><a class="ref" href="#src-83">[83]</a></p></li>
+        </ol>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>動かせるのは、部材・視点（カメラ）・断面の3種類<a class="ref" href="#src-84">[84]</a></li>
+            <li>キーフレームは、前のキーフレームからの相対的な変化<a class="ref" href="#src-79">[79]</a></li>
+            <li>モデルの位置が変わると、新しい位置を基準に動く<a class="ref" href="#src-79">[79]</a></li>
+            <li>同じ部材が2つのセットに入ると、動きが足し算される<a class="ref" href="#src-79">[79]</a></li>
+            <li>キーフレームは右クリック &gt; [編集]で数値を直せる<a class="ref" href="#src-85">[85]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>TimeLinerのタスクと連動させる</h3>
+        <p class="item-point">[タスク]タブの<strong>[アニメーション]列</strong>でシーンを選ぶ<a class="ref" href="#src-86">[86]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>[アニメーションの動作]の選択肢<a class="ref" href="#src-86">[86]</a></caption>
+            <thead><tr><th scope="col">選択肢</th><th scope="col">動き</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">尺度（既定）</th><td>アニメーションの長さをタスクの期間に合わせる</td></tr>
+              <tr><th scope="row">開始を一致</th><td>タスクの開始と同時に、記録した速さで始まる</td></tr>
+              <tr><th scope="row">終了を一致</th><td>タスクの終了時にちょうど終わる</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>TimeLinerの再生中は、Animatorの色・透明度は無視される<a class="ref" href="#src-86">[86]</a></li>
+            <li>[スクリプト]列にスクリプトも付けられる<a class="ref" href="#src-87">[87]</a></li>
+            <li>タスクに付けたスクリプトは、イベントを無視してアクションだけ実行<a class="ref" href="#src-87">[87]</a></li>
+            <li>ヘルプでは、クレーンの経路と作業員の干渉を確かめる例がある<a class="ref" href="#src-9">[9]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>ビューポイント アニメーション（歩き回る動画）</h3>
+        <p class="item-point">[アニメーション] &gt; [作成] &gt; <strong>[記録]</strong>で動きを録る<a class="ref" href="#src-88">[88]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[一時停止]でカットが入り、[停止]で「AnimationX」として保存<a class="ref" href="#src-88">[88]</a></li>
+            <li>細かく作るなら、空のアニメーションにビューポイントを並べる<a class="ref" href="#src-89">[89]</a></li>
+            <li>並べるビューポイントが多いほど、動きが滑らかになる<a class="ref" href="#src-89">[89]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>Scripterで操作に反応させる</h3>
+        <p class="item-point"><strong>イベント</strong>（きっかけ）とアクション（動作）を組み合わせる<a class="ref" href="#src-90">[90]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>使えるイベントとアクション<a class="ref" href="#src-91">[91]</a><a class="ref" href="#src-92">[92]</a></caption>
+            <thead><tr><th scope="col">種類</th><th scope="col">中身</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">イベント</th><td>開始、タイマ、キー押下、衝突、ホットスポット（範囲に入った）、変数、アニメーション（開始・停止時）</td></tr>
+              <tr><th scope="row">アクション</th><td>アニメーションの再生・停止、ビューポイントの表示、一時停止、メッセージの送信、変数の設定、プロパティの格納</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>作り方: [Scripter]（Ctrl+F6）で右クリック &gt; [新しいスクリプトを追加]<a class="ref" href="#src-93">[93]</a><a class="ref" href="#src-32">[32]</a></li>
+            <li>動かすには[アニメーション] &gt; [スクリプト] &gt; [スクリプトを有効]<a class="ref" href="#src-94">[94]</a></li>
+            <li>有効にしている間は、スクリプトを編集できない<a class="ref" href="#src-94">[94]</a></li>
+            <li>ヘルプの例: キーを押すとベルトコンベアが動く、近づくと扉が開く<a class="ref" href="#src-7">[7]</a></li>
+            <li>アクションは、前の動作の完了を待たずに順に実行される<a class="ref" href="#src-92">[92]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>動画・画像の書き出し</h3>
+        <p class="item-point">[アニメーションをエクスポート]で、FPSは<strong>10〜15</strong>が目安<a class="ref" href="#src-95">[95]</a><a class="ref" href="#src-96">[96]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>[アニメーションをエクスポート]の主な設定（[アニメーション]タブ &gt; [エクスポート]パネル）<a class="ref" href="#src-96">[96]</a></caption>
+            <thead><tr><th scope="col">項目</th><th scope="col">選択肢</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">ソース</th><td>現在のAnimatorシーン／TimeLinerシミュレーション／現在のアニメーション（ビューポイント）</td></tr>
+              <tr><th scope="row">レンダラー</th><td>ビューポート（速い・確認向き）／Autodesk（レンダリング品質）</td></tr>
+              <tr><th scope="row">形式</th><td>Windows AVI、またはJPEG・PNG・BMPの連番画像</td></tr>
+              <tr><th scope="row">サイズ</th><td>明示的（幅・高さを指定）／縦横比を使用／ビューを使用</td></tr>
+              <tr><th scope="row">FPS</th><td>多いほど滑らかだが、書き出しに時間がかかる</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>動画は静止画より低い解像度（例: 640×480）でよい<a class="ref" href="#src-96">[96]</a></li>
+            <li>アンチエイリアス（ビューポートのみ）は、たいてい4xで十分<a class="ref" href="#src-96">[96]</a></li>
+            <li>静止画は[ビューポイント] &gt; [エクスポート] &gt; [イメージ]<a class="ref" href="#src-95">[95]</a></li>
+            <li>静止画の形式は、BMP・PNG・JPEGから選ぶ<a class="ref" href="#src-95">[95]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-8">数量拾い（Quantification）とレンダリング</h2>
+
+      <section class="item-card">
+        <h3>最初にプロジェクトを設定する</h3>
+        <p class="item-point">最初に<strong>[プロジェクト セットアップ]</strong>で単位などを決める<a class="ref" href="#src-21">[21]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">[ホーム] &gt; [ツール] &gt; [Quantification ワークブック]（Ctrl+F8）</p><p class="timeline-note"><a class="ref" href="#src-21">[21]</a><a class="ref" href="#src-32">[32]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">[プロジェクト セットアップ] → カタログを選ぶ</p><p class="timeline-note">独自のカタログは、単位とプロパティをプロジェクトに合わせておく<a class="ref" href="#src-21">[21]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">測定単位を選ぶ</p><p class="timeline-note"><a class="ref" href="#src-21">[21]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">数量拾いプロパティごとの単位を選び、[終了]</p><p class="timeline-note"><a class="ref" href="#src-21">[21]</a></p></li>
+        </ol>
+      </section>
+
+      <section class="item-card">
+        <h3>数量拾いの3つの方法</h3>
+        <p class="item-point">部材を項目に<strong>ドラッグ＆ドロップ</strong>すると数量が出る<a class="ref" href="#src-97">[97]</a><a class="ref" href="#src-39">[39]</a></p>
+        <ul class="service-list">
+          <li><p class="service-name">モデル数量拾い</p><p class="service-what">部材のプロパティから自動で数量を出す</p><p class="service-cond">右クリック &gt; [Quantification] &gt; [（項目名）に数量拾い]でもよい<a class="ref" href="#src-97">[97]</a><a class="ref" href="#src-39">[39]</a></p></li>
+          <li><p class="service-name">仮想数量拾い</p><p class="service-what">モデルにない、またはプロパティがない項目を手で追加する</p><p class="service-cond">測定ツールやビューポイントと組み合わせられる<a class="ref" href="#src-97">[97]</a></p></li>
+          <li><p class="service-name">2D数量拾い</p><p class="service-what">平面図などの2Dシートをなぞって数量を出す</p><p class="service-cond"><a class="ref" href="#src-97">[97]</a></p></li>
+        </ul>
+      </section>
+
+      <section class="item-card">
+        <h3>変更の確認とExcelへの書き出し</h3>
+        <p class="item-point">変更は[変更を解析]で確認し、<strong>Excel</strong>に書き出す<a class="ref" href="#src-98">[98]</a><a class="ref" href="#src-99">[99]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>場所は、ワークブックの[変更解析] &gt; [変更を解析]<a class="ref" href="#src-98">[98]</a></li>
+            <li>変更があったセルには、色付きの三角形などが付く<a class="ref" href="#src-98">[98]</a></li>
+            <li>書き出しは[数量をエクスポート] &gt; [Excel に数量をエクスポート]<a class="ref" href="#src-99">[99]</a></li>
+            <li>ヘルプの流れでは、数量を検証してからExcelに出力する<a class="ref" href="#src-8">[8]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>フォトリアルなレンダリング</h3>
+        <p class="item-point">マテリアル → 照明 → 露出 → <strong>レンダリング</strong>の順<a class="ref" href="#src-100">[100]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>[レンダリング] &gt; [システム]でAutodesk Renderingウィンドウを開く<a class="ref" href="#src-20">[20]</a></li>
+            <li>マテリアル・光源・環境は、このウィンドウで設定する<a class="ref" href="#src-20">[20]</a></li>
+            <li>品質は[インタラクティブ レイ トレース]で選ぶ<a class="ref" href="#src-20">[20]</a></li>
+            <li>2027版では、複数のライトをまとめて選んで削除できる<a class="ref" href="#src-14">[14]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>実機での動作（筆者はNavisworksを操作しておらず、手順はすべて公式ヘルプの記載による）</li>
+          <li>3年契約の金額</li>
+          <li>TimeLinerが対応する工程表ソフトの最新バージョン（ヘルプの記載はMicrosoft Project 2007〜2013などのまま）</li>
+          <li>[追加]と[マージ]のショートカット。説明ページではCtrl+A・Ctrl+M、ショートカット一覧ではCtrl+Shift+A・Ctrl+Shift+Mと記載が違う（一覧ではCtrl+Aは「すべて選択」）</li>
+          <li>タスクタイプ[仮設]の名前。ヘルプのページによって「一時的な履歴エントリ」とも書かれている</li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（100件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月4日。ヘルプはNavisworks 2027の日本語版</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.autodesk.co.jp/support/technical/article/caas/sfdcarticles/sfdcarticles/JPN/Functionality-differences-between-Navisworks-Manage-and-Simulate.html" target="_blank" rel="noopener">Navisworks Manage と Navisworks Simulate の違い</a>（オートデスク サポート）</li>
+          <li id="src-2"><a href="https://www.autodesk.com/jp/products/navisworks/overview?panel=buy" target="_blank" rel="noopener">Navisworks の価格と購入（購入パネル）</a>（オートデスク公式ストア）</li>
+          <li id="src-3"><a href="https://www.autodesk.com/jp/company/legal-notices-trademarks/specified-commercial-transactions-act" target="_blank" rel="noopener">特定商取引法に基づく表記</a>（オートデスク ストア）</li>
+          <li id="src-4"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-EC3A423C-A415-47BD-AF43-008B0EBC35B9" target="_blank" rel="noopener">ファイルを保存、名前変更、パブリッシュする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-5"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-82273D46-50EB-42F1-A1BC-0F60DF68621D" target="_blank" rel="noopener">Autodesk Navisworks へようこそ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-6"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-96D92B8A-CD9D-4E25-A549-0EB2BF15B5CE" target="_blank" rel="noopener">[TimeLiner]のワークフロー</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-7"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-DD38DF54-B0A6-4B80-86D3-D7C70584CCE7" target="_blank" rel="noopener">オブジェクトをアニメーション化する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-8"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-95ED5D79-89B6-443D-83C7-61DEF40A13A8" target="_blank" rel="noopener">Quantification のワークフロー</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-9"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D0D36E3D-F1D0-43B6-AB4E-2E7799B340A3" target="_blank" rel="noopener">TimeLiner ツールの概要</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-10"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-8C938D2F-E132-4AD0-AC3B-C891AC79E26F" target="_blank" rel="noopener">アニメーション シーンを再生する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-11"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=Navisworks_Whats_New_2027" target="_blank" rel="noopener">Navisworks 2027 の新機能</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-12"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=WN_File_Format_Support" target="_blank" rel="noopener">ファイル形式とサポート（2027 の新機能）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-13"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-C6936A0B-1597-4880-83F9-7041894A4204" target="_blank" rel="noopener">ネイティブ ファイル形式</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-14"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=WN_Other" target="_blank" rel="noopener">他の改良点（2027 の新機能）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-15"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=WN_UI_Refresh" target="_blank" rel="noopener">ユーザ インタフェースと操作性の改善（2027 の新機能）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-16"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-F70F2D5B-35D8-4471-8B0B-CABC38761F6A" target="_blank" rel="noopener">動作環境</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-17"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-BC3F3603-A5D2-4FFA-8CDA-83731328BF9F" target="_blank" rel="noopener">Navisworks ユーザ インタフェース</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-18"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-7164EFA9-6874-4C3D-9EA0-71AF1FC857E0" target="_blank" rel="noopener">ナビゲーション ツール</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-19"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-3539A344-FD91-4F2C-8744-2A5A9828B4C1" target="_blank" rel="noopener">ドッキング可能ウィンドウのリファレンス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-20"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-31D95B7F-A6D0-4ADE-9F58-B56DF366214E" target="_blank" rel="noopener">リボンのリファレンス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-21"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E1FB1699-C125-497D-A51F-F9C50C20AB4A" target="_blank" rel="noopener">プロジェクトを作成する（Quantification）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-22"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D606E59D-69DA-4326-A385-A78EC062FCE8" target="_blank" rel="noopener">ファイルを開く</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-23"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-B2CCBB7B-B876-4BBC-8CF7-F062DA3FEDD7" target="_blank" rel="noopener">現在のシーンにジオメトリおよびメタデータを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-24"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-386E4F05-60DE-4609-B5EC-FFDB7036D1AF" target="_blank" rel="noopener">ファイルを作成する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-25"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-98350660-0324-46D7-85BB-37B1499EC8B0" target="_blank" rel="noopener">ファイルをリフレッシュする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-26"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-79DE7F56-59CF-4786-A31D-170E11BF89EC" target="_blank" rel="noopener">ファイルをマージする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-27"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-9C2E2391-56DB-4CC8-923F-99376ECBA2C2" target="_blank" rel="noopener">複数の設計ファイルを単一の Navisworks ファイルに追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-28"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=Output_Export_NWD" target="_blank" rel="noopener">NWD ファイルをエクスポートする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-29"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A9AADBF9-15FE-4B0D-A4A7-D664B274318A" target="_blank" rel="noopener">マウスのホイールを使用してナビゲートする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-30"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-6F9BB1F1-A22C-41D3-A549-57321276F569" target="_blank" rel="noopener">製品固有のナビゲーション ツール</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-31"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-9B60E3E5-2C2B-4137-92BF-DFCABCB8AC6C" target="_blank" rel="noopener">シーン内をナビゲートする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-32"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E5041421-ADEA-4FB8-88FF-D59860A8E826" target="_blank" rel="noopener">既定のキーボード ショートカットのリファレンス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-33"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E84B196F-343D-4C97-9AAD-1099CD188BE6" target="_blank" rel="noopener">選択ツール</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-34"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-C562BFD4-69E7-4D46-8B8F-11B058190183" target="_blank" rel="noopener">衝突</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-35"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-063E1BC6-B8B7-456A-90D0-6E6655295C70" target="_blank" rel="noopener">重力</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-36"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-4AB66C35-CF9A-47BD-B31B-1EE5D89D25DA" target="_blank" rel="noopener">第三者ビュー</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-37"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-1DE849F0-7C50-46E9-AD70-6659D3E522FE" target="_blank" rel="noopener">選択レベルを設定する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-38"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-AF4CFA5C-1455-4444-982A-34FBA2AE4608" target="_blank" rel="noopener">[選択ツリー]ウィンドウ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-39"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=Navisworks_Quantification_Perform_model_takeoff_perform_model_takeoff_html" target="_blank" rel="noopener">モデル数量拾いを実行する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-40"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-313C7DA9-2745-414E-9A10-4789C4CDFC2D" target="_blank" rel="noopener">選択コマンドのリファレンス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-41"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-B1C708EB-56C3-4949-9481-1C0D5F75A5F3" target="_blank" rel="noopener">クイック検索</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-42"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-ED934808-665F-4C65-A937-3A23DD937428" target="_blank" rel="noopener">[項目を検索]ウィンドウ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-43"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-CC5140D2-8169-4405-A522-EF3451CE48F1" target="_blank" rel="noopener">[セット]ウィンドウ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-44"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D0B9CA9C-9573-4D7D-B5FF-8839068EE199" target="_blank" rel="noopener">選択セットを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-45"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A677A1FC-C2ED-40F4-8F67-F062D74CFC26" target="_blank" rel="noopener">検索セットを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-46"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D4B6B835-499E-4C10-BA70-46353B90A0D0" target="_blank" rel="noopener">選択セットと検索セットを作成し、管理する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-47"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-2678DD24-97E7-4D7B-80D4-77A448884599" target="_blank" rel="noopener">ルールを使用してタスクをアタッチする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-48"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-2969585C-3F1A-4CBC-927C-B9A407B30805" target="_blank" rel="noopener">オブジェクトを非表示にする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-49"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D34D9EB2-F826-4A56-819B-BAF6744DB437" target="_blank" rel="noopener">オブジェクトの外観を変更する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-50"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-169E1F42-62F8-47E3-A7C9-FB0CF29ED7E3" target="_blank" rel="noopener">オブジェクトを元の値にリセットする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-51"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-37A831D3-AE33-45AE-9679-6A8610023E10" target="_blank" rel="noopener">外観プロファイラ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-52"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-4132FE0D-CE50-45D5-A606-120A582AB24A" target="_blank" rel="noopener">モデルを色分けする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-53"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-7FDFB8F2-B361-4234-B67B-263B8DC2D361" target="_blank" rel="noopener">ビューポイントの概要</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-54"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-AD337A45-53EA-4FEB-A14C-1926A77E64B5" target="_blank" rel="noopener">ビューポイントを保存、共有する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-55"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-661F4DEB-B2C2-458E-9F5C-2892793CFD4B" target="_blank" rel="noopener">断面を有効にして使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-56"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-C239C1DD-C9CF-4D5E-99D1-42D9A994225A" target="_blank" rel="noopener">断面ボックスを使用して 3D モデルを初めて断面化する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-57"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E11BE7E6-0064-4D35-8565-17536A393236" target="_blank" rel="noopener">平面を使用して 3D モデルを初めて断面化する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-58"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-F792FBD7-E753-45B2-99DD-51DFACFD23F7" target="_blank" rel="noopener">測定ツールのリファレンス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-59"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-BF19C0B9-2CBC-44A2-8871-EA73B3D947F1" target="_blank" rel="noopener">測定する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-60"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-0E0EEEC6-CF7F-4458-8B5B-E18E1C954C8D" target="_blank" rel="noopener">[朱書きツール]パネル</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-61"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-BD49E564-502F-4D57-9F9F-8761E09DF8D9" target="_blank" rel="noopener">コメント、朱書き、タグを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-62"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-1D552D7F-1B92-4E82-A650-1CDFCCF93E35" target="_blank" rel="noopener">タスクを作成する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-63"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-6D958522-1874-46C8-956F-026310BB6CF0" target="_blank" rel="noopener">シミュレーションを再生する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-64"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-102BBA3C-0C3B-46E7-AE9D-238794E0123B" target="_blank" rel="noopener">[設定]タブ（TimeLiner）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-65"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-8D048415-CCA8-4AD7-8B9C-0F717402AC10" target="_blank" rel="noopener">外部プロジェクト スケジュールからデータを読み込む</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-66"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-EF60212A-F4B3-43C2-9D07-7486B955C484" target="_blank" rel="noopener">タスク タイプを設定または変更する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-67"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A52E3947-462A-48DA-900C-66CB3F312DA7" target="_blank" rel="noopener">シミュレーションの表現</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-68"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E4C5DFB3-A6DE-4886-A115-0E22517D0768" target="_blank" rel="noopener">タスクを手動でアタッチする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-69"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A73D13FF-FE32-4BF6-B226-547D6AF13C1F" target="_blank" rel="noopener">プロジェクト スケジュールを検証する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-70"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-4CFA1F1B-AE51-41CC-93AD-45952F38C415" target="_blank" rel="noopener">[データ ソース]タブ</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-71"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-1879F810-B3D3-419A-A138-0D2F02A8BFBA" target="_blank" rel="noopener">サポートされるスケジューリング ソフトウェア</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-72"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-32C4BBB9-96D0-4DE4-B2D9-BA5D1BFA3476" target="_blank" rel="noopener">CSV サポート</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-73"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-236ED2D9-546D-4380-91E8-AADD1769E76F" target="_blank" rel="noopener">タスクとプロジェクトの変更内容を同期する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-74"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E296880A-1607-4755-9A99-D92ECD43463E" target="_blank" rel="noopener">[シミュレーションの設定]ダイアログ ボックス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-75"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-FAFD7F61-275C-48ED-A2AC-5C42BE0624BC" target="_blank" rel="noopener">ガント チャートを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-76"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-0561777D-45B0-40B8-B298-E47BB15D7E9B" target="_blank" rel="noopener">TimeLiner 費用管理</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-77"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-D67C4C58-153B-4653-B3A1-D694ECAF002A" target="_blank" rel="noopener">イメージとアニメーションを TimeLiner からエクスポートする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-78"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-9B0AA3DA-642A-4ABE-8AEB-7920F0649175" target="_blank" rel="noopener">時間ベースのクラッシュに対して TimeLiner を使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-79"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-3E990EE7-8E50-4D24-AD53-12088BA85E12" target="_blank" rel="noopener">キーフレームをキャプチャする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-80"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-5F25317D-DD3A-4126-99F5-460A0FAA7430" target="_blank" rel="noopener">アニメーション シーンを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-81"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-B8F58592-2D3F-49A3-BB96-BFACE6ED957F" target="_blank" rel="noopener">現在の選択に基づいてアニメーション セットを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-82"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-4FA3C35E-76C3-4E36-B843-0D3AB9CD52A6" target="_blank" rel="noopener">[Animator]ツールバー</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-83"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-340424FF-8C02-4D18-ABAB-A3DDA373C071" target="_blank" rel="noopener">[Animator]ウィンドウでシーンを再生する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-84"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-738F3E1F-D690-4A6A-8EC0-FF36C3C5A59C" target="_blank" rel="noopener">オブジェクト アニメーションを作成する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-85"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-78840D7A-1EA6-4B80-AEA2-FCF125CA863A" target="_blank" rel="noopener">キーフレームを編集する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-86"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-BA6D603A-8043-4113-B32A-4EF16FE218DE" target="_blank" rel="noopener">タスクにアニメーションを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-87"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A2AF96BB-B9A6-46DC-A894-B73DB3FD03D6" target="_blank" rel="noopener">タスクにスクリプトを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-88"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-CDD4DCEF-AE0B-4727-A24A-03A9C662F1AE" target="_blank" rel="noopener">ビューポイント アニメーションをリアルタイムで作成する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-89"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-BC2BD34E-A48E-4CFD-9440-8CF6A9394D1E" target="_blank" rel="noopener">アニメーションを 1 フレームずつ作成する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-90"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-A56C8B8E-A171-4639-A8A0-B3C0C4ABC777" target="_blank" rel="noopener">アニメーション スクリプトを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-91"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-CB862D98-ECDF-409A-B670-BFCC03AA6B4F" target="_blank" rel="noopener">イベントを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-92"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-DFE858E1-65A2-4571-9917-5E916A622FC3" target="_blank" rel="noopener">アクションを使用する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-93"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-E6A7509E-74BF-4545-8B77-D1F65A5C9B3F" target="_blank" rel="noopener">スクリプトを追加する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-94"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-65388149-E22F-4F58-9645-C44013882CB2" target="_blank" rel="noopener">スクリプトを有効にする</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-95"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-9FCF9AA7-07FD-42B1-B483-AF543B0E73C6" target="_blank" rel="noopener">イメージとアニメーションのエクスポート</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-96"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-164E5676-EECE-46B5-8027-0699B5A4DECB" target="_blank" rel="noopener">[アニメーションをエクスポート]ダイアログ ボックス</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-97"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-9B636F8A-015C-4E2F-A5A9-0FEBA71A0CC8" target="_blank" rel="noopener">数量拾いの方法</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-98"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-C72C0B43-D464-484C-B83C-341257CF0B29" target="_blank" rel="noopener">変更を解析する</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-99"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-DC1BE6E6-0DE6-4747-AB2B-2BACF8FEAAFA" target="_blank" rel="noopener">データをエクスポートする（Quantification）</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+          <li id="src-100"><a href="https://help.autodesk.com/view/NAV/2027/JPN/?guid=GUID-FF719805-2D68-4494-A90A-9ED4CF4490D4" target="_blank" rel="noopener">フォトリアリスティック レンダリング ワークフロー</a>（オートデスク（Navisworks 2027 ヘルプ））</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月4日時点の情報をもとにまとめたものです。手順はオートデスクの公式ヘルプ（Navisworks 2027）の記載を要約したもので、筆者は実機で確認していません。ソフトの更新により、メニューの名前や位置、価格が変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="../index.html">トップに戻る</a> ・ <a href="../about.html">このサイトについて</a></p>
+      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
