@@ -738,7 +738,8 @@ article strong {
   margin-top: 0.35em;
 }
 
-/* 写真（.photo）と画面の画像（.screenshot）。下に説明と、画像の出典・ライセンスを書く */
+/* 写真（.photo）と画面の画像（.screenshot）。下には短い説明だけを書き、
+   作者・出典・ライセンスは記事末尾の「写真・画像の出典」（details#photo-credits）にまとめる */
 .photo,
 .screenshot {
   margin: 12px 0 0;
@@ -768,12 +769,6 @@ article strong {
   font-size: 0.82rem;
   line-height: 1.6;
   color: var(--text-muted);
-}
-
-.photo .credit,
-.screenshot .credit {
-  display: block;
-  font-size: 0.72rem;
 }
 
 /* 記事の冒頭（要点まとめの下）に置く写真は、少し間をあける */

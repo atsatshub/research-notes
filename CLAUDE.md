@@ -57,7 +57,8 @@
 - 補足は `.note`、注意点は `.warning` のボックスを使う。
 - 画像には必ず `alt` を付ける。
 - 他の人が作った画像は、利用条件がはっきりしたものだけを使う（Wikimedia Commons の CC0・パブリックドメイン・CC BY・CC BY-SA、オートデスク公式ヘルプの CC BY-NC-SA など）。
-  - 写真は `figure.photo`、ソフトの画面は `figure.screenshot` で入れ、`figcaption` の `.credit` に作者・出典ページ・ライセンス（リンク付き）を書く。
+  - 写真は `figure.photo`、ソフトの画面は `figure.screenshot` で入れ、`figcaption` には短い説明だけを書く。
+  - 作者・出典ページ・ライセンス（リンク付き）は、記事末尾の出典欄の下に置く折りたたみ「写真・画像の出典」（`<details class="sources-box" id="photo-credits">`）に、図の説明と対応させて1件ずつ書く（画像の下には出さない。オーナーの希望）。
   - 顔がわかる人物が写った写真は使わない（第1章）。画像の埋め込み情報（EXIF など）は消してから追加する。
   - 画像は `articles/images/` の下に、記事ごとのフォルダを作って置く（例: `articles/images/factory-tours-2026/`）。
 
