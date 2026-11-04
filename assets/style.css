@@ -738,6 +738,29 @@ article strong {
   margin-top: 0.35em;
 }
 
+/* 画面の画像（スクリーンショット）。下に説明と、画像の出典・ライセンスを書く */
+.screenshot {
+  margin: 12px 0 0;
+}
+
+.screenshot img {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.screenshot figcaption {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.screenshot .credit {
+  display: block;
+  font-size: 0.72rem;
+}
+
 /* 横棒グラフ（1系列。注目する棒だけアクセント色、他は控えめな灰色。値は文字で表示） */
 .bar-chart {
   margin: 12px 0 0;
