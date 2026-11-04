@@ -738,17 +738,31 @@ article strong {
   margin-top: 0.35em;
 }
 
-/* 画面の画像（スクリーンショット）。下に説明と、画像の出典・ライセンスを書く */
+/* 写真（.photo）と画面の画像（.screenshot）。下に説明と、画像の出典・ライセンスを書く */
+.photo,
 .screenshot {
   margin: 12px 0 0;
 }
 
+.photo img,
 .screenshot img {
   display: block;
+  border-radius: 8px;
+}
+
+.screenshot img {
   border: 1px solid var(--border);
   border-radius: 6px;
 }
 
+/* 縦長の写真が画面を占めすぎないよう、高さに上限を付けて中央に置く */
+.photo img {
+  width: auto;
+  max-height: 26rem;
+  margin-inline: auto;
+}
+
+.photo figcaption,
 .screenshot figcaption {
   margin-top: 6px;
   font-size: 0.82rem;
@@ -756,9 +770,15 @@ article strong {
   color: var(--text-muted);
 }
 
+.photo .credit,
 .screenshot .credit {
   display: block;
   font-size: 0.72rem;
+}
+
+/* 記事の冒頭（要点まとめの下）に置く写真は、少し間をあける */
+.summary + .photo {
+  margin: 16px 0 20px;
 }
 
 /* 横棒グラフ（1系列。注目する棒だけアクセント色、他は控えめな灰色。値は文字で表示） */
