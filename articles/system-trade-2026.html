@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>個人のシステムトレード入門：手法の種類と、研究で分かっていること（2026年版）｜お得情報・調べものまとめ</title>
+  <meta name="description" content="売買の規則を先に決めて守るシステムトレードについて、手法の種類、査読論文などで分かっていること（バリューとモメンタム、トレンドフォロー、株主優待の先回り、効果が薄れた手法）、バックテストでつまずきやすい点、税金とデータ・発注の仕組みをまとめました。特定の手法・銘柄・証券会社をすすめるものではありません。2026年11月5日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/system-trade-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:title" content="個人のシステムトレード入門：手法の種類と、研究で分かっていること（2026年版）">
+  <meta property="og:description" content="売買の規則を先に決めて守るシステムトレードについて、手法の種類、査読論文などで分かっていること（バリューとモメンタム、トレンドフォロー、株主優待の先回り、効果が薄れた手法）、バックテストでつまずきやすい点、税金とデータ・発注の仕組みをまとめました。特定の手法・銘柄・証券会社をすすめるものではありません。2026年11月5日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/system-trade-2026.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
+      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › お金・投資</p>
+
+      <h1>個人のシステムトレード入門：手法の種類と、研究で分かっていること（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-05">2026年11月5日</time></li>
+        <li><span class="tag">お金・投資</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>売買の規則を先に決めて、そのとおりに守るのがシステムトレード</li>
+          <li>日本ではモメンタム単独はほぼ効かず、<strong>バリューと組む</strong>と安定した<a class="ref" href="#src-1">[1]</a></li>
+          <li>S&amp;P500に採用された株の値上がりは、7.6%から0.8%に縮んだ<a class="ref" href="#src-2">[2]</a></li>
+          <li>何通りも試すほど偶然の当たりが出る。成績は<strong>割り引いて</strong>読む<a class="ref" href="#src-3">[3]</a></li>
+          <li>税金は株式・FXが約20%。暗号資産は今は原則として雑所得<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+        </ul>
+      </section>
+
+      <figure class="photo">
+        <img src="images/system-trade-2026/ose.jpg" width="960" height="640" loading="lazy" alt="高層ビルの手前に建つ、円筒形の石造りの大阪取引所ビル">
+        <figcaption>大阪取引所（大阪市中央区北浜）。先物・オプションを扱う取引所</figcaption>
+      </figure>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">システムトレードとは</a></li>
+          <li><a href="#sec-2">研究で分かっていること</a></li>
+          <li><a href="#sec-3">効果が薄れた手法、個人に難しい手法</a></li>
+          <li><a href="#sec-4">バックテストでつまずきやすい点</a></li>
+          <li><a href="#sec-5">税金とデータの費用</a></li>
+          <li><a href="#sec-6">個人が使える発注の仕組み</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>システムトレードは、いつ何を売買するかの規則を先に決めて、感情を交えずにそのとおり実行するやり方です。この記事では、筆者が調べた論文や公式資料をもとに、手法の種類、研究で分かっていること、検証でつまずきやすい点、税金と道具をまとめました。数字はすべて過去のデータで、将来の成績を示すものではありません。<strong>特定の手法・銘柄・証券会社をすすめるものではありません。</strong></p>
+
+      <h2 id="sec-1">システムトレードとは</h2>
+
+      <section class="item-card">
+        <h3>規則を決めて、守るやり方</h3>
+        <p class="item-point">自動発注は必須ではない。<strong>規則を守ること</strong>が本体</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>規則を書いて、そのとおり手で注文するのも同じ考え方（筆者の整理）</li>
+            <li>過去のデータで規則を試すことを「バックテスト」という</li>
+            <li>発注まで自動にするには、証券会社のAPIなどを使う（下の6章）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>手法の種類</h3>
+        <p class="item-point">何で利益を狙うかで、おおむね<strong>6つ</strong>に分けられる</p>
+        <div class="table-wrap">
+          <table>
+            <caption>主な手法の分け方（筆者の整理。例は論文で扱われているもの）</caption>
+            <thead><tr><th scope="col">分類</th><th scope="col">考え方</th><th scope="col">例</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">銘柄の比較</th><td>割安さ・勢いなどで銘柄に順位をつける</td><td>バリュー、モメンタム<a class="ref" href="#src-6">[6]</a></td></tr>
+              <tr><th scope="row">トレンドフォロー</th><td>上がっているものを買い、下がっているものを売る</td><td>先物の時系列モメンタム<a class="ref" href="#src-7">[7]</a></td></tr>
+              <tr><th scope="row">イベント</th><td>決算発表や権利日など、決まった出来事の前後を狙う</td><td>株主優待の先回り<a class="ref" href="#src-8">[8]</a>、決算後のドリフト<a class="ref" href="#src-9">[9]</a></td></tr>
+              <tr><th scope="row">裁定・キャリー</th><td>価格のずれや金利差を取る</td><td>指数の入れ替え<a class="ref" href="#src-2">[2]</a></td></tr>
+              <tr><th scope="row">オプションの売り</th><td>保険料にあたるプレミアムを受け取る</td><td>プット売り<a class="ref" href="#src-10">[10]</a></td></tr>
+              <tr><th scope="row">時間帯・季節</th><td>夜と昼、月末などの時間の偏りを使う</td><td>夜間と日中の収益の違い<a class="ref" href="#src-11">[11]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <h2 id="sec-2">研究で分かっていること</h2>
+
+      <section class="item-card">
+        <h3>バリューとモメンタムは「組み合わせ」で効いた</h3>
+        <p class="item-point">日本はモメンタム単独の成績が<strong>ほぼゼロ</strong>だった<a class="ref" href="#src-1">[1]</a></p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">日本株のシャープレシオ（約29年半） <span class="chart-sub">（リスク1あたりの収益。大きいほど効率がよい）</span><a class="ref" href="#src-1">[1]</a></figcaption>
+          <div role="img" aria-label="日本株のシャープレシオ：モメンタムだけ0.03、バリューだけ0.71、半分ずつ0.65、後から見た最適0.88">
+            <div class="bar-row"><span class="bar-label">モメンタムだけ</span><span class="bar-track"><span class="bar" style="width:3.4%"></span></span><span class="bar-value">0.03</span></div>
+            <div class="bar-row"><span class="bar-label">バリューだけ</span><span class="bar-track"><span class="bar" style="width:80.7%"></span></span><span class="bar-value">0.71</span></div>
+            <div class="bar-row"><span class="bar-label">半分ずつ</span><span class="bar-track"><span class="bar" style="width:73.9%"></span></span><span class="bar-value">0.65</span></div>
+            <div class="bar-row is-key"><span class="bar-label">後から見た最適</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">0.88</span></div>
+          </div>
+        </figure>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>日本ではモメンタムとバリューの相関が−0.55と、逆向きに動いた<a class="ref" href="#src-1">[1]</a></li>
+            <li>最適はバリュー70%の配分で、結果を見た後に選んだもの<a class="ref" href="#src-1">[1]</a></li>
+            <li>後から選んだ配分は、将来も最適とは限らない（筆者の見解）</li>
+            <li>8つの市場・資産でも、両者は逆向きに動く傾向が報告された<a class="ref" href="#src-6">[6]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>トレンドフォロー（時系列モメンタム）</h3>
+        <p class="item-point">58の先物で、過去の上昇が1〜12か月続く傾向<a class="ref" href="#src-7">[7]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>株価指数・通貨・商品・債券の先物、58銘柄で確認された<a class="ref" href="#src-7">[7]</a></li>
+            <li>勢いは1〜12か月続き、より長い期間では一部が戻る<a class="ref" href="#src-7">[7]</a></li>
+            <li>暗号資産でも、強い時系列モメンタムが報告されている<a class="ref" href="#src-12">[12]</a></li>
+            <li>暗号資産の研究は期間が短く、値動きも大きい（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>夜と昼で、利益の出方が違う</h3>
+        <p class="item-point">米国では、モメンタムの利益は<strong>夜間</strong>に出ていた<a class="ref" href="#src-11">[11]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>引けから翌朝の寄りまでを夜間、寄りから引けを日中と呼ぶ</li>
+            <li>14の手法で、利益は夜間か日中のどちらかに偏っていた<a class="ref" href="#src-11">[11]</a></li>
+            <li>反転（リバーサル）とモメンタム系は夜間に利益が出た<a class="ref" href="#src-11">[11]</a></li>
+            <li>日本の個別株での同じ分析は、今回見つからなかった</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>株主優待の「先回り」</h3>
+        <p class="item-point">権利付最終日の<strong>60営業日前</strong>に買う組み合わせが最良<a class="ref" href="#src-8">[8]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>2011年4月〜2014年3月の延べ4,107件を分析した研究<a class="ref" href="#src-8">[8]</a></li>
+            <li>権利付最終日の前日に売る組み合わせで、超過収益が最も高い<a class="ref" href="#src-8">[8]</a></li>
+            <li>超過収益は有意に正。空売りの制約が原因の可能性とされた<a class="ref" href="#src-8">[8]</a></li>
+            <li>2014年までのデータで、その後も続いているかは不明</li>
+            <li>優待の基本は<a href="kabunushi-yutai-2026.html">株主優待の記事</a>にまとめた</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>オプションの売り（プット売り）</h3>
+        <p class="item-point">米国では株と同程度の収益を、<strong>小さな振れ</strong>で得た<a class="ref" href="#src-10">[10]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>米国のプット売り指数（PUT）とS&amp;P500（32年あまり）<a class="ref" href="#src-10">[10]</a></caption>
+            <thead><tr><th scope="col">指標</th><th scope="col">PUT指数</th><th scope="col">S&amp;P500</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">年率の複利収益</th><td>9.54%</td><td>9.80%</td></tr>
+              <tr><th scope="row">標準偏差（振れの大きさ）</th><td>9.95%</td><td>14.93%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>プットの売りは、相場の急落時に損失がまとまって出る（筆者の見解）</li>
+            <li>普段の振れが小さくても、まれな大損の大きさは別に確かめる（筆者の見解）</li>
+            <li>日本で同じような長期の公表実績は、今回見つからなかった</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">効果が薄れた手法、個人に難しい手法</h2>
+
+      <section class="item-card">
+        <h3>有名になった効果は小さくなりやすい</h3>
+        <p class="item-point">指数への採用で上がる効果は、<strong>10分の1程度</strong>に縮んだ<a class="ref" href="#src-2">[2]</a></p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">S&amp;P500に採用された株の異常リターン（平均） <span class="chart-sub">（%）</span><a class="ref" href="#src-2">[2]</a></figcaption>
+          <div role="img" aria-label="S&amp;P500に採用された株の異常リターン：1980年代3.4%、1990年代7.6%、直近10年0.8%">
+            <div class="bar-row"><span class="bar-label">1980年代</span><span class="bar-track"><span class="bar" style="width:44.7%"></span></span><span class="bar-value">3.4</span></div>
+            <div class="bar-row"><span class="bar-label">1990年代</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">7.6</span></div>
+            <div class="bar-row is-key"><span class="bar-label">直近10年</span><span class="bar-track"><span class="bar" style="width:10.5%"></span></span><span class="bar-value">0.8</span></div>
+          </div>
+        </figure>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>指数から外された株の値下がりも、2010〜2020年は−0.6%だけ<a class="ref" href="#src-2">[2]</a></li>
+            <li>日本の決算発表後のドリフトも、2002〜2020年で小さくなった<a class="ref" href="#src-9">[9]</a></li>
+            <li>この日本の研究は、延べ60,124件の決算を分析している<a class="ref" href="#src-9">[9]</a></li>
+            <li>論文の数字は、費用を引く前のものが多い（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>資金の単位が大きすぎる商品がある</h3>
+        <p class="item-point">長期国債先物は、1枚が<strong>額面1億円</strong><a class="ref" href="#src-13">[13]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>超長期国債先物（ミニ）は、1枚が額面1千万円<a class="ref" href="#src-13">[13]</a></li>
+            <li>研究で効く手法でも、少ない資金では分散できないことがある（筆者の見解）</li>
+            <li>日本株は100株単位なので、1銘柄の金額も先に確かめる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>速さで競う手法は向かない</h3>
+        <p class="item-point">個人向けAPIは、注文の回数に<strong>上限</strong>がある<a class="ref" href="#src-14">[14]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>例: kabuステーションAPIの発注は1秒に10件まで<a class="ref" href="#src-14">[14]</a></li>
+            <li>速さが勝負の超短期売買は、専門業者と競うことになる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-4">バックテストでつまずきやすい点</h2>
+
+      <figure class="photo">
+        <img src="images/system-trade-2026/servers.jpg" width="960" height="640" loading="lazy" alt="青いランプが並ぶサーバーのラック">
+        <figcaption>バックテストには大量の計算を使うことがある（イメージ）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>何通りも試すと「偶然の当たり」が出る</h3>
+        <p class="item-point">試した数が多いほど、<strong>有意の線</strong>を高くする必要がある<a class="ref" href="#src-15">[15]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>多数の研究を踏まえ、t値3.0を超える線が提案された<a class="ref" href="#src-15">[15]</a></li>
+            <li>選択肢が1つ増えるごとに、t値の幅が最低30%広がる<a class="ref" href="#src-16">[16]</a></li>
+            <li>分析の分かれ道を数えると、5%有意の線は8.2以上とする研究も<a class="ref" href="#src-16">[16]</a></li>
+            <li>一方で、公表済みの効果の多くは再現できるとする研究もある<a class="ref" href="#src-3">[3]</a></li>
+            <li>ただし作り方を変えると、収益は30〜50%弱くなった<a class="ref" href="#src-3">[3]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>成績を割り引くための道具</h3>
+        <p class="item-point">試行数を考えて、シャープレシオを<strong>割り引く</strong>方法がある<a class="ref" href="#src-17">[17]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Deflated Sharpe Ratioは、選択の偏りなどを補正する<a class="ref" href="#src-17">[17]</a></li>
+            <li>過学習の確率（PBO）を見積もる枠組みもある<a class="ref" href="#src-18">[18]</a></li>
+            <li>どちらも、試した数を記録しておかないと使えない（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>検証の進め方（筆者の整理）</h3>
+        <p class="item-point">結果を見る前に、<strong>条件を書き残す</strong>のが出発点</p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">仮説と判定の条件を先に書く</p><p class="timeline-note">何を比べ、どうなれば採用かを結果を見る前に決める</p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">実行できるかを確かめる</p><p class="timeline-note">売買単位・資金・注文の制限で、規則どおり注文できるか</p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">費用を入れて試す</p><p class="timeline-note">手数料・売買の差額（スプレッド）・金利・税金を最初から入れる</p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">期間を分けて確かめる</p><p class="timeline-note">前半と後半で、結果の向きが逆になっていないか</p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">少額で試し、記録する</p><p class="timeline-note">実際の約定や不具合を記録し、検証とのずれを見る</p></li>
+        </ol>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>データが更新されず、古いまま動き続ける事故に注意（筆者の見解）</li>
+            <li>前提の違う数字（資金・期間・費用）を同じ表で比べない（筆者の見解）</li>
+            <li>1つの設定が駄目でも、その方向全体が駄目とは限らない（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-5">税金とデータの費用</h2>
+
+      <section class="item-card">
+        <h3>税金は商品によって違う</h3>
+        <p class="item-point">株式・FXは<strong>申告分離</strong>、暗号資産は原則として総合課税</p>
+        <div class="table-wrap">
+          <table>
+            <caption>主な商品の税金（2026年11月時点）</caption>
+            <thead><tr><th scope="col">商品</th><th scope="col">扱い</th><th scope="col">税率</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">上場株式など</th><td>申告分離課税<a class="ref" href="#src-4">[4]</a></td><td>20.315%（所得税15%・住民税5%と復興特別所得税）<a class="ref" href="#src-4">[4]</a></td></tr>
+              <tr><th scope="row">FX（外国為替証拠金取引）</th><td>先物取引に係る雑所得等（申告分離）<a class="ref" href="#src-19">[19]</a></td><td>所得税15%・住民税5%など<a class="ref" href="#src-19">[19]</a></td></tr>
+              <tr><th scope="row">暗号資産</th><td>原則として雑所得（総合課税）<a class="ref" href="#src-5">[5]</a></td><td>ほかの所得と合わせて計算</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>一定の暗号資産を20%の分離課税にする改正が決まった<a class="ref" href="#src-20">[20]</a></li>
+            <li>対象は登録業者が扱う「特定暗号資産」の取引に限られる<a class="ref" href="#src-20">[20]</a></li>
+            <li>関連法の施行の翌年1月1日から適用（2026年5月時点で未成立）<a class="ref" href="#src-21">[21]</a></li>
+            <li>関連法のその後の成立・施行日は、今回確認できなかった</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>株価データの費用（J-Quants）</h3>
+        <p class="item-point">取引所グループの公式データは、<strong>月0円</strong>から<a class="ref" href="#src-22">[22]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>J-Quantsの料金プラン（月額・税込）<a class="ref" href="#src-22">[22]</a></caption>
+            <thead><tr><th scope="col">プラン</th><th scope="col">月額</th><th scope="col">データの期間</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Free</th><td>0円</td><td>直近12週間を除く2年分</td></tr>
+              <tr><th scope="row">Light</th><td>1,650円</td><td>過去5年分</td></tr>
+              <tr><th scope="row">Standard</th><td>3,300円</td><td>過去10年分</td></tr>
+              <tr><th scope="row">Premium</th><td>16,500円</td><td>過去20年分（最長）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>信用取引のデータはStandardから含まれる<a class="ref" href="#src-22">[22]</a></li>
+            <li>検証期間が短いと、結果の誤差が大きくなる（筆者の見解）</li>
+            <li>データ代も、手数料と同じく収益から引いて考える（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-6">個人が使える発注の仕組み</h2>
+
+      <section class="item-card">
+        <h3>日本株を自動で注文する方法の例</h3>
+        <p class="item-point">証券会社のAPIか、<strong>Excelのアドイン</strong>を使う</p>
+        <ul class="service-list">
+          <li><p class="service-name">kabuステーションAPI（三菱UFJ eスマート証券）</p><p class="service-what">取引ツールを通じてプログラムから注文する</p><p class="service-cond">ProfessionalかPremiumプランが必要<a class="ref" href="#src-23">[23]</a></p></li>
+          <li><p class="service-name">立花証券ｅ支店 APIサービス</p><p class="service-what">個人向けの無料の日本株API</p><p class="service-cond">口座の開設が必要<a class="ref" href="#src-24">[24]</a></p></li>
+          <li><p class="service-name">マーケットスピード II RSS（楽天証券）</p><p class="service-what">Excelのアドインで情報を取り、発注もできる</p><p class="service-cond">Windows 11とExcelが必要<a class="ref" href="#src-25">[25]</a></p></li>
+        </ul>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>楽天のRSSは、国内株式と国内先物・オプションを扱える<a class="ref" href="#src-25">[25]</a></li>
+            <li>RSSは、マーケットスピード II へのログインが前提<a class="ref" href="#src-25">[25]</a></li>
+            <li>ここに挙げたのは例で、ほかの証券会社にも仕組みがある</li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="warning">
+        <p class="box-title">お金を失う可能性がある</p>
+        <p>過去のデータでうまくいった規則でも、将来も利益が出るとは限りません。信用取引や先物・オプションは、預けたお金より大きな損失が出ることがあります。自動売買は、システムの不具合でも損失が出ます（筆者の見解）。</p>
+      </div>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>夜間と日中の収益を、日本の個別株で比べた査読論文</li>
+          <li>株主優待の先回りの効果が、2014年以降も続いているか</li>
+          <li>日本で、プット売りの長期の公表実績があるか</li>
+          <li>暗号資産の分離課税の前提となる関連法の、成立と施行の日</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="kabunushi-yutai-2026.html">株主優待の基本と、暮らしに役立つ優待の例（2026年版）</a></li>
+          <li><a href="shakaijin-otoku-7-housing-finance.html">社会人お得技ノート⑦ 住まい・金融・福利厚生</a></li>
+          <li><a href="gensen-choshuhyo-2026.html">源泉徴収票の読み方（2026年分）</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（25件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月5日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://images.aqr.com/-/media/AQR/Documents/Journal-Articles/JPM-Momentum-in-Japan---The-Exception-That-Proves-the-Rule.pdf" target="_blank" rel="noopener">Momentum in Japan: The Exception That Proves the Rule</a>（Cliff Asness（The Journal of Portfolio Management、2011年））</li>
+          <li id="src-2"><a href="https://www.nber.org/system/files/working_papers/w30748/w30748.pdf" target="_blank" rel="noopener">The Disappearing Index Effect</a>（Greenwood, Sammon（NBER Working Paper 30748、2022年））</li>
+          <li id="src-3"><a href="https://arxiv.org/abs/2209.13623" target="_blank" rel="noopener">Publication Bias in Asset Pricing Research</a>（Chen, Zimmermann（arXiv 2209.13623、査読前））</li>
+          <li id="src-4"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm" target="_blank" rel="noopener">No.1463 株式等を譲渡したときの課税（申告分離課税）</a>（国税庁）</li>
+          <li id="src-5"><a href="https://www.nta.go.jp/publication/pamph/pdf/virtual_currency_faq_03.pdf" target="_blank" rel="noopener">暗号資産等に関する税務上の取扱いについて（情報）（2025年12月26日）</a>（国税庁）</li>
+          <li id="src-6"><a href="https://pages.stern.nyu.edu/~lpederse/papers/ValMomEverywhere.pdf" target="_blank" rel="noopener">Value and Momentum Everywhere</a>（Asness, Moskowitz, Pedersen（The Journal of Finance、2013年））</li>
+          <li id="src-7"><a href="https://pages.stern.nyu.edu/~lpederse/papers/TimeSeriesMomentum.pdf" target="_blank" rel="noopener">Time Series Momentum</a>（Moskowitz, Ooi, Pedersen（Journal of Financial Economics、2012年））</li>
+          <li id="src-8"><a href="https://www.jsri.or.jp/publication/periodical/economics/91/91-05/" target="_blank" rel="noopener">株主優待が権利付き最終日までの株価に与える影響</a>（日本証券経済研究所（『証券経済研究』第91号、2015年））</li>
+          <li id="src-9"><a href="https://www.rieb.kobe-u.ac.jp/tjar/article/vol13/pdf/13.01.Jinushi.pdf" target="_blank" rel="noopener">Post-Earnings Announcement Drift and Ownership Structure in the Modern Japanese Stock Market</a>（Junko Jinushi（The Japanese Accounting Review、2023年））</li>
+          <li id="src-10"><a href="https://cdn.cboe.com/resources/education/research_publications/PutWriteCBOE19_v14_by_Prof_Oleg_Bondarenko_as_of_June_14.pdf" target="_blank" rel="noopener">Historical Performance of Put-Writing Strategies</a>（Oleg Bondarenko（Cboe、2019年））</li>
+          <li id="src-11"><a href="https://personal.lse.ac.uk/polk/research/TugOfWar.pdf" target="_blank" rel="noopener">A tug of war: Overnight versus intraday expected returns</a>（Lou, Polk, Skouras（Journal of Financial Economics、2019年））</li>
+          <li id="src-12"><a href="https://www.nber.org/system/files/working_papers/w24877/w24877.pdf" target="_blank" rel="noopener">Risks and Returns of Cryptocurrency</a>（Liu, Tsyvinski（NBER Working Paper 24877、2018年））</li>
+          <li id="src-13"><a href="https://www.jpx.co.jp/derivatives/products/jgb/jgb-futures/01.html" target="_blank" rel="noopener">国債（JGB）先物 制度概要</a>（日本取引所グループ）</li>
+          <li id="src-14"><a href="https://kabucom.github.io/kabusapi/ptal/faq.html" target="_blank" rel="noopener">kabuステーションAPI よくある質問</a>（三菱UFJ eスマート証券）</li>
+          <li id="src-15"><a href="https://www.nber.org/system/files/working_papers/w20592/w20592.pdf" target="_blank" rel="noopener">... and the Cross-Section of Expected Returns</a>（Harvey, Liu, Zhu（NBER Working Paper 20592））</li>
+          <li id="src-16"><a href="https://arxiv.org/abs/2401.08606" target="_blank" rel="noopener">Forking paths in financial economics</a>（Guillaume Coqueret（arXiv 2401.08606、査読前））</li>
+          <li id="src-17"><a href="https://www.davidhbailey.com/dhbpapers/deflated-sharpe.pdf" target="_blank" rel="noopener">The Deflated Sharpe Ratio</a>（Bailey, López de Prado（The Journal of Portfolio Management、2014年））</li>
+          <li id="src-18"><a href="https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf" target="_blank" rel="noopener">The Probability of Backtest Overfitting</a>（Bailey, Borwein, López de Prado, Zhu（2015年））</li>
+          <li id="src-19"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1521.htm" target="_blank" rel="noopener">No.1521 外国為替証拠金取引（FX）の課税関係</a>（国税庁）</li>
+          <li id="src-20"><a href="https://www.mof.go.jp/tax_policy/tax_reform/outline/fy2026/20251226taikou.pdf" target="_blank" rel="noopener">令和8年度税制改正の大綱（2025年12月26日閣議決定）</a>（財務省）</li>
+          <li id="src-21"><a href="https://www.nta.go.jp/publication/pamph/joto-sanrin/r08aramashi.pdf" target="_blank" rel="noopener">株式等や土地・建物等を譲渡した場合の令和8年度改正のあらまし</a>（国税庁）</li>
+          <li id="src-22"><a href="https://jpx-jquants.com/" target="_blank" rel="noopener">J-Quants（料金プラン）</a>（日本取引所グループ）</li>
+          <li id="src-23"><a href="https://kabucom.github.io/kabusapi/ptal/howto.html" target="_blank" rel="noopener">kabuステーションAPI 利用設定</a>（三菱UFJ eスマート証券）</li>
+          <li id="src-24"><a href="https://www.e-shiten.jp/api/" target="_blank" rel="noopener">立花証券ｅ支店 APIサービス</a>（立花証券）</li>
+          <li id="src-25"><a href="https://marketspeed.jp/ms2_rss/" target="_blank" rel="noopener">マーケットスピード II RSS</a>（楽天証券）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（2件）</summary>
+        <ol class="sources">
+          <li>大阪取引所（大阪市中央区北浜）<br>写真: Sakai Yayoi／<a href="https://commons.wikimedia.org/wiki/File:Osaka_Exchange.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">CC0</a>）</li>
+          <li>サーバーのラック<br>写真: NOIRLab/NSF/AURA/T. Slovinský／<a href="https://commons.wikimedia.org/wiki/File:NOIRLab_HQ_Server_Racks_(6V6A0402-CC).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月5日時点の情報をもとにまとめたものです。研究の数字は過去のデータにもとづくもので、将来の成績を示すものではありません。この記事は特定の手法・銘柄・証券会社をすすめるものではなく、投資の助言でもありません。投資の判断はご自身で行ってください。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="../index.html">トップに戻る</a> ・ <a href="../about.html">このサイトについて</a></p>
+      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
