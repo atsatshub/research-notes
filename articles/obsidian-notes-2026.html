@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obsidian（オブシディアン）の始め方と注意点：料金・同期・バックアップ（2026年版）｜お得情報・調べものまとめ</title>
+  <meta name="description" content="ノートを自分の端末にMarkdownファイルで保存するノートアプリ Obsidian について、無料で使える範囲と有料サービス（Sync・Publish）の料金、インストールからノートをつなぐまでの手順、主な機能、プラグインの安全上の注意、複数端末での同期方法、バックアップと復元、Notion・Evernote などとの違い、他アプリからの移行を、公式サイトと公式ヘルプをもとにまとめました。2026年11月5日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/obsidian-notes-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:title" content="Obsidian（オブシディアン）の始め方と注意点：料金・同期・バックアップ（2026年版）">
+  <meta property="og:description" content="ノートを自分の端末にMarkdownファイルで保存するノートアプリ Obsidian について、無料で使える範囲と有料サービス（Sync・Publish）の料金、インストールからノートをつなぐまでの手順、主な機能、プラグインの安全上の注意、複数端末での同期方法、バックアップと復元、Notion・Evernote などとの違い、他アプリからの移行を、公式サイトと公式ヘルプをもとにまとめました。2026年11月5日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/obsidian-notes-2026.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
+      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 仕事・学習の道具</p>
+
+      <h1>Obsidian（オブシディアン）の始め方と注意点：料金・同期・バックアップ（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-05">2026年11月5日</time></li>
+        <li><span class="tag">仕事・学習の道具</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>ノートは自分の端末に<strong>Markdown</strong>ファイルで保存。個人も仕事も無料<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>複数の端末で使うなら、公式の同期は月<strong>$4〜$10</strong>。iCloud などでも可<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-4">[4]</a></li>
+          <li>プラグインは約<strong>1万</strong>個。初期設定の「制限モード」を外すと使える<a class="ref" href="#src-5">[5]</a><a class="ref" href="#src-6">[6]</a></li>
+          <li>同期はバックアップではない。誤削除は<strong>7日分</strong>の自動保存から戻せる<a class="ref" href="#src-7">[7]</a><a class="ref" href="#src-8">[8]</a></li>
+          <li>Notion などと違い、クラウド保存や同時編集は得意ではない<a class="ref" href="#src-9">[9]</a><a class="ref" href="#src-10">[10]</a></li>
+        </ul>
+      </section>
+
+      <figure class="photo">
+        <img src="images/obsidian-notes-2026/cards.jpg" width="960" height="640" loading="lazy" alt="木製の小さな引き出しが壁一面に並んだ、紙のカード式の資料庫">
+        <figcaption>紙のカードで知識をためる資料庫の例（ラテン語辞典の編集所）。Obsidian はこの考え方をデジタルで行うアプリの一つ</figcaption>
+      </figure>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">Obsidian とは：ノートは端末内のファイル</a></li>
+          <li><a href="#sec-2">料金：無料の範囲と、お金がかかるもの</a></li>
+          <li><a href="#sec-3">始め方：インストールからノートをつなぐまで</a></li>
+          <li><a href="#sec-4">主な機能</a></li>
+          <li><a href="#sec-5">プラグインの注意点</a></li>
+          <li><a href="#sec-6">複数の端末で使う（同期）</a></li>
+          <li><a href="#sec-7">バックアップと復元</a></li>
+          <li><a href="#sec-8">ほかのノートアプリとの違い</a></li>
+          <li><a href="#sec-9">ほかのアプリからの移行と、データの持ち出し</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>Obsidian（オブシディアン）は、ノートを自分の端末に「Markdown」という文字だけのファイルで保存するノートアプリです。この記事では、無料で使える範囲と有料サービスの料金、始め方、主な機能、プラグインの注意点、複数の端末で使う方法、バックアップ、ほかのノートアプリとの違い、データの移行をまとめました。公式サイトと公式ヘルプを中心に調べています。価格や機能は変わるので、数字は調査日時点のものです。特定のアプリやサービスをすすめるものではありません。</p>
+
+      <h2 id="sec-1">Obsidian とは：ノートは端末内のファイル</h2>
+
+      <section class="item-card">
+        <h3>ノートは自分の端末に、文字だけのファイルで残る</h3>
+        <p class="item-point">ノートはローカルの<strong>Markdown</strong>ファイル。オフラインでも使える<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-11">[11]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Obsidian の基本情報（2026年11月5日時点）</caption>
+            <thead><tr><th scope="col">項目</th><th scope="col">内容</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">開発元</th><td>Dynalist Inc.（カナダ・オンタリオ州）<a class="ref" href="#src-12">[12]</a>。「小さなチーム」で、投資家ではなく利用者の支払いで運営<a class="ref" href="#src-13">[13]</a></td></tr>
+              <tr><th scope="row">公開</th><td>2020年3月に最初の版<a class="ref" href="#src-14">[14]</a>。v1.0 は2022年10月<a class="ref" href="#src-15">[15]</a></td></tr>
+              <tr><th scope="row">最新版</th><td>v1.15（2026年11月2日公開）<a class="ref" href="#src-16">[16]</a></td></tr>
+              <tr><th scope="row">対応OS</th><td>Windows・macOS・Linux・Android（5.1以上）・iOS/iPadOS（15.6以上）<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-19">[19]</a></td></tr>
+              <tr><th scope="row">日本語</th><td>画面の日本語表示と、日本語の公式ヘルプあり<a class="ref" href="#src-20">[20]</a><a class="ref" href="#src-21">[21]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Markdown は、# や * などの記号で見出しや強調を表す、文字だけの書き方<a class="ref" href="#src-22">[22]</a></li>
+            <li>ファイルは他のエディターでも開けるので、アプリをやめてもノートは残る<a class="ref" href="#src-11">[11]</a></li>
+            <li>「保管庫（Vault）」＝ノートを入れるフォルダ。設定は保管庫内の .obsidian フォルダに入る<a class="ref" href="#src-11">[11]</a></li>
+            <li>扱えるファイルは .md のほか、画像・音声・動画・PDF、.canvas、.base<a class="ref" href="#src-23">[23]</a></li>
+            <li>アプリ本体のソースコードは公開されていない。ファイル形式と API は公開<a class="ref" href="#src-24">[24]</a><a class="ref" href="#src-1">[1]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>データは端末内。公式は利用状況を集めないと明記</h3>
+        <p class="item-point">利用状況の送信（テレメトリ）はしない、と公式が明記<a class="ref" href="#src-25">[25]</a><a class="ref" href="#src-26">[26]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>有料の Sync を使う場合だけ、暗号化したデータが公式サーバーに置かれる<a class="ref" href="#src-25">[25]</a></li>
+            <li>Sync は既定でエンドツーエンド暗号化（AES-256-GCM）。ファイル名も暗号化される<a class="ref" href="#src-27">[27]</a></li>
+            <li>Sync のパスワードを忘れると、公式でもデータを復元できない<a class="ref" href="#src-27">[27]</a></li>
+            <li>Publish で公開したノートは Cloudflare のサーバーに置かれ、誰でも見られる。パスワードはサイト単位<a class="ref" href="#src-28">[28]</a></li>
+            <li>第三者機関（Cure53、Trail of Bits）による監査の報告を公開している<a class="ref" href="#src-26">[26]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-2">料金：無料の範囲と、お金がかかるもの</h2>
+
+      <section class="item-card">
+        <h3>アプリは無料。お金がかかるのは同期と公開サイト</h3>
+        <p class="item-point">個人も仕事も無料（2025年2月から<strong>商用も無料</strong>）<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-29">[29]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Obsidian の料金（米ドル。税込かどうかの記載なし）<a class="ref" href="#src-3">[3]</a></caption>
+            <thead><tr><th scope="col">サービス</th><th scope="col">価格</th><th scope="col">内容</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Obsidian 本体</th><td>無料</td><td>登録不要。個人・商用・非営利のすべてで無料<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></td></tr>
+              <tr><th scope="row">Sync Standard</th><td>月$4（年払い）／月$5（月払い）</td><td>保管庫1つ、1GB、1ファイル5MBまで、履歴1か月<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-30">[30]</a></td></tr>
+              <tr><th scope="row">Sync Plus</th><td>月$8（年払い）／月$10（月払い）</td><td>保管庫10、10GB（100GBまで拡張可）、200MB、履歴12か月<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-30">[30]</a></td></tr>
+              <tr><th scope="row">Publish</th><td>月$8（年払い）／月$10（月払い）、サイトごと</td><td>ノートを Web サイトとして公開。4GBまで<a class="ref" href="#src-31">[31]</a></td></tr>
+              <tr><th scope="row">Catalyst</th><td>$25から（一回払い）</td><td>開発を支援するライセンス。ベータ版の早期利用など<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-32">[32]</a></td></tr>
+              <tr><th scope="row">Commercial</th><td>年$50／人（任意）</td><td>仕事で使う組織向けの支援ライセンス。機能の差はない<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-29">[29]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>見方: 1人で、1台のPCだけで使うなら0円です。スマホとPCで同じノートを使いたいときに、公式の Sync（月$4から）か、iCloud などの別の方法（6章）が必要になります。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>2025年2月20日まで、従業員2人以上の会社での業務利用には商用ライセンスが必須だった<a class="ref" href="#src-29">[29]</a><a class="ref" href="#src-33">[33]</a></li>
+            <li>学生・教職員・非営利団体の職員は、Sync と Publish が40%引き<a class="ref" href="#src-3">[3]</a></li>
+            <li>Sync と Publish は購入後7日以内なら全額返金。Catalyst と Commercial は返金不可<a class="ref" href="#src-3">[3]</a></li>
+            <li>Sync の端末数は無制限。共有できる保管庫は最大20人<a class="ref" href="#src-30">[30]</a><a class="ref" href="#src-34">[34]</a></li>
+            <li>価格は米ドル表示で、税込かどうかの記載はない<a class="ref" href="#src-3">[3]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">始め方：インストールからノートをつなぐまで</h2>
+
+      <section class="item-card">
+        <h3>保管庫（フォルダ）を作り、ノートどうしをリンクする</h3>
+        <p class="item-point">保管庫の置き場所は、クラウドの同期フォルダの<strong>外</strong>が公式のおすすめ<a class="ref" href="#src-35">[35]</a></p>
+        <ol class="timeline">
+          <li><span class="timeline-day">1</span><p class="timeline-title">インストールする</p><p class="timeline-note">obsidian.md/download から各OSの版を入れる。Windows・Mac は「Universal」<a class="ref" href="#src-36">[36]</a><a class="ref" href="#src-17">[17]</a></p></li>
+          <li><span class="timeline-day">2</span><p class="timeline-title">保管庫を作る</p><p class="timeline-note">「Create new vault（保管庫を新規作成）」で名前と場所を決める<a class="ref" href="#src-37">[37]</a></p></li>
+          <li><span class="timeline-day">3</span><p class="timeline-title">最初のノートを書く</p><p class="timeline-note">Ctrl+N（Mac は Cmd+N）で新規ノート。# で見出し、Ctrl+B で太字<a class="ref" href="#src-38">[38]</a></p></li>
+          <li><span class="timeline-day">4</span><p class="timeline-title">ノートをつなぐ</p><p class="timeline-note">本文で角かっこ「[」を2回打ち、ノート名を選ぶ。存在しないノートへのリンクも作れる<a class="ref" href="#src-39">[39]</a></p></li>
+          <li><span class="timeline-day">5</span><p class="timeline-title">つながりを見る</p><p class="timeline-note">右サイドバーの「バックリンク」で、どのノートから参照されているかが分かる<a class="ref" href="#src-39">[39]</a></p></li>
+          <li><span class="timeline-day">6</span><p class="timeline-title">毎日の記録を始める</p><p class="timeline-note">コアプラグイン「デイリーノート」をオンにすると、今日の日付のノートを1操作で開ける<a class="ref" href="#src-40">[40]</a></p></li>
+        </ol>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Windows の推奨場所は D: などの別ドライブ、C:\Vaults、ユーザーフォルダ内の Vaults<a class="ref" href="#src-35">[35]</a></li>
+            <li>iPhone は「このiPhone内」、Android は Documents フォルダを公式が勧めている<a class="ref" href="#src-35">[35]</a></li>
+            <li>OneDrive や iCloud の「オンデマンド」機能で中身が端末から外されると、同期が壊れる<a class="ref" href="#src-4">[4]</a></li>
+            <li>保管庫の中に別の保管庫を作らない。OS の設定フォルダにも作らない<a class="ref" href="#src-11">[11]</a></li>
+            <li>機能を試すだけなら、PC 版の「サンドボックス保管庫」が使える<a class="ref" href="#src-38">[38]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-4">主な機能</h2>
+
+      <figure class="photo">
+        <img src="images/obsidian-notes-2026/schematic.jpg" width="960" height="720" loading="lazy" alt="番号付きのカードを矢印でつなぎ、タグごとに番号を列挙した手描きの図">
+        <figcaption>ノートに番号とタグを付け、リンクでつなぐ考え方の図（ツェッテルカステン）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>リンク・タグ・プロパティで、ノートを探しやすくする</h3>
+        <p class="item-point">標準の機能だけで、リンク・検索・図・表形式の一覧まで使える<a class="ref" href="#src-41">[41]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>主な機能（コアプラグインと公式の拡張）</caption>
+            <thead><tr><th scope="col">機能</th><th scope="col">できること</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">内部リンク・バックリンク</th><td>ノート名で相互にリンク。逆方向の参照も自動で一覧になる<a class="ref" href="#src-42">[42]</a></td></tr>
+              <tr><th scope="row">タグ</th><td>#読書 のように本文に書く。/ で階層にできる<a class="ref" href="#src-43">[43]</a></td></tr>
+              <tr><th scope="row">プロパティ</th><td>ノートの先頭に、日付や状態などの項目を持たせる<a class="ref" href="#src-44">[44]</a></td></tr>
+              <tr><th scope="row">テンプレート</th><td>日付などの変数が入った定型文を差し込む<a class="ref" href="#src-45">[45]</a></td></tr>
+              <tr><th scope="row">検索</th><td>完全一致、除外、タグやプロパティでの絞り込み<a class="ref" href="#src-46">[46]</a></td></tr>
+              <tr><th scope="row">グラフビュー</th><td>ノートのつながりを図で見る<a class="ref" href="#src-47">[47]</a></td></tr>
+              <tr><th scope="row">キャンバス</th><td>ノートや画像を自由に並べて線でつなぐ。.canvas 形式<a class="ref" href="#src-48">[48]</a></td></tr>
+              <tr><th scope="row">Bases（ベース）</th><td>プロパティをもとに、ノートを表・カード・かんばんで一覧する（2025年8月から標準）<a class="ref" href="#src-49">[49]</a><a class="ref" href="#src-50">[50]</a></td></tr>
+              <tr><th scope="row">Web Clipper</th><td>ブラウザ拡張で Web ページをノートに保存（Chrome・Firefox・Safari・Edge）<a class="ref" href="#src-51">[51]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>リンクは Wikilink 形式が既定。他アプリとの互換性を重視するなら Markdown 形式に変えられる<a class="ref" href="#src-42">[42]</a></li>
+            <li>ブロック参照やハイライトなどは Obsidian 独自の記法で、他のアプリでは記号のまま表示される<a class="ref" href="#src-22">[22]</a></li>
+            <li>Bases は2025年5月の早期アクセス版 1.9.0 で登場し、1.9.10 で一般公開された<a class="ref" href="#src-52">[52]</a><a class="ref" href="#src-50">[50]</a></li>
+            <li>Web Clipper は画像を自動では保存せず、元の URL へのリンクにする<a class="ref" href="#src-51">[51]</a></li>
+            <li>v1.15（2026年11月）では、図（Mermaid）の描画が速くなり、スマホ版に PDF 書き出しが付いた<a class="ref" href="#src-16">[16]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-5">プラグインの注意点</h2>
+
+      <section class="item-card">
+        <h3>コミュニティプラグインは便利だが、自分の責任で使う</h3>
+        <p class="item-point">約<strong>1万</strong>個。初期設定の「制限モード」を外すと使える<a class="ref" href="#src-5">[5]</a><a class="ref" href="#src-53">[53]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>コアプラグイン（公式同梱）は約30種。バックリンク、デイリーノート、ファイルリカバリー、Sync など<a class="ref" href="#src-41">[41]</a></li>
+            <li>コミュニティプラグインは9,966個、テーマは977個（2026年11月5日時点）<a class="ref" href="#src-5">[5]</a></li>
+            <li>有効化は設定の「コミュニティプラグインをオンにする」→ Browse → Install → Enable<a class="ref" href="#src-53">[53]</a></li>
+            <li>プラグインは Obsidian と同じ権限を持ち、PC のファイル・インターネット・プログラムの追加に手が届く<a class="ref" href="#src-6">[6]</a></li>
+            <li>公式は全バージョンを自動スキャンし、人気のあるものや通報があったものは人手でも審査する<a class="ref" href="#src-6">[6]</a></li>
+            <li>安全のため自動更新はされない。「Check for updates」で自分で更新する<a class="ref" href="#src-53">[53]</a></li>
+            <li>2026年5月の公式ブログで、安全性のスコアカードや権限の開示を進めると発表した<a class="ref" href="#src-54">[54]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="warning">
+        <p class="box-title">機密のノートを扱うなら</p>
+        <p>公式は「作者を信頼できるプラグインだけを入れるときに制限モードを解除する」よう求め、プラグインごとに権限を絞ることは技術的にできないと説明しています<a class="ref" href="#src-6">[6]</a>。仕事の機密を書くなら、制限モードのままにするか、入れるプラグインを最小限にするのが無難です（筆者の見解）。</p>
+      </div>
+
+      <h2 id="sec-6">複数の端末で使う（同期）</h2>
+
+      <section class="item-card">
+        <h3>公式の Sync が最も簡単。iCloud などは条件つき</h3>
+        <p class="item-point">同じ保管庫を<strong>2つの同期</strong>で同時に使わない<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-34">[34]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>同期の方法と、公式ヘルプの注意点<a class="ref" href="#src-4">[4]</a></caption>
+            <thead><tr><th scope="col">方法</th><th scope="col">向くOS</th><th scope="col">注意</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Obsidian Sync（有料）</th><td>全OS</td><td>暗号化して公式サーバー経由。Obsidian を起動している間だけ同期<a class="ref" href="#src-34">[34]</a></td></tr>
+              <tr><th scope="row">iCloud Drive</th><td>Mac・iPhone・iPad</td><td>Windows の iCloud は重複・破損のおそれ。iPhone では iCloud Drive/Obsidian の下に置く</td></tr>
+              <tr><th scope="row">OneDrive</th><td>Windows・Mac</td><td>「常にこのデバイス上に保持」にする。iPhone は公式非対応</td></tr>
+              <tr><th scope="row">Google Drive</th><td>Windows・Mac・Android</td><td>公式サポート外。iPhone は非対応</td></tr>
+              <tr><th scope="row">Git</th><td>PC</td><td>手動で push / pull。自動では同期されない</td></tr>
+              <tr><th scope="row">Syncthing</th><td>PC</td><td>クラウドを介さず端末どうしで直接同期</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>同じファイルを2台で同時に変えると「競合」になる。Markdown は自動で統合、他は後から保存した方が残る<a class="ref" href="#src-55">[55]</a></li>
+            <li>Sync のサーバーは DigitalOcean（シンガポール、フランクフルト、サンフランシスコ、シドニー）<a class="ref" href="#src-27">[27]</a></li>
+            <li>Android は「端末ストレージ」を推奨。「アプリ領域」はアンインストールでノートが消える<a class="ref" href="#src-18">[18]</a></li>
+            <li>Sync を解約すると、サーバー上の保管庫は1か月で削除。端末内のノートは残る<a class="ref" href="#src-34">[34]</a></li>
+            <li>iPhone・iPad で公式が勧める方法は Sync と iCloud の2つ<a class="ref" href="#src-4">[4]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-7">バックアップと復元</h2>
+
+      <section class="item-card">
+        <h3>「同期はバックアップではない」と公式が明記</h3>
+        <p class="item-point">誤削除は「ファイルリカバリー」で<strong>7日分</strong>戻せる<a class="ref" href="#src-8">[8]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>公式は Sync・iCloud・OneDrive などを「バックアップ用に設計されていない」と説明<a class="ref" href="#src-7">[7]</a></li>
+            <li>保管庫フォルダを外付けドライブや USB メモリにコピーするだけでもバックアップになる<a class="ref" href="#src-7">[7]</a></li>
+            <li>OS 標準の機能（Windows のバックアップ、Mac の Time Machine）も案内されている<a class="ref" href="#src-7">[7]</a></li>
+            <li>プラグイン「Obsidian Git」「Local Backup」も挙げられているが、公式が保証するものではない<a class="ref" href="#src-7">[7]</a></li>
+            <li>ファイルリカバリーは5分おきに記録し7日間保持（設定で変更可）。.md と .canvas が対象<a class="ref" href="#src-8">[8]</a></li>
+            <li>この記録は端末内に置かれ、Sync では端末間で共有されない<a class="ref" href="#src-8">[8]</a></li>
+            <li>Sync のバージョン履歴は Standard 1か月、Plus 12か月<a class="ref" href="#src-56">[56]</a><a class="ref" href="#src-30">[30]</a></li>
+            <li>削除したノートの行き先は、OS のごみ箱・保管庫内の .trash・完全削除から選べる<a class="ref" href="#src-57">[57]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-8">ほかのノートアプリとの違い</h2>
+
+      <section class="item-card">
+        <h3>保存場所と共同編集が、いちばんの違い</h3>
+        <p class="item-point">Obsidian は端末内、Notion などは運営のクラウドに保存<a class="ref" href="#src-11">[11]</a><a class="ref" href="#src-10">[10]</a></p>
+        <div class="table-wrap">
+          <table>
+            <caption>主なノートアプリの比較（各社の公式ページで確認できた範囲。価格は原文どおり）</caption>
+            <thead><tr><th scope="col">アプリ</th><th scope="col">保存場所</th><th scope="col">形式</th><th scope="col">無料の範囲</th><th scope="col">有料</th><th scope="col">同時編集</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Obsidian</th><td>端末内のフォルダ</td><td>Markdown</td><td>制限なし</td><td>Sync 月$4から</td><td>同じファイルの同時編集は不可。共有は全員が Sync 契約、20人まで<a class="ref" href="#src-9">[9]</a></td></tr>
+              <tr><th scope="row">Notion</th><td>運営のクラウド<a class="ref" href="#src-10">[10]</a></td><td>独自。PDF・HTML・Markdown に書き出し<a class="ref" href="#src-58">[58]</a></td><td>1人なら無制限。複数人は上限あり</td><td>Plus 月1,650円／人<a class="ref" href="#src-59">[59]</a></td><td>可</td></tr>
+              <tr><th scope="row">Evernote</th><td>運営のクラウド</td><td>独自</td><td>ノート50・ノートブック1・端末1台<a class="ref" href="#src-60">[60]</a></td><td>不明（表示を確認できず）</td><td>不明</td></tr>
+              <tr><th scope="row">Apple メモ</th><td>iCloud<a class="ref" href="#src-61">[61]</a></td><td>独自。Mac で PDF・Markdown に書き出し<a class="ref" href="#src-62">[62]</a></td><td>Apple 端末に標準搭載</td><td>—</td><td>ほぼリアルタイム<a class="ref" href="#src-63">[63]</a></td></tr>
+              <tr><th scope="row">Google Keep</th><td>Google のクラウド</td><td>独自</td><td>Google アカウントで利用</td><td>—</td><td>リアルタイム<a class="ref" href="#src-64">[64]</a></td></tr>
+              <tr><th scope="row">Joplin</th><td>端末内（データベース）<a class="ref" href="#src-65">[65]</a></td><td>Markdown。JEX・HTML・PDF に書き出し</td><td>オープンソースで無料<a class="ref" href="#src-66">[66]</a></td><td>Joplin Cloud 月2.99ユーロから<a class="ref" href="#src-67">[67]</a></td><td>Cloud 経由で可</td></tr>
+              <tr><th scope="row">Logseq</th><td>端末内</td><td>Markdown／Org-mode<a class="ref" href="#src-68">[68]</a></td><td>オープンソースで無料</td><td>支援者向けの同期（試験段階）</td><td>開発中</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>見方: 何人かで同じページを同時に編集するのが主なら Notion や Google Keep、1人で長く使うノートを自分のファイルとして持ちたいなら Obsidian や Joplin が向いています（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Evernote は2023年12月に無料プランをノート50・ノートブック1に縮小した（従来は10万・250）<a class="ref" href="#src-69">[69]</a><a class="ref" href="#src-60">[60]</a></li>
+            <li>クラウド型は運営の方針変更の影響を直接受ける。端末内のファイルはアプリが終わっても残る（筆者の見解）</li>
+            <li>Notion の料金には「日本の消費税（該当する場合）」の注記があり、税込かは不明<a class="ref" href="#src-59">[59]</a></li>
+            <li>Obsidian の共有保管庫では、同じファイルの変更は同期のときに統合される<a class="ref" href="#src-9">[9]</a></li>
+            <li>Evernote の有料プランの価格は、公式ページで表示を確認できなかった</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-9">ほかのアプリからの移行と、データの持ち出し</h2>
+
+      <section class="item-card">
+        <h3>公式の Importer で、主要なアプリから取り込める</h3>
+        <p class="item-point">Notion や Evernote など、主要なアプリに対応<a class="ref" href="#src-70">[70]</a></p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Importer は公式チーム製のプラグインで、コミュニティプラグインの一覧から入れる<a class="ref" href="#src-70">[70]</a></li>
+            <li>Notion は API 連携だとデータベースを Bases に変換できる。zip の取り込みでは失われる<a class="ref" href="#src-71">[71]</a></li>
+            <li>Evernote は .enex ファイルから取り込む。タグの階層は失われる<a class="ref" href="#src-72">[72]</a></li>
+            <li>Apple メモの取り込みは Mac 版のみ。パスワード付きのメモは取り込めない<a class="ref" href="#src-73">[73]</a></li>
+            <li>持ち出しは保管庫フォルダをコピーするだけ。PC 版はノートを PDF にも書き出せる<a class="ref" href="#src-11">[11]</a><a class="ref" href="#src-74">[74]</a></li>
+            <li>公式は、文字だけのファイルなので「アプリより長持ちする」と説明している<a class="ref" href="#src-38">[38]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>Windows・Mac 版に必要な OS のバージョン（公式ページに記載なし）</li>
+          <li>表示価格が税込かどうか、日本円での請求額</li>
+          <li>Evernote の有料プランの価格</li>
+          <li>Bases がスマホ版でどこまで使えるか</li>
+          <li>日本語版の公式ヘルプが、英語版と同じ内容に更新されているか</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="shakaijin-otoku-8-learning.html">社会人お得技ノート⑧ 図書館・学習・資格試験</a></li>
+          <li><a href="navisworks-simulate-guide.html">Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）</a></li>
+          <li><a href="it-passport-1week.html">ITパスポートに1週間で合格するための勉強法</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（74件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月5日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian - Sharpen your thinking（トップページ）</a>（Obsidian（公式サイト））</li>
+          <li id="src-2"><a href="https://obsidian.md/license" target="_blank" rel="noopener">License overview（2025年2月20日更新）</a>（Obsidian（公式サイト））</li>
+          <li id="src-3"><a href="https://obsidian.md/pricing" target="_blank" rel="noopener">Pricing</a>（Obsidian（公式サイト））</li>
+          <li id="src-4"><a href="https://obsidian.md/help/sync-notes" target="_blank" rel="noopener">Sync your notes across devices</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-5"><a href="https://community.obsidian.md/" target="_blank" rel="noopener">Make Obsidian yours（プラグイン・テーマの一覧）</a>（Obsidian（公式コミュニティディレクトリ））</li>
+          <li id="src-6"><a href="https://obsidian.md/help/plugin-security" target="_blank" rel="noopener">Plugin security</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-7"><a href="https://obsidian.md/help/backup" target="_blank" rel="noopener">Back up your Obsidian files</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-8"><a href="https://obsidian.md/help/plugins/file-recovery" target="_blank" rel="noopener">File recovery</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-9"><a href="https://obsidian.md/help/sync/collaborate" target="_blank" rel="noopener">Collaborate on a shared vault</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-10"><a href="https://www.notion.com/security" target="_blank" rel="noopener">Security</a>（Notion（公式））</li>
+          <li id="src-11"><a href="https://obsidian.md/help/data-storage" target="_blank" rel="noopener">How Obsidian stores data</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-12"><a href="https://obsidian.md/terms" target="_blank" rel="noopener">Terms of service（2025年2月20日更新）</a>（Obsidian（公式サイト））</li>
+          <li id="src-13"><a href="https://obsidian.md/about" target="_blank" rel="noopener">About</a>（Obsidian（公式サイト））</li>
+          <li id="src-14"><a href="https://obsidian.md/changelog/page/26/" target="_blank" rel="noopener">Changelog（最初のページ: 0.0.1 Desktop、2020年3月30日）</a>（Obsidian（公式サイト））</li>
+          <li id="src-15"><a href="https://obsidian.md/changelog/2022-10-13-desktop-v1.0.0/" target="_blank" rel="noopener">Obsidian 1.0.0 Desktop (Public)（2022年10月13日）</a>（Obsidian（公式サイト））</li>
+          <li id="src-16"><a href="https://obsidian.md/changelog/2026-11-02-desktop-v1.15.0/" target="_blank" rel="noopener">Obsidian 1.15 Desktop (Public)（2026年11月2日）</a>（Obsidian（公式サイト））</li>
+          <li id="src-17"><a href="https://obsidian.md/download" target="_blank" rel="noopener">Download</a>（Obsidian（公式サイト））</li>
+          <li id="src-18"><a href="https://obsidian.md/help/android" target="_blank" rel="noopener">Obsidian for Android</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-19"><a href="https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442" target="_blank" rel="noopener">Obsidian - Connected Notes</a>（Apple App Store（Obsidian 公式配布））</li>
+          <li id="src-20"><a href="https://github.com/obsidianmd/obsidian-translations" target="_blank" rel="noopener">obsidian-translations（対応言語の一覧）</a>（Obsidian（公式 GitHub））</li>
+          <li id="src-21"><a href="https://obsidian.md/ja/help/" target="_blank" rel="noopener">Obsidian ヘルプ</a>（Obsidian（公式ヘルプ 日本語版））</li>
+          <li id="src-22"><a href="https://obsidian.md/help/obsidian-flavored-markdown" target="_blank" rel="noopener">Obsidian Flavored Markdown</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-23"><a href="https://obsidian.md/help/file-formats" target="_blank" rel="noopener">Accepted file formats</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-24"><a href="https://forum.obsidian.md/t/open-sourcing-of-obsidian/1515" target="_blank" rel="noopener">Open Sourcing of Obsidian</a>（Obsidian（公式フォーラム。共同創業者の回答、2020年8月4日））</li>
+          <li id="src-25"><a href="https://obsidian.md/privacy" target="_blank" rel="noopener">Privacy policy（2023年11月1日更新）</a>（Obsidian（公式サイト））</li>
+          <li id="src-26"><a href="https://obsidian.md/security" target="_blank" rel="noopener">Security</a>（Obsidian（公式サイト））</li>
+          <li id="src-27"><a href="https://obsidian.md/help/sync/security" target="_blank" rel="noopener">Obsidian Sync: Security and privacy</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-28"><a href="https://obsidian.md/help/publish/security" target="_blank" rel="noopener">Obsidian Publish: Security and privacy</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-29"><a href="https://obsidian.md/blog/free-for-work/" target="_blank" rel="noopener">Obsidian is now free for work（2025年2月20日）</a>（Obsidian（公式ブログ））</li>
+          <li id="src-30"><a href="https://obsidian.md/help/sync/plans" target="_blank" rel="noopener">Obsidian Sync: Plans and storage limits</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-31"><a href="https://obsidian.md/publish" target="_blank" rel="noopener">Obsidian Publish</a>（Obsidian（公式サイト））</li>
+          <li id="src-32"><a href="https://obsidian.md/help/catalyst" target="_blank" rel="noopener">Catalyst license</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-33"><a href="https://forest.watch.impress.co.jp/docs/news/1664692.html" target="_blank" rel="noopener">人気のMarkdownノートアプリ「Obsidian」が商用でも無償に（2025年2月21日）</a>（窓の杜（Impress Watch））</li>
+          <li id="src-34"><a href="https://obsidian.md/help/sync/faq" target="_blank" rel="noopener">Obsidian Sync: Frequently asked questions</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-35"><a href="https://obsidian.md/help/sync/switch" target="_blank" rel="noopener">Switch to Obsidian Sync（保管庫の推奨場所）</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-36"><a href="https://obsidian.md/help/install" target="_blank" rel="noopener">Download and install Obsidian</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-37"><a href="https://obsidian.md/help/vault" target="_blank" rel="noopener">Create a vault</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-38"><a href="https://obsidian.md/help/create-note" target="_blank" rel="noopener">Create your first note</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-39"><a href="https://obsidian.md/help/link-notes" target="_blank" rel="noopener">Link notes</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-40"><a href="https://obsidian.md/help/plugins/daily-notes" target="_blank" rel="noopener">Daily notes</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-41"><a href="https://obsidian.md/help/plugins" target="_blank" rel="noopener">Core plugins</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-42"><a href="https://obsidian.md/help/links" target="_blank" rel="noopener">Internal links</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-43"><a href="https://obsidian.md/help/tags" target="_blank" rel="noopener">Tags</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-44"><a href="https://obsidian.md/help/properties" target="_blank" rel="noopener">Properties</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-45"><a href="https://obsidian.md/help/plugins/templates" target="_blank" rel="noopener">Templates</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-46"><a href="https://obsidian.md/help/plugins/search" target="_blank" rel="noopener">Search</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-47"><a href="https://obsidian.md/help/plugins/graph" target="_blank" rel="noopener">Graph view</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-48"><a href="https://obsidian.md/help/plugins/canvas" target="_blank" rel="noopener">Canvas</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-49"><a href="https://obsidian.md/help/bases" target="_blank" rel="noopener">Introduction to Bases</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-50"><a href="https://obsidian.md/changelog/2025-08-18-desktop-v1.9.10/" target="_blank" rel="noopener">Obsidian 1.9.10 Desktop (Public)（2025年8月18日）</a>（Obsidian（公式サイト））</li>
+          <li id="src-51"><a href="https://obsidian.md/help/web-clipper" target="_blank" rel="noopener">Introduction to Obsidian Web Clipper</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-52"><a href="https://obsidian.md/changelog/2025-05-21-desktop-v1.9.0/" target="_blank" rel="noopener">Obsidian 1.9.0 Desktop (Early access)（2025年5月21日）</a>（Obsidian（公式サイト））</li>
+          <li id="src-53"><a href="https://obsidian.md/help/community-plugins" target="_blank" rel="noopener">Community plugins</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-54"><a href="https://obsidian.md/blog/future-of-plugins/" target="_blank" rel="noopener">The future of Obsidian plugins（2026年5月12日）</a>（Obsidian（公式ブログ））</li>
+          <li id="src-55"><a href="https://obsidian.md/help/sync/troubleshoot" target="_blank" rel="noopener">Troubleshoot Obsidian Sync（競合の処理）</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-56"><a href="https://obsidian.md/help/sync/version-history" target="_blank" rel="noopener">Obsidian Sync: Version history</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-57"><a href="https://obsidian.md/help/manage-notes" target="_blank" rel="noopener">Manage notes（削除したノートの行き先）</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-58"><a href="https://www.notion.com/help/export-your-content" target="_blank" rel="noopener">Export your content</a>（Notion（公式ヘルプ））</li>
+          <li id="src-59"><a href="https://www.notion.com/ja/pricing" target="_blank" rel="noopener">料金プラン</a>（Notion（公式））</li>
+          <li id="src-60"><a href="https://evernote.com/ja-jp/compare-plans" target="_blank" rel="noopener">プラン比較</a>（Evernote（公式））</li>
+          <li id="src-61"><a href="https://support.apple.com/ja-jp/guide/icloud/mm2d069f7097/icloud" target="_blank" rel="noopener">iCloudでメモを最新の状態に保ち、共有する</a>（Apple（公式））</li>
+          <li id="src-62"><a href="https://support.apple.com/ja-jp/guide/notes/not201900c07/4.13/mac/27" target="_blank" rel="noopener">Macでメモを読み込む/書き出す/プリントする</a>（Apple（公式））</li>
+          <li id="src-63"><a href="https://support.apple.com/ja-jp/guide/notes/apd4e6e2c9a6/4.13/mac/27" target="_blank" rel="noopener">Macの「メモ」でメモを共有する/共同作業する</a>（Apple（公式））</li>
+          <li id="src-64"><a href="https://workspace.google.com/products/keep/" target="_blank" rel="noopener">Google Keep 製品ページ</a>（Google Workspace（公式））</li>
+          <li id="src-65"><a href="https://joplinapp.org/help/faq/" target="_blank" rel="noopener">FAQ</a>（Joplin（公式））</li>
+          <li id="src-66"><a href="https://joplinapp.org/" target="_blank" rel="noopener">Joplin（トップページ）</a>（Joplin（公式））</li>
+          <li id="src-67"><a href="https://joplinapp.org/plans/" target="_blank" rel="noopener">Joplin Cloud Plans</a>（Joplin（公式））</li>
+          <li id="src-68"><a href="https://github.com/logseq/logseq" target="_blank" rel="noopener">logseq/logseq README</a>（Logseq（公式 GitHub））</li>
+          <li id="src-69"><a href="https://forest.watch.impress.co.jp/docs/news/1550894.html" target="_blank" rel="noopener">「Evernote」無料プランの上限変更が正式決定、導入は12月4日から（2023年11月30日）</a>（窓の杜（Impress Watch））</li>
+          <li id="src-70"><a href="https://obsidian.md/help/import" target="_blank" rel="noopener">Import notes</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-71"><a href="https://obsidian.md/help/import/notion" target="_blank" rel="noopener">Import from Notion</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-72"><a href="https://obsidian.md/help/import/evernote" target="_blank" rel="noopener">Import from Evernote</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-73"><a href="https://obsidian.md/help/import/apple-notes" target="_blank" rel="noopener">Import from Apple Notes</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-74"><a href="https://obsidian.md/help/pdf" target="_blank" rel="noopener">PDFs（Export a note to PDF）</a>（Obsidian（公式ヘルプ））</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（2件）</summary>
+        <ol class="sources">
+          <li>紙のカードで知識をためる資料庫の例<br>写真: Michiel Streijger／<a href="https://commons.wikimedia.org/wiki/File:Zettelarchiv4.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+          <li>ノートに番号とタグを付け、リンクでつなぐ考え方の図<br>図: David B. Clear／<a href="https://commons.wikimedia.org/wiki/File:Zettelkasten_paper_schematic.png" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月5日時点の情報をもとにまとめたものです。価格・機能・対応OSは変更されることがあります。Obsidian は Dynalist Inc. の製品で、この記事は公式の情報を紹介するもので、特定のアプリやサービスをすすめるものではありません。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><a href="../index.html">トップに戻る</a> ・ <a href="../about.html">このサイトについて</a></p>
+      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
