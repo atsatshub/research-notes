@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>有価証券報告書から会社を調べる方法：EDINETの使い方と、従業員・リスク・株主の見方（2026年版）｜雑学アーカイブ</title>
+  <meta name="description" content="上場会社などが毎年出す有価証券報告書を、金融庁のEDINETで探して読む方法をまとめました。提出の期限と10年分の閲覧、3つの検索方法、どこに何が書いてあるかの早見表、2026年3月期から変わった「従業員の状況等」と平均年収の注意点（トヨタと三菱UFJの実例）、女性管理職比率などの多様性の指標、事業等のリスクと大株主、総会前の開示の広がり。2026年11月9日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/yuho-edinet.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="有価証券報告書から会社を調べる方法：EDINETの使い方と、従業員・リスク・株主の見方（2026年版）">
+  <meta property="og:description" content="上場会社などが毎年出す有価証券報告書を、金融庁のEDINETで探して読む方法をまとめました。提出の期限と10年分の閲覧、3つの検索方法、どこに何が書いてあるかの早見表、2026年3月期から変わった「従業員の状況等」と平均年収の注意点（トヨタと三菱UFJの実例）、女性管理職比率などの多様性の指標、事業等のリスクと大株主、総会前の開示の広がり。2026年11月9日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/yuho-edinet.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 仕事の基礎知識</p>
+
+      <h1>有価証券報告書から会社を調べる方法：EDINETの使い方と、従業員・リスク・株主の見方（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-09">2026年11月9日</time></li>
+        <li><span class="tag">仕事の基礎知識</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>有報は上場会社などが、事業年度の終わりから<strong>3か月以内</strong>に出す<a class="ref" href="#src-1">[1]</a></li>
+          <li>金融庁のEDINETで、有報は受け付けから10年分を無料で読める<a class="ref" href="#src-2">[2]</a></li>
+          <li>2026年3月期から「従業員の状況等」は第4の提出会社の状況に移った<a class="ref" href="#src-3">[3]</a></li>
+          <li>平均年収は提出会社だけの数字。持株会社では実態とずれやすい<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+          <li>2026年3月期は<strong>88.3%</strong>の会社が株主総会の前に有報を出した<a class="ref" href="#src-6">[6]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">有価証券報告書とは</a></li>
+          <li><a href="#sec-2">EDINETで有報を探す</a></li>
+          <li><a href="#sec-3">どこに何が書いてあるか</a></li>
+          <li><a href="#sec-4">働く場所として見る：従業員の状況等</a></li>
+          <li><a href="#sec-5">取引先・投資先として見る：リスク・株主・役員</a></li>
+          <li><a href="#sec-6">最近の制度の動き</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>転職先や取引先、投資先の会社を調べるとき、会社のホームページより詳しく、決まった形で比べやすいのが有価証券報告書（有報）です。この記事では、金融庁の電子開示システムEDINETで有報を探す方法と、従業員・リスク・株主など数字以外の情報の読み方を、金融庁の資料と2社の実例でまとめました。売上や利益など決算書の数字の読み方は、<a href="kessansho-yomikata.html">会社の決算書の読み方</a>にまとめています。</p>
+
+      <h2 id="sec-1">有価証券報告書とは</h2>
+
+      <section class="item-card">
+        <h3>法律で、毎年出すことが決まっている書類</h3>
+        <p class="item-point">決算から3か月以内に出す。3月期の上場会社だけで2,184社</p>
+        <p>上場している会社などは、金融商品取引法にもとづいて、事業年度ごとに有価証券報告書を出します。期限は、国内の会社なら事業年度が終わってから3か月以内です<a class="ref" href="#src-1">[1]</a>。3月に決算を迎える上場会社だけで2,184社あります（2026年6月末の集計）<a class="ref" href="#src-6">[6]</a>。</p>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>会社が出す主な開示書類の違い</caption>
+          <thead><tr><th scope="col">書類</th><th scope="col">根拠</th><th scope="col">いつ出すか・特徴</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">有価証券報告書</th><td>金融商品取引法</td><td>事業年度の終わりから3か月以内<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">半期報告書</th><td>金融商品取引法</td><td>上場会社は半年ごとに出す。四半期報告書は2025年3月期から廃止された<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">臨時報告書</th><td>金融商品取引法</td><td>重要なことが起きたときに、遅れずに出す<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">大量保有報告書</th><td>金融商品取引法</td><td>上場株を5%を超えて持った人が、5営業日以内に出す<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">決算短信</th><td>取引所の規則（適時開示）</td><td>決算の内容を速く伝える<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">コーポレート・ガバナンス報告書</th><td>取引所の規則</td><td>ガバナンスの情報をまとめ、東証のサイトにいつも載せる<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">統合報告書</th><td>任意</td><td>出す会社は2025年12月末で1,200社程度とされる<a class="ref" href="#src-7">[7]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-2">EDINETで有報を探す</h2>
+
+      <figure class="photo">
+        <img src="images/yuho-edinet/kasumigaseki.jpg" width="960" height="1440" loading="lazy" alt="青空の下に並ぶ、2棟の高層ビル">
+        <figcaption>金融庁などが入る霞が関コモンゲート（東京都千代田区）</figcaption>
+      </figure>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">手順1</span><p class="timeline-title">EDINETを開き、「書類簡易検索」に会社名を入れる</p><p class="timeline-note">検索の方法は「書類簡易検索」「書類詳細検索」「全文検索」の3つ<a class="ref" href="#src-11">[11]</a></p></li>
+        <li><span class="timeline-day">手順2</span><p class="timeline-title">書類の一覧から「有価証券報告書」を選ぶ</p><p class="timeline-note">会社が名前を変えていても、昔の名前で検索できる<a class="ref" href="#src-11">[11]</a></p></li>
+        <li><span class="timeline-day">手順3</span><p class="timeline-title">PDFを開き、目次から読みたい章へ進む</p><p class="timeline-note">有報は、受け付けから10年たつまで読める<a class="ref" href="#src-2">[2]</a></p></li>
+        <li><span class="timeline-day">手順4</span><p class="timeline-title">数字を表計算で使うなら、XBRLやCSVをダウンロードする</p><p class="timeline-note">CSVは、区切りがカンマではなくタブの形式<a class="ref" href="#src-11">[11]</a></p></li>
+      </ol>
+      <p>EDINETのサイト: <a href="https://disclosure2.edinet-fsa.go.jp/" target="_blank" rel="noopener">EDINET（金融庁）</a>。画面の操作は、金融庁の「書類閲覧 操作ガイド」（2026年6月版）にくわしく書かれています<a class="ref" href="#src-11">[11]</a>。</p>
+
+      <section class="item-card">
+        <h3>全文検索で、複数の会社の記載をまとめて探せる</h3>
+        <p class="item-point">全文検索は、言葉を最大5つまでかけ合わせて探せる</p>
+        <p>全文検索では、言葉を最大5つまで指定でき、すべてを含む書類を探します（AND検索）<a class="ref" href="#src-11">[11]</a>。たとえば同じ業界の会社の「事業等のリスク」に、どんな言葉が出てくるかを比べるときに使えます（筆者の見解）。検索の結果の一覧は、CSVのファイルでダウンロードできます<a class="ref" href="#src-11">[11]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>有報の閲覧期間は、法律で決まった5年に、行政サービスとして5年を足した10年<a class="ref" href="#src-2">[2]</a></li>
+            <li>延長した期間の書類は、訂正が法定期間と同じようには行われないことがある<a class="ref" href="#src-12">[12]</a></li>
+            <li>プログラムで取り出すEDINET APIは、アカウントを作ってAPIキーを取る<a class="ref" href="#src-12">[12]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">どこに何が書いてあるか</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>知りたいことと、有報の見る場所（2026年3月期以降の形）</caption>
+          <thead><tr><th scope="col">知りたいこと</th><th scope="col">見る場所</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">何で稼いでいる会社か</th><td>第1 企業の概況 の「事業の内容」</td></tr>
+            <tr><th scope="row">会社の方針と課題</th><td>第2 事業の状況 の「経営方針、経営環境及び対処すべき課題等」</td></tr>
+            <tr><th scope="row">環境・人材への取り組み</th><td>第2 事業の状況 の「サステナビリティに関する考え方及び取組」</td></tr>
+            <tr><th scope="row">どんなリスクを抱えているか</th><td>第2 事業の状況 の「事業等のリスク」</td></tr>
+            <tr><th scope="row">業績を経営者がどう見ているか</th><td>第2 事業の状況 の「経営者による財政状態、経営成績及びキャッシュ・フローの状況の分析」</td></tr>
+            <tr><th scope="row">主な株主</th><td>第4 提出会社の状況 の「大株主の状況」</td></tr>
+            <tr><th scope="row">役員の報酬、取締役会の活動</th><td>第4 提出会社の状況 の「コーポレート・ガバナンスの状況等」</td></tr>
+            <tr><th scope="row">平均年収・平均年齢・勤続年数</th><td>第4 提出会社の状況 の「従業員の状況等」</td></tr>
+            <tr><th scope="row">売上・利益・資産</th><td>第5 経理の状況（財務諸表）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>出典: 改正府令の新旧対照表とトヨタ自動車の有報の目次による<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-13">[13]</a>。2026年3月期より前の有報では、「従業員の状況」は第1 企業の概況にあります<a class="ref" href="#src-3">[3]</a>。</p>
+
+      <h2 id="sec-4">働く場所として見る：従業員の状況等</h2>
+
+      <section class="item-card">
+        <h3>2026年3月期から、書く内容と場所が変わった</h3>
+        <p class="item-point">平均年収の前年からの増減率や、給与の決め方の方針が加わった</p>
+        <div class="change">
+          <p class="change-what">「従業員の状況」が載る場所</p>
+          <p class="change-values"><span class="sr-only">改正前：</span><span class="change-before">第1 企業の概況</span><span class="change-arrow" aria-hidden="true">→</span><span class="sr-only">改正後：</span><span class="change-after">第4 提出会社の状況</span></p>
+          <p class="change-when">2026年3月31日以後に終わる事業年度の有報から<a class="ref" href="#src-3">[3]</a></p>
+        </div>
+        <p>2026年2月の府令改正で、人材戦略、従業員の給与などの決め方の方針、提出会社の平均年間給与の前年からの増減率が新しく加わりました<a class="ref" href="#src-3">[3]</a>。基本の項目は、提出会社の従業員の数、平均年齢、平均勤続年数、平均年間給与（賞与を含む）です<a class="ref" href="#src-4">[4]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>平均年収は、提出会社だけの数字</h3>
+        <p class="item-point">トヨタの提出会社の従業員は、グループ全体の約2割</p>
+        <div class="table-wrap">
+          <table>
+            <caption>トヨタ自動車の従業員の状況（2026年3月31日現在）</caption>
+            <tbody>
+              <tr><th scope="row">提出会社の従業員数</th><td>73,133人</td></tr>
+              <tr><th scope="row">平均年齢</th><td>40.5歳</td></tr>
+              <tr><th scope="row">平均勤続年数</th><td>15.1年</td></tr>
+              <tr><th scope="row">平均年間給与</th><td>10,060,464円（前年から2.4%増）</td></tr>
+              <tr><th scope="row">連結（グループ全体）の従業員数</th><td>390,927人</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>出典: <a class="ref" href="#src-13">[13]</a>。トヨタの平均年間給与には、賞与と基準外の賃金が含まれています<a class="ref" href="#src-13">[13]</a>。提出会社の従業員は、グループ全体の約19%です（筆者の計算）。子会社や海外の社員の給与は、この平均に入っていません。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>持株会社は、平均年収が実態とずれやすい</h3>
+        <p class="item-point">持株会社1,170万円、いちばん大きな子会社の銀行は914万円</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">三菱UFJフィナンシャル・グループの平均年間給与 <span class="chart-sub">（万円。2026年3月期。カッコ内は従業員数）</span><a class="ref" href="#src-5">[5]</a></figcaption>
+          <div role="img" aria-label="三菱UFJフィナンシャル・グループの平均年間給与（2026年3月期）：持株会社（提出会社、3,637人）1,170.2万円、三菱UFJ銀行（31,691人）914.3万円、三菱UFJ信託銀行（6,431人）978.4万円">
+            <div class="bar-row is-key"><span class="bar-label">持株会社（3,637人）</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">1,170.2</span></div>
+            <div class="bar-row"><span class="bar-label">三菱UFJ銀行（31,691人）</span><span class="bar-track"><span class="bar" style="width:78.1%"></span></span><span class="bar-value">914.3</span></div>
+            <div class="bar-row"><span class="bar-label">三菱UFJ信託銀行（6,431人）</span><span class="bar-track"><span class="bar" style="width:83.6%"></span></span><span class="bar-value">978.4</span></div>
+          </div>
+        </figure>
+        <p>持株会社の従業員は、海外の現地採用者と、銀行・信託銀行・証券会社などからの出向者です<a class="ref" href="#src-5">[5]</a>。2026年の改正で、持株会社は従業員がいちばん多い子会社（最大人員会社）の平均給与なども書くことになりました<a class="ref" href="#src-4">[4]</a>。持株会社の平均年収だけを見て「この会社の年収」と考えると、ずれることがあります（筆者の見解）。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>女性管理職比率・男性育休取得率・男女の賃金の差異</h3>
+        <p class="item-point">2023年3月期の有報から、3つの指標が載るようになった</p>
+        <p>提出会社や子会社が女性活躍推進法などにもとづいて公表している場合、女性管理職比率、男性の育児休業取得率、男女の賃金の差異を有報にも書きます<a class="ref" href="#src-14">[14]</a>。2023年3月31日以後に終わる事業年度の有報から始まりました<a class="ref" href="#src-14">[14]</a>。</p>
+        <div class="table-wrap">
+          <table>
+            <caption>トヨタ自動車（提出会社）の3つの指標（2026年3月期）</caption>
+            <tbody>
+              <tr><th scope="row">管理職に占める女性の割合</th><td>3.9%</td></tr>
+              <tr><th scope="row">男性の育児休業取得率</th><td>79.0%</td></tr>
+              <tr><th scope="row">男女の賃金の差異（全労働者）</th><td>67.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>出典: <a class="ref" href="#src-13">[13]</a>。トヨタは注記で、正社員の男女の賃金の差異は平均年齢と職種ごとの人数の違いから生じていて、同じ年齢・同じ職種なら差は縮まると説明しています<a class="ref" href="#src-13">[13]</a>。数字だけでなく、注記もあわせて読むと理由がわかります（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>三菱UFJの持株会社は「各指標を公表しておりません」として、主な子会社の数字を載せている<a class="ref" href="#src-5">[5]</a></li>
+            <li>人材育成の方針などは、サステナビリティの記載欄に書くことが必須<a class="ref" href="#src-14">[14]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-5">取引先・投資先として見る：リスク・株主・役員</h2>
+
+      <section class="item-card">
+        <h3>事業等のリスクとサステナビリティ</h3>
+        <p class="item-point">サステナビリティは「ガバナンス」と「リスク管理」が必須</p>
+        <p>2023年の改正で、有報に「サステナビリティに関する考え方及び取組」の欄ができました<a class="ref" href="#src-14">[14]</a>。このうち「ガバナンス」と「リスク管理」は必ず書く項目で、「戦略」と「指標及び目標」は重要性に応じて書きます<a class="ref" href="#src-14">[14]</a>。会社が自分で挙げるリスクは、「事業等のリスク」の欄にまとまっています<a class="ref" href="#src-13">[13]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>大株主の表は、注記もあわせて読む</h3>
+        <p class="item-point">信託銀行の名義は、信託業務として持っている株</p>
+        <p>トヨタ自動車の大株主の上位は、日本マスタートラスト信託銀行（12.80%）、豊田自動織機（9.15%）でした（2026年3月31日現在）<a class="ref" href="#src-13">[13]</a>。注記には、信託銀行の持つ株はすべて信託業務にかかる株であることと、会社が持つ自己株式は表に含めていないことが書かれています<a class="ref" href="#src-13">[13]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>役員報酬と政策保有株式</h3>
+        <p class="item-point">金融庁は、役員報酬や政策保有株式を投資家に役立つ情報としている</p>
+        <p>金融庁は、有報には役員報酬や政策保有株式などのガバナンスの情報が多く含まれていて、投資家の判断に役立つとしています<a class="ref" href="#src-15">[15]</a>。一方、金融庁の有報のレビューでは、政策保有株式の銘柄ごとの保有目的が具体的に書かれていない例が課題に挙がっています<a class="ref" href="#src-16">[16]</a>。</p>
+      </section>
+
+      <h2 id="sec-6">最近の制度の動き</h2>
+
+      <section class="item-card">
+        <h3>有報を、株主総会の前に出す会社が急に増えた</h3>
+        <p class="item-point">2026年3月期は88.3%。いちばん多いのは総会の1日前</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">有報を株主総会の何日前に出したか <span class="chart-sub">（社。2026年3月期の3月期決算の上場会社）</span><a class="ref" href="#src-6">[6]</a></figcaption>
+          <div role="img" aria-label="有報を株主総会の何日前に出したか（2026年3月期）：21日以上前 7社、14〜20日前 7社、7〜13日前 188社、4〜6日前 253社、3日前 206社、2日前 309社、1日前 958社">
+            <div class="bar-row"><span class="bar-label">21日以上前</span><span class="bar-track"><span class="bar" style="width:0.7%"></span></span><span class="bar-value">7</span></div>
+            <div class="bar-row"><span class="bar-label">14〜20日前</span><span class="bar-track"><span class="bar" style="width:0.7%"></span></span><span class="bar-value">7</span></div>
+            <div class="bar-row"><span class="bar-label">7〜13日前</span><span class="bar-track"><span class="bar" style="width:19.6%"></span></span><span class="bar-value">188</span></div>
+            <div class="bar-row"><span class="bar-label">4〜6日前</span><span class="bar-track"><span class="bar" style="width:26.4%"></span></span><span class="bar-value">253</span></div>
+            <div class="bar-row"><span class="bar-label">3日前</span><span class="bar-track"><span class="bar" style="width:21.5%"></span></span><span class="bar-value">206</span></div>
+            <div class="bar-row"><span class="bar-label">2日前</span><span class="bar-track"><span class="bar" style="width:32.3%"></span></span><span class="bar-value">309</span></div>
+            <div class="bar-row is-key"><span class="bar-label">1日前</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">958</span></div>
+          </div>
+        </figure>
+        <p>金融担当大臣は2025年3月28日に、すべての上場会社に、有報を株主総会の前に出すよう要請しました<a class="ref" href="#src-15">[15]</a>。要請は、本来は総会の3週間以上前が最も望ましく、まずは前日から数日前の提出を検討してほしいという内容です<a class="ref" href="#src-15">[15]</a>。2026年3月期は1,928社（88.3%）が総会の前に出し、前の期の57.7%から大きく増えました<a class="ref" href="#src-6">[6]</a>。</p>
+      </section>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2023年3月期</span><p class="timeline-title">サステナビリティの欄と、多様性の3つの指標が始まる</p><p class="timeline-note"><a class="ref" href="#src-14">[14]</a></p></li>
+        <li><span class="timeline-day">2025年3月期</span><p class="timeline-title">四半期報告書がなくなり、半期報告書に</p><p class="timeline-note"><a class="ref" href="#src-7">[7]</a></p></li>
+        <li><span class="timeline-day">2026年3月期</span><p class="timeline-title">「従業員の状況等」が新しい形に</p><p class="timeline-note"><a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">2027年3月期</span><p class="timeline-title">サステナビリティ開示基準（SSBJ基準）が、時価総額3兆円以上のプライム上場会社で義務に</p><p class="timeline-note"><a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">2028年3月期</span><p class="timeline-title">SSBJ基準の義務が、時価総額1兆円以上の会社に広がる</p><p class="timeline-note"><a class="ref" href="#src-3">[3]</a></p></li>
+      </ol>
+      <p>このほか、会社法の事業報告と有報を一本化する案が、法制審議会で検討されています<a class="ref" href="#src-7">[7]</a>。</p>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>有報を出している会社の総数（公的な最新の統計が見つからなかった）</li>
+          <li>EDINETの実際の画面（手順は金融庁の操作ガイドによる）</li>
+          <li>全文検索で検索できる期間の上限</li>
+          <li>役員報酬・政策保有株式の実例の数字</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="kessansho-yomikata.html">会社の決算書の読み方</a></li>
+          <li><a href="tenshoku-agent-site-2026.html">転職エージェントと転職サイトのしくみ</a></li>
+          <li><a href="kabunushi-yutai-2026.html">株主優待の基本</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（16件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月9日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://laws.e-gov.go.jp/law/323AC0000000025" target="_blank" rel="noopener">金融商品取引法（昭和23年法律第25号）</a>（デジタル庁 e-Gov法令検索）</li>
+          <li id="src-2"><a href="https://lfb.mof.go.jp/kantou/disclo/gaiyou.htm" target="_blank" rel="noopener">企業内容等開示（ディスクロージャー）制度の概要</a>（関東財務局）</li>
+          <li id="src-3"><a href="https://www.fsa.go.jp/news/r7/shouken/20260220/20260220.html" target="_blank" rel="noopener">「企業内容等の開示に関する内閣府令…の一部を改正する内閣府令」等の公布及びパブリックコメントの結果について（2026年2月20日）</a>（金融庁）</li>
+          <li id="src-4"><a href="https://www.fsa.go.jp/news/r7/shouken/20260220/02.pdf" target="_blank" rel="noopener">改正府令の新旧対照表（2026年2月20日 別紙2）</a>（金融庁）</li>
+          <li id="src-5"><a href="https://www.mufg.jp/dam/ir/report/security_report/pdf/yu_mufg26.pdf" target="_blank" rel="noopener">有価証券報告書（第21期、2026年3月期）</a>（三菱UFJフィナンシャル・グループ）</li>
+          <li id="src-6"><a href="https://www.fsa.go.jp/policy/kaiji/sokaimaekaiji_202603.pdf" target="_blank" rel="noopener">2026年3月期に係る総会前開示の状況</a>（金融庁）</li>
+          <li id="src-7"><a href="https://www.fsa.go.jp/singi/singi_kinyu/disclosure_wg/shiryou/20260518/01.pdf" target="_blank" rel="noopener">金融審議会 ディスクロージャーワーキング・グループ 事務局説明資料（2026年5月18日）</a>（金融庁）</li>
+          <li id="src-8"><a href="https://www.fsa.go.jp/common/shinsei/tairyohoyu/summary/index.html" target="_blank" rel="noopener">大量保有報告制度の概要について</a>（金融庁）</li>
+          <li id="src-9"><a href="https://www.jpx.co.jp/equities/listing/disclosure/overview/index.html" target="_blank" rel="noopener">適時開示制度の概要</a>（日本取引所グループ）</li>
+          <li id="src-10"><a href="https://www.jpx.co.jp/equities/listing/cg/01.html" target="_blank" rel="noopener">コーポレート・ガバナンスに関する報告書</a>（日本取引所グループ）</li>
+          <li id="src-11"><a href="https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/download/ESE140133.pdf" target="_blank" rel="noopener">書類閲覧 操作ガイド（2026年6月）</a>（金融庁（EDINET））</li>
+          <li id="src-12"><a href="https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/download/ESE140206.pdf" target="_blank" rel="noopener">EDINET API仕様書（Version 2）</a>（金融庁（EDINET））</li>
+          <li id="src-13"><a href="https://global.toyota/pages/global_toyota/ir/library/securities-report/archives/archives_2026_03.pdf" target="_blank" rel="noopener">有価証券報告書（2026年3月期）</a>（トヨタ自動車）</li>
+          <li id="src-14"><a href="https://www.fsa.go.jp/news/r4/sonota/20230131/20230131.html" target="_blank" rel="noopener">「企業内容等の開示に関する内閣府令の一部を改正する内閣府令」等の公表について（2023年1月31日）</a>（金融庁）</li>
+          <li id="src-15"><a href="https://www.fsa.go.jp/news/r6/sonota/20250328-2/20250328-2.html" target="_blank" rel="noopener">株主総会前の適切な情報提供について（要請）（2025年3月28日）</a>（金融庁）</li>
+          <li id="src-16"><a href="https://www.fsa.go.jp/news/r7/sonota/20260327.html" target="_blank" rel="noopener">有価証券報告書レビュー及び大量保有報告書等のレビューについて（2026年3月27日）</a>（金融庁）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（1件）</summary>
+        <ol class="sources">
+          <li>霞が関コモンゲート<br>写真: Rs1421／<a href="https://commons.wikimedia.org/wiki/File:Kasumigaseki-Common-Gate-03.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月9日時点の情報をもとにまとめたものです。制度や書類の形は変更されることがあります。この記事は特定の会社への投資や就職をすすめるものではありません。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>

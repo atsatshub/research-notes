@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>Obsidianと生成AIを組み合わせる方法：3つのやり方、費用、プライバシーの注意（2026年版）｜雑学アーカイブ</title>
+  <meta name="description" content="メモアプリObsidianと生成AIを組み合わせる方法を、Obsidian・Anthropic・OpenAI・Ollamaなどの公式情報と個人情報保護委員会の注意喚起でまとめました。プラグインで使う・外のAIにフォルダを読ませる（MCP）・自分のパソコンでAIを動かすの3つのやり方、主なAIプラグインのダウンロード数と公式ディレクトリの評価、APIと月額プランの料金、入力が学習に使われるかの違い。2026年11月9日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/obsidian-ai-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="Obsidianと生成AIを組み合わせる方法：3つのやり方、費用、プライバシーの注意（2026年版）">
+  <meta property="og:description" content="メモアプリObsidianと生成AIを組み合わせる方法を、Obsidian・Anthropic・OpenAI・Ollamaなどの公式情報と個人情報保護委員会の注意喚起でまとめました。プラグインで使う・外のAIにフォルダを読ませる（MCP）・自分のパソコンでAIを動かすの3つのやり方、主なAIプラグインのダウンロード数と公式ディレクトリの評価、APIと月額プランの料金、入力が学習に使われるかの違い。2026年11月9日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/obsidian-ai-2026.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 仕事・学習の道具</p>
+
+      <h1>Obsidianと生成AIを組み合わせる方法：3つのやり方、費用、プライバシーの注意（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-09">2026年11月9日</time></li>
+        <li><span class="tag">仕事・学習の道具</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>Obsidianのノートは、フォルダに入ったMarkdownのテキストファイル<a class="ref" href="#src-1">[1]</a></li>
+          <li>AIとの組み合わせ方は、プラグイン・外のAI・自分のPCの3通り（筆者の整理）</li>
+          <li>AI関連で最も多いプラグインCopilotは、約<strong>337万</strong>ダウンロード<a class="ref" href="#src-2">[2]</a></li>
+          <li>APIは使った分だけ払う。Sonnet 5.5は100万トークンで入力2ドル<a class="ref" href="#src-3">[3]</a></li>
+          <li>個人向けのClaudeは、会話を学習に使うかを利用者が選ぶ方式<a class="ref" href="#src-4">[4]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">ObsidianとAIの関係</a></li>
+          <li><a href="#sec-2">方法1：Obsidianの中でプラグインを使う</a></li>
+          <li><a href="#sec-3">方法2：外のAIに、ノートのフォルダを読ませる</a></li>
+          <li><a href="#sec-4">方法3：自分のパソコンでAIを動かす</a></li>
+          <li><a href="#sec-5">費用の考え方</a></li>
+          <li><a href="#sec-6">プライバシーと安全</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>Obsidianにためたメモを、生成AIで要約したり、関連するノートを探したり、質問に答えさせたりする使い方が広がっています。この記事では、ObsidianとAIを組み合わせる方法を3つに分けて、それぞれの違い、費用、プライバシーの注意点を公式情報でまとめました。特定の製品をすすめるものではありません。Obsidianの基本は<a href="obsidian-notes-2026.html">Obsidianの始め方と注意点</a>にまとめています。</p>
+
+      <h2 id="sec-1">ObsidianとAIの関係</h2>
+
+      <section class="item-card">
+        <h3>ノートはただのテキストファイル。だから外のAIからも読める</h3>
+        <p class="item-point">ノートは、パソコンのフォルダ（保管庫）に入ったMarkdownファイル</p>
+        <p>Obsidianは、ノートをMarkdown形式のテキストファイルとして、パソコンのフォルダ（保管庫）に保存します<a class="ref" href="#src-1">[1]</a>。ほかのテキストエディタでも編集でき、外での変更はObsidianに自動で反映されます<a class="ref" href="#src-1">[1]</a>。Obsidianのデータはパソコンに保存され、運営元のサーバーには送られないとしています<a class="ref" href="#src-5">[5]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>Obsidian本体には、AIの機能が見当たらない</h3>
+        <p class="item-point">公式のロードマップと変更履歴に、AIの機能は見当たらなかった</p>
+        <p>2026年11月9日時点の公式のロードマップと変更履歴には、AIの機能は見当たりませんでした<a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-7">[7]</a>。例外として、公式のブラウザ拡張「Web Clipper」のInterpreterは、言語モデルでウェブページを要約・抽出する機能です<a class="ref" href="#src-8">[8]</a>。データは利用者が選んだAIの提供元に送られ、Obsidianは要求のデータを集めたり保存したりしないとしています<a class="ref" href="#src-8">[8]</a>。</p>
+      </section>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 300" width="340" height="300" role="img" aria-label="ObsidianとAIを組み合わせる3つの方法の図。中央にMarkdownファイルの入った保管庫のフォルダがある。方法1はObsidianの中のプラグインがクラウドのAIに送る。方法2はClaude CodeやMCPなど外のAIがフォルダを読む。方法3はOllamaなど自分のパソコンで動くAIを使い、ノートはパソコンの外に出ない" font-family="inherit"><rect x="4" y="8" width="160" height="72" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="84.0" y="32" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">方法1 プラグイン</text><text x="84.0" y="52" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">Obsidianの中から</text><text x="84.0" y="69" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">クラウドのAIへ送る</text><rect x="176" y="8" width="160" height="72" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="256.0" y="32" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">方法2 外のAI</text><text x="256.0" y="52" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">Claude Code・MCPが</text><text x="256.0" y="69" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">フォルダを読む</text><rect x="95" y="114" width="150" height="72" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="170.0" y="138" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">保管庫（フォルダ）</text><text x="170.0" y="158" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">Markdownの</text><text x="170.0" y="175" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">テキストファイル</text><rect x="85" y="220" width="170" height="72" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="170.0" y="244" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">方法3 自分のPCのAI</text><text x="170.0" y="264" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">Ollamaなど。ノートは</text><text x="170.0" y="281" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">PCの外に出ない</text><path d="M84 80 L130 114" stroke-width="2" style="stroke:var(--accent);fill:none"/><path d="M256 80 L210 114" stroke-width="2" style="stroke:var(--accent);fill:none"/><path d="M170 186 L170 220" stroke-width="2" style="stroke:var(--accent);fill:none"/></svg>
+        <figcaption>ObsidianとAIを組み合わせる3つの方法（筆者の整理）</figcaption>
+      </figure>
+
+      <h2 id="sec-2">方法1：Obsidianの中でプラグインを使う</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>AIに関係する主なコミュニティプラグイン（ダウンロード数は2026年11月9日時点）</caption>
+          <thead><tr><th scope="col">プラグイン</th><th scope="col">ダウンロード数</th><th scope="col">主にできること</th><th scope="col">公式ディレクトリのReview表示</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Copilot</th><td>3,367,227</td><td>保管庫の中でAIに質問、意味での検索、エージェント<a class="ref" href="#src-9">[9]</a></td><td>Satisfactory<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">Claudian</th><td>2,659,888</td><td>保管庫を作業場所にして、Claude Codeなどを埋め込む<a class="ref" href="#src-10">[10]</a></td><td>Satisfactory<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">Smart Connections</th><td>1,265,240</td><td>書いているノートに関連するノートを表示<a class="ref" href="#src-11">[11]</a></td><td>Satisfactory<a class="ref" href="#src-11">[11]</a></td></tr>
+            <tr><th scope="row">Local REST API with MCP</th><td>844,861</td><td>保管庫を、外のAIから読み書きできるようにする<a class="ref" href="#src-12">[12]</a></td><td>Satisfactory<a class="ref" href="#src-12">[12]</a></td></tr>
+            <tr><th scope="row">Text Generator</th><td>593,657</td><td>アイデア・題名・要約などの文章を作る<a class="ref" href="#src-13">[13]</a></td><td>Caution<a class="ref" href="#src-13">[13]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>ダウンロード数の出典: Obsidianの公式GitHubの統計<a class="ref" href="#src-2">[2]</a>。プラグイン自体は入れられても、多くはAIの提供元のAPIキーや契約が別に必要です（筆者の見解）。Smart Connectionsは、内蔵のモデルを使えばAPIキーなしで関連ノートを探せます<a class="ref" href="#src-14">[14]</a>。Copilotには、任意の有料機能があります<a class="ref" href="#src-9">[9]</a>。</p>
+
+      <section class="item-card">
+        <h3>入れる前に、プラグインの権限と評価を確かめる</h3>
+        <p class="item-point">プラグインはファイルにもネットにもアクセスできる</p>
+        <p>Obsidianは、初期設定では外部のプラグインを動かさない「制限モード」になっています<a class="ref" href="#src-15">[15]</a>。公式ヘルプは、コミュニティプラグインはファイルにアクセスでき、インターネットに接続でき、追加のプログラムを入れることもできると説明しています<a class="ref" href="#src-15">[15]</a>。機密のデータを扱うなら、独自にセキュリティの確認をするよう勧めています<a class="ref" href="#src-15">[15]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>公式ディレクトリは、自動の点検結果をHealthとReviewの評価で表示する<a class="ref" href="#src-16">[16]</a></li>
+            <li>Reviewには、外部のサーバーへの送信などが開示事項として載る<a class="ref" href="#src-16">[16]</a></li>
+            <li>Smart ComposerとLocal GPTのReview表示は、調査日時点でRisks<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-18">[18]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">方法2：外のAIに、ノートのフォルダを読ませる</h2>
+
+      <section class="item-card">
+        <h3>MCPは、AIを外のデータにつなぐ共通の規格</h3>
+        <p class="item-point">MCPは「AIアプリ用のUSB-C」のような共通の差し込み口</p>
+        <p>MCP（Model Context Protocol）は、AIアプリを外部のシステムにつなぐためのオープンな規格で、公式はUSB-Cの差し込み口にたとえています<a class="ref" href="#src-19">[19]</a>。Claude Desktopでは、ファイルを扱うMCPサーバーを入れて、読ませるフォルダを設定で指定します<a class="ref" href="#src-20">[20]</a>。AIがファイルを操作する前には、利用者の承認が必要です<a class="ref" href="#src-20">[20]</a>。保管庫のフォルダだけを指定すれば、AIに見せる範囲を絞れます（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Claude Desktopのファイル用MCPサーバーには、Node.jsが必要<a class="ref" href="#src-20">[20]</a></li>
+            <li>エディタのCursorも、MCPで外部のツールやデータにつなげる<a class="ref" href="#src-21">[21]</a></li>
+            <li>プラグイン「Local REST API with MCP」は、保管庫をMCPサーバーとして外に公開する<a class="ref" href="#src-22">[22]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>Claude Codeは、フォルダの中のファイルを直接読み書きする</h3>
+        <p class="item-point">ファイルの読み書きやコマンドの実行まで行うAIの道具</p>
+        <p>Claude Codeは、フォルダの中のファイルを読み、編集し、コマンドを実行するAIの道具で、使うにはClaudeの有料プランか、Anthropic Consoleのアカウントが必要です<a class="ref" href="#src-23">[23]</a>。保管庫のフォルダで使えば、ノートの整理や下書きを頼めます（筆者の見解）。なお、Anthropicは、第三者の開発者が自分のアプリでClaude.aiのログインを提供することなどを認めないと規約に書いています<a class="ref" href="#src-24">[24]</a>。</p>
+      </section>
+
+      <h2 id="sec-4">方法3：自分のパソコンでAIを動かす</h2>
+
+      <section class="item-card">
+        <h3>ローカルLLMなら、ノートをパソコンの外に出さない</h3>
+        <p class="item-point">Ollamaは、自分のパソコンで動かすなら無料</p>
+        <p>Ollamaは、AIのモデルを自分のパソコンで動かすためのソフトで、パソコンで動かす分は無料です<a class="ref" href="#src-25">[25]</a>。パソコンで動かすときは、運営元はプロンプトやデータを見ないとしています<a class="ref" href="#src-26">[26]</a>。対応するのは、Windows 10 22H2以降、macOS 14（Sonoma）以降などです<a class="ref" href="#src-27">[27]</a><a class="ref" href="#src-28">[28]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Ollamaのクラウドのモデルは別料金で、Proは月20ドル<a class="ref" href="#src-25">[25]</a></li>
+            <li>どれくらいのメモリが必要かの公式の目安は、調査では見つからなかった</li>
+            <li>パソコンの性能によって、動かせるモデルの大きさや速さが変わる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-5">費用の考え方</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>AnthropicのAPIの料金（100万トークンあたり、米ドル、2026年11月9日時点）</caption>
+          <thead><tr><th scope="col">モデル</th><th scope="col">入力</th><th scope="col">出力</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Claude Fable 5.1</th><td>10ドル</td><td>50ドル</td></tr>
+            <tr><th scope="row">Claude Opus 5.5</th><td>4ドル</td><td>20ドル</td></tr>
+            <tr><th scope="row">Claude Sonnet 5.5</th><td>2ドル</td><td>10ドル</td></tr>
+            <tr><th scope="row">Claude Haiku 5.5（10万トークン以下）</th><td>0.10ドル</td><td>0.50ドル</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>出典: <a class="ref" href="#src-3">[3]</a>。APIは、送った文章（入力）と返ってきた文章（出力）の量に応じて払う仕組みで、料金は米ドルで表示されています<a class="ref" href="#src-3">[3]</a>。OpenAIのAPIも、100万トークンあたりの料金で、モデルごとに値段が違います<a class="ref" href="#src-29">[29]</a>。</p>
+
+      <section class="item-card">
+        <h3>月額のプランは、税別の米ドル表示</h3>
+        <p class="item-point">ClaudeのProは月20ドル（年払いなら月17ドル相当）</p>
+        <p>Claudeの個人向けの有料プランは、Proが月20ドル（年払いなら月17ドル相当）、Maxが月100ドルで、表示の価格には税が含まれていません<a class="ref" href="#src-30">[30]</a>。ChatGPTの月額は、公式ページの金額を調査で読み取れませんでした。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Claude 4.7以降のモデルは、同じ文章でもトークンを約30%多く数える<a class="ref" href="#src-3">[3]</a></li>
+            <li>同じ文章量でも、モデルによって料金の計算が変わる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-6">プライバシーと安全</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>入力した内容が、AIの学習に使われるか</caption>
+          <thead><tr><th scope="col">サービス</th><th scope="col">初期設定での扱い</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">OpenAIのAPI</th><td>2023年3月1日から、送ったデータを学習に使わない（自分で許可した場合を除く）<a class="ref" href="#src-31">[31]</a></td></tr>
+            <tr><th scope="row">AnthropicのAPIなど商用向け</th><td>入力も出力も、初期設定では学習に使わない<a class="ref" href="#src-32">[32]</a></td></tr>
+            <tr><th scope="row">Claudeの個人向け（Free・Pro・Max）</th><td>学習に使うかを利用者が選ぶ。許可すると保存期間は5年、しないと30日<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">Ollama（自分のパソコン）</th><td>運営元はプロンプトやデータを見ない<a class="ref" href="#src-26">[26]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>個人情報保護委員会の注意</h3>
+        <p class="item-point">入力した個人情報が、AIの学習に使われることがある</p>
+        <p>個人情報保護委員会は2023年6月に、入力した個人情報が生成AIの学習に使われ、正確または不正確な内容で出力されるおそれがあるとして、一般の利用者に注意を呼びかけました<a class="ref" href="#src-33">[33]</a>。サービスの利用規約やプライバシーポリシーを十分に確認したうえで判断するよう求めています<a class="ref" href="#src-33">[33]</a>。他人の名前や連絡先、仕事の機密が入ったノートは、AIに読ませる保管庫と分けておくと安心です（筆者の見解）。</p>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>ChatGPTの月額と、学習に使わない設定の公式の説明（公式ページを読めなかった）</li>
+          <li>Claudeの料金の日本円での表示</li>
+          <li>Obsidianが「AIの機能を入れない」と明言した公式の文</li>
+          <li>ローカルLLMに必要なメモリの公式の目安</li>
+          <li>公式ディレクトリで、各プラグインの評価がその表示になった理由</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="obsidian-notes-2026.html">Obsidianの始め方と注意点</a></li>
+          <li><a href="daigaku-kokai-koza-2026.html">社会人でも参加できる大学の公開講座</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（33件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月9日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://obsidian.md/help/data-storage" target="_blank" rel="noopener">How Obsidian stores data</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-2"><a href="https://github.com/obsidianmd/obsidian-releases" target="_blank" rel="noopener">obsidian-releases（community-plugin-stats.json、2026年11月9日更新）</a>（Obsidian（公式GitHub））</li>
+          <li id="src-3"><a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Pricing</a>（Anthropic（Claude Platform Docs））</li>
+          <li id="src-4"><a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" target="_blank" rel="noopener">Updates to Consumer Terms and Privacy Policy（2025年8月28日）</a>（Anthropic）</li>
+          <li id="src-5"><a href="https://obsidian.md/privacy" target="_blank" rel="noopener">Privacy policy</a>（Obsidian）</li>
+          <li id="src-6"><a href="https://obsidian.md/roadmap" target="_blank" rel="noopener">Roadmap</a>（Obsidian）</li>
+          <li id="src-7"><a href="https://obsidian.md/changelog" target="_blank" rel="noopener">Changelog</a>（Obsidian）</li>
+          <li id="src-8"><a href="https://obsidian.md/help/web-clipper/interpreter" target="_blank" rel="noopener">Web Clipper: Interpreter</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-9"><a href="https://community.obsidian.md/plugins/copilot" target="_blank" rel="noopener">Copilot</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-10"><a href="https://community.obsidian.md/plugins/realclaudian" target="_blank" rel="noopener">Claudian</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-11"><a href="https://community.obsidian.md/plugins/smart-connections" target="_blank" rel="noopener">Smart Connections</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-12"><a href="https://community.obsidian.md/plugins/obsidian-local-rest-api" target="_blank" rel="noopener">Local REST API with MCP</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-13"><a href="https://community.obsidian.md/plugins/obsidian-textgenerator-plugin" target="_blank" rel="noopener">Text Generator</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-14"><a href="https://github.com/brianpetro/obsidian-smart-connections" target="_blank" rel="noopener">obsidian-smart-connections README</a>（brianpetro（GitHub））</li>
+          <li id="src-15"><a href="https://obsidian.md/help/plugin-security" target="_blank" rel="noopener">Plugin security</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-16"><a href="https://obsidian.md/help/community-directory" target="_blank" rel="noopener">Community directory</a>（Obsidian（公式ヘルプ））</li>
+          <li id="src-17"><a href="https://community.obsidian.md/plugins/smart-composer" target="_blank" rel="noopener">Smart Composer</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-18"><a href="https://community.obsidian.md/plugins/local-gpt" target="_blank" rel="noopener">Local GPT</a>（Obsidian Community（公式ディレクトリ））</li>
+          <li id="src-19"><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener">What is the Model Context Protocol (MCP)?</a>（Model Context Protocol（公式））</li>
+          <li id="src-20"><a href="https://modelcontextprotocol.io/docs/develop/connect-local-servers" target="_blank" rel="noopener">Connect to local MCP servers</a>（Model Context Protocol（公式））</li>
+          <li id="src-21"><a href="https://cursor.com/docs/mcp" target="_blank" rel="noopener">Model Context Protocol (MCP)</a>（Cursor（公式ドキュメント））</li>
+          <li id="src-22"><a href="https://github.com/coddingtonbear/obsidian-local-rest-api" target="_blank" rel="noopener">obsidian-local-rest-api README</a>（coddingtonbear（GitHub））</li>
+          <li id="src-23"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">Claude Code overview</a>（Anthropic（Claude Code Docs））</li>
+          <li id="src-24"><a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener">Legal and compliance</a>（Anthropic（Claude Code Docs））</li>
+          <li id="src-25"><a href="https://ollama.com/pricing" target="_blank" rel="noopener">Pricing</a>（Ollama）</li>
+          <li id="src-26"><a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">FAQ</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-27"><a href="https://docs.ollama.com/windows" target="_blank" rel="noopener">Windows</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-28"><a href="https://docs.ollama.com/macos" target="_blank" rel="noopener">macOS</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-29"><a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">API Pricing</a>（OpenAI（開発者向け公式））</li>
+          <li id="src-30"><a href="https://claude.com/pricing" target="_blank" rel="noopener">Claude Pricing</a>（Anthropic）</li>
+          <li id="src-31"><a href="https://developers.openai.com/api/docs/guides/your-data" target="_blank" rel="noopener">Data controls in the OpenAI platform</a>（OpenAI（開発者向け公式））</li>
+          <li id="src-32"><a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">Is my data used for model training?（商用）</a>（Anthropic Privacy Center）</li>
+          <li id="src-33"><a href="https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" target="_blank" rel="noopener">生成AIサービスの利用に関する注意喚起等（2023年6月2日）</a>（個人情報保護委員会）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月9日時点の情報をもとにまとめたものです。料金やサービスの内容は変更されることがあります。この記事は特定のアプリやサービスをすすめるものではありません。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
