@@ -292,9 +292,31 @@
     }, 0);
     var active = "";
 
+    // 新着: 全カテゴリの記事を調査日の新しい順に並べ、上位4件を複製して「新着記事」に入れる
+    var latest = document.querySelector(".latest");
+    var latestList = latest ? latest.querySelector(".latest-list") : null;
+    if (latestList) {
+      var all = [];
+      groups.forEach(function (g) {
+        g.items.forEach(function (it) {
+          var t = it.li.querySelector(".article-card-date time[datetime]");
+          all.push({ li: it.li, date: t ? t.getAttribute("datetime") : "" });
+        });
+      });
+      all.sort(function (a, b) {
+        return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+      });
+      all.slice(0, 4).forEach(function (it) {
+        latestList.appendChild(it.li.cloneNode(true));
+      });
+      latest.hidden = all.length === 0;
+    }
+
     function render() {
       var term = normalize(input.value);
       var shown = 0;
+      // 検索・絞り込み中は新着を隠す（同じ記事が2回出ないように）
+      if (latest) latest.hidden = !!(term || active);
       groups.forEach(function (g) {
         var inCategory = !active || g.name === active;
         var visible = 0;

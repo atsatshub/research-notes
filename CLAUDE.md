@@ -1,6 +1,6 @@
 # CLAUDE.md — 記事作成ルール
 
-このリポジトリは、誰でも閲覧できる「お得情報・調べものまとめ」サイトです（GitHub Pages で公開）。
+このリポジトリは、誰でも閲覧できる「雑学アーカイブ」サイトです（GitHub Pages で公開。公開URL: https://atsatshub.github.io/research-notes/ 。独自ドメインへ切り替えたら README の手順で全ページのURLを書き換える）。
 記事を作成・更新するときは、以下のルールを**必ず**守ってください。
 
 ---
@@ -56,8 +56,8 @@
 - 表は必ず `<div class="table-wrap">` で囲む（スマホで横スクロールできるように）。
 - 補足は `.note`、注意点は `.warning` のボックスを使う。
 - 画像には必ず `alt` を付ける。
-- 他の人が作った画像は、利用条件がはっきりしたものだけを使う（Wikimedia Commons の CC0・パブリックドメイン・CC BY・CC BY-SA、オートデスク公式ヘルプの CC BY-NC-SA など）。
-  - 写真は `figure.photo`、ソフトの画面は `figure.screenshot` で入れ、`figcaption` には短い説明だけを書く。
+- 他の人が作った画像は、利用条件がはっきりしていて**商用利用できる**ものだけを使う（Wikimedia Commons の CC0・パブリックドメイン・CC BY・CC BY-SA）。CC BY-NC-SA など非営利限定のものは使わない。
+  - 写真は `figure.photo` で入れ、`figcaption` には短い説明だけを書く。ソフトの画面は `figure.diagram`（インラインSVGの模式図）で描く（第5章）。
   - 作者・出典ページ・ライセンス（リンク付き）は、記事末尾の出典欄の下に置く折りたたみ「写真・画像の出典」（`<details class="sources-box" id="photo-credits">`）に、図の説明と対応させて1件ずつ書く（画像の下には出さない。オーナーの希望）。
   - 顔がわかる人物が写った写真は使わない（第1章）。画像の埋め込み情報（EXIF など）は消してから追加する。
   - 画像は `articles/images/` の下に、記事ごとのフォルダを作って置く（例: `articles/images/factory-tours-2026/`）。
@@ -71,10 +71,13 @@
   - 使う理由を HTML コメントで残す。
   - 可能なら `integrity`（SRI）属性を付ける。
 - デザインは共通の `assets/style.css` を使う。記事ごとの `<style>` は最小限にする。
-- アクセス解析・広告・トラッキングのスクリプトは入れない。
+- アクセス解析・トラッキングのスクリプトは入れない。広告は Google AdSense のみ可（導入手順は README「広告を入れるとき」）。広告を入れたら `privacy.html` と `about.html` の「広告」の記載を更新する。
+- 広告を入れる場所は `div.ad-slot`（要点まとめの下、出典の上）だけ。「くわしく」の中、表・グラフの途中、見出しの直後には入れない。
+- 画像のライセンスは**商用利用可**のものだけを使う（CC0・パブリックドメイン・CC BY・CC BY-SA）。**CC BY-NC（非営利のみ）の画像は使わない**（広告を載せるサイトなので）。ソフトの画面は、ヘルプの画像を転載せず、自分で描いた模式図（`figure.diagram`、インラインSVG）にする。
+- 全ページ共通のヘッダー・フッター（ロゴ・サイト名・フッターのリンク）は `template.html` のものをそのまま使う。サイト名は「雑学アーカイブ」、`<title>` は「記事タイトル｜雑学アーカイブ」。
 - 文字コードは UTF-8、`<html lang="ja">`、viewport メタタグ、サイトのアイコン（`favicon.svg` などの `<link rel="icon">`）を必ず入れる（ひな形どおり）。
 - `<head>` には、共通スクリプト `assets/site.js`（defer なし。表示設定・読了の目安・共有ボタン・トップへ戻るなどを担当）と、SNSで共有されたときの表示用タグ（`canonical`・`og:*`・`twitter:card`）を入れる（ひな形どおり）。`canonical` と `og:url` は記事のURLに、`og:title`・`og:description` は `<title>`・`description` に合わせる。
-- アクセス解析・外部送信はしない。表示設定はブラウザの localStorage にだけ保存する（`about.html` に明記済み）。
+- アクセス解析・外部送信はしない。表示設定はブラウザの localStorage にだけ保存する（`about.html`・`privacy.html` に明記済み）。
 
 ## 6. 記事の追加手順
 

@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- サイトのアイコン: 虫めがね（調べもの）＋黄色いレンズ（お得） -->
-  <rect width="64" height="64" rx="14" fill="#0b6e4f"/>
-  <circle cx="27" cy="27" r="14" fill="#fde68a" stroke="#ffffff" stroke-width="6"/>
-  <line x1="38" y1="38" x2="51" y2="51" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <!-- サイトのアイコン: 保管箱（アーカイブ）。ふた＋本体＋取っ手 -->
+  <rect width="64" height="64" rx="14" fill="#2f55c9"/>
+  <rect x="13" y="15" width="38" height="11" rx="3.5" fill="#ffffff"/>
+  <path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" fill="#ffffff"/>
+  <rect x="26" y="35" width="12" height="4.5" rx="2.25" fill="#2f55c9"/>
 </svg>

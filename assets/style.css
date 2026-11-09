@@ -1,35 +1,37 @@
 /* =========================================================
-   research-notes 共通スタイル
+   雑学アーカイブ 共通スタイル
    - スマホ優先（モバイルファースト）
    - ライト / ダークモード対応
    ========================================================= */
 
 /* ---------- カラートークン ---------- */
 :root {
-  --bg: #fbfbf9;
+  --bg: #f6f5f1;
   --surface: #ffffff;
-  --text: #1f2328;
-  --text-muted: #5b6370;
-  --border: #e3e5e8;
-  --accent: #0b6e4f;
-  --accent-soft: #e6f4ee;
-  --link: #0a58ca;
-  --link-visited: #6f42c1;
-  --note-bg: #eef5ff;
-  --note-border: #3b82f6;
-  --warning-bg: #fff6e5;
+  --text: #1c1f24;
+  --text-muted: #5d6470;
+  --border: #e3e1da;
+  --accent: #2f55c9;
+  --accent-soft: #e9eefb;
+  --accent-ink: #ffffff; /* アクセント色の上に置く文字色 */
+  --link: #2a4fbf;
+  --link-visited: #6a4bb8;
+  --note-bg: #edf3fd;
+  --note-border: #4d7ce8;
+  --warning-bg: #fff5e0;
   --warning-border: #e0a100;
   --warn-text: #7a4b00;
-  --table-head: #f3f4f6;
-  --marker: #fde68a;
-  --bar: #0b6e4f;
-  --bar-muted: #a7b0bb;
-  --grid: #d5d9de;
+  --table-head: #f1f0eb;
+  --marker: #ffe48a;
+  --bar: #2f55c9;
+  --bar-muted: #b0b5bf;
+  --grid: #d5d6d2;
   --pop-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --card-shadow: 0 1px 2px rgba(20, 24, 40, 0.04);
   color-scheme: light;
 
-  --radius: 10px;
-  --content-width: 720px;
+  --radius: 12px;
+  --content-width: 760px;
   --font: system-ui, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
     "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -38,52 +40,56 @@
 /* ダークモード: OSの設定に従う（表示設定で「ライト」を選んだ場合を除く） */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15171a;
-    --surface: #1d2024;
-    --text: #e6e8eb;
-    --text-muted: #a1a8b3;
-    --border: #2f343a;
-    --accent: #4cc79a;
-    --accent-soft: #17302a;
-    --link: #79b0ff;
-    --link-visited: #c4a5ff;
-    --note-bg: #172338;
-    --note-border: #5b9bff;
+    --bg: #131519;
+    --surface: #1c1f25;
+    --text: #e7e8ea;
+    --text-muted: #a3a9b4;
+    --border: #2f343c;
+    --accent: #8ea4ff;
+    --accent-soft: #1f2740;
+    --accent-ink: #0f1530;
+    --link: #8fb3ff;
+    --link-visited: #c9b0ff;
+    --note-bg: #182238;
+    --note-border: #5b8cff;
     --warning-bg: #2e2614;
     --warning-border: #e0b030;
     --warn-text: #f0c860;
-    --table-head: #252a30;
+    --table-head: #252931;
     --marker: rgba(250, 204, 21, 0.28);
-    --bar: #4cc79a;
+    --bar: #8ea4ff;
     --bar-muted: #6b7480;
     --grid: #3a4048;
     --pop-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --card-shadow: none;
     color-scheme: dark;
   }
 }
 
 /* 表示設定で「ダーク」を選んだ場合 */
 :root[data-theme="dark"] {
-  --bg: #15171a;
-  --surface: #1d2024;
-  --text: #e6e8eb;
-  --text-muted: #a1a8b3;
-  --border: #2f343a;
-  --accent: #4cc79a;
-  --accent-soft: #17302a;
-  --link: #79b0ff;
-  --link-visited: #c4a5ff;
-  --note-bg: #172338;
-  --note-border: #5b9bff;
+  --bg: #131519;
+  --surface: #1c1f25;
+  --text: #e7e8ea;
+  --text-muted: #a3a9b4;
+  --border: #2f343c;
+  --accent: #8ea4ff;
+  --accent-soft: #1f2740;
+  --accent-ink: #0f1530;
+  --link: #8fb3ff;
+  --link-visited: #c9b0ff;
+  --note-bg: #182238;
+  --note-border: #5b8cff;
   --warning-bg: #2e2614;
   --warning-border: #e0b030;
   --warn-text: #f0c860;
-  --table-head: #252a30;
+  --table-head: #252931;
   --marker: rgba(250, 204, 21, 0.28);
-  --bar: #4cc79a;
+  --bar: #8ea4ff;
   --bar-muted: #6b7480;
   --grid: #3a4048;
   --pop-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --card-shadow: none;
   color-scheme: dark;
 }
 
@@ -152,9 +158,23 @@ h1 {
 }
 
 h2 {
+  position: relative;
   font-size: 1.3rem;
+  padding-left: 14px;
   padding-bottom: 0.3em;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* 見出しの左に短いアクセントの帯 */
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 5px;
+  height: 1em;
+  border-radius: 3px;
+  background: var(--accent);
 }
 
 h3 {
@@ -202,6 +222,9 @@ main {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 15;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
@@ -215,72 +238,186 @@ main {
   min-height: 56px;
 }
 
+/* サイト名（ロゴマーク＋文字） */
 .site-title {
-  font-weight: 700;
-  font-size: 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
   color: var(--text);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .site-title:visited {
   color: var(--text);
 }
 
+.site-title .logo-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-shrink: 0;
 }
 
 .site-nav a {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* スマホでは文字のリンクを隠し、サイト名と「表示」だけにする */
+@media (max-width: 479px) {
+  .site-nav .nav-link {
+    display: none;
+  }
 }
 
 .site-footer {
+  margin-top: 24px;
   border-top: 1px solid var(--border);
-  padding: 24px 0;
+  padding: 28px 0 32px;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.site-footer .footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-footer .footer-brand .logo-mark {
+  width: 22px;
+  height: 22px;
+}
+
+.site-footer .footer-tagline {
+  margin: 0 0 12px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-nav li + li {
+  margin-top: 0;
+}
+
+.footer-nav a {
+  color: var(--text-muted);
 }
 
 .site-footer p {
   margin: 0 0 0.4em;
 }
 
+.site-footer .copyright {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
 /* ---------- トップページ ---------- */
 .hero {
-  margin-bottom: 24px;
+  margin: 0 0 28px;
+  padding: 24px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
 }
 
 .hero h1 {
-  margin-bottom: 0.3em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 0.3em;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 .logo-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.hero .tagline {
+  margin: 0 0 0.6em;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .hero p {
+  margin: 0;
   color: var(--text-muted);
 }
 
+.hero .hero-links {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+/* 記事一覧 */
 .article-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 8px;
   display: grid;
   gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .article-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .article-list li + li {
   margin-top: 0;
 }
 
+.article-list > li {
+  margin: 0;
+  min-width: 0;
+}
+
 .article-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 16px;
+  padding: 16px 18px;
   color: var(--text);
   text-decoration: none;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.15s, transform 0.15s;
 }
 
 .article-card:visited {
@@ -289,26 +426,94 @@ main {
 
 .article-card:hover {
   border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .article-card-title {
   display: block;
   font-weight: 700;
-  color: var(--link);
+  color: var(--text);
   line-height: 1.5;
 }
 
+.article-card:hover .article-card-title {
+  color: var(--accent);
+}
+
+/* 説明文は3行で切る（カードの高さをそろえる） */
 .article-card-desc {
-  display: block;
-  font-size: 0.92rem;
-  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-top: 6px;
 }
 
 .article-card-date {
   display: block;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* 新着（assets/site.js が調査日の新しい順に作る） */
+.latest-title,
+.article-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.latest-title::before,
+.article-group-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2em 0 0.6em;
+}
+
+.section-head h2 {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.section-head h2::before {
+  display: none;
+}
+
+.section-head .section-note {
   font-size: 0.8rem;
   color: var(--text-muted);
-  margin-top: 6px;
+}
+
+/* 広告枠（導入時に使う。高さを先に確保して、表示後のずれを防ぐ） */
+.ad-slot {
+  min-height: 100px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.ad-slot-label {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
 }
 
 .empty {
@@ -416,7 +621,7 @@ main {
 
 .article-group-title {
   font-size: 1.05rem;
-  margin: 1.6em 0 0.6em;
+  margin: 1.8em 0 0.6em;
 }
 
 /* 要点まとめ */
@@ -771,6 +976,26 @@ article strong {
   color: var(--text-muted);
 }
 
+/* 模式図（.diagram）: 筆者が描いたインラインSVG。色は CSS 変数で指定し、ライト／ダークの両方で読める */
+.diagram {
+  margin: 12px 0 0;
+}
+
+.diagram svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.diagram figcaption {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 /* 記事の冒頭（要点まとめの下）に置く写真は、少し間をあける */
 .summary + .photo {
   margin: 16px 0 20px;
@@ -971,20 +1196,10 @@ article strong {
   margin-right: 4px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--accent-ink);
   background: var(--accent);
   border-radius: 50%;
   vertical-align: 0.05em;
-}
-
-:root[data-theme="dark"] .slip-num {
-  color: #10241c;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .slip-num {
-    color: #10241c;
-  }
 }
 
 .slip-note {
@@ -1372,19 +1587,9 @@ article strong {
 }
 
 .chip[aria-pressed="true"] {
-  color: #ffffff;
+  color: var(--accent-ink);
   background: var(--accent);
   border-color: var(--accent);
-}
-
-:root[data-theme="dark"] .chip[aria-pressed="true"] {
-  color: #10241c;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .chip[aria-pressed="true"] {
-    color: #10241c;
-  }
 }
 
 .article-count {
@@ -1402,28 +1607,30 @@ article strong {
   :root[data-theme="dark"] {
     --bg: #ffffff;
     --surface: #ffffff;
-    --text: #1f2328;
-    --text-muted: #5b6370;
-    --border: #e3e5e8;
-    --accent: #0b6e4f;
-    --accent-soft: #e6f4ee;
-    --link: #0a58ca;
-    --link-visited: #6f42c1;
-    --note-bg: #eef5ff;
-    --note-border: #3b82f6;
-    --warning-bg: #fff6e5;
+    --text: #1c1f24;
+    --text-muted: #5d6470;
+    --border: #e3e1da;
+    --accent: #2f55c9;
+    --accent-soft: #e9eefb;
+    --accent-ink: #ffffff;
+    --link: #2a4fbf;
+    --link-visited: #6a4bb8;
+    --note-bg: #edf3fd;
+    --note-border: #4d7ce8;
+    --warning-bg: #fff5e0;
     --warning-border: #e0a100;
     --warn-text: #7a4b00;
-    --table-head: #f3f4f6;
-    --marker: #fde68a;
-    --bar: #0b6e4f;
-    --bar-muted: #a7b0bb;
-    --grid: #d5d9de;
+    --table-head: #f1f0eb;
+    --marker: #ffe48a;
+    --bar: #2f55c9;
+    --bar-muted: #b0b5bf;
+    --grid: #d5d6d2;
     color-scheme: light;
   }
 
   .site-header,
   .site-footer,
+  .ad-slot,
   .read-progress,
   .to-top,
   .share-row,
