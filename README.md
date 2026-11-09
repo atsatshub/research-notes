@@ -1,6 +1,6 @@
-# research-notes — お得情報・調べものまとめ
+# research-notes — 雑学アーカイブ
 
-気になったことやお得情報を調べて、**出典付き**でまとめるサイトです。
+暮らしの制度やお得、おでかけ、学び、仕事の道具まで、気になったことを調べて、**出典付き**で短くまとめるサイトです。
 誰でも閲覧できるよう、GitHub Pages で公開します。
 
 - 公開URL（GitHub Pages 有効化後）: https://atsatshub.github.io/research-notes/
@@ -19,7 +19,8 @@
 ```
 .
 ├── index.html         トップページ（記事一覧・検索・カテゴリ絞り込み）
-├── about.html         このサイトについて（出典・調査日の方針、個人情報、免責）
+├── about.html         このサイトについて（運営者、出典・調査日の方針、お問い合わせ、広告）
+├── privacy.html       プライバシーポリシー（表示設定の保存、広告配信事業者の Cookie、免責）
 ├── 404.html           ページが見つからないときの表示
 ├── template.html      記事のひな形（articles/ にコピーして使う）
 ├── articles/          記事ファイルを置くフォルダ
@@ -60,6 +61,25 @@ python3 -m http.server 8000
 2. **Build and deployment** の Source を「Deploy from a branch」にする
 3. Branch を `main`、フォルダを `/ (root)` にして **Save**
 4. 数分後に公開URLで閲覧できるようになります
+
+## 独自ドメインに切り替えるとき
+
+1. ドメインを取得し、DNS に GitHub Pages 向けのレコードを設定する（`www` は CNAME、ルートは A/AAAA。手順は GitHub Docs「GitHub Pages サイトのカスタム ドメインを管理する」）。
+2. リポジトリの Settings → Pages → Custom domain にドメインを入れる（`CNAME` ファイルが main に作られる）。HTTPS の強制を有効にする。
+3. サイト内の絶対URL（canonical・og:url・sitemap・404 のパス）を一括で書き換える:
+
+```bash
+python3 -I tools/change_base_url.py https://atsatshub.github.io/research-notes/ https://新しいドメイン/
+```
+
+4. `tools/check_site.py` が `ALL OK` になることを確認してコミットする。古いURLは GitHub Pages が自動で新しいドメインへ転送する。
+
+## 広告（Google AdSense）を入れるとき
+
+- `privacy.html` の「広告配信事業者の Cookie」の「現在の状況」を、掲載開始の日付に書き換える。`about.html` の「広告」の文も同じく直す。
+- AdSense の管理画面で発行される `ads.txt` をリポジトリのルートに置く（`https://ドメイン/ads.txt` で開けること）。
+- 広告コードは `template.html` のコメントで示した位置（要点まとめの下、出典の上）に `div.ad-slot` で入れる。高さを先に確保してあるので、表示後に本文がずれない。
+- 「くわしく」の折りたたみの中や、表・グラフの途中には入れない。
 
 ## 免責事項
 

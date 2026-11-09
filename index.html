@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>お得情報・調べものまとめ</title>
-  <meta name="description" content="気になったことやお得情報を調べて、出典付きでまとめるサイトです。">
+  <meta name="theme-color" content="#2f55c9">
+  <title>雑学アーカイブ｜気になったことを、調べて、短くまとめる</title>
+  <meta name="description" content="暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。">
   <link rel="canonical" href="https://atsatshub.github.io/research-notes/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="お得情報・調べものまとめ">
-  <meta property="og:title" content="お得情報・調べものまとめ">
-  <meta property="og:description" content="気になったことやお得情報を調べて、出典付きでまとめるサイトです。">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="雑学アーカイブ｜気になったことを、調べて、短くまとめる">
+  <meta property="og:description" content="暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。">
   <meta property="og:url" content="https://atsatshub.github.io/research-notes/">
   <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,21 +23,21 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <a class="site-title" href="index.html">お得情報・調べものまとめ</a>
+      <a class="site-title" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="index.html">記事一覧</a><a class="nav-link" href="about.html">このサイトについて</a></nav>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1>お得情報・調べものまとめ</h1>
+      <h1><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</h1>
+      <p class="tagline">気になったことを、調べて、短くまとめる。</p>
       <p>
-        気になったことやお得情報を調べて、出典付きでまとめています。
-        公的機関・公式サイトの情報を優先し、各記事に調査日を記載しています。
-        <a href="about.html">このサイトについて</a>
+        暮らしの制度やお得、おでかけ、学び、仕事の道具まで。
+        公的機関・公式サイトの情報をもとに、要点から読める形でまとめています。
       </p>
+      <p class="hero-links"><a href="about.html">このサイトについて</a></p>
     </section>
-
-    <h2>記事一覧</h2>
 
     <!-- 検索・カテゴリ絞り込み（assets/site.js が動くときだけ表示。カテゴリは下の h3.article-group-title から自動で作る） -->
     <div class="article-search-box" hidden>
@@ -46,6 +47,14 @@
       <p class="article-count" role="status" aria-live="polite"></p>
     </div>
     <p class="empty search-empty" hidden>該当する記事がありません。別のキーワードで探してみてください。</p>
+
+    <!-- 新着（assets/site.js が、下の一覧から調査日の新しい順に4件を複製して入れる。検索・絞り込み中は隠す） -->
+    <section class="latest" hidden aria-label="新着記事">
+      <div class="section-head"><h2 class="latest-title">新着記事</h2><span class="section-note">調査日の新しい順</span></div>
+      <ul class="article-list latest-list"></ul>
+    </section>
+
+    <div class="section-head"><h2>カテゴリ別の記事一覧</h2></div>
 
     <!--
       記事を追加するときは、新しい記事が上になるように <li> を1件追加する。
@@ -332,8 +341,16 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p><a href="about.html">このサイトについて</a></p>
+      <a class="footer-brand" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">記事一覧</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
       <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
     </div>
   </footer>
 </body>

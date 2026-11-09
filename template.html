@@ -12,11 +12,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>【記事タイトル】｜お得情報・調べものまとめ</title>
+  <meta name="theme-color" content="#2f55c9">
+  <title>【記事タイトル】｜雑学アーカイブ</title>
   <meta name="description" content="【記事の内容を1〜2文で】">
   <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/【ファイル名】.html">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="お得情報・調べものまとめ">
+  <meta property="og:site_name" content="雑学アーカイブ">
   <meta property="og:title" content="【記事タイトル】">
   <meta property="og:description" content="【記事の内容を1〜2文で】">
   <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/【ファイル名】.html">
@@ -31,8 +32,8 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <a class="site-title" href="../index.html">お得情報・調べものまとめ</a>
-      <nav class="site-nav"><a href="../index.html">記事一覧</a></nav>
+      <a class="site-title" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="index.html">記事一覧</a><a class="nav-link" href="about.html">このサイトについて</a></nav>
     </div>
   </header>
 
@@ -61,6 +62,10 @@
 
       <!-- 「くわしく」を一括で開閉するボタン（JS が有効なときだけ表示される） -->
       <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <!-- 広告を入れるときはここ（要点まとめの下）に:
+      <div class="ad-slot"><span class="ad-slot-label">広告</span>（AdSense のコード）</div>
+      -->
 
       <h2>【見出し: 制度・サービスの概要】</h2>
 
@@ -158,6 +163,8 @@
         （閲覧日が異なる出典がある場合は、その行の末尾に「閲覧日: YYYY年M月D日」を付ける）。
         本文の [n] にマウスを乗せる・タップすると、assets/article.js がこの内容を吹き出しで表示する。
       -->
+      <!-- 広告を入れるときはここ（出典の上）にも入れられる（上と同じ書き方） -->
+
       <details class="sources-box" id="sources">
         <summary>出典（【件数】件）</summary>
         <p class="sources-note">閲覧日はいずれも【YYYY年M月D日】</p>
@@ -177,8 +184,16 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p><a href="../index.html">トップに戻る</a> ・ <a href="../about.html">このサイトについて</a></p>
-      <p>掲載情報は調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <a class="footer-brand" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">記事一覧</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
     </div>
   </footer>
   <script src="../assets/article.js" defer></script>

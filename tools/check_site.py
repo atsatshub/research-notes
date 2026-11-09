@@ -21,7 +21,7 @@ import sys
 from html.parser import HTMLParser
 
 BASE = "https://atsatshub.github.io/research-notes/"
-ROOT_PAGES = ["index.html", "about.html", "404.html"]
+ROOT_PAGES = ["index.html", "about.html", "privacy.html", "404.html"]
 
 
 class TagChecker(HTMLParser):
