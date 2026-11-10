@@ -5,9 +5,10 @@
   2. ヘッダーに「メニュー」ボタンを追加する（この記事の目次・記事を探す・カテゴリ・ページ・表示設定）
   3. 記事ページ: 読了の目安、調査日からの経過、読み進み具合のバー、共有ボタン、
      トップへ戻るボタン、印刷時に折りたたみをすべて開く、
-     記事の最後に「同じカテゴリの記事」を出す（index.html を読んで作る）
+     記事の最後に「同じカテゴリの記事」を出す（index.html を読んで作る。サムネイルの写真の出典も添える）
   4. トップページ: 記事の検索（空白で区切ると、すべてを含む記事）・カテゴリ絞り込み、
      新着記事、カテゴリごとの「残りを表示」、調査日からの経過。
+     記事カードの題名は「：」の前後で分け、後ろを小さく表示する。
      検索語とカテゴリは URL（?q=…&cat=…）に残すので、共有や「戻る」で同じ状態に戻れる
 */
 (function () {
@@ -113,9 +114,26 @@
       var items = Array.prototype.filter.call(list.children, function (c) {
         return c.tagName === "LI";
       });
-      groups.push({ name: categoryName(h), heading: h, list: list, parts: parts, lis: items });
+      groups.push({ name: categoryName(h), icon: h.getAttribute("data-icon") || "", heading: h, list: list, parts: parts, lis: items });
     });
     return groups;
+  }
+
+  // 記事カードの題名を「：」（または「？ 」）の前後で分け、後ろを .article-card-sub にする
+  // （例: 「健康診断の結果の見方」＋「数値の意味と再検査の目安…」。前半だけで何の記事か分かるように）
+  function splitTitles(rootEl) {
+    Array.prototype.forEach.call(rootEl.querySelectorAll(".article-card-title"), function (t) {
+      if (t.children.length) return;
+      var m = t.textContent.match(/^(.+?)(：|？\s+)(.+)$/);
+      if (!m) return;
+      var doc = t.ownerDocument || document;
+      t.textContent = m[2] === "：" ? m[1] : m[1] + "？";
+      t.appendChild(doc.createTextNode(" "));
+      var sub = doc.createElement("span");
+      sub.className = "article-card-sub";
+      sub.textContent = m[3];
+      t.appendChild(sub);
+    });
   }
 
   // 新しい順（追加順の通し番号 data-seq が大きい順。なければ調査日の新しい順）
@@ -144,11 +162,12 @@
   }
 
   var indexPromise = null;
-  // index.html のカテゴリと記事を返す（トップではその場の内容、ほかのページでは読み込む。読み込みは1回だけ）
+  // index.html のカテゴリと記事を { groups, doc } で返す
+  // （トップではその場の内容、ほかのページでは読み込む。読み込みは1回だけ）
   function loadIndex() {
     if (indexPromise) return indexPromise;
     if (document.querySelector(".article-search-box")) {
-      indexPromise = Promise.resolve(readGroups(document));
+      indexPromise = Promise.resolve({ groups: readGroups(document), doc: document });
     } else if (!window.fetch || !window.DOMParser || !/^https?:$/.test(location.protocol)) {
       indexPromise = Promise.reject(new Error("index を読めない環境"));
     } else {
@@ -157,7 +176,8 @@
           return res.ok ? res.text() : Promise.reject(new Error("index を読めない"));
         })
         .then(function (html) {
-          return readGroups(new DOMParser().parseFromString(html, "text/html"));
+          var doc = new DOMParser().parseFromString(html, "text/html");
+          return { groups: readGroups(doc), doc: doc };
         });
     }
     return indexPromise;
@@ -252,10 +272,12 @@
       if (catsFilled) return;
       catsFilled = true;
       loadIndex()
-        .then(function (groups) {
-          groups.forEach(function (g) {
+        .then(function (index) {
+          index.groups.forEach(function (g) {
             var li = el("li");
-            var a = el("a", { href: base + "index.html?cat=" + encodeURIComponent(g.name) }, g.name);
+            var a = el("a", { href: base + "index.html?cat=" + encodeURIComponent(g.name) });
+            if (g.icon) a.appendChild(el("span", { class: "menu-cat-icon", "data-icon": g.icon, "aria-hidden": "true" }));
+            a.appendChild(el("span", { class: "menu-cat-name" }, g.name));
             a.appendChild(el("span", { class: "chip-count" }, String(g.lis.length)));
             a.addEventListener("click", function (e) {
               if (!indexApi) return;
@@ -342,7 +364,8 @@
     var file = location.pathname.split("/").pop();
     if (!file) return;
     loadIndex()
-      .then(function (groups) {
+      .then(function (index) {
+        var groups = index.groups;
         var isSelf = function (li) {
           var a = li.querySelector("a.article-card");
           return !!a && a.getAttribute("href").split("/").pop() === file;
@@ -380,16 +403,43 @@
         head.appendChild(el("h2", {}, title));
         head.appendChild(more);
         var list = el("ul", { class: "article-list" });
+        var credits = [];
         others.slice(0, 4).forEach(function (li) {
-          var copy = document.importNode(li, true);
-          var a = copy.querySelector("a.article-card");
+          // 読み込んだ index.html の中で複製し、リンクと画像の場所を直してから、このページに移す
+          // （直す前の場所の画像を読みに行かないように）
+          var src = li.cloneNode(true);
+          var a = src.querySelector("a.article-card");
           // index.html から見た「articles/xxx.html」を、記事ページから見た「xxx.html」に直す
-          a.setAttribute("href", a.getAttribute("href").split("/").pop());
+          var name = a.getAttribute("href").split("/").pop();
+          a.setAttribute("href", name);
+          Array.prototype.forEach.call(src.querySelectorAll(".article-card-thumb img[src]"), function (img) {
+            img.setAttribute("src", img.getAttribute("src").replace(/^articles\//, ""));
+            // サムネイルの写真の出典（index.html の末尾の「写真の出典」の行）を添える
+            var credit = index.doc.getElementById("credit-" + name.replace(/\.html$/, ""));
+            if (credit) credits.push(credit);
+          });
+          var copy = document.importNode(src, true);
+          splitTitles(copy);
           Array.prototype.forEach.call(copy.querySelectorAll(".article-card-date time[datetime]"), addAgo);
           list.appendChild(copy);
         });
         section.appendChild(head);
         section.appendChild(list);
+        if (credits.length) {
+          var box = el("details", { class: "sources-box more-credits" });
+          box.appendChild(el("summary", {}, "これらの記事の写真の出典（" + credits.length + "件）"));
+          var ol = el("ol", { class: "sources" });
+          credits.forEach(function (c) {
+            var item = document.importNode(c, true);
+            item.removeAttribute("id");
+            Array.prototype.forEach.call(item.querySelectorAll("a[href^='articles/']"), function (x) {
+              x.setAttribute("href", x.getAttribute("href").replace(/^articles\//, ""));
+            });
+            ol.appendChild(item);
+          });
+          box.appendChild(ol);
+          section.appendChild(box);
+        }
         article.insertAdjacentElement("afterend", section);
       })
       .catch(function () {
@@ -521,10 +571,22 @@
   }
 
   var PER_CATEGORY = 4; // カテゴリごとに最初に見せる件数（これより2件以上多いときだけ、残りをたたむ）
-  var LATEST_COUNT = 6; // 新着記事の件数（スマホでは CSS で4件まで）
+  var LATEST_COUNT = 6; // 新着記事の件数（パソコンは3列×2段、スマホは横に送る列）
+  // まとめる前のカテゴリ名（共有・ブックマークされた ?cat= のURLを、いまのカテゴリで開くため）
+  var OLD_CATEGORY = {
+    "お金・投資": "お金・税金",
+    "税金・お金の手続き": "お金・税金",
+    "資格試験": "資格・語学",
+    "英語学習": "資格・語学",
+    "クルマ": "暮らし・健康",
+    "BIM・建設ソフト": "仕事・学習の道具",
+    "おでかけ・見学": "おでかけ・旅行",
+    "旅行・きっぷ": "おでかけ・旅行"
+  };
 
   function setupIndex(box) {
     Array.prototype.forEach.call(document.querySelectorAll(".article-card-date time[datetime]"), addAgo);
+    splitTitles(document);
 
     var input = box.querySelector("#article-search");
     var chipsWrap = box.querySelector(".category-chips");
@@ -573,6 +635,7 @@
         return { q: "", cat: "" };
       }
       var cat = p.get("cat") || "";
+      if (OLD_CATEGORY.hasOwnProperty(cat)) cat = OLD_CATEGORY[cat];
       var known = groups.some(function (g) {
         return g.name === cat;
       });
@@ -609,7 +672,10 @@
         var copy = li.cloneNode(true);
         copy.hidden = false;
         var card = copy.querySelector("a.article-card");
-        if (card) card.insertBefore(el("span", { class: "article-card-cat" }, catOf[all.indexOf(li)]), card.firstChild);
+        if (card) {
+          var thumb = card.querySelector(".article-card-thumb");
+          card.insertBefore(el("span", { class: "article-card-cat" }, catOf[all.indexOf(li)]), thumb ? thumb.nextSibling : card.firstChild);
+        }
         latestList.appendChild(copy);
       });
       hasLatest = all.length > 0;

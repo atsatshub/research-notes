@@ -125,7 +125,9 @@ const url = (f) => "file://" + path.join(root, f);
   const errs = [];
   ip.on("pageerror", (e) => errs.push(e.message));
   await ip.goto(url("index.html"));
-  const total = await ip.$$eval(".article-card", (a) => a.length);
+  // 新着記事（.latest-list）は一覧の複製なので数えない
+  const total = await ip.$$eval("ul.article-list:not(.latest-list) > li > .article-card", (a) => a.length);
+  ok((await ip.$$eval("ul.article-list:not(.latest-list) .article-card-thumb", (t) => t.length)) === total, "index: サムネイルのない記事カードがある（tools/make_thumbs.py）");
   ok((await ip.textContent(".article-count")).includes(`全${total}件`), "index: 記事数の表示が違う");
   ok((await ip.$$eval(".category-chips .chip", (c) => c.length)) === (await ip.$$eval("h3.article-group-title", (h) => h.length)) + 1, "index: カテゴリのボタンの数が違う");
   await ip.fill("#article-search", "zzzz-no-hit");

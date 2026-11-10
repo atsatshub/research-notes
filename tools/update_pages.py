@@ -91,7 +91,8 @@ def apply(path, s):
         def crumb(m):
             cat = m.group(2).strip()
             return f'{m.group(1)}<a href="../index.html?cat={quote(cat)}">{cat}</a></p>'
-        s = re.sub(r'(<p class="breadcrumb"><a href="\.\./index\.html">トップ</a> › )([^<]+)</p>', crumb, s, count=1)
+        # すでにリンクになっていても、カテゴリ名からリンク先を作り直す（カテゴリ名を変えたときのため）
+        s = re.sub(r'(<p class="breadcrumb"><a href="\.\./index\.html">トップ</a> › )(?:<a href="[^"]*">)?([^<]+)(?:</a>)?</p>', crumb, s, count=1)
     # 3. 構造化データ（</head> の直前に置く。あれば作り直す）
     data = None
     if path.startswith("articles/"):
