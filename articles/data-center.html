@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き｜雑学アーカイブ</title>
+  <meta name="description" content="データセンターの中身を、IEA、資源エネルギー庁、総務省、電力広域的運営推進機関の資料でまとめました。電気・通信・冷却の設備、電力消費の見通し、効率の指標PUEと2026年4月の新基準、東京圏・大阪圏への集中と地方分散。2026年11月11日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/data-center.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き">
+  <meta property="og:description" content="データセンターの中身を、IEA、資源エネルギー庁、総務省、電力広域的運営推進機関の資料でまとめました。電気・通信・冷却の設備、電力消費の見通し、効率の指標PUEと2026年4月の新基準、東京圏・大阪圏への集中と地方分散。2026年11月11日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/data-center.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き","description":"データセンターの中身を、IEA、資源エネルギー庁、総務省、電力広域的運営推進機関の資料でまとめました。電気・通信・冷却の設備、電力消費の見通し、効率の指標PUEと2026年4月の新基準、東京圏・大阪圏への集中と地方分散。2026年11月11日調査。","inLanguage":"ja","datePublished":"2026-11-11","dateModified":"2026-11-11","mainEntityOfPage":"https://atsatshub.github.io/research-notes/articles/data-center.html","image":["https://atsatshub.github.io/research-notes/assets/ogp.png","https://atsatshub.github.io/research-notes/articles/images/data-center/server-racks.jpg","https://atsatshub.github.io/research-notes/articles/images/data-center/cooling-tower.jpg","https://atsatshub.github.io/research-notes/articles/images/data-center/mitaka-dc.jpg"],"author":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html"},"publisher":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html","logo":{"@type":"ImageObject","url":"https://atsatshub.github.io/research-notes/assets/apple-touch-icon.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"トップ","item":"https://atsatshub.github.io/research-notes/"},{"@type":"ListItem","position":2,"name":"身近な科学","item":"https://atsatshub.github.io/research-notes/?cat=%E8%BA%AB%E8%BF%91%E3%81%AA%E7%A7%91%E5%AD%A6"},{"@type":"ListItem","position":3,"name":"データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › <a href="../index.html?cat=%E8%BA%AB%E8%BF%91%E3%81%AA%E7%A7%91%E5%AD%A6">身近な科学</a></p>
+
+      <h1>データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-11">2026年11月11日</time></li>
+        <li><span class="tag">身近な科学</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>サーバーを大量に並べ、電気・通信・冷却を二重化して備えた建物<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>世界のデータセンターの電力は、2030年に約<strong>945TWh</strong>と2倍超に（IEA、2025年）<a class="ref" href="#src-3">[3]</a></li>
+          <li>広域機関の想定（2026年1月）では、2035年度にデータセンター分で661万kW増<a class="ref" href="#src-4">[4]</a></li>
+          <li>2026年4月から、2029年度以降の新設はPUE1.3以下が国の基準に<a class="ref" href="#src-5">[5]</a></li>
+          <li>およそ9割が東京圏・大阪圏に集中。北海道など9地域で集積地づくり<a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-7">[7]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">データセンターとは</a></li>
+          <li><a href="#sec-2">中の設備：電気・通信・空気の流れ</a></li>
+          <li><a href="#sec-3">熱をどう冷やすか</a></li>
+          <li><a href="#sec-4">電気をどれだけ使うか</a></li>
+          <li><a href="#sec-5">効率の物差し「PUE」と国のルール</a></li>
+          <li><a href="#sec-6">日本の立地と最新の動き</a></li>
+          <li><a href="#sec-7">これからの課題</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>生成AIやクラウドのニュースで、「データセンター」という言葉をよく聞くようになりました。資源エネルギー庁は、SNSや動画の閲覧、金融取引などで毎日やり取りされる大量のデータの処理を担う、デジタル社会に欠かせないインフラだと説明しています<a class="ref" href="#src-5">[5]</a>。この記事では、データセンターの中の設備、電気と冷却、電力消費の見通し、日本の立地と国の政策を、国際エネルギー機関（IEA）、資源エネルギー庁、総務省、電力広域的運営推進機関などの資料でまとめました。業界団体の日本データセンター協会（JDCC）の資料は、「協会の説明」として紹介します。</p>
+
+      <figure class="photo">
+        <img src="images/data-center/server-racks.jpg" width="960" height="641" loading="lazy" alt="白い通気孔のある扉のサーバーラックが、通路の両側にまっすぐ並んでいる">
+        <figcaption>データセンターのサーバーラックの列</figcaption>
+      </figure>
+
+      <h2 id="sec-1">データセンターとは</h2>
+
+      <section class="item-card">
+        <h3>サーバーを棚に収め、列に並べた建物</h3>
+        <p class="item-point">電気・冷却・通信の設備で、機器を動かし続ける</p>
+        <p>IEAは、データセンターを、サーバー（データを処理・保存するコンピューター）、ストレージ（データを保存する装置）、ネットワーク機器などをラック（機器を収める棚）に入れ、列に並べて収める施設と説明しています<a class="ref" href="#src-1">[1]</a>。資源エネルギー庁は「データ処理・通信のための装置が設置・運用されている建物」としています<a class="ref" href="#src-5">[5]</a>。JDCCは、ふつうのオフィスビルより多くの通信回線を引き込んでいること、耐震構造であること、大容量の蓄電池や自家発電装置を備えていることを特長に挙げています<a class="ref" href="#src-8">[8]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>ネットのサービスの「向こう側」で動いている</h3>
+        <p class="item-point">スマホなどの要求に応じて、サーバーが情報を届ける</p>
+        <p>JDCCは、スマホからの要求に応じて、データセンターのサーバーが情報を読み出し、インターネットを通じて利用者の手元に届けていると説明しています<a class="ref" href="#src-2">[2]</a>。スマホで撮った写真のクラウド（ネット上の保存場所）への保存（設定によっては自動）や、見逃したテレビ番組の配信なども、データセンターに支えられているとしています<a class="ref" href="#src-2">[2]</a>。一方で協会は、多くのクラウド事業者がデータセンターの所在地や消費電力、サーバーの台数などを公開していないとしています<a class="ref" href="#src-2">[2]</a>。そのため、あるサービスがどこのデータセンターで動いているかを、利用者が外から知るのは難しいと考えられます。</p>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>省エネ法でのデータセンターの3つの分類</caption>
+          <thead><tr><th scope="col">分類</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">ハウジング型</th><td>サーバーなどのIT機器は持たず、機器を置く場所と、空調や照明などの設備を他の事業者に貸す<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">ホスティング・クラウド（オーナー）型</th><td>建物・設備からIT機器まで、すべて自社で持つ<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">ホスティング・クラウド（テナント）型</th><td>ハウジング型の事業者から借りた場所に、自社のIT機器を持ち込む<a class="ref" href="#src-5">[5]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>大きさはさまざま。AI向けの大型施設も</h3>
+        <p class="item-point">AI向けの大型施設は、10万世帯分の電気を使うことも</p>
+        <p>IEAは、データセンターを「自社用（enterprise）」「コロケーション・サービス事業者」「ハイパースケール」の3種類に分けて分析しています<a class="ref" href="#src-9">[9]</a><a class="ref" href="#src-1">[1]</a>。IEAによると、電力でみた大きさは従来型のデータセンターで10〜25MW（メガワット）ほどですが、AI向けのハイパースケールの施設では100MW以上になることがあり、年に10万世帯分ほどの電気を使います<a class="ref" href="#src-9">[9]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>JDCCは、今は小規模なデータセンターでも30MW程度の電力を使うのが一般的だとしている<a class="ref" href="#src-2">[2]</a></li>
+            <li>JDCCは、30MWは一般家庭（3kW契約）の約1万世帯分にあたると説明している<a class="ref" href="#src-2">[2]</a></li>
+            <li>コロケーション（ハウジング）は、場所と電気・空調などの設備を貸すサービス（JDCC）<a class="ref" href="#src-2">[2]</a></li>
+            <li>JDCCは、クラウドは2015年ごろから本格的に普及し、主流になったと説明している<a class="ref" href="#src-2">[2]</a></li>
+            <li>JDCCは、「データセンター事業」には明確な定義がないとしている<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-2">中の設備：電気・通信・空気の流れ</h2>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 360 506" width="360" height="506" role="img" aria-label="データセンターの中の流れの模式図。電気は、2か所以上の変電所から正副2系統で地下に引き込み、受変電設備、UPS（蓄電池）、分電盤を通ってラックのサーバーへ送られる。停電時は、非常用発電機が電気をつくる。通信回線は、2つ以上の局舎や別のキャリアから地下で引き込み、ネットワーク機器を通ってラックにつながる。サーバー室では、空調機の冷たい空気を床下からラックの間の冷たい通路に送り、サーバーを通って暖まった空気を空調機に戻して冷やす。熱は、サーバー室の外の冷却設備から外へ出す" font-family="inherit"><line x1="156" y1="14" x2="180" y2="14" stroke-width="2.5" style="stroke:var(--accent)"/><text x="186" y="18" font-size="10.5" style="fill:var(--text)">電気</text><line x1="156" y1="30" x2="180" y2="30" stroke-width="2.5" style="stroke:var(--text-muted)"/><text x="186" y="34" font-size="10.5" style="fill:var(--text)">通信</text><line x1="156" y1="46" x2="180" y2="46" stroke-width="2" stroke-dasharray="4 3" style="stroke:var(--accent)"/><text x="186" y="50" font-size="10.5" style="fill:var(--text)">冷たい空気</text><line x1="156" y1="62" x2="180" y2="62" stroke-width="2" stroke-dasharray="4 3" style="stroke:var(--text-muted)"/><text x="186" y="66" font-size="10.5" style="fill:var(--text)">暖かい空気</text><rect x="4" y="4" width="128" height="50" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="68" y="24" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:var(--text)">変電所（2か所以上）</text><text x="68" y="43" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">正副2系統で受電</text><line x1="68" y1="54" x2="68" y2="86" stroke-width="2.5" style="stroke:var(--accent)"/><path d="M62 78 L68 86 L74 78" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><text x="76" y="74" font-size="10" style="fill:var(--text-muted)">地下で引き込み</text><rect x="4" y="90" width="128" height="32" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="68" y="111" font-size="11.5" text-anchor="middle" style="fill:var(--text)">受変電設備</text><line x1="68" y1="122" x2="68" y2="148" stroke-width="2.5" style="stroke:var(--accent)"/><path d="M62 140 L68 148 L74 140" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><rect x="4" y="152" width="128" height="32" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="68" y="173" font-size="11.5" text-anchor="middle" style="fill:var(--text)">UPS（蓄電池）</text><line x1="68" y1="184" x2="68" y2="210" stroke-width="2.5" style="stroke:var(--accent)"/><path d="M62 202 L68 210 L74 202" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><rect x="4" y="214" width="128" height="32" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="68" y="235" font-size="11.5" text-anchor="middle" style="fill:var(--text)">分電盤</text><path d="M68 246 L68 264 L125 264 L125 322" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><path d="M119 314 L125 322 L131 314" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><rect x="170" y="146" width="88" height="44" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="214" y="164" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:var(--text)">非常用発電機</text><text x="214" y="181" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">燃料を備蓄</text><line x1="170" y1="168" x2="136" y2="168" stroke-width="2.5" style="stroke:var(--accent)"/><path d="M144 162 L136 168 L144 174" stroke-width="2.5" style="stroke:var(--accent);fill:none"/><text x="153" y="159" font-size="10" text-anchor="middle" style="fill:var(--text-muted)">停電時</text><rect x="264" y="4" width="92" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="310" y="24" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:var(--text)">通信回線</text><text x="310" y="42" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">2つ以上の局舎</text><text x="310" y="58" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">や別のキャリア</text><line x1="310" y1="70" x2="310" y2="210" stroke-width="2.5" style="stroke:var(--text-muted)"/><path d="M304 202 L310 210 L316 202" stroke-width="2.5" style="stroke:var(--text-muted);fill:none"/><text x="302" y="112" font-size="10" text-anchor="end" style="fill:var(--text-muted)">地下で引き込み</text><rect x="264" y="214" width="92" height="32" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="310" y="235" font-size="10.5" text-anchor="middle" style="fill:var(--text)">ネットワーク機器</text><path d="M310 246 L310 264 L215 264 L215 322" stroke-width="2.5" style="stroke:var(--text-muted);fill:none"/><path d="M209 314 L215 322 L221 314" stroke-width="2.5" style="stroke:var(--text-muted);fill:none"/><rect x="4" y="278" width="352" height="158" rx="10" stroke-width="1.5" style="fill:none;stroke:var(--border)"/><text x="14" y="297" font-size="11.5" font-weight="700" style="fill:var(--text)">サーバー室</text><text x="170" y="316" font-size="10.5" text-anchor="middle" style="fill:var(--text)">ラック</text><rect x="14" y="326" width="48" height="64" rx="6" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="38" y="362" font-size="11" font-weight="700" text-anchor="middle" style="fill:var(--text)">空調機</text><rect x="110" y="326" width="30" height="64" rx="3" style="fill:var(--text-muted)"/><rect x="200" y="326" width="30" height="64" rx="3" style="fill:var(--text-muted)"/><path d="M110 340 H140 M110 354 H140 M110 368 H140 M110 382 H140 M200 340 H230 M200 354 H230 M200 368 H230 M200 382 H230" stroke-width="1" style="stroke:var(--surface);fill:none"/><text x="170" y="350" font-size="10.5" text-anchor="middle" style="fill:var(--text)">冷たい</text><text x="170" y="364" font-size="10.5" text-anchor="middle" style="fill:var(--text)">通路</text><text x="300" y="352" font-size="10.5" text-anchor="middle" style="fill:var(--text)">暖かい</text><text x="300" y="366" font-size="10.5" text-anchor="middle" style="fill:var(--text)">通路</text><line x1="14" y1="398" x2="346" y2="398" stroke-width="2" style="stroke:var(--border)"/><path d="M38 390 L38 412 L170 412 L170 386" stroke-width="2" stroke-dasharray="4 3" style="stroke:var(--accent);fill:none"/><path d="M164 394 L170 386 L176 394" stroke-width="2" style="stroke:var(--accent);fill:none"/><text x="104" y="428" font-size="10" text-anchor="middle" style="fill:var(--text-muted)">床下から冷気</text><path d="M108 380 L86 380 L86 318 L38 318 L38 323" stroke-width="2" stroke-dasharray="4 3" style="stroke:var(--text-muted);fill:none"/><path d="M32 316 L38 324 L44 316" stroke-width="2" style="stroke:var(--text-muted);fill:none"/><path d="M232 380 L260 380 L260 336" stroke-width="2" stroke-dasharray="4 3" style="stroke:var(--text-muted);fill:none"/><path d="M254 344 L260 336 L266 344" stroke-width="2" style="stroke:var(--text-muted);fill:none"/><line x1="20" y1="390" x2="20" y2="466" stroke-width="2" style="stroke:var(--text)"/><path d="M14 458 L20 466 L26 458" stroke-width="2" style="stroke:var(--text);fill:none"/><text x="28" y="456" font-size="10" style="fill:var(--text-muted)">熱を外へ</text><rect x="4" y="470" width="352" height="32" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="180" y="491" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:var(--text)">サーバー室の外の冷却設備</text></svg>
+        <figcaption>データセンターの中の流れ（模式図。IEA、日本データセンター協会、資源エネルギー庁の資料をもとに筆者が作図）<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-10">[10]</a><a class="ref" href="#src-11">[11]</a></figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>電気は2系統で引き込み、停電に備える</h3>
+        <p class="item-point">変電所2か所以上から受電し、UPSと発電機で支える</p>
+        <p>JDCCによると、データセンターでは、近くの2か所以上の変電所から正副2系統で、地下に埋めた線で電気を引き込み、災害時には自家発電機で電気を確保できるようにしています<a class="ref" href="#src-2">[2]</a>。受けた電気を一度直流にしてから交流に戻し、ノイズを除いた「きれいな電気」を送っているとも説明しています<a class="ref" href="#src-2">[2]</a>。IEAは、UPS（無停電電源装置）の蓄電池と非常用発電機を、停電中も電気を保つための設備で、めったに使われないが、データセンターに求められる非常に高い信頼性のために必要なものとしています<a class="ref" href="#src-1">[1]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>JDCCの停電対策の説明では、UPS（蓄電池）は5〜30分程度の短い時間の供給を想定したもの<a class="ref" href="#src-12">[12]</a></li>
+            <li>JDCCの設備の基準は、日本では商用電源（電力会社の電気）を主、自家発電を予備とみる<a class="ref" href="#src-13">[13]</a></li>
+            <li>この基準は、求める信頼性の段階を「ティア1」〜「ティア4」に分けている<a class="ref" href="#src-13">[13]</a></li>
+            <li>2013年の見直しの資料では、発電機の燃料の確保量はティア2で12時間、ティア3で24時間<a class="ref" href="#src-14">[14]</a></li>
+            <li>ティア4は48時間（特別高圧で受電する場合は24時間）<a class="ref" href="#src-14">[14]</a></li>
+            <li>同じ見直しで、燃料会社との災害時の優先供給の契約は、原則として確保量に数えないことにした<a class="ref" href="#src-14">[14]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>通信回線も、別々のルートで引き込む</h3>
+        <p class="item-point">2つ以上の局舎や別のキャリアから地下で引き込む</p>
+        <p>JDCCは、通信はITサービスの生命線だとして、2つ以上の局舎（通信会社の設備がある建物）や異なるキャリア（通信事業者）から回線を地下に埋めて引き込み、建物の中でもルートを分けていると説明しています<a class="ref" href="#src-2">[2]</a>。電力設備や空調設備など重要な設備はすべて二重化・多重化され、故障や操作ミスで一部が止まってもサービスを続けられるように設計されているとしています<a class="ref" href="#src-2">[2]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>電気の約6割はサーバーが使う</h3>
+        <p class="item-point">冷却の割合は、効率のよい施設で約7%、悪いと30%超</p>
+        <p>IEAによると、今のデータセンターでは、電力消費のうちサーバーが平均で約60%、ストレージが約5%、ネットワーク機器が最大5%を占めます<a class="ref" href="#src-1">[1]</a>。冷却の割合は、効率のよいハイパースケールで約7%、効率の低い自社用では30%を超えます<a class="ref" href="#src-1">[1]</a>。JDCCは、IT機器の消費電力が増え、データセンターの床面積の半分以上が電源設備や空調設備に使われるようになったと説明しています<a class="ref" href="#src-2">[2]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>AI向けの機器で、ラックあたりの電力が増えている</h3>
+        <p class="item-point">ラックの平均は約9kW。100kW超もあるが、まだまれ</p>
+        <p>IEAは、AIの広がりで高性能なサーバーの導入が進み、データセンターの電力密度が高まっているとしています<a class="ref" href="#src-1">[1]</a>。Uptime Instituteの2025年の調査では、よく使われるラックの電力の平均は約9kW（前年は8.3kW）でした<a class="ref" href="#src-15">[15]</a>。8割を超える施設には30kWを超えるラックがなく、100kWを超えるラックもあるものの、まだまれだとしています<a class="ref" href="#src-15">[15]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>同じ調査で、約8分の1の施設に30〜59kWのラックがある<a class="ref" href="#src-15">[15]</a></li>
+            <li>AIなどの計算が主な用途になるのは、ラックあたり60kWを超えてから<a class="ref" href="#src-15">[15]</a></li>
+            <li>IEAの基本ケースでは、AIの普及が主に引っぱる高性能サーバーの電力消費が年30%増える見通し<a class="ref" href="#src-1">[1]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-3">熱をどう冷やすか</h2>
+
+      <figure class="photo">
+        <img src="images/data-center/cooling-tower.jpg" width="960" height="720" loading="lazy" alt="建物の屋上に、たくさんのファンが並ぶ冷却設備が2列に置かれている">
+        <figcaption>データセンターの屋上の冷却設備（米国アリゾナ州）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>冷たい空気と暖かい空気を分ける</h3>
+        <p class="item-point">冷気と暖気が混ざらないように、機器を並べる</p>
+        <p>JDCCは、データセンターの空調の例として、暖気と冷気を分けた配置（ホットアイル／コールドアイル分離）、冷気を最短の経路でサーバーまで送るフリーアクセスフロア（床を二重にして下に空間をつくる床）、サーバーの負荷に応じた空調の制御を挙げています<a class="ref" href="#src-10">[10]</a>。IEAは、データセンターのIT機器が使った電気は、実質的にすべて熱になるとしています<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>国のガイドラインが示す冷却の工夫</h3>
+        <p class="item-point">電力密度が高いときは、液体で冷やす方式を検討</p>
+        <p>資源エネルギー庁のガイドライン（2026年4月10日策定）は、データセンターを新設するときなどの取り組みとして、サーバー室内の冷却設備について「電力密度が高くなる場合には、液体冷却方式の採用を検討すること」としています<a class="ref" href="#src-11">[11]</a>。サーバー室外の冷却設備は、「自然エネルギーの活用により冷却に要するエネルギーの効率的利用を実施できる設備」を優先して選ぶよう求めています<a class="ref" href="#src-11">[11]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>温度や湿度の管理のエネルギーを減らせるなど、「地理的な優位性」のある地域での新設を検討する<a class="ref" href="#src-11">[11]</a></li>
+            <li>運用では、IT機器の推奨温度に合わせて温度・湿度を見直し、冷やしすぎを防ぐ<a class="ref" href="#src-11">[11]</a></li>
+            <li>廃熱を有効に利用できる設計や、運用の工夫も求めている<a class="ref" href="#src-11">[11]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>液体で冷やす技術に、国も期待</h3>
+        <p class="item-point">エネルギー基本計画も液体冷却技術の活用を挙げる</p>
+        <p>第7次エネルギー基本計画（2025年2月）は、最先端の半導体などと、「それを支える液体冷却技術などを用いる最先端の付帯設備」を活用し、データセンターのエネルギー効率の改善を強めることが重要としています<a class="ref" href="#src-16">[16]</a>。ワット・ビット連携官民懇談会の取りまとめ1.0（2025年6月）も、液冷・液浸技術をはじめとした最先端技術の開発を促すとしています<a class="ref" href="#src-17">[17]</a>。IEAは、冷却液をサーバーに直接めぐらせる方式や、電気を通さない液体にサーバーをひたす液浸冷却は、直接の水の使用を大きく減らせるとしています<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <h2 id="sec-4">電気をどれだけ使うか</h2>
+
+      <figure class="bar-chart">
+        <figcaption class="chart-title">世界のデータセンターの電力消費 <span class="chart-sub">（TWh。IEA「Energy and AI」2025年4月の推計。2030年・2035年は基本ケース）</span><a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-1">[1]</a></figcaption>
+        <div role="img" aria-label="世界のデータセンターの電力消費（IEAが2025年4月に公表した推計、単位はTWh）：2024年 約415、2030年 約945（基本ケース）、2035年 約1,200（基本ケース。ケース全体の幅は700〜1,700）">
+          <div class="bar-row"><span class="bar-label">2024年</span><span class="bar-track"><span class="bar" style="width:34.6%"></span></span><span class="bar-value">約415</span></div>
+          <div class="bar-row is-key"><span class="bar-label">2030年</span><span class="bar-track"><span class="bar" style="width:78.8%"></span></span><span class="bar-value">約945</span></div>
+          <div class="bar-row"><span class="bar-label">2035年</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">約1,200</span></div>
+        </div>
+      </figure>
+      <p>見方: IEAは2025年4月の報告書「Energy and AI」で、世界のデータセンターの電力消費を2024年に約415TWh（1TWhは10億kWh）、世界の電力消費の約1.5%と推計しました<a class="ref" href="#src-3">[3]</a>。基本ケースでは2030年に約945TWhと2倍を超え、世界の電力消費の3%弱になる見通しです<a class="ref" href="#src-1">[1]</a>。945TWhは、今の日本の総電力消費をやや上回る量です<a class="ref" href="#src-3">[3]</a>。</p>
+
+      <section class="item-card">
+        <h3>2035年の見通しは、700〜1,700TWhと幅がある</h3>
+        <p class="item-point">AIの広がり方や効率の改善しだいで大きく変わる</p>
+        <p>IEAは、今の消費量にも将来の消費量にも大きな不確かさがあるとして、複数のケースで推計しています<a class="ref" href="#src-1">[1]</a>。2035年は基本ケースで約1,200TWh、ケース全体では700〜1,700TWhの幅があります<a class="ref" href="#src-3">[3]</a>。2024年の消費量の国・地域別の割合は、米国45%、中国25%、欧州15%でした<a class="ref" href="#src-3">[3]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>世界のデータセンターの電力消費は、2017年から年に約12%ずつ増えてきた<a class="ref" href="#src-3">[3]</a></li>
+            <li>IEAは、データセンターは特定の場所に集まりやすく、送電網につなぐのが難しくなりうるとしている<a class="ref" href="#src-1">[1]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>日本は、2030年までに約8割増える見通し</h3>
+        <p class="item-point">IEAの基本ケースで、2024年から約15TWh増</p>
+        <p>IEAは、日本のデータセンターの電力消費を、いまは20TWh未満（日本の電力消費全体の約2%）と推計しています<a class="ref" href="#src-9">[9]</a>。IEAの基本ケースでは、2024年から2030年までに約15TWh（約80%）増える見通しです<a class="ref" href="#src-1">[1]</a>。同じ見通しで、米国は約240TWh（約130%）、中国は約175TWh（約170%）増えるとされています<a class="ref" href="#src-1">[1]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>国内の需要想定：2035年度に661万kW増</h3>
+        <p class="item-point">電力広域的運営推進機関が2026年1月に公表</p>
+        <p>電力広域的運営推進機関（広域機関）は、2026年1月21日に公表した需要の想定で、データセンターと半導体工場の新増設による分を、電気の申込み（契約電力）などをもとに別に積み上げました<a class="ref" href="#src-4">[4]</a>。最大需要電力（1年で最も多く電気を使うときの電力）は、両方の合計で2030年度に420万kW、2035年度に762万kW増え、そのうちデータセンター分は2035年度に661万kWです<a class="ref" href="#src-4">[4]</a>。電力量では2035年度に568億kWh増え、全国の6.71%にあたります<a class="ref" href="#src-4">[4]</a>。</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">データセンターの新増設で増える最大需要電力（全国） <span class="chart-sub">（万kW。電力広域的運営推進機関が2026年1月21日に公表した想定。半導体工場の分は含まない）</span><a class="ref" href="#src-4">[4]</a></figcaption>
+          <div role="img" aria-label="データセンターの新増設で増える最大需要電力（全国、電力広域的運営推進機関が2026年1月21日に公表した想定、単位は万kW）：2026年度 64、2027年度 104、2028年度 166、2029年度 241、2030年度 328、2031年度 414、2032年度 492、2033年度 561、2034年度 615、2035年度 661">
+            <div class="bar-row"><span class="bar-label">2026年度</span><span class="bar-track"><span class="bar" style="width:9.7%"></span></span><span class="bar-value">64</span></div>
+            <div class="bar-row"><span class="bar-label">2027年度</span><span class="bar-track"><span class="bar" style="width:15.7%"></span></span><span class="bar-value">104</span></div>
+            <div class="bar-row"><span class="bar-label">2028年度</span><span class="bar-track"><span class="bar" style="width:25.1%"></span></span><span class="bar-value">166</span></div>
+            <div class="bar-row"><span class="bar-label">2029年度</span><span class="bar-track"><span class="bar" style="width:36.5%"></span></span><span class="bar-value">241</span></div>
+            <div class="bar-row"><span class="bar-label">2030年度</span><span class="bar-track"><span class="bar" style="width:49.6%"></span></span><span class="bar-value">328</span></div>
+            <div class="bar-row"><span class="bar-label">2031年度</span><span class="bar-track"><span class="bar" style="width:62.6%"></span></span><span class="bar-value">414</span></div>
+            <div class="bar-row"><span class="bar-label">2032年度</span><span class="bar-track"><span class="bar" style="width:74.4%"></span></span><span class="bar-value">492</span></div>
+            <div class="bar-row"><span class="bar-label">2033年度</span><span class="bar-track"><span class="bar" style="width:84.9%"></span></span><span class="bar-value">561</span></div>
+            <div class="bar-row"><span class="bar-label">2034年度</span><span class="bar-track"><span class="bar" style="width:93.0%"></span></span><span class="bar-value">615</span></div>
+            <div class="bar-row is-key"><span class="bar-label">2035年度</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">661</span></div>
+          </div>
+        </figure>
+        <p class="chart-note">データセンター分は、事業者の新増設計画の見直しなどを反映し、2033年度までは前回（2025年度）の想定を下回っています。2034年度以降は前回を上回る見通しです<a class="ref" href="#src-4">[4]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>国は、電力需要が増える可能性が高いとみる</h3>
+        <p class="item-point">2040年度の発電電力量は1.1〜1.2兆kWh程度の見通し</p>
+        <p>第7次エネルギー基本計画は、生成AIの普及拡大に伴うデータセンターや半導体工場などの増加により、大幅な効率改善を見込んでも、将来の電力需要は増える可能性が高いとしています<a class="ref" href="#src-16">[16]</a>。脱炭素電源が十分に確保できないために、国内でデータセンターや半導体工場などの投資機会が失われることは「決してあってはならない」としています<a class="ref" href="#src-16">[16]</a>。資源エネルギー庁の資料では、2040年度の発電電力量の見通しは1.1〜1.2兆kWh程度で、2024年度（速報値）の9,922億kWhより多くなっています<a class="ref" href="#src-18">[18]</a>。</p>
+      </section>
+
+      <h2 id="sec-5">効率の物差し「PUE」と国のルール</h2>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 360 200" width="360" height="200" role="img" aria-label="PUEの計算例（説明用の仮の数字）。IT機器の電力が1,000kW、冷却・照明などIT機器以外が400kWなら、施設全体は1,400kWで、PUEは1,400÷1,000＝1.4。IT機器以外が300kWなら、施設全体は1,300kWで、PUEは1.3。IT機器以外の電力が少ないほど、PUEは1.0に近づく" font-family="inherit"><text x="20" y="18" font-size="11.5" font-weight="700" style="fill:var(--text)">例1：施設全体の電力 1,400kW</text><rect x="20" y="26" width="214" height="30" rx="4" style="fill:var(--accent)"/><text x="127" y="46" font-size="11" text-anchor="middle" style="fill:var(--accent-ink)">IT機器 1,000kW</text><rect x="234" y="26" width="86" height="30" rx="4" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="277" y="38" font-size="10" text-anchor="middle" style="fill:var(--text)">冷却・照明など</text><text x="277" y="51" font-size="10" text-anchor="middle" style="fill:var(--text)">400kW</text><text x="20" y="78" font-size="12" font-weight="700" style="fill:var(--text)">PUE ＝ 1,400 ÷ 1,000 ＝ 1.4</text><text x="20" y="108" font-size="11.5" font-weight="700" style="fill:var(--text)">例2：施設全体の電力 1,300kW</text><rect x="20" y="116" width="214" height="30" rx="4" style="fill:var(--accent)"/><text x="127" y="136" font-size="11" text-anchor="middle" style="fill:var(--accent-ink)">IT機器 1,000kW</text><rect x="234" y="116" width="64" height="30" rx="4" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="266" y="128" font-size="10" text-anchor="middle" style="fill:var(--text)">冷却など</text><text x="266" y="141" font-size="10" text-anchor="middle" style="fill:var(--text)">300kW</text><text x="20" y="168" font-size="12" font-weight="700" style="fill:var(--text)">PUE ＝ 1,300 ÷ 1,000 ＝ 1.3</text><text x="20" y="192" font-size="10.5" style="fill:var(--text-muted)">IT機器以外の電力が少ないほど、PUEは1.0に近づく</text></svg>
+        <figcaption>PUEの計算例（数字は説明用の仮のもの。筆者が作図）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>PUEは「施設全体の電力 ÷ IT機器の電力」</h3>
+        <p class="item-point">1.0に近いほど、IT機器以外に使う電気が少ない</p>
+        <p>PUE（Power Usage Effectiveness）は、データセンターのエネルギー効率を見る指標で、施設全体の電力をIT機器の電力で割って求めます<a class="ref" href="#src-15">[15]</a>。The Green Gridという団体が2007年に導入しました<a class="ref" href="#src-15">[15]</a>。資源エネルギー庁の資料は、1.0に近いほど効率的としています<a class="ref" href="#src-19">[19]</a>。ただし、PUEは水の使用量や、IT機器そのものの効率は測りません<a class="ref" href="#src-15">[15]</a>。</p>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>PUEの目安と国の基準</caption>
+          <thead><tr><th scope="col">項目</th><th scope="col">PUE</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">世界の平均（2025年の調査、加重平均）</th><td>1.54<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">同じ調査で、20MW以上の大きな施設の平均</th><td>1.44<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">日本の目標（事業者の平均、2030年度）</th><td>1.4以下<a class="ref" href="#src-20">[20]</a><a class="ref" href="#src-11">[11]</a></td></tr>
+            <tr><th scope="row">日本で2029年度以降に新設するデータセンターの基準</th><td>1.3以下<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">日本で新設するときに望ましいとされる設計時の値</th><td>1.28以下<a class="ref" href="#src-11">[11]</a></td></tr>
+            <tr><th scope="row">ドイツで2026年7月1日以降に運用を始めるデータセンター</th><td>年平均1.2以下<a class="ref" href="#src-19">[19]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-note">世界の平均は、6年続けてほぼ横ばいです（Uptime Instituteの調査）<a class="ref" href="#src-15">[15]</a>。ドイツの例は、資源エネルギー庁の会議資料による紹介です<a class="ref" href="#src-19">[19]</a>。</p>
+
+      <section class="item-card">
+        <h3>2030年度に「事業者の平均1.4以下」が目標</h3>
+        <p class="item-point">業種の上位1〜2割だけが満たす水準として決めた</p>
+        <p>省エネ法のベンチマーク制度（業種ごとに効率の目標を決める仕組み）には、令和4年度（2022年度）からデータセンター業が加わりました<a class="ref" href="#src-21">[21]</a>。指標はPUEで、目指す水準は1.4以下、目標年度は2030年度です<a class="ref" href="#src-20">[20]</a><a class="ref" href="#src-21">[21]</a>。対象は、年間のエネルギー使用量（原油換算）が1,500kl以上の事業者です<a class="ref" href="#src-20">[20]</a>。JDCCは、ベンチマークの水準は、各業種で全体の約1〜2割の事業者だけが満たす水準として決められていると説明しています<a class="ref" href="#src-21">[21]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3><span class="label label-new">新制度</span> 2026年4月から、新設はPUE1.3以下に</h3>
+        <p class="item-point">2029年度以降の新設は、稼働2年後からPUE1.3以下</p>
+        <div class="change">
+          <p class="change-what">新設するデータセンターごとのPUEの基準</p>
+          <p class="change-values"><span class="sr-only">変更前：</span><span class="change-before">なし（事業者の平均1.4以下の目標のみ）</span><span class="change-arrow" aria-hidden="true">→</span><span class="sr-only">変更後：</span><span class="change-after">1.3以下</span></p>
+          <p class="change-when">2026年4月施行。2029年度以降に新設するデータセンターが対象<a class="ref" href="#src-5">[5]</a></p>
+        </div>
+        <p>資源エネルギー庁は、省エネ・非化石転換法（省エネ法）に基づく新しい措置を2026年4月から施行しました<a class="ref" href="#src-5">[5]</a>。2029年度以降に新設するデータセンターは、稼働開始から2年たった時点の翌年度以降、PUEを1.3以下にすることが求められます<a class="ref" href="#src-5">[5]</a>。満たせない事業者には合理化計画の作成・提出が求められ、従わない場合はさらに行政措置がとられる可能性があります<a class="ref" href="#src-5">[5]</a>。2030年度に事業者の平均で1.4以下という目標は、引き続きあります<a class="ref" href="#src-11">[11]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>2026年度の提出分から、定期報告書にPUEや電気使用量など、データセンターの項目が加わった<a class="ref" href="#src-5">[5]</a></li>
+            <li>対象のデータセンターの情報は、提出年度の末（3月31日）までに自社のホームページなどで公表する<a class="ref" href="#src-5">[5]</a></li>
+            <li>借りた場所に自社のIT機器を置くテナント型も、2026年度の提出からPUEの報告などの対象になった<a class="ref" href="#src-5">[5]</a></li>
+            <li>対象は、年のエネルギー使用量が1,500kl以上か、サーバー室が300㎡以上のデータセンター<a class="ref" href="#src-11">[11]</a></li>
+            <li>1.3は、2014年度以降に新設された施設の実績の平均1.47などをふまえて決めた（アンケート）<a class="ref" href="#src-19">[19]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-6">日本の立地と最新の動き</h2>
+
+      <figure class="photo">
+        <img src="images/data-center/mitaka-dc.jpg" width="960" height="720" loading="lazy" alt="道路沿いに建つ、窓の少ない大きな白い建物と、曲面の外壁">
+        <figcaption>データセンターの建物の例（東京都三鷹市）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>およそ9割が東京圏・大阪圏に集中</h3>
+        <p class="item-point">関東が64%、関西が24%という民間の調査もある</p>
+        <p>総務省の令和8年版 情報通信白書は、日本のデータセンターのおよそ9割が東京圏・大阪圏に集中し、今後もこの状況が続く見込みだとしています<a class="ref" href="#src-6">[6]</a>。総務省・経済産業省の会議資料は、民間の調査（富士キメラ総研、2024年版）をもとに、立地の割合を関東64%、関西24%と示しています<a class="ref" href="#src-22">[22]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>白書によると、データセンターの数は米国が4,165、日本が242（2025年11月時点。民間の調査）<a class="ref" href="#src-23">[23]</a></li>
+            <li>日本のデータセンターサービスの市場は、2025年253億ドル、2030年351億ドルの予測（民間の調査）<a class="ref" href="#src-23">[23]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>なぜ地方に分散させるのか</h3>
+        <p class="item-point">大地震への備えと、電気を送りやすい場所への誘導</p>
+        <p>白書は、大震災などで東京圏・大阪圏が被災すると、通信サービスに全国規模の影響が出るおそれがあるため、データセンターの分散立地を進める必要があるとしています<a class="ref" href="#src-6">[6]</a>。また、データセンターは一部の地域に集まりやすく、新設には変電所の新増設などの大規模な工事が必要になる場合もあるため、電力と通信を一体で考える「ワット・ビット連携」が重要だとしています<a class="ref" href="#src-6">[6]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>取りまとめ1.0は、1か所あたりGW級（100万kW級）の集積拠点を複数つくる方針を示した<a class="ref" href="#src-17">[17]</a></li>
+            <li>場所選びでは、電力インフラの拡張の余地や、既存の集積地からの分散なども考える<a class="ref" href="#src-17">[17]</a></li>
+            <li>地方分散の補助事業の予算は、令和3年度補正500億円、令和5年度補正100億円、令和6年度補正120億円<a class="ref" href="#src-22">[22]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2021年度</span><p class="timeline-title">総務省が、地方のデータセンターなどを支援する基金をつくる</p><p class="timeline-note"><a class="ref" href="#src-6">[6]</a></p></li>
+        <li><span class="timeline-day">2022年度</span><p class="timeline-title">省エネ法のベンチマーク制度に、データセンター業が加わる</p><p class="timeline-note">2030年度に事業者平均でPUE1.4以下が目標<a class="ref" href="#src-21">[21]</a><a class="ref" href="#src-20">[20]</a></p></li>
+        <li><span class="timeline-day">2022年6月</span><p class="timeline-title">基金による補助の対象を採択</p><p class="timeline-note">北海道石狩市、福島県白河市、島根県松江市、福岡県福岡市など<a class="ref" href="#src-24">[24]</a></p></li>
+        <li><span class="timeline-day">2025年2月</span><p class="timeline-title">第7次エネルギー基本計画、GX2040ビジョン</p><p class="timeline-note"><a class="ref" href="#src-16">[16]</a><a class="ref" href="#src-25">[25]</a></p></li>
+        <li><span class="timeline-day">2025年3月</span><p class="timeline-title">ワット・ビット連携官民懇談会が発足</p><p class="timeline-note">総務省が経済産業省と連携して立ち上げ<a class="ref" href="#src-6">[6]</a></p></li>
+        <li><span class="timeline-day">2025年6月</span><p class="timeline-title">懇談会の「取りまとめ1.0」</p><p class="timeline-note">GW級の集積拠点を複数つくる方針<a class="ref" href="#src-17">[17]</a></p></li>
+        <li><span class="timeline-day">2025年8月</span><p class="timeline-title">経済産業省が「GX戦略地域制度」をつくる</p><p class="timeline-note"><a class="ref" href="#src-25">[25]</a></p></li>
+        <li><span class="timeline-day">2025年9月</span><p class="timeline-title">補助の対象を追加で採択</p><p class="timeline-note">北海道稚内市、鹿児島県薩摩川内市など<a class="ref" href="#src-26">[26]</a></p></li>
+        <li><span class="timeline-day">2026年1月</span><p class="timeline-title">電力広域的運営推進機関が需要の想定を公表</p><p class="timeline-note"><a class="ref" href="#src-4">[4]</a></p></li>
+        <li><span class="timeline-day">2026年4月</span><p class="timeline-title">省エネ法の新しい措置を施行</p><p class="timeline-note">2029年度以降の新設はPUE1.3以下など<a class="ref" href="#src-5">[5]</a></p></li>
+        <li><span class="timeline-day">2026年5月</span><p class="timeline-title">JDCCが地域共生ガイドライン（初版）をまとめる</p><p class="timeline-note"><a class="ref" href="#src-27">[27]</a></p></li>
+        <li><span class="timeline-day">2026年9月11日</span><p class="timeline-title">GX戦略地域（データセンター集積型）に9地域を認定</p><p class="timeline-note"><a class="ref" href="#src-7">[7]</a></p></li>
+        <li><span class="timeline-day">2026年10〜12月</span><p class="timeline-title">北海道が、電力の申込みを引き継ぐ事業者を公募</p><p class="timeline-note">応募申請は12月4日まで<a class="ref" href="#src-28">[28]</a></p></li>
+      </ol>
+
+      <section class="item-card">
+        <h3><span class="label label-new">最新</span> 9地域で、GW級の集積地をめざす</h3>
+        <p class="item-point">GX戦略地域のデータセンター集積型に9地域を認定</p>
+        <p>経済産業省は2026年9月11日、「GX戦略地域」（第1弾）を認定しました<a class="ref" href="#src-7">[7]</a>。GXはグリーントランスフォーメーションの略で、化石エネルギー中心の産業や社会の構造を、クリーンエネルギー中心に変えていくことです<a class="ref" href="#src-5">[5]</a>。データセンター集積型は9地域（10地点）で、今後10年程度でGW級のデータセンター集積地をつくる取り組みです<a class="ref" href="#src-7">[7]</a><a class="ref" href="#src-25">[25]</a>。認定には、計画の着実な推進と地域共生の確保などの条件が付いています<a class="ref" href="#src-7">[7]</a>。</p>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>GX戦略地域（データセンター集積型）の9地域（10地点）</caption>
+          <thead><tr><th scope="col">地域</th><th scope="col">集積地をつくる地点</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">北海道</th><td>石狩市、苫小牧市（それぞれでGW級）</td></tr>
+            <tr><th scope="row">秋田県</th><td>秋田市</td></tr>
+            <tr><th scope="row">宮城県</th><td>富谷市</td></tr>
+            <tr><th scope="row">栃木県</th><td>矢板市</td></tr>
+            <tr><th scope="row">茨城県</th><td>常総市／つくば市</td></tr>
+            <tr><th scope="row">富山県</th><td>南砺市</td></tr>
+            <tr><th scope="row">香川県</th><td>綾川町／坂出市／丸亀市</td></tr>
+            <tr><th scope="row">福岡県</th><td>北九州市／直方市／鞍手町</td></tr>
+            <tr><th scope="row">鹿児島県</th><td>薩摩川内市</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-note">出典: 経済産業省のニュースリリース（2026年9月11日）<a class="ref" href="#src-7">[7]</a>。各地域の計画の概要は後日公表するとしています<a class="ref" href="#src-7">[7]</a>。</p>
+
+      <section class="item-card">
+        <h3>北海道は、電力の枠を引き継ぐ事業者を募集</h3>
+        <p class="item-point">道が先に電力を申し込み、選ばれた事業者が引き継ぐ</p>
+        <p>北海道は、石狩市と苫小牧市の用地について、道が電力の申込みを済ませておき、データセンターの立地を希望する事業者を選んだあとで、申込みの内容を引き継ぐ形で公募しています<a class="ref" href="#src-28">[28]</a>。応募申請の期限は2026年12月4日、企画提案書の期限は12月21日です<a class="ref" href="#src-28">[28]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>苫小牧市の用地は400MW。送電網につなげる時期の目安は2030年8月以降<a class="ref" href="#src-29">[29]</a></li>
+            <li>石狩市は15〜300MWの区画で、つなげる時期の目安は2031年10月以降〜2032年12月以降<a class="ref" href="#src-30">[30]</a></li>
+            <li>知事は「土地、水、電力という限りのある資源」を有効に使うことが大事だとしている<a class="ref" href="#src-31">[31]</a></li>
+            <li>知事のメッセージは、脱炭素電源の活用や、JDCCの地域共生ガイドラインを踏まえた対応も求めている<a class="ref" href="#src-31">[31]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-7">これからの課題</h2>
+
+      <section class="item-card">
+        <h3>電気を届ける送電網づくり</h3>
+        <p class="item-point">過剰な増強を防ぐため、費用の負担のしかたを検討</p>
+        <p>取りまとめ1.0は、データセンターの需要の増加に対応して送配電網を増強するにあたり、投機的な立地による過剰な増強を抑えるため、受益者負担の考え方のもとで費用負担のあり方を検討するとしています<a class="ref" href="#src-17">[17]</a>。エネルギー基本計画は、早く電気を供給できる場所を示した「ウェルカムゾーンマップ」を通じて立地を誘導するとしています<a class="ref" href="#src-16">[16]</a>。北海道知事のメッセージも、需要が集中する地域では電力の供給までに長い期間がかかるなどの影響が心配されるとしています<a class="ref" href="#src-31">[31]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>冷却に使う水</h3>
+        <p class="item-point">30MW規模で日量700〜1,500トンという協会の試算</p>
+        <p>JDCCの地域共生ガイドラインは、国内では米国のように水の気化熱だけに頼る空調は多くないとしたうえで、IT機器の電力が30MW規模のデータセンターでは、日量700〜1,500トンの水を使うという試算を示しています<a class="ref" href="#src-27">[27]</a>。最近の大規模なデータセンターでは、気化熱を使う方式から、空気を使う方式や両方を組み合わせた方式に移る傾向があるとしています<a class="ref" href="#src-27">[27]</a>。IEAは、世界のデータセンターの水の消費量を、今は年約5,600億リットル、2030年には基本ケースで年約1兆2,000億リットルと推計しています<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>出てくる熱の再利用</h3>
+        <p class="item-point">排気は通常40度程度。再利用はまだコスト高と協会は説明</p>
+        <p>JDCCは、データセンターの排気の温度は通常40度程度、高負荷の施設でも60度程度で、製鉄所や発電所などより低いと説明しています<a class="ref" href="#src-2">[2]</a>。北欧では地域暖房に使う例があるものの、温水を配るインフラや政策の支援があって成り立っており、今のところ全体のコストは高いようだとしています<a class="ref" href="#src-2">[2]</a>。IEAは、熱を回収する技術はおおむね確立していて、液冷を取り入れると回収できる熱を増やせるとしています<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>地域とのつきあい方</h3>
+        <p class="item-point">協会が2026年5月に地域共生ガイドラインを策定</p>
+        <p>JDCCは、一部の事業者で、環境や防災の懸念をめぐって近くに住む人との関係が悪くなるなどの問題が出始めたとして、2026年5月に地域共生ガイドライン（初版）をまとめました<a class="ref" href="#src-27">[27]</a>。周辺の気温、騒音、交通、景観や地価、危険物や漏油、電磁波、水の消費、非常用発電機の排煙を、特に気をつける点に挙げています<a class="ref" href="#src-27">[27]</a>。セキュリティ上の理由から、データセンターであることを公表しない場合も多いとしています<a class="ref" href="#src-27">[27]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>JDCCは、工場などと比べて大気汚染や騒音、振動がないなどと説明している<a class="ref" href="#src-2">[2]</a></li>
+            <li>一方で、停電時や定期点検で非常用発電機を動かすときは、一時的に排煙があるとしている<a class="ref" href="#src-2">[2]</a></li>
+            <li>GX戦略地域の認定にも、地域共生の確保などが条件として付いている<a class="ref" href="#src-7">[7]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>生成AI向けのサーバーを積んだラック1本あたりの電力の、公的機関や業界団体による具体的な値</li>
+          <li>「外気冷却」についての、公的機関や業界団体による説明</li>
+          <li>非常用発電機の燃料の確保量の目安が、2013年の見直しのあとで変わったかどうか</li>
+          <li>「ハイパースケール」の規模を数字で決めた定義</li>
+          <li>個別の大型のデータセンター計画への国の助成額（報道のみで、公的資料では確認できなかった）</li>
+          <li>個々のネットのサービスが、どの地域のデータセンターで動いているか</li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（31件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月10日〜11日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank" rel="noopener">Energy and AI – Energy demand from AI（2025年4月）</a>（IEA（国際エネルギー機関））</li>
+          <li id="src-2"><a href="https://www.jdcc.or.jp/wp/wp-content/themes/jdccTheme/pdf/datacenter/about_2510.pdf" target="_blank" rel="noopener">「データセンター」とは（2025年10月2日、PDF）</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-3"><a href="https://www.iea.org/reports/energy-and-ai/executive-summary" target="_blank" rel="noopener">Energy and AI – Executive summary（2025年4月）</a>（IEA（国際エネルギー機関））</li>
+          <li id="src-4"><a href="https://www.occto.or.jp/assets/rijikai/01272672/rijikai_549_gian7.pdf" target="_blank" rel="noopener">2026年度全国及び供給区域ごとの需要想定の策定について（第549回理事会 第7号議案、2026年1月21日、PDF）</a>（電力広域的運営推進機関）</li>
+          <li id="src-5"><a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/data_center2026.html" target="_blank" rel="noopener">増加が見込まれるデータセンターの電力需要をどうする？さらなる省エネを進める新たな制度に注目！（2026年5月20日）</a>（資源エネルギー庁）</li>
+          <li id="src-6"><a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd222430.html" target="_blank" rel="noopener">令和8年版 情報通信白書「データセンター、海底ケーブル等の地方分散」</a>（総務省）</li>
+          <li id="src-7"><a href="https://www.meti.go.jp/press/2026/09/20260911006.html" target="_blank" rel="noopener">ニュースリリース「GX戦略地域（第1弾）を認定しました」（2026年9月11日）</a>（経済産業省）</li>
+          <li id="src-8"><a href="https://www.jdcc.or.jp/activity/datacenter/" target="_blank" rel="noopener">データセンターとは</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-9"><a href="https://www.iea.org/files/de9dea13-b07d-42c5-a398-d1b3ae17d866/EnergyandAI.pdf" target="_blank" rel="noopener">Energy and AI（報告書全文、2025年4月、PDF）</a>（IEA（国際エネルギー機関））</li>
+          <li id="src-10"><a href="https://www.jdcc.or.jp/activity/effect/" target="_blank" rel="noopener">データセンターの効用/メリットと課題</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-11"><a href="https://www.enecho.meti.go.jp/category/saving_and_new/saving/enterprise/factory/support-tools/data/dc_guideline.pdf" target="_blank" rel="noopener">省エネ・非化石転換法に基づくデータセンター業に係る措置のガイドライン（2026年4月10日策定、PDF）</a>（資源エネルギー庁 省エネルギー課）</li>
+          <li id="src-12"><a href="https://www.jdcc.or.jp/activity/earthquake/" target="_blank" rel="noopener">災害対策・停電対策</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-13"><a href="https://www.jdcc.or.jp/pdf/facility.pdf" target="_blank" rel="noopener">データセンター ファシリティ スタンダードの概要（PDF）</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-14"><a href="https://www.jdcc.or.jp/pdf/20130703JDCC_facility_standard_digest.pdf" target="_blank" rel="noopener">東日本大震災を踏まえたデータセンター ファシリティ スタンダードの検証と見直し（ダイジェスト版、2013年、PDF）</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-15"><a href="https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2025.Annual.Survey.Report.pdf?version=0" target="_blank" rel="noopener">Global Data Center Survey 2025（2025年7月、PDF）</a>（Uptime Institute）</li>
+          <li id="src-16"><a href="https://www.enecho.meti.go.jp/category/others/basic_plan/pdf/20250218_01.pdf" target="_blank" rel="noopener">エネルギー基本計画（第7次、令和7年2月、PDF）</a>（資源エネルギー庁）</li>
+          <li id="src-17"><a href="https://www.soumu.go.jp/main_content/001014454.pdf" target="_blank" rel="noopener">ワット・ビット連携官民懇談会 取りまとめ1.0（2025年6月、PDF）</a>（総務省・経済産業省）</li>
+          <li id="src-18"><a href="https://hokkaido.env.go.jp/content/000374383.pdf" target="_blank" rel="noopener">最近のエネルギー政策を巡る動向について（令和8年2月、PDF）</a>（資源エネルギー庁（環境省 北海道地方環境事務所のサイトに掲載））</li>
+          <li id="src-19"><a href="https://www.meti.go.jp/shingikai/enecho/shoene_shinene/sho_energy/kojo_handan/pdf/2025_002_03.pdf" target="_blank" rel="noopener">省エネ法に関する措置について（令和7年度第2回 工場等判断基準WG 資料3、2025年5月14日、PDF）</a>（資源エネルギー庁）</li>
+          <li id="src-20"><a href="https://www.enecho.meti.go.jp/category/saving_and_new/saving/enterprise/factory/support-tools/data/2022_01benchmark.pdf" target="_blank" rel="noopener">データセンター業のベンチマーク制度 制度の概要（令和4年4月、PDF）</a>（資源エネルギー庁）</li>
+          <li id="src-21"><a href="https://www.jdcc.or.jp/pue_guide/" target="_blank" rel="noopener">PUEガイドライン/ベンチマーク制度/データセンター業のベンチマーク制度</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-22"><a href="https://www.soumu.go.jp/main_content/001026288.pdf" target="_blank" rel="noopener">ワット・ビット連携官民懇談会WG 第4回 事務局説明資料（2025年8月、PDF）</a>（総務省・経済産業省）</li>
+          <li id="src-23"><a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd218100.html" target="_blank" rel="noopener">令和8年版 情報通信白書「データセンター」</a>（総務省）</li>
+          <li id="src-24"><a href="https://www.soumu.go.jp/menu_news/s-news/01kiban04_02000208.html" target="_blank" rel="noopener">報道資料：令和3年度補正予算「データセンター、海底ケーブル等の地方分散によるデジタルインフラ強靱化事業」に係る基金設置法人による間接補助事業者の採択（2022年6月27日）</a>（総務省）</li>
+          <li id="src-25"><a href="https://www.meti.go.jp/policy/energy_environment/global_warming/gx_strategy_area.html" target="_blank" rel="noopener">GX戦略地域制度</a>（経済産業省）</li>
+          <li id="src-26"><a href="https://www.soumu.go.jp/menu_news/s-news/01kiban04_02000267.html" target="_blank" rel="noopener">報道資料：令和6年度補正予算「データセンター等の地方分散によるデジタルインフラ強靭化事業」に係る基金設置法人による間接補助事業者の採択（2025年9月25日）</a>（総務省）</li>
+          <li id="src-27"><a href="https://www.jdcc.or.jp/wp/wp-content/themes/jdccTheme/pdf/datacenter/20260501_Regional-symbiosis.pdf" target="_blank" rel="noopener">データセンター地域共生ガイドライン（2026年5月初版、PDF）</a>（日本データセンター協会（JDCC））</li>
+          <li id="src-28"><a href="https://www.pref.hokkaido.lg.jp/kz/ssg/272100.html" target="_blank" rel="noopener">GX戦略地域（データセンター集積型）における電力申込内容の承継に係る公募の実施について</a>（北海道）</li>
+          <li id="src-29"><a href="https://www.pref.hokkaido.lg.jp/fs/1/3/2/3/1/1/2/7/_/GX%E6%88%A6%E7%95%A5%E5%9C%B0%E5%9F%9F(%E8%8B%AB%E5%B0%8F%E7%89%A7%E5%B8%82)%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E9%9B%BB%E5%8A%9B%E7%94%B3%E8%BE%BC%E5%86%85%E5%AE%B9%E3%81%AE%E6%89%BF%E7%B6%99%E3%81%AB%E4%BF%82%E3%82%8B%E5%85%AC%E5%8B%9F%E8%A6%81%E9%A0%98.pdf" target="_blank" rel="noopener">GX戦略地域（苫小牧市）における電力申込内容の承継に係る公募要領（PDF）</a>（北海道）</li>
+          <li id="src-30"><a href="https://www.pref.hokkaido.lg.jp/fs/1/3/2/3/1/1/3/0/_/GX%E6%88%A6%E7%95%A5%E5%9C%B0%E5%9F%9F(%E7%9F%B3%E7%8B%A9%E5%B8%82)%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E9%9B%BB%E5%8A%9B%E7%94%B3%E8%BE%BC%E5%86%85%E5%AE%B9%E3%81%AE%E6%89%BF%E7%B6%99%E3%81%AB%E4%BF%82%E3%82%8B%E5%85%AC%E5%8B%9F%E8%A6%81%E9%A0%98.pdf" target="_blank" rel="noopener">GX戦略地域（石狩市）における電力申込内容の承継に係る公募要領（PDF）</a>（北海道）</li>
+          <li id="src-31"><a href="https://www.pref.hokkaido.lg.jp/kz/ssg/270017.html" target="_blank" rel="noopener">データセンター立地に関する道の考え（知事からのメッセージ）について（2026年9月15日）</a>（北海道）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（3件）</summary>
+        <ol class="sources">
+          <li>データセンターのサーバーラックの列<br>写真: PiDatacenters／<a href="https://commons.wikimedia.org/wiki/File:Racks_Amravati_Data_Center.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>データセンターの屋上の冷却設備（米国アリゾナ州）<br>写真: Rsparks3／<a href="https://commons.wikimedia.org/wiki/File:Data_center_cooling_tower.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">CC0</a>）</li>
+          <li>データセンターの建物の例（東京都三鷹市）<br>写真: nakashi／<a href="https://commons.wikimedia.org/wiki/File:NTT_DATA_Corporation_Mitaka_Data_Center_East_-_Nov_14,_2020.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月11日時点の情報をもとにまとめたものです。見通しや制度は、変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
