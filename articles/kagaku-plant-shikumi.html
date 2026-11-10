@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全｜雑学アーカイブ</title>
+  <meta name="description" content="化学プラントの中で何が起きているかを、化学工学会・石油連盟・石油化学工業協会・厚生労働省・消防庁などの資料でまとめました。前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・ポンプ・バルブなど主な装置の役割、製油所の常圧蒸留（350℃以上）とナフサ分解によるエチレン製造（約800℃、0.3〜0.6秒）、ユーティリティ、DCSと安全計装、PFD・P&ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計。2026年11月10日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全">
+  <meta property="og:description" content="化学プラントの中で何が起きているかを、化学工学会・石油連盟・石油化学工業協会・厚生労働省・消防庁などの資料でまとめました。前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・ポンプ・バルブなど主な装置の役割、製油所の常圧蒸留（350℃以上）とナフサ分解によるエチレン製造（約800℃、0.3〜0.6秒）、ユーティリティ、DCSと安全計装、PFD・P&ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計。2026年11月10日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › プラント</p>
+
+      <h1>化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-10">2026年11月10日</time></li>
+        <li><span class="tag">プラント</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>化学プラントは、反応の前後の「前処理」と「分離・精製」が大きな部分を占める<a class="ref" href="#src-1">[1]</a></li>
+          <li>製油所では、原油を350℃以上に熱して蒸留塔で沸点ごとに分ける<a class="ref" href="#src-2">[2]</a></li>
+          <li>エチレンは、ナフサを約800℃で<strong>0.3〜0.6秒</strong>だけ加熱して分解する<a class="ref" href="#src-3">[3]</a></li>
+          <li>運転は制御室で集中管理し、安全のための装置は制御と分ける<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-5">[5]</a></li>
+          <li>2025年のコンビナートの一般事故は425件で、過去最多<a class="ref" href="#src-6">[6]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">化学プラントで起きていること</a></li>
+          <li><a href="#sec-2">主な装置の役割</a></li>
+          <li><a href="#sec-3">例1：製油所の常圧蒸留</a></li>
+          <li><a href="#sec-4">例2：ナフサからエチレンをつくる</a></li>
+          <li><a href="#sec-5">ユーティリティと、計装・制御</a></li>
+          <li><a href="#sec-6">設計図の種類</a></li>
+          <li><a href="#sec-7">安全の仕組みと事故</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>化学プラントは、原料に化学変化や物理変化を起こして、燃料やプラスチックの原料などの製品をつくる設備のまとまりです<a class="ref" href="#src-7">[7]</a>。この記事では、プラントの中の流れと主な装置、製油所とエチレンプラントの例、制御と安全の仕組みを、学会・業界団体・公的機関の資料でまとめました。業界や会社については<a href="plant-engineering.html">プラントエンジニアリングとは</a>、プラント全体の入門は<a href="plant-towa.html">プラントとは何か</a>にまとめています。</p>
+
+      <figure class="photo">
+        <img src="images/kagaku-plant-shikumi/distillation.jpg" width="960" height="742" loading="lazy" alt="石油化学プラントの、足場や階段のついた背の高い銀色の塔と、手前の太い配管">
+        <figcaption>石油化学プラントの塔（ドイツ・ケルン）</figcaption>
+      </figure>
+
+      <h2 id="sec-1">化学プラントで起きていること</h2>
+
+      <section class="item-card">
+        <h3>反応の前後に、混ぜる・分けるなどの工程がある</h3>
+        <p class="item-point">費用は、反応そのものより前後の工程にかかることが多い</p>
+        <p>化学工学会は、化学反応だけでは製品にならず、反応の前後に混合・分離など物理変化を主とする前処理と後処理が必要だと説明しています<a class="ref" href="#src-1">[1]</a>。準備や後始末の工程の方に経費がかかる場合が多いとしています<a class="ref" href="#src-1">[1]</a>。こうした処理を種類ごとに整理したのが「単位操作」という考え方です<a class="ref" href="#src-1">[1]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>化学工学は、実験室の化学を実際の生産に乗せるための学問<a class="ref" href="#src-1">[1]</a></li>
+            <li>学会の研究分野には、蒸留・吸着・抽出・晶析・乾燥・固液分離などが並ぶ<a class="ref" href="#src-8">[8]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 312" width="340" height="312" role="img" aria-label="化学プラントの流れの図。原料の受け入れと貯蔵、前処理（温める・混ぜる）、反応（反応器）、分離・精製（蒸留塔など）、製品の貯蔵と出荷の順に進む。横には、電力・蒸気・計器用空気などをつくるユーティリティ設備がある" font-family="inherit"><rect x="4" y="8" width="220" height="48" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="114" y="28" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">原料の受け入れ・貯蔵</text><text x="114" y="46" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">タンク・槽</text><rect x="4" y="70" width="220" height="48" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="114" y="90" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">前処理</text><text x="114" y="108" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">加熱炉・熱交換器・ポンプ</text><rect x="4" y="132" width="220" height="48" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="114" y="152" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">反応</text><text x="114" y="170" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">反応塔（触媒など）</text><rect x="4" y="194" width="220" height="48" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="114" y="214" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">分離・精製</text><text x="114" y="232" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">蒸留塔など</text><rect x="4" y="256" width="220" height="48" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="114" y="276" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">製品の貯蔵・出荷</text><text x="114" y="294" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">タンク・出荷設備</text><path d="M114 56 L114 70 M114 118 L114 132 M114 180 L114 194 M114 242 L114 256" stroke-width="2" style="stroke:var(--accent);fill:none"/><rect x="236" y="70" width="100" height="234" rx="8" style="fill:var(--surface);stroke:var(--border)" stroke-dasharray="5 4"/><text x="286" y="150" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">ユーティリティ</text><text x="286" y="176" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">電力・蒸気</text><text x="286" y="196" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">計器用空気</text><text x="286" y="216" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">燃料など</text></svg>
+        <figcaption>化学プラントの流れ（化学工学会などの資料をもとに筆者が整理）</figcaption>
+      </figure>
+
+      <h2 id="sec-2">主な装置の役割</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>化学プラント・製油所の主な装置</caption>
+          <thead><tr><th scope="col">装置</th><th scope="col">役割</th><th scope="col">仕組み・種類</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">蒸留塔</th><td>沸点の違いで成分を分ける</td><td>塔内に0.3〜1.0m間隔でトレイ（棚）が並ぶ<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">反応塔（反応器）</th><td>触媒などで化学反応を起こす<a class="ref" href="#src-4">[4]</a></td><td>触媒の詰め方に固定床・流動床・移動床・沸騰床などがある<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">熱交換器</th><td>2つの流体の間で熱をやりとりする<a class="ref" href="#src-4">[4]</a></td><td>大型のものは多管式。冷却器・凝縮器・再沸器などの用途がある<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">加熱炉</th><td>原料を高い温度に熱する<a class="ref" href="#src-4">[4]</a></td><td>ほとんどが管式。効率は自然通風式で80%前後<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">ポンプ・圧縮機</th><td>液体・気体を送る<a class="ref" href="#src-4">[4]</a></td><td>ポンプは遠心ポンプが最も多い。圧縮機は水素や計器用の空気を送る<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">槽（ベッセル）</th><td>一時的にためる・分ける<a class="ref" href="#src-4">[4]</a></td><td>縦型・横型がある<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">バルブ</th><td>流量を調整する<a class="ref" href="#src-9">[9]</a></td><td>玉形弁・仕切弁・ボール弁・バタフライ弁、逆流を防ぐ逆止弁など<a class="ref" href="#src-9">[9]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>熱交換器と加熱炉で、熱を上手に使う</h3>
+        <p class="item-point">加熱炉の燃料代は、製油所の運転費で最も大きい</p>
+        <p>石油エネルギー技術センターのサイトにある解説では、精製装置の運転費のうち、加熱炉の燃料費の割合が最も大きいとされています<a class="ref" href="#src-4">[4]</a>。そのため、燃やす空気を排ガスと熱交換して温めておくなど、熱を回収して効率を上げています<a class="ref" href="#src-4">[4]</a>。熱交換器は、プロセス用の大型のものには多管式が使われます<a class="ref" href="#src-4">[4]</a>。</p>
+      </section>
+
+      <figure class="photo">
+        <img src="images/kagaku-plant-shikumi/heat-exchanger.jpg" width="960" height="541" loading="lazy" alt="木の台に載せられた、細い管をたくさん束ねた長い円筒形の部品">
+        <figcaption>多管式熱交換器の管の束（組み立て前）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>配管とバルブが、プラントの使いやすさを決める</h3>
+        <p class="item-point">配管設計の良し悪しが、運転のしやすさに大きく影響する</p>
+        <p>厚生労働省の職業情報は、化学プラントでは配管の設計・施工の良し悪しがプラントの操作性に大きく影響するため、配管設計は大きな工数を要する仕事だとしています<a class="ref" href="#src-10">[10]</a>。バルブのうち、途中まで開いて流量を細かく調整する使い方に向くのは玉形弁です<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <h2 id="sec-3">例1：製油所の常圧蒸留</h2>
+
+      <section class="item-card">
+        <h3>原油を350℃以上に熱し、蒸留塔で沸点ごとに分ける</h3>
+        <p class="item-point">上からLPガス・ナフサ・灯油・軽油、塔の底に残油</p>
+        <p>石油連盟によると、製油所ではまず原油を加熱炉で350℃以上に熱して常圧蒸留塔（トッパー）に吹き込み、LPガス・ナフサ・灯油・軽油・重油などに大まかに分けます<a class="ref" href="#src-2">[2]</a>。蒸留塔の中では、上がっていく蒸気とトレイの上の液が触れ合い、成分が分かれていきます<a class="ref" href="#src-4">[4]</a>。工業的には、塔の上から出た液の一部を塔に戻す「還流」をして濃度を高める精留がほとんどです<a class="ref" href="#src-4">[4]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>その後の脱硫・分解・改質などは「二次処理」と呼ぶ<a class="ref" href="#src-2">[2]</a></li>
+            <li>分けた留分は、そのままでは製品にならないものがほとんど<a class="ref" href="#src-11">[11]</a></li>
+            <li>製油所で出たガスは、主に各装置の燃料に使う<a class="ref" href="#src-11">[11]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 320" width="340" height="320" role="img" aria-label="常圧蒸留塔の模式図。加熱炉で350℃以上に熱した原油が塔の下の方に入る。塔の上から順に、ガス・LPG（沸点がマイナス1℃以下）、ナフサ（沸点35〜180℃）、灯油（170〜250℃）、軽油（240〜350℃）が取り出され、塔の底から残油（350℃以上）が出る" font-family="inherit"><rect x="110" y="10" width="72" height="296" rx="30" style="fill:var(--surface);stroke:var(--border)"/><path d="M118 70 L174 70 M118 130 L174 130 M118 190 L174 190 M118 250 L174 250" stroke-width="1.5" style="stroke:var(--border);fill:none"/><rect x="4" y="226" width="92" height="56" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="50" y="248" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">加熱炉</text><text x="50" y="268" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">350℃以上</text><path d="M96 254 L110 254" stroke-width="2" style="stroke:var(--accent);fill:none"/><text x="50" y="216" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">原油</text><path d="M50 196 L50 226" stroke-width="2" style="stroke:var(--accent);fill:none"/><path d="M182 40 L198 40 M182 100 L198 100 M182 160 L198 160 M182 220 L198 220 M182 292 L198 292" stroke-width="2" style="stroke:var(--accent);fill:none"/><text x="204" y="38" font-size="13" font-weight="700" style="fill:var(--text)">ガス・LPG</text><text x="204" y="55" font-size="11.5" style="fill:var(--text-muted)">沸点 −1℃以下</text><text x="204" y="98" font-size="13" font-weight="700" style="fill:var(--text)">ナフサ</text><text x="204" y="115" font-size="11.5" style="fill:var(--text-muted)">35〜180℃</text><text x="204" y="158" font-size="13" font-weight="700" style="fill:var(--text)">灯油</text><text x="204" y="175" font-size="11.5" style="fill:var(--text-muted)">170〜250℃</text><text x="204" y="218" font-size="13" font-weight="700" style="fill:var(--text)">軽油</text><text x="204" y="235" font-size="11.5" style="fill:var(--text-muted)">240〜350℃</text><text x="204" y="290" font-size="13" font-weight="700" style="fill:var(--text)">残油</text><text x="204" y="307" font-size="11.5" style="fill:var(--text-muted)">350℃以上</text><text x="146" y="44" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">低温</text><text x="146" y="288" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">高温</text></svg>
+        <figcaption>常圧蒸留塔の模式図（沸点の範囲はENEOS石油便覧の目安。石油連盟の資料などをもとに筆者が作図）</figcaption>
+      </figure>
+      <p>沸点の範囲は、ガソリン（ナフサ）が35〜180℃、灯油が170〜250℃、軽油が240〜350℃、残油が350℃以上です<a class="ref" href="#src-11">[11]</a>。区切り方は資料によって少し違い、化学工学会の資料ではナフサを沸点50〜150℃の成分としています<a class="ref" href="#src-3">[3]</a>。</p>
+
+      <h2 id="sec-4">例2：ナフサからエチレンをつくる</h2>
+
+      <section class="item-card">
+        <h3>熱分解は、約800℃でわずか0.3〜0.6秒</h3>
+        <p class="item-point">分解してできたガスや油の約30%がエチレンになる</p>
+        <p>化学工学会の資料によると、エチレンプラントはナフサを熱で分解する工程と、成分を分ける工程の2つからなります<a class="ref" href="#src-3">[3]</a>。ナフサの蒸気を水蒸気と一緒に、800度に熱した熱分解管に0.3〜0.6秒だけ通します<a class="ref" href="#src-3">[3]</a>。石油化学工業協会は、800℃以上で分解すると、できたガスや油の約30%がエチレンになると説明しています<a class="ref" href="#src-12">[12]</a>。</p>
+      </section>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">分解</span><p class="timeline-title">ナフサと水蒸気を分解炉の管に通す</p><p class="timeline-note">約800℃（図では750〜850℃）、0.3〜0.6秒<a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">分離</span><p class="timeline-title">6本の蒸留塔で、成分ごとに分ける</p><p class="timeline-note">1本の塔では2つの成分にしか分けられないため<a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">製品</span><p class="timeline-title">エチレン・プロピレンなどができる</p><p class="timeline-note">ほかにメタン・エタン・プロパン・ブタンなど<a class="ref" href="#src-3">[3]</a></p></li>
+      </ol>
+      <p>分離に使う蒸留塔は100段以上あり、高いものは90mにもなり、中は20気圧に加圧されています<a class="ref" href="#src-3">[3]</a>。工場では、コンピュータで温度や反応の状態が管理されています<a class="ref" href="#src-13">[13]</a>。</p>
+
+      <h2 id="sec-5">ユーティリティと、計装・制御</h2>
+
+      <section class="item-card">
+        <h3>製造設備のほかに、電気や蒸気をつくる設備がある</h3>
+        <p class="item-point">製造する「オンサイト」と、支える「オフサイト」に分ける</p>
+        <p>厚生労働省の職業情報では、直接製造を行う設備をオンサイト設備と呼ぶのに対し、電力・蒸気などのユーティリティ設備、倉庫、貯槽、事務管理棟などをオフサイト設備と呼んでいます<a class="ref" href="#src-14">[14]</a>。製油所では、圧縮機で計器用の空気をつくって送ります<a class="ref" href="#src-4">[4]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>流量・温度・圧力・液面を測り、制御室で集中管理する</h3>
+        <p class="item-point">1975年に、世界初のDCS（分散形制御システム）が登場</p>
+        <p>プラントの運転では、装置の流量・温度・圧力・液面などを計器で測り、運転の条件に合うように操作します<a class="ref" href="#src-4">[4]</a>。大きなプラントでは、運転に必要な情報をすべて計器室（制御室）に集めて、プラント全体を集中管理します<a class="ref" href="#src-4">[4]</a>。横河電機は、1975年に販売を始めたCENTUMを世界初のDCSとしています<a class="ref" href="#src-15">[15]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>DCSは、制御の計算をする部分を設備ごとに分けて、信頼性を高めている<a class="ref" href="#src-15">[15]</a></li>
+            <li>考え方は「機能は分散・情報は集中」<a class="ref" href="#src-16">[16]</a></li>
+            <li>DCSは、プログラムの変更で制御の方法を変えやすい<a class="ref" href="#src-4">[4]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>安全のための装置は、ふだんの制御と分ける</h3>
+        <p class="item-point">安全計装システムは、異常のときにプラントを安全に止める</p>
+        <p>横河電機は、安全計装システムを、事故を未然に防ぎ、万一の事故でも被害の拡大を防ぐためのものと説明しています<a class="ref" href="#src-5">[5]</a>。制御システムと安全計装システムは分ける必要があり、これはJISの要求だとしています<a class="ref" href="#src-5">[5]</a>。</p>
+      </section>
+
+      <h2 id="sec-6">設計図の種類</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>化学プラントの設計で使う主な図面</caption>
+          <thead><tr><th scope="col">図面</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">プロセスフローシート（PFD）</th><td>プロセスの流れを図面に表したもの。プロセス設計の成果をまとめる<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">P&amp;Iダイアグラム（P&amp;ID）</th><td>プロセスフローシートを詳しくしたもの<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">プロットプラン（配置図）</th><td>生産設備・ユーティリティ設備・配管の通り道・倉庫などを敷地にどう置くかを決める<a class="ref" href="#src-17">[17]</a></td></tr>
+            <tr><th scope="row">配管図</th><td>配管のレイアウトを検討して仕上げる詳細設計の成果<a class="ref" href="#src-10">[10]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>配管設計は、プロットプラン・プロセスフローシート・P&amp;Iダイアグラムをもとに進めます<a class="ref" href="#src-10">[10]</a>。図面のもとになる3Dモデルの作り方は、<a href="plant-3d-model.html">プラントの3Dモデルはどう作られるのか</a>にまとめています。</p>
+
+      <h2 id="sec-7">安全の仕組みと事故</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>化学プラントに関わる主な法律と、現場で見える設備</caption>
+          <thead><tr><th scope="col">法令</th><th scope="col">主な内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">高圧ガス保安法</th><td>高圧ガスによる災害を防ぐ。圧縮ガスなら、常用の温度で1MPa以上などが「高圧ガス」<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">コンビナート等保安規則</th><td>圧力が上がりすぎたときの安全装置（安全弁など）と放出管、誤った操作を防ぎ原料を自動で止めるインターロック、ガス漏れの検知警報、フレアースタックなど<a class="ref" href="#src-19">[19]</a></td></tr>
+            <tr><th scope="row">消防法</th><td>引火性液体などの危険物は、指定数量以上を製造所・貯蔵所・取扱所以外で扱ってはならない<a class="ref" href="#src-20">[20]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/kagaku-plant-shikumi/flare.jpg" width="960" height="640" loading="lazy" alt="木々の向こうに立つ鉄塔の先端で、炎が燃えている">
+        <figcaption>製油所のフレアスタック（ブルネイ）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>コンビナートの事故は、増える傾向にある</h3>
+        <p class="item-point">2025年の一般事故は425件。漏えいが55%、火災が40%</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">石油コンビナート等の一般事故（地震によらない事故）の件数 <span class="chart-sub">（件）</span><a class="ref" href="#src-6">[6]</a></figcaption>
+          <div role="img" aria-label="石油コンビナート等特別防災区域の一般事故の件数：1998年 74件、2003年 133件、2008年 207件、2013年 228件、2018年 314件、2023年 395件、2025年 425件">
+            <div class="bar-row"><span class="bar-label">1998年</span><span class="bar-track"><span class="bar" style="width:17.4%"></span></span><span class="bar-value">74</span></div>
+            <div class="bar-row"><span class="bar-label">2003年</span><span class="bar-track"><span class="bar" style="width:31.3%"></span></span><span class="bar-value">133</span></div>
+            <div class="bar-row"><span class="bar-label">2008年</span><span class="bar-track"><span class="bar" style="width:48.7%"></span></span><span class="bar-value">207</span></div>
+            <div class="bar-row"><span class="bar-label">2013年</span><span class="bar-track"><span class="bar" style="width:53.6%"></span></span><span class="bar-value">228</span></div>
+            <div class="bar-row"><span class="bar-label">2018年</span><span class="bar-track"><span class="bar" style="width:73.9%"></span></span><span class="bar-value">314</span></div>
+            <div class="bar-row"><span class="bar-label">2023年</span><span class="bar-track"><span class="bar" style="width:92.9%"></span></span><span class="bar-value">395</span></div>
+            <div class="bar-row is-key"><span class="bar-label">2025年</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">425</span></div>
+          </div>
+        </figure>
+        <p>消防庁によると、2025年の石油コンビナート等特別防災区域の事故は427件で、地震によらない一般事故は425件と過去最多でした<a class="ref" href="#src-6">[6]</a>。種類は漏えいが233件（54.8%）、火災が170件（40.0%）です<a class="ref" href="#src-6">[6]</a>。原因は、配管などの腐食・疲労などの劣化を含む物的要因が49%、操作の確認不足などの人的要因が41%でした<a class="ref" href="#src-6">[6]</a>。</p>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>単位操作（蒸留・吸収・ろ過など）それぞれの短い定義を示した公的な資料</li>
+          <li>槽型・管型の反応器の分類と、触媒の役割の公的な解説</li>
+          <li>PFDとP&amp;IDの描く内容の詳しい違い、図記号の規格（JIS Z 8204など）の本文</li>
+          <li>冷却水・窒素などのユーティリティの用途と、フレアスタックの役割の公的な説明</li>
+          <li>2025年の高圧ガス事故の件数（経済産業省の資料を読めなかった）</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="plant-towa.html">プラントとは何かを分かりやすく解説</a></li>
+          <li><a href="plant-3d-model.html">プラントの3Dモデルはどう作られるのか</a></li>
+          <li><a href="plant-engineering.html">プラントエンジニアリングとは</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（20件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月10日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.scej.org/general/whatisce.html" target="_blank" rel="noopener">化学工学とは</a>（化学工学会）</li>
+          <li id="src-2"><a href="https://www.paj.gr.jp/statis/faq/67" target="_blank" rel="noopener">よくある質問「製油所の精製工程」</a>（石油連盟）</li>
+          <li id="src-3"><a href="https://www.scej.org/docs/higher/highschool-web/ethylene_plant_youshi.pdf" target="_blank" rel="noopener">エチレンプラント－石油化学の原料、低分子炭化水素をつくる－</a>（化学工学会 夢化学委員会）</li>
+          <li id="src-4"><a href="https://www.pecj.or.jp/japanese/safer/knowledge/doc/no-31.doc" target="_blank" rel="noopener">製油所の機器・計装の解説（安全に関する知識 No.31）</a>（石油エネルギー技術センター）</li>
+          <li id="src-5"><a href="https://www.yokogawa.co.jp/solutions/products-and-services/control/control-and-safety-system/safety-instrumented-systems-sis/" target="_blank" rel="noopener">安全計装システム</a>（横河電機）</li>
+          <li id="src-6"><a href="https://www.soumu.go.jp/main_content/001073245.pdf" target="_blank" rel="noopener">令和7年中の石油コンビナート等特別防災区域の特定事業所における事故概要（2026年5月29日）</a>（総務省消防庁）</li>
+          <li id="src-7"><a href="https://www.mhlw.go.jp/content/11800000/000588928.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「プロセス設計」</a>（厚生労働省）</li>
+          <li id="src-8"><a href="https://www.scej.org/general/bra-div/division.html" target="_blank" rel="noopener">部会</a>（化学工学会）</li>
+          <li id="src-9"><a href="https://www.pref.shiga.lg.jp/hik/32634.html" target="_blank" rel="noopener">バルブのいろは（1）ー構造と接続方法ー</a>（滋賀県 北部産業技術共創センター）</li>
+          <li id="src-10"><a href="https://www.mhlw.go.jp/content/11800000/000588932.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「配管設計」</a>（厚生労働省）</li>
+          <li id="src-11"><a href="https://www.eneos.co.jp/binran/part01/chapter02/section03.html" target="_blank" rel="noopener">石油便覧 石油製品の製造工程</a>（ENEOS）</li>
+          <li id="src-12"><a href="https://www.jpca.or.jp/studies/junior/dic.html" target="_blank" rel="noopener">石油化学ものしり辞典</a>（石油化学工業協会）</li>
+          <li id="src-13"><a href="https://www.jpca.or.jp/studies/junior/tour02.html" target="_blank" rel="noopener">石油化学コンビナートを探る ②ナフサ分解工場</a>（石油化学工業協会）</li>
+          <li id="src-14"><a href="https://www.mhlw.go.jp/content/11800000/000588926.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「ユーティリティ・オフサイト設備設計」</a>（厚生労働省）</li>
+          <li id="src-15"><a href="https://www.yokogawa.co.jp/solutions/products-and-services/control/control-and-safety-system/distributed-control-systems-dcs/" target="_blank" rel="noopener">統合生産制御システム（DCS）</a>（横河電機）</li>
+          <li id="src-16"><a href="https://www.iee.jp/file/foundation/data02/ishi-14/ishi-0405.pdf" target="_blank" rel="noopener">でんきの礎「産業プロセス分野向け分散型制御システム」</a>（電気学会）</li>
+          <li id="src-17"><a href="https://www.mhlw.go.jp/content/11800000/000588925.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「全体・部分配置計画」</a>（厚生労働省）</li>
+          <li id="src-18"><a href="https://laws.e-gov.go.jp/law/326AC0000000204" target="_blank" rel="noopener">高圧ガス保安法</a>（e-Gov法令検索）</li>
+          <li id="src-19"><a href="https://laws.e-gov.go.jp/law/361M50000400088" target="_blank" rel="noopener">コンビナート等保安規則</a>（e-Gov法令検索）</li>
+          <li id="src-20"><a href="https://laws.e-gov.go.jp/law/323AC1000000186" target="_blank" rel="noopener">消防法</a>（e-Gov法令検索）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（3件）</summary>
+        <ol class="sources">
+          <li>石油化学プラントの塔（ドイツ・ケルン）<br>写真: CEphoto, Uwe Aranas／<a href="https://commons.wikimedia.org/wiki/File:Cologne_Germany_Windsock-in-a-petrochemical-plant-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li>多管式熱交換器の管の束<br>写真: Harald the Bard／<a href="https://commons.wikimedia.org/wiki/File:Tube_bundle_of_a_shell_%26_tube_heat_exchanger_(before_assembly).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>製油所のフレアスタック（ブルネイ）<br>写真: Yu Chu Chin／<a href="https://commons.wikimedia.org/wiki/File:Seria_Refinery_flare_stack_in_2025_-_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月10日時点の情報をもとにまとめたものです。装置の仕組みや数値は代表的な例で、プラントによって異なります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>

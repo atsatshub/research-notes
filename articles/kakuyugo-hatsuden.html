@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）｜雑学アーカイブ</title>
+  <meta name="description" content="核融合発電がいつ、どこまで実現しそうかを、内閣府・量子科学技術研究開発機構・ITER機構・米エネルギー省などの資料でまとめました。重水素と三重水素の反応と燃料1gで石油約8トン分というエネルギー、1億度以上などの条件とQ値、ITERの新計画（重水素-三重水素運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJなど世界の記録、民間企業の目標、三重水素・材料・コスト・規制の課題。2026年11月10日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）">
+  <meta property="og:description" content="核融合発電がいつ、どこまで実現しそうかを、内閣府・量子科学技術研究開発機構・ITER機構・米エネルギー省などの資料でまとめました。重水素と三重水素の反応と燃料1gで石油約8トン分というエネルギー、1億度以上などの条件とQ値、ITERの新計画（重水素-三重水素運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJなど世界の記録、民間企業の目標、三重水素・材料・コスト・規制の課題。2026年11月10日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › 身近な科学</p>
+
+      <h1>核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-10">2026年11月10日</time></li>
+        <li><span class="tag">身近な科学</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>重水素と三重水素を1億度以上にして融合させ、エネルギーを取り出す<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>燃料1gで、石油約8トン分のエネルギーが出る<a class="ref" href="#src-2">[2]</a></li>
+          <li>国際計画ITERの本格的な燃料の運転は、2039年からの計画<a class="ref" href="#src-3">[3]</a></li>
+          <li>日本政府は「2030年代の発電実証」を目標にした（従来は2050年頃）<a class="ref" href="#src-4">[4]</a></li>
+          <li>核融合による発電は、まだ<strong>世界のどこでも実証されていない</strong><a class="ref" href="#src-5">[5]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">核融合とは</a></li>
+          <li><a href="#sec-2">発電までに越えるべき条件</a></li>
+          <li><a href="#sec-3">今どこまで来たか（世界の記録）</a></li>
+          <li><a href="#sec-4">ITERの計画</a></li>
+          <li><a href="#sec-5">日本の戦略と目標時期</a></li>
+          <li><a href="#sec-6">民間企業の計画</a></li>
+          <li><a href="#sec-7">残る課題</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>核融合発電は「地上の太陽」とも呼ばれ、ここ数年、国の目標や民間企業の大きな資金調達のニュースが増えています。では、本当に実現できるのでしょうか。この記事では、核融合の仕組みと発電までに越えるべき条件、世界の記録、ITERと日本の計画、民間企業の目標、残る課題を、公的機関・研究機関の資料を中心にまとめました。実現の時期は断定せず、各機関が示す目標と課題を並べています。</p>
+
+      <figure class="photo">
+        <img src="images/kakuyugo-hatsuden/lhd-hall.jpg" width="960" height="640" loading="lazy" alt="大きな実験棟の中に、配管や銀色の機器、色とりどりの装置が複雑に組み合わさった実験装置が置かれている">
+        <figcaption>核融合科学研究所の大型ヘリカル装置（LHD）</figcaption>
+      </figure>
+
+      <h2 id="sec-1">核融合とは</h2>
+
+      <section class="item-card">
+        <h3>軽い原子核どうしが融合して、大きなエネルギーが出る</h3>
+        <p class="item-point">重水素と三重水素から、ヘリウムと中性子ができる</p>
+        <p>日本原子力研究開発機構の解説によると、重水素と三重水素の反応では、ヘリウム（3.5MeV）と中性子（14.1MeV）ができます<a class="ref" href="#src-1">[1]</a>。量子科学技術研究開発機構（QST）は、プラズマを1億度以上に加熱すると核融合反応が起き、燃料1gで石油約8トン分のエネルギーが出ると説明しています<a class="ref" href="#src-2">[2]</a>。重水素は海水中に約60億年分あるとしています<a class="ref" href="#src-2">[2]</a>。</p>
+      </section>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 210" width="340" height="210" role="img" aria-label="核融合反応の模式図。重水素と三重水素が融合し、ヘリウム（3.5MeV）と中性子（14.1MeV）ができる" font-family="inherit"><circle cx="50" cy="60" r="34" style="fill:var(--surface);stroke:var(--border)"/><text x="50" y="57" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">重水素</text><text x="50" y="76" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">D</text><circle cx="50" cy="150" r="34" style="fill:var(--surface);stroke:var(--border)"/><text x="50" y="147" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">三重水素</text><text x="50" y="166" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">T</text><path d="M84 66 L140 100 M84 144 L140 110" stroke-width="2" style="stroke:var(--accent);fill:none"/><circle cx="160" cy="105" r="22" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="160" y="110" font-size="11.5" text-anchor="middle" font-weight="700" style="fill:var(--text)">融合</text><path d="M182 98 L224 64 M182 112 L224 146" stroke-width="2" style="stroke:var(--accent);fill:none"/><rect x="228" y="34" width="108" height="58" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="282" y="58" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">ヘリウム</text><text x="282" y="78" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">3.5MeV</text><rect x="228" y="118" width="108" height="58" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="282" y="142" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">中性子</text><text x="282" y="162" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">14.1MeV</text></svg>
+        <figcaption>重水素と三重水素の核融合反応（日本原子力研究開発機構の解説をもとに筆者が作図）</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <caption>核融合の主な特徴（公的機関の説明）</caption>
+          <thead><tr><th scope="col">項目</th><th scope="col">説明</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">反応の暴走</th><td>原理的に連鎖反応ではないので、核分裂炉のような暴走は起こらない<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">炉の中の燃料</th><td>ITERの真空容器の中にある燃料は、どの瞬間でも1g未満<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">廃棄物</th><td>長寿命の高レベル放射性廃棄物はほとんど生じない<a class="ref" href="#src-6">[6]</a>。ただし中性子で放射化した構造材などが出る<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">法律での扱い</th><td>原子炉等規制法の対象外。今の実験装置は放射性同位元素等規制法（RI法）の「プラズマ発生装置」として規制<a class="ref" href="#src-9">[9]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-2">発電までに越えるべき条件</h2>
+
+      <section class="item-card">
+        <h3>温度・密度・閉じ込める時間の3つをそろえる</h3>
+        <p class="item-point">外から加熱しなくても反応が続く状態が「自己点火」</p>
+        <p>日本原子力研究開発機構の解説では、核融合の条件は、プラズマの温度・密度・閉じ込め時間の3つで表されます<a class="ref" href="#src-1">[1]</a>。外部からの入力なしで核融合反応が続く条件を「自己点火条件」と呼び、温度は約1億度以上が目安です<a class="ref" href="#src-1">[1]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>ITERの目標は、入れた加熱の10倍の出力</h3>
+        <p class="item-point">50MWの加熱で、50万kW（熱）を400秒出す（Q≧10）</p>
+        <p>ITERは、50MWの加熱に対して500MW（50万kW）の核融合の熱出力を、400秒のパルスで出すことを目指しています（Q≧10）<a class="ref" href="#src-3">[3]</a>。この50万kWは熱の出力で、電気の出力ではありません<a class="ref" href="#src-3">[3]</a>。QSTは、ITERを50万kWの核融合出力を長時間出す実験炉だと説明しています<a class="ref" href="#src-6">[6]</a>。</p>
+      </section>
+
+      <h2 id="sec-3">今どこまで来たか（世界の記録）</h2>
+
+      <section class="item-card">
+        <h3>レーザー方式のNIFは、投入したレーザーより多くのエネルギーを得た</h3>
+        <p class="item-point">2025年4月には、約2MJの投入で8.6MJ</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">米国NIFの実験で出た核融合エネルギー <span class="chart-sub">（MJ）</span><a class="ref" href="#src-10">[10]</a><a class="ref" href="#src-11">[11]</a></figcaption>
+          <div role="img" aria-label="米国NIFの実験で出た核融合エネルギー：2022年12月 3.15MJ、2024年2月 5.2MJ、2025年4月 8.6MJ">
+            <div class="bar-row"><span class="bar-label">2022年12月</span><span class="bar-track"><span class="bar" style="width:36.6%"></span></span><span class="bar-value">3.15</span></div>
+            <div class="bar-row"><span class="bar-label">2024年2月</span><span class="bar-track"><span class="bar" style="width:60.5%"></span></span><span class="bar-value">5.2</span></div>
+            <div class="bar-row is-key"><span class="bar-label">2025年4月</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">8.6</span></div>
+          </div>
+        </figure>
+        <p>米エネルギー省によると、国立点火施設（NIF）は2022年12月に、2.05MJのレーザーを標的に入れて3.15MJの核融合エネルギーを得ました<a class="ref" href="#src-10">[10]</a>。2025年4月には、2.08MJで8.6MJを得ています<a class="ref" href="#src-11">[11]</a>。ただし、レーザー装置を動かすには電力網から約300MJを使っていたと報じられています<a class="ref" href="#src-12">[12]</a>。米エネルギー省も、発電にはまだ多くの技術開発が必要だとしています<a class="ref" href="#src-10">[10]</a>。</p>
+      </section>
+
+      <figure class="photo">
+        <img src="images/kakuyugo-hatsuden/nif-chamber.jpg" width="960" height="639" loading="lazy" alt="青く照らされた球形の部屋の内壁に、たくさんの丸い穴が並び、中央に棒状の装置が伸びている">
+        <figcaption>NIFの標的の部屋の内部（米国）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>磁場で閉じ込める方式でも、記録が伸びている</h3>
+        <p class="item-point">欧州JETは最後の実験で69MJ。中国EASTは1億度超を1066秒</p>
+        <p>英国の発表によると、欧州のJETは2023年の最後の実験で、わずか0.2mgの燃料で約5秒間に69MJのエネルギーを出しました<a class="ref" href="#src-13">[13]</a>。新華社によると、中国のEASTは2025年1月に、1億度を超えるプラズマの運転を1066秒続けました<a class="ref" href="#src-14">[14]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>日本のJT-60SAは、2023年10月23日に初めてプラズマをつくった世界最大の超伝導トカマク<a class="ref" href="#src-15">[15]</a></li>
+            <li>JT-60SAの次の実験は、2026年末から約6か月の予定<a class="ref" href="#src-16">[16]</a></li>
+            <li>LHDは2017年に重水素の実験を始め、イオン温度1億2000万度を達成<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-18">[18]</a></li>
+            <li>LHDの実験は2025年12月25日に終了した<a class="ref" href="#src-19">[19]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <figure class="photo">
+        <img src="images/kakuyugo-hatsuden/lhd-vessel.jpg" width="960" height="530" loading="lazy" alt="金属のタイルにおおわれた、ねじれた筒のような真空容器の内部">
+        <figcaption>LHDの真空容器の内部</figcaption>
+      </figure>
+
+      <h2 id="sec-4">ITERの計画</h2>
+
+      <section class="item-card">
+        <h3>本格的な燃料の運転は2039年。計画は約4年遅れた</h3>
+        <p class="item-point">2024年の新計画で、研究運転の開始は2034年に</p>
+        <p>ITERは、欧州・中国・インド・日本・韓国・ロシア・米国の7極が共同で建設している実験炉で、欧州が建設費の約半分を負担しています<a class="ref" href="#src-3">[3]</a>。2024年の新しい計画では、研究運転の開始が2034年、重水素-三重水素の運転の開始が2039年で、前の計画より約4年遅れました<a class="ref" href="#src-3">[3]</a>。ITER機構の追加費用は約50億ユーロで、参加国が精査しています<a class="ref" href="#src-20">[20]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>以前の計画にあった2025年の初プラズマは、達成できないとされた<a class="ref" href="#src-3">[3]</a></li>
+            <li>遅れの理由には、コロナ禍や初めて作る部品の難しさ、楽観的すぎた計画などがある<a class="ref" href="#src-3">[3]</a></li>
+            <li>2026年7月までに、炉心の部品9個のうち6個を据え付けた<a class="ref" href="#src-21">[21]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <figure class="photo">
+        <img src="images/kakuyugo-hatsuden/iter-site.jpg" width="960" height="636" loading="lazy" alt="丘陵に囲まれた広い敷地に、建設中の大きな建物やクレーンが並ぶ様子を上空から写した写真">
+        <figcaption>建設中のITER（フランス、2017年）</figcaption>
+      </figure>
+
+      <h2 id="sec-5">日本の戦略と目標時期</h2>
+
+      <section class="item-card">
+        <h3>「2030年代の発電実証」を目標にした</h3>
+        <p class="item-point">2025年6月の戦略改定で、従来の2050年頃から前倒し</p>
+        <p>内閣府の「フュージョンエネルギー・イノベーション戦略」は、2025年6月の改定で、世界に先駆けた2030年代の発電実証を目指すとしました（従来の政府方針は2050年頃）<a class="ref" href="#src-4">[4]</a>。規制は当面、RI法の対象として位置づけ、新しい知見に応じて柔軟に見直すとしています<a class="ref" href="#src-4">[4]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>コストが合わなければ、目標を変えるとも明記した</h3>
+        <p class="item-point">市場で通用しない発電システムの実証には意味がない、と内閣府</p>
+        <p>2026年4月の内閣府の文書は、市場性が見込まれない発電システムを目指した発電実証には意味がないとし、ほかのエネルギーと大きな差がないか、それより安いコストの発電につながることを求めました<a class="ref" href="#src-8">[8]</a>。それが満たせない場合は、2030年代の発電実証という政府目標を変えることになるとしています<a class="ref" href="#src-8">[8]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>QSTの原型炉案「Q-DEMO」は、2038年に第1期の運転を始める計画で、建設費は約2兆円の見積もり<a class="ref" href="#src-22">[22]</a></li>
+            <li>第1期は、数分の運転で「正味の電力ゼロ規模」の発電を実証する段階<a class="ref" href="#src-22">[22]</a></li>
+            <li>経済産業省の補助事業で、EX-Fusion・Starlight Engine・Helical Fusion・LINEA Innovationsが条件付きで採択された<a class="ref" href="#src-23">[23]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2023年4月</span><p class="timeline-title">日本初の核融合の国家戦略をつくる</p><p class="timeline-note"><a class="ref" href="#src-4">[4]</a></p></li>
+        <li><span class="timeline-day">2025年6月</span><p class="timeline-title">戦略を改定し、2030年代の発電実証を目標に</p><p class="timeline-note"><a class="ref" href="#src-4">[4]</a></p></li>
+        <li><span class="timeline-day">2034年</span><p class="timeline-title">ITERの研究運転の開始（計画）</p><p class="timeline-note"><a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">2038年</span><p class="timeline-title">Q-DEMOの第1期の運転開始（QSTの案）</p><p class="timeline-note"><a class="ref" href="#src-22">[22]</a></p></li>
+        <li><span class="timeline-day">2039年</span><p class="timeline-title">ITERの重水素-三重水素の運転開始（計画）</p><p class="timeline-note"><a class="ref" href="#src-3">[3]</a></p></li>
+      </ol>
+
+      <h2 id="sec-6">民間企業の計画</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>主な民間企業の目標（いずれも企業が発表した目標）</caption>
+          <thead><tr><th scope="col">企業</th><th scope="col">目標</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Commonwealth Fusion Systems（米国）</th><td>実験装置SPARCで2027年にQ&gt;1<a class="ref" href="#src-24">[24]</a>。40万kWの発電所ARCで2030年代前半に送電<a class="ref" href="#src-25">[25]</a>。GoogleとEniが、発電所の電力の半分以上を買う契約を結んだ<a class="ref" href="#src-26">[26]</a></td></tr>
+            <tr><th scope="row">Helion Energy（米国）</th><td>2028年までに発電所を稼働させ、Microsoftに電力を供給。50MW以上が目標<a class="ref" href="#src-27">[27]</a></td></tr>
+            <tr><th scope="row">Helical Fusion（日本）</th><td>2030年代中に、発電初号機「Helix KANATA」で実用発電を目指す<a class="ref" href="#src-28">[28]</a></td></tr>
+            <tr><th scope="row">Starlight Engine（日本）</th><td>トカマク方式の「FAST」で2030年代の発電実証を目指す<a class="ref" href="#src-29">[29]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>米エネルギー省は2023年に、核融合の試験発電所の設計を進める8社に4600万ドルの支援を決めました<a class="ref" href="#src-30">[30]</a>。</p>
+
+      <h2 id="sec-7">残る課題</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>核融合発電の主な課題</caption>
+          <thead><tr><th scope="col">課題</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">三重水素の確保</th><td>世界の在庫は約20kg<a class="ref" href="#src-7">[7]</a>。リチウムに中性子を当てて増やす試験をITERで行う<a class="ref" href="#src-31">[31]</a>。増やして回収する技術は、どの国も開発段階<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">材料</th><td>高いエネルギーの中性子で、もろくなったり膨らんだりする。それに耐える材料の寿命を評価する技術が必要<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">保守</th><td>放射化で人が入れなくなるため、遠隔の機器で保守する必要がある<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">コスト</th><td>ほかのエネルギーと大きな差がないコストにする必要がある<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">規制</th><td>原子力規制庁が、まず三重水素の「閉じ込め」機能について検討している<a class="ref" href="#src-32">[32]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>結局、いつ実現するのか</h3>
+        <p class="item-point">目標はあるが、発電はまだどこでも実証されていない</p>
+        <p>日本の官民投資ロードマップ（仮訳）は、核融合による発電はまだ世界のどこでも実証されていないとしています<a class="ref" href="#src-5">[5]</a>。科学的には、投入したエネルギーより多くのエネルギーを得る段階まで来ましたが、設備全体を動かす電力より多くの電気を安定して生み出すには、三重水素・材料・コストなどの課題が残っています（筆者の見解）。各機関や企業の目標は2030年代に集まっていますが、ITERの計画が遅れた例もあり、実現の時期は今後の実証の結果しだいと考えられます（筆者の見解）。</p>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>ITERの建設費の総額（公式の総額は示されていない）</li>
+          <li>NIFのレーザーが使った約300MJを、研究所や米エネルギー省自身が書いた文書</li>
+          <li>中国EASTの記録の中国科学院の公式発表（報道で確認した）、韓国KSTARの最新の記録</li>
+          <li>経済産業省の補助事業の採択の公表と補助額（読めなかった）</li>
+          <li>RI法の改正など、核融合の新しい規制の時期</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="plant-towa.html">プラントとは何かを分かりやすく解説</a></li>
+          <li><a href="kumo-tenki.html">雲の種類で天気が分かるのはなぜ？</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（32件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月10日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://atomica.jaea.go.jp/data/detail/dat_detail_07-05-01-01.html" target="_blank" rel="noopener">核融合反応と熱エネルギー</a>（日本原子力研究開発機構 ATOMICA）</li>
+          <li id="src-2"><a href="https://www.fusion.qst.go.jp/ITER/images/page/764/20250918_qst-jada_fusion_inoue_presentation.pdf" target="_blank" rel="noopener">QST/JADAのフュージョンへの取組み（2025年9月18日）</a>（量子科学技術研究開発機構（QST））</li>
+          <li id="src-3"><a href="https://iter.org/sites/default/files/media/2024-07/baseline_press_conference_summary_july-2024_b.pdf" target="_blank" rel="noopener">Press Conference SUMMARY（新ベースライン、2024年7月3日）</a>（ITER機構）</li>
+          <li id="src-4"><a href="https://www8.cao.go.jp/cstp/fusion/fusion_senryakugaiyo.pdf" target="_blank" rel="noopener">フュージョンエネルギー・イノベーション戦略（2025年6月4日改定）概要</a>（内閣府）</li>
+          <li id="src-5"><a href="https://www8.cao.go.jp/cstp/fusion/260721_roadmap.pdf" target="_blank" rel="noopener">Public-Private Investment Roadmap for Fusion Energy（仮訳、2026年7月）</a>（内閣府掲載（日本成長戦略本部））</li>
+          <li id="src-6"><a href="https://www.fusion.qst.go.jp/ITER/iter/page1_4.html" target="_blank" rel="noopener">核融合との関係（ITER）</a>（量子科学技術研究開発機構（QST））</li>
+          <li id="src-7"><a href="https://www.iter.org/node/2749" target="_blank" rel="noopener">Fuelling</a>（ITER機構）</li>
+          <li id="src-8"><a href="https://www8.cao.go.jp/cstp/fusion/shakaijissou.pdf" target="_blank" rel="noopener">フュージョンエネルギーの社会実装に向けた取組の在り方（2026年4月8日）</a>（内閣府）</li>
+          <li id="src-9"><a href="https://www8.cao.go.jp/cstp/fusion/anzenkakuho.pdf" target="_blank" rel="noopener">フュージョンエネルギーの実現に向けた安全確保の基本的な考え方（2025年3月25日）</a>（内閣府）</li>
+          <li id="src-10"><a href="https://www.energy.gov/articles/doe-national-laboratory-makes-history-achieving-fusion-ignition" target="_blank" rel="noopener">DOE National Laboratory Makes History by Achieving Fusion Ignition（2022年12月13日）</a>（米エネルギー省（DOE））</li>
+          <li id="src-11"><a href="https://annual.llnl.gov/sites/annual/files/2026-02/llnlannual25-3-national-ignition-facility.pdf" target="_blank" rel="noopener">Annual Report 2025: National Ignition Facility</a>（ローレンス・リバモア国立研究所）</li>
+          <li id="src-12"><a href="https://www.optica-opn.org/home/newsroom/2022/december/ignition_accomplished_nif_looks_to_the_future/" target="_blank" rel="noopener">Ignition Accomplished: NIF Looks to the Future（2022年12月）</a>（Optica（Optics & Photonics News））</li>
+          <li id="src-13"><a href="https://www.gov.uk/government/news/jets-final-tritium-experiments-yield-new-fusion-energy-record" target="_blank" rel="noopener">JET's final tritium experiments yield new fusion energy record（2024年2月8日）</a>（英国政府（UKAEA））</li>
+          <li id="src-14"><a href="https://www.news.cn/tech/20250120/764a2a9422684413b22b56f6460a05cc/c.html" target="_blank" rel="noopener">聚变发电更近一步！中国"人造太阳"跨越"亿度千秒"大关（2025年1月20日）</a>（新華社）</li>
+          <li id="src-15"><a href="https://www.qst.go.jp/site/press/20231024-1.html" target="_blank" rel="noopener">JT-60SAの初プラズマ生成（2023年10月24日）</a>（量子科学技術研究開発機構（QST））</li>
+          <li id="src-16"><a href="https://fusionforenergy.europa.eu/news/europe-and-japan-restart-jt-60sa" target="_blank" rel="noopener">Europe and Japan restart JT-60SA（2026年3月13日）</a>（Fusion for Energy（EU））</li>
+          <li id="src-17"><a href="https://www.nifs.ac.jp/about/NIFS-NEWS/pdf/235-1.pdf" target="_blank" rel="noopener">NIFS NEWS 235「重水素実験の開始にあたって」</a>（核融合科学研究所）</li>
+          <li id="src-18"><a href="https://www.nifs.ac.jp/about/NIFS-NEWS/pdf/239-1.pdf" target="_blank" rel="noopener">NIFS NEWS 239「年頭のごあいさつ」（2018年1月）</a>（核融合科学研究所）</li>
+          <li id="src-19"><a href="https://etwww.nifs.ac.jp/report/2025_technical_staff_report_202606.pdf" target="_blank" rel="noopener">2025年度 技術職員報告書（2026年6月）</a>（核融合科学研究所 技術部）</li>
+          <li id="src-20"><a href="https://www.iter.org/node/28514" target="_blank" rel="noopener">New baseline to prioritize robust start to exploitation（2024年7月）</a>（ITER機構）</li>
+          <li id="src-21"><a href="https://www.iter.org/sites/default/files/media/2026-07/2026-07_pr_two-thirds-of-tokamak-core-in-place_0.pdf" target="_blank" rel="noopener">Two-thirds of ITER tokamak core now in place（2026年7月29日）</a>（ITER機構）</li>
+          <li id="src-22"><a href="https://www8.cao.go.jp/cstp/fusion/taskforce_social/6kai/siryou2-2.pdf" target="_blank" rel="noopener">「Q-DEMOの概念設計」報告書（概要）（2026年3月16日）</a>（量子科学技術研究開発機構（内閣府の会議資料））</li>
+          <li id="src-23"><a href="https://www.mext.go.jp/content/20260925-mxt-kaisen-000052052-05.pdf" target="_blank" rel="noopener">核融合科学技術委員会（第43回）資料「今後の検討について」（2026年9月25日）</a>（文部科学省）</li>
+          <li id="src-24"><a href="https://cfs.energy/technology/sparc" target="_blank" rel="noopener">SPARC</a>（Commonwealth Fusion Systems）</li>
+          <li id="src-25"><a href="https://cfs.energy/news-and-media/commonwealth-fusion-systems-becomes-first-fusion-company-to-apply-to-pjm-interconnection-the-largest-u.s.-wholesale-electricity-market" target="_blank" rel="noopener">First Fusion Company to Apply to PJM Interconnection（2026年4月28日）</a>（Commonwealth Fusion Systems）</li>
+          <li id="src-26"><a href="https://cfs.energy/news-and-media/commonwealth-fusion-systems-raises-another-1-billion-bringing-total-capital-raised-to-4-billion/" target="_blank" rel="noopener">Commonwealth Fusion Systems Raises Another $1 Billion（2026年7月30日）</a>（Commonwealth Fusion Systems）</li>
+          <li id="src-27"><a href="https://www.helionenergy.com/articles/helion-announces-worlds-first-fusion-ppa-with-microsoft/" target="_blank" rel="noopener">Helion announces world's first fusion PPA with Microsoft（2023年5月10日）</a>（Helion Energy）</li>
+          <li id="src-28"><a href="https://prtimes.jp/main/html/rd/p/000000065.000089262.html" target="_blank" rel="noopener">シリーズBラウンド 1stクローズの資金調達（2026年4月28日）</a>（Helical Fusion（PR TIMES））</li>
+          <li id="src-29"><a href="https://prtimes.jp/main/html/rd/p/000000012.000152790.html" target="_blank" rel="noopener">第三者割当増資により総額60億円超の外部資金を初めて調達（2026年7月15日）</a>（Starlight Engine（PR TIMES））</li>
+          <li id="src-30"><a href="https://content.govdelivery.com/accounts/USDOEOS/bulletins/35d8483" target="_blank" rel="noopener">U.S. Department of Energy Announces $46 Million for Commercial Fusion Energy Development（2023年5月31日）</a>（米エネルギー省 科学局）</li>
+          <li id="src-31"><a href="https://www.iter.org/node/18043" target="_blank" rel="noopener">Tritium: changing lead into gold（2016年2月19日）</a>（ITER機構（ITER Mag））</li>
+          <li id="src-32"><a href="https://www8.cao.go.jp/cstp/fusion/fusion_wg/3kai/siryou1-2.pdf" target="_blank" rel="noopener">原子力規制庁におけるフュージョン装置の安全規制に係る取組（2026年4月8日）</a>（原子力規制庁（内閣府の会議資料））</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（4件）</summary>
+        <ol class="sources">
+          <li>核融合科学研究所の大型ヘリカル装置（LHD）<br>写真: National Institute for Fusion Science／<a href="https://commons.wikimedia.org/wiki/File:Large_Helical_Device_2014.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>NIFの標的の部屋の内部<br>写真: Lawrence Livermore National Security／<a href="https://commons.wikimedia.org/wiki/File:National_Ignition_Facility%27s_target_chamber.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li>LHDの真空容器の内部<br>写真: National Institute for Fusion Science／<a href="https://commons.wikimedia.org/wiki/File:LHD_plasma_vacuum_vessel.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>建設中のITER（2017年）<br>写真: Oak Ridge National Laboratory／<a href="https://commons.wikimedia.org/wiki/File:Iter_aerial_2017_Halfway_to_first_plasma_(45588568915).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月10日時点の情報をもとにまとめたものです。計画の時期や数値は、今後変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
