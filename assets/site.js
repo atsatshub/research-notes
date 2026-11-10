@@ -2,7 +2,7 @@
   サイト共通スクリプト（ライブラリなし・外部送信なし）
   <head> で defer なしで読み込む（表示設定をちらつきなく反映するため）。
   1. 表示設定（文字サイズ・配色）を、この端末のブラウザに保存して反映する
-  2. ヘッダーに「表示」ボタンを追加する
+  2. ヘッダーに「メニュー」ボタンを追加する（この記事の目次・記事を探す・カテゴリ・ページ・表示設定）
   3. 記事ページ: 読了の目安、調査日からの経過、読み進み具合のバー、共有ボタン、
      トップへ戻るボタン、印刷時に折りたたみをすべて開く、
      記事の最後に「同じカテゴリの記事」を出す（index.html を読んで作る）
@@ -88,7 +88,12 @@
   // ---------- 記事一覧（index.html）の読み取り ----------
   // カテゴリ名は見出しから「（全8回）」などの補足を除いたもの
   function categoryName(h) {
-    return h.textContent.replace(/（.*?）/g, "").trim();
+    var c = h.cloneNode(true);
+    // site.js が見出しに足した件数（.group-count）は名前に含めない
+    Array.prototype.forEach.call(c.querySelectorAll(".group-count"), function (n) {
+      n.remove();
+    });
+    return c.textContent.replace(/（.*?）/g, "").trim();
   }
 
   // 見出し（h3.article-group-title）と、その下の記事リストを組にして返す
@@ -130,8 +135,39 @@
       });
   }
 
-  // ---------- 表示設定 ----------
-  function setupSettings() {
+  // ---------- 記事一覧の読み込み（メニューと「同じカテゴリの記事」で共用） ----------
+  // サイトの基準の場所（トップなら ""、記事なら "../"）。ヘッダーのロゴのリンクから求める
+  function siteBase() {
+    var home = document.querySelector(".site-title");
+    var href = home ? home.getAttribute("href") || "" : "";
+    return href.replace(/index\.html$/, "");
+  }
+
+  var indexPromise = null;
+  // index.html のカテゴリと記事を返す（トップではその場の内容、ほかのページでは読み込む。読み込みは1回だけ）
+  function loadIndex() {
+    if (indexPromise) return indexPromise;
+    if (document.querySelector(".article-search-box")) {
+      indexPromise = Promise.resolve(readGroups(document));
+    } else if (!window.fetch || !window.DOMParser || !/^https?:$/.test(location.protocol)) {
+      indexPromise = Promise.reject(new Error("index を読めない環境"));
+    } else {
+      indexPromise = fetch(siteBase() + "index.html")
+        .then(function (res) {
+          return res.ok ? res.text() : Promise.reject(new Error("index を読めない"));
+        })
+        .then(function (html) {
+          return readGroups(new DOMParser().parseFromString(html, "text/html"));
+        });
+    }
+    return indexPromise;
+  }
+
+  // トップページの検索・絞り込みを外から動かす窓口（setupIndex が入れる）
+  var indexApi = null;
+
+  // ---------- メニュー（目次・記事を探す・カテゴリ・ページ・表示設定） ----------
+  function setupMenu() {
     var header = document.querySelector(".site-header .container");
     if (!header) return;
     var nav = header.querySelector(".site-nav");
@@ -139,10 +175,116 @@
       nav = el("nav", { class: "site-nav", "aria-label": "サイト内" });
       header.appendChild(nav);
     }
+    var base = siteBase();
 
-    var btn = el("button", { type: "button", class: "tools-btn", "aria-expanded": "false", "aria-controls": "display-settings" }, "表示");
-    var panel = el("div", { class: "tools-panel", id: "display-settings", role: "dialog", "aria-label": "表示設定", hidden: "" });
+    // いま開いているページのリンクに印を付ける
+    Array.prototype.forEach.call(nav.querySelectorAll("a.nav-link"), function (a) {
+      if (a.pathname === location.pathname || (a.pathname.replace(/index\.html$/, "") === location.pathname.replace(/index\.html$/, ""))) {
+        a.setAttribute("aria-current", "page");
+      }
+    });
 
+    var btn = el("button", { type: "button", class: "tools-btn menu-btn", "aria-expanded": "false", "aria-controls": "site-menu" });
+    var icon = el("span", { class: "menu-icon", "aria-hidden": "true" });
+    icon.appendChild(el("span"));
+    icon.appendChild(el("span"));
+    icon.appendChild(el("span"));
+    var btnLabel = el("span", { class: "menu-btn-label" }, "メニュー");
+    btn.appendChild(icon);
+    btn.appendChild(btnLabel);
+
+    var panel = el("div", { class: "tools-panel menu-panel", id: "site-menu", role: "dialog", "aria-label": "メニュー", tabindex: "-1", hidden: "" });
+    var scrim = el("div", { class: "menu-scrim", hidden: "" });
+
+    function section(title) {
+      var s = el("section", { class: "menu-section" });
+      s.appendChild(el("h2", { class: "menu-title" }, title));
+      panel.appendChild(s);
+      return s;
+    }
+
+    function open(state) {
+      panel.hidden = !state;
+      scrim.hidden = !state;
+      btn.setAttribute("aria-expanded", state ? "true" : "false");
+      btnLabel.textContent = state ? "閉じる" : "メニュー";
+      btn.classList.toggle("is-open", state);
+      if (state) fillCategories();
+    }
+
+    // 1. この記事の目次（記事ページだけ）
+    var toc = document.querySelector("main article .toc ol");
+    if (toc) {
+      var tocSec = section("この記事の目次");
+      var tocList = el("ol", { class: "menu-list menu-toc" });
+      Array.prototype.forEach.call(toc.querySelectorAll("a[href^='#']"), function (a) {
+        var li = el("li");
+        var link = el("a", { href: a.getAttribute("href") }, a.textContent);
+        link.addEventListener("click", function () {
+          open(false);
+        });
+        li.appendChild(link);
+        tocList.appendChild(li);
+      });
+      tocSec.appendChild(tocList);
+    }
+
+    // 2. 記事を探す（トップページの検索へ。トップではその場で絞り込む）
+    var findSec = section("記事を探す");
+    var form = el("form", { class: "search-form menu-search", action: base + "index.html", method: "get", role: "search" });
+    var q = el("input", { type: "search", name: "q", class: "search-input", placeholder: "キーワード", "aria-label": "キーワードで記事を探す", autocomplete: "off" });
+    form.appendChild(q);
+    form.appendChild(el("button", { type: "submit" }, "探す"));
+    form.addEventListener("submit", function (e) {
+      if (!indexApi) return;
+      e.preventDefault();
+      open(false);
+      indexApi.search(q.value);
+    });
+    findSec.appendChild(form);
+
+    // 3. カテゴリ（開いたときに一度だけ作る）
+    var catSec = section("カテゴリから探す");
+    var catList = el("ul", { class: "menu-list menu-cats" });
+    catSec.appendChild(catList);
+    var catsFilled = false;
+    function fillCategories() {
+      if (catsFilled) return;
+      catsFilled = true;
+      loadIndex()
+        .then(function (groups) {
+          groups.forEach(function (g) {
+            var li = el("li");
+            var a = el("a", { href: base + "index.html?cat=" + encodeURIComponent(g.name) }, g.name);
+            a.appendChild(el("span", { class: "chip-count" }, String(g.lis.length)));
+            a.addEventListener("click", function (e) {
+              if (!indexApi) return;
+              e.preventDefault();
+              open(false);
+              indexApi.category(g.name);
+            });
+            li.appendChild(a);
+            catList.appendChild(li);
+          });
+        })
+        .catch(function () {
+          var li = el("li");
+          li.appendChild(el("a", { href: base + "index.html" }, "記事一覧で探す"));
+          catList.appendChild(li);
+        });
+    }
+
+    // 4. ページ（フッターのリンクと同じもの）
+    var pageSec = section("ページ");
+    var pageList = el("ul", { class: "menu-list menu-pages" });
+    Array.prototype.forEach.call(document.querySelectorAll(".site-footer .footer-nav a"), function (a) {
+      var li = el("li");
+      li.appendChild(a.cloneNode(true));
+      pageList.appendChild(li);
+    });
+    pageSec.appendChild(pageList);
+
+    // 5. 表示設定
     function group(title, name, options, current, onChange) {
       var fs = el("fieldset", { class: "tools-group" });
       fs.appendChild(el("legend", {}, title));
@@ -160,30 +302,27 @@
       return fs;
     }
 
-    panel.appendChild(group("文字の大きさ", "rn-font", [["", "標準"], ["large", "大きめ"]], load(KEY_FONT) || "", function (v) {
+    var viewSec = section("表示設定");
+    viewSec.id = "display-settings";
+    viewSec.appendChild(group("文字の大きさ", "rn-font", [["", "標準"], ["large", "大きめ"]], load(KEY_FONT) || "", function (v) {
       applyFont(v);
       save(KEY_FONT, v);
     }));
-    panel.appendChild(group("配色", "rn-theme", [["", "自動（端末の設定）"], ["light", "ライト"], ["dark", "ダーク"]], load(KEY_THEME) || "", function (v) {
+    viewSec.appendChild(group("配色", "rn-theme", [["", "自動（端末の設定）"], ["light", "ライト"], ["dark", "ダーク"]], load(KEY_THEME) || "", function (v) {
       applyTheme(v);
       save(KEY_THEME, v);
     }));
-    panel.appendChild(el("p", { class: "tools-note" }, "設定はこの端末のブラウザにだけ保存されます。"));
-
-    function open(state) {
-      panel.hidden = !state;
-      btn.setAttribute("aria-expanded", state ? "true" : "false");
-    }
+    viewSec.appendChild(el("p", { class: "tools-note" }, "設定はこの端末のブラウザにだけ保存されます。"));
 
     btn.addEventListener("click", function () {
       open(panel.hidden);
-      if (!panel.hidden) {
-        var first = panel.querySelector("input:checked") || panel.querySelector("input");
-        if (first) first.focus();
-      }
+      if (!panel.hidden) panel.focus();
+    });
+    scrim.addEventListener("click", function () {
+      open(false);
     });
     document.addEventListener("click", function (e) {
-      if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) open(false);
+      if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) open(false);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && !panel.hidden) {
@@ -194,21 +333,16 @@
 
     nav.appendChild(btn);
     header.appendChild(panel);
+    document.body.appendChild(scrim);
   }
 
   // ---------- 記事ページ ----------
   // 記事の最後に、同じカテゴリのほかの記事（なければ新着の記事）を出す
   function setupMoreArticles(article) {
-    if (!window.fetch || !window.DOMParser || !/^https?:$/.test(location.protocol)) return;
     var file = location.pathname.split("/").pop();
     if (!file) return;
-    fetch("../index.html")
-      .then(function (res) {
-        return res.ok ? res.text() : Promise.reject();
-      })
-      .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, "text/html");
-        var groups = readGroups(doc);
+    loadIndex()
+      .then(function (groups) {
         var isSelf = function (li) {
           var a = li.querySelector("a.article-card");
           return !!a && a.getAttribute("href").split("/").pop() === file;
@@ -403,6 +537,8 @@
       });
       g.expanded = false;
       g.moreBtn = null;
+      // カテゴリの見出しに件数を添える
+      g.heading.appendChild(el("span", { class: "group-count" }, g.items.length + "件"));
       // 件数が多いカテゴリには「残りN件を表示」ボタンを足す
       if (g.items.length > PER_CATEGORY + 1) {
         var wrap = el("p", { class: "more-row" });
@@ -423,6 +559,10 @@
     var total = groups.reduce(function (sum, g) {
       return sum + g.items.length;
     }, 0);
+
+    // 「カテゴリ別の記事一覧」の見出しに、カテゴリ数と全体の件数を添える
+    var catNote = document.querySelector(".categories-note");
+    if (catNote) catNote.textContent = groups.length + "カテゴリ・全" + total + "件";
 
     // URL（?q=…&cat=…）から状態を読む
     function readUrl() {
@@ -505,15 +645,19 @@
       writeUrl(input.value.trim(), active);
     }
 
+    function setCategory(value) {
+      active = value;
+      Array.prototype.forEach.call(chipsWrap.querySelectorAll(".chip"), function (c) {
+        c.setAttribute("aria-pressed", c.getAttribute("data-value") === value ? "true" : "false");
+      });
+      render();
+    }
+
     function chip(label, value, n) {
-      var b = el("button", { type: "button", class: "chip", "aria-pressed": value === active ? "true" : "false" }, label);
+      var b = el("button", { type: "button", class: "chip", "data-value": value, "aria-pressed": value === active ? "true" : "false" }, label);
       b.appendChild(el("span", { class: "chip-count" }, String(n)));
       b.addEventListener("click", function () {
-        active = value;
-        Array.prototype.forEach.call(chipsWrap.querySelectorAll(".chip"), function (c) {
-          c.setAttribute("aria-pressed", c === b ? "true" : "false");
-        });
-        render();
+        setCategory(value);
       });
       chipsWrap.appendChild(b);
     }
@@ -537,6 +681,23 @@
     box.hidden = false;
     render();
 
+    // メニューから、その場で検索・絞り込みをするための窓口
+    function showResults() {
+      box.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+    }
+    indexApi = {
+      search: function (text) {
+        input.value = text || "";
+        setCategory("");
+        showResults();
+      },
+      category: function (name) {
+        input.value = "";
+        setCategory(name);
+        showResults();
+      }
+    };
+
     // カテゴリを指定して開いたとき（記事のパンくずなどから）は、一覧の先頭が見える位置へ
     if (active && !location.hash) {
       box.scrollIntoView({ block: "start" });
@@ -544,7 +705,7 @@
   }
 
   ready(function () {
-    setupSettings();
+    setupMenu();
     var article = document.querySelector("main article");
     if (article) setupArticle(article);
     var box = document.querySelector(".article-search-box");

@@ -50,13 +50,14 @@
     </div>
     <p class="empty search-empty" hidden>該当する記事がありません。別のキーワードで探してみてください。</p>
 
-    <!-- 新着（assets/site.js が、下の一覧から data-seq の大きい順に6件を複製して入れる。検索・絞り込み中は隠す） -->
+    <!-- 新着（assets/site.js が、下の一覧から data-seq の大きい順に6件を複製して入れる。検索・絞り込み中は隠す）
+         色つきの枠で囲み、スマホでは横に送る列にして、下の「カテゴリ別の記事一覧」と見分けやすくしている -->
     <section class="latest" hidden aria-label="新着記事">
       <div class="section-head"><h2 class="latest-title">新着記事</h2><span class="section-note">新しく追加した順</span></div>
       <ul class="article-list latest-list"></ul>
     </section>
 
-    <div class="section-head"><h2>カテゴリ別の記事一覧</h2></div>
+    <div class="section-head is-major" id="categories"><h2>カテゴリ別の記事一覧</h2><span class="section-note categories-note"></span></div>
 
     <!--
       記事を追加するときは、新しい記事が上になるように <li> を1件追加する。
