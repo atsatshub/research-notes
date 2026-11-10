@@ -225,8 +225,8 @@ def check_thumbs(idx):
             continue
         is_icon, key, inner = thumbs[0]
         if is_icon:
-            if key not in defined:
-                out.append(f"{slug}: アイコン {key} が assets/style.css に定義されていない")
+            # 写真のない記事はアイコンの仮表示になり、一覧の見た目がそろわない
+            out.append(f"{slug}: 写真がない（記事に写真 figure.photo を1枚以上入れ、tools/make_thumbs.py を実行）")
             continue
         photo_slugs.add(slug)
         src = re.search(r'<img src="([^"]+)" width="\d+" height="\d+" alt=""', inner)
