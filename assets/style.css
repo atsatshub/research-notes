@@ -422,14 +422,22 @@ main {
   min-width: 0;
 }
 
+/* カード: 左上にサムネイル、その右に題名。説明と調査日は下に全幅で並べる
+   （サムネイルは tools/make_thumbs.py が入れる。写真がない記事はカテゴリのアイコン） */
 .article-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  grid-template-areas:
+    "thumb title"
+    "desc desc"
+    "date date";
+  grid-template-rows: auto auto 1fr;
+  column-gap: 12px;
   height: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px 18px;
+  padding: 14px 16px;
   color: var(--text);
   text-decoration: none;
   box-shadow: var(--card-shadow);
@@ -445,7 +453,32 @@ main {
   transform: translateY(-1px);
 }
 
+@media (min-width: 640px) {
+  .article-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+}
+
+.article-card-thumb {
+  grid-area: thumb;
+  align-self: start;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--accent-soft);
+}
+
+.article-card-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .article-card-title {
+  grid-area: title;
+  align-self: start;
   display: block;
   font-weight: 700;
   color: var(--text);
@@ -456,22 +489,34 @@ main {
   color: var(--accent);
 }
 
-/* 説明文は3行で切る（カードの高さをそろえる） */
+/* 題名の「：」より後ろ（assets/site.js が分ける）は、小さく控えめにして、前半を読みやすくする */
+.article-card-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.84rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* 説明文は2行で切る（カードの高さをそろえる） */
 .article-card-desc {
+  grid-area: desc;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   line-height: 1.65;
   color: var(--text-muted);
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .article-card-date {
+  grid-area: date;
+  align-self: end;
   display: block;
-  margin-top: auto;
-  padding-top: 10px;
+  padding-top: 8px;
   font-size: 0.78rem;
   color: var(--text-muted);
 }
@@ -1729,6 +1774,31 @@ article h3[id],
   color: var(--accent);
 }
 
+/* 新着のカードは、写真を上に大きく（16:9）出して、カテゴリ名・題名・説明・調査日を縦に並べる */
+.latest-list .article-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 14px;
+  overflow: hidden;
+}
+
+.latest-list .article-card > * {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.latest-list .article-card > .article-card-thumb {
+  align-self: stretch;
+  aspect-ratio: 16 / 9;
+  margin: 0 0 12px;
+  border-radius: 0;
+}
+
+.latest-list .article-card-date {
+  align-self: stretch;
+  margin-top: auto;
+}
+
 /* スマホ: 新着は横に送る列（次のカードが少し見えるようにして、続きがあると分かるようにする） */
 @media (max-width: 639px) {
   .latest-list {
@@ -1743,20 +1813,28 @@ article h3[id],
   }
 
   .latest-list > li {
-    flex: 0 0 82%;
+    flex: 0 0 78%;
     scroll-snap-align: start;
-  }
-
-  .latest-list .article-card-desc {
-    -webkit-line-clamp: 2;
   }
 }
 
-/* パソコン: 2列×2段（4件）にして、長くなりすぎないようにする */
+/* パソコン: 3列×2段（6件） */
 @media (min-width: 640px) {
-  .latest-list > li:nth-child(n + 5) {
-    display: none;
+  .latest-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* 新着では説明を省き、写真・カテゴリ・題名だけで見渡せるようにする（題名の後半は2行まで） */
+.latest-list .article-card-desc {
+  display: none;
+}
+
+.latest-list .article-card-sub {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 /* 「カテゴリ別の記事一覧」の始まり: 区切り線と、記事ページと同じ帯つきの見出し */
@@ -2000,6 +2078,145 @@ article h3[id],
 .search-form button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* ---------- カテゴリのアイコン（見出し・メニュー・写真のない記事のサムネイル） ----------
+   index.html の見出し h3.article-group-title の data-icon と同じキーで指定する。
+   絵は自作の線画（24×24）。mask で切り抜き、文字色やアクセント色で塗る */
+[data-icon="age"] { /* 年代別（階段） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 20h5v-5h5v-5h5V5h3'/%3E%3Cpath d='M3 20h18'/%3E%3C/svg%3E");
+}
+
+[data-icon="life"] { /* 暮らし・健康（家） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-7 9 7'/%3E%3Cpath d='M5 9.5V20h14V9.5'/%3E%3Cpath d='M10 20v-5.5h4V20'/%3E%3C/svg%3E");
+}
+
+[data-icon="money"] { /* お金・税金（円の硬貨） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M8.5 7l3.5 4.5L15.5 7'/%3E%3Cpath d='M12 11.5V17.5'/%3E%3Cpath d='M9 12.5h6'/%3E%3Cpath d='M9 15h6'/%3E%3C/svg%3E");
+}
+
+[data-icon="work"] { /* 仕事の基礎知識（かばん） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='7' width='18' height='13' rx='2'/%3E%3Cpath d='M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7'/%3E%3Cpath d='M3 13h18'/%3E%3C/svg%3E");
+}
+
+[data-icon="career"] { /* 学び直し・キャリア（角帽） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9l10-5 10 5-10 5z'/%3E%3Cpath d='M6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5'/%3E%3Cpath d='M22 9v6'/%3E%3C/svg%3E");
+}
+
+[data-icon="exam"] { /* 資格・語学（チェックした用紙） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h8.5L19 7.5V21H6z'/%3E%3Cpath d='M14 3v5h5'/%3E%3Cpath d='M9 14l2 2 4-4'/%3E%3C/svg%3E");
+}
+
+[data-icon="tools"] { /* 仕事・学習の道具（ノートパソコン） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='5' width='16' height='11' rx='1.5'/%3E%3Cpath d='M2 20h20'/%3E%3C/svg%3E");
+}
+
+[data-icon="outing"] { /* おでかけ・旅行（地図のピン） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E");
+}
+
+[data-icon="science"] { /* 身近な科学（フラスコ） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3h6'/%3E%3Cpath d='M10 3v6.5L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.5V3'/%3E%3Cpath d='M7.2 15h9.6'/%3E%3C/svg%3E");
+}
+
+[data-icon="plant"] { /* プラント（工場） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21V12l5 3v-3l5 3v-3l4 2.5V4h3v17z'/%3E%3Cpath d='M7 18h2'/%3E%3Cpath d='M12 18h2'/%3E%3C/svg%3E");
+}
+
+[data-icon="series"] { /* シリーズ（ノート） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h13v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z'/%3E%3Cpath d='M8 3v18'/%3E%3Cpath d='M11.5 8h4.5'/%3E%3Cpath d='M11.5 12h4.5'/%3E%3C/svg%3E");
+}
+
+:root { /* チェック（トップの特長） */
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+
+/* マスクでアイコンを描く共通の指定（色は background で決める） */
+.article-group-title[data-icon]::before,
+.menu-cat-icon,
+.article-card-thumb.is-icon::after,
+.hero-points li::before {
+  content: "";
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+/* カテゴリの見出し: 丸い点の代わりにアイコン */
+.article-group-title[data-icon]::before {
+  width: 22px;
+  height: 22px;
+  border-radius: 0;
+  background: var(--accent);
+}
+
+/* 写真のない記事のサムネイル: 淡い地にカテゴリのアイコン */
+.article-card-thumb.is-icon {
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+
+.article-card-thumb.is-icon::after {
+  width: 40%;
+  aspect-ratio: 1;
+  opacity: 0.85;
+}
+
+.latest-list .article-card-thumb.is-icon::after {
+  width: 22%;
+}
+
+/* メニューのカテゴリ: アイコン・名前・件数 */
+.menu-cats a {
+  justify-content: flex-start;
+}
+
+.menu-cat-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.menu-cats .chip-count {
+  margin-left: auto;
+}
+
+/* トップの見出し部分: このサイトの特長（チェックつき） */
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.hero-points li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.hero-points li::before {
+  --icon: var(--icon-check);
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* 記事ページの「同じカテゴリの記事」の下に添える写真の出典 */
+.more-credits {
+  margin-top: 12px;
 }
 
 /* ---------- 印刷 ---------- */

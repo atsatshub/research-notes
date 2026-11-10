@@ -38,6 +38,11 @@
         暮らしの制度やお得、おでかけ、学び、仕事の道具まで。
         公的機関・公式サイトの情報をもとに、要点から読める形でまとめています。
       </p>
+      <ul class="hero-points" aria-label="このサイトの特長">
+        <li>事実には出典つき</li>
+        <li>調査日を明記</li>
+        <li>要点まとめから読める</li>
+      </ul>
       <p class="hero-links"><a href="about.html">このサイトについて</a></p>
     </section>
 
@@ -65,18 +70,23 @@
       書式:
       <li data-seq="番号">
         <a class="article-card" href="articles/ファイル名.html">
+          （サムネイルの行は tools/make_thumbs.py が入れる。手で書かない）
           <span class="article-card-title">記事タイトル</span>
           <span class="article-card-desc">一言説明</span>
           <span class="article-card-date">調査日: <time datetime="YYYY-MM-DD">YYYY年M月D日</time></span>
         </a>
       </li>
+      追加したら python3 -I tools/make_thumbs.py を実行する。記事の最初の写真からサムネイルを作り
+      （写真がない記事は見出しの data-icon のアイコン）、末尾の「記事一覧の写真の出典」も作り直す。
+      題名の「：」より後ろは、site.js が小さく表示する（前半だけで何の記事か分かる題名にする）。
       シリーズ記事はシリーズ見出し（h3.article-group-title）の下の一覧にまとめる。
       件数が多いカテゴリは、site.js が5件目以降を「残りN件を表示」にたたむ（検索・絞り込み中は全件を出す）。
     -->
-    <h3 class="article-group-title">年代別にやっておくこと</h3>
+    <h3 class="article-group-title" data-icon="age">年代別にやっておくこと</h3>
     <ul class="article-list">
       <li data-seq="35">
         <a class="article-card" href="articles/10s-checklist-2026.html">
+          <span class="article-card-thumb is-icon" data-icon="age" aria-hidden="true"></span>
           <span class="article-card-title">10代のうちにやっておくべきこと：18歳で変わる契約、バイト代と扶養の線、体とネットの守り方（2026年版）</span>
           <span class="article-card-desc">15〜18歳でできるようになることの早見表、未成年者取消権と18・19歳の契約トラブル、闇バイトのサイン、選挙、2026年分から変わったバイト代と扶養の年収の線、高校・大学の授業料支援、睡眠と運動、HPVワクチン、SNSの被害と相談先、読書・英語・進路</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
@@ -84,6 +94,7 @@
       </li>
       <li data-seq="34">
         <a class="article-card" href="articles/shakaijin-1nenme-2026.html">
+          <span class="article-card-thumb is-icon" data-icon="age" aria-hidden="true"></span>
           <span class="article-card-title">社会人1年目にやっておくこと：給与明細の見方、2年目に手取りが減る理由、入社1年の手続き（2026年版）</span>
           <span class="article-card-desc">4月入社の1年の流れ、給与明細で引かれるものと料率、4月に保険料が引かれない理由、2年目6月からの住民税、4〜6月の給与で決まる社会保険料、親の扶養、有給休暇と相談窓口、国民年金の追納、奨学金の返還、1年目のふるさと納税、1年未満で辞めるときの注意</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
@@ -91,6 +102,7 @@
       </li>
       <li data-seq="31">
         <a class="article-card" href="articles/30s-checklist-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/30s-checklist-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">30代のうちにやっておきたいこと：40歳の前に知っておきたい制度と、家族・住まい・健康の備え（2026年版）</span>
           <span class="article-card-desc">35歳のねんきん定期便と健診、iDeCo・NISAの改正、遺族年金と高額療養費の見直し、がん検診と不妊治療の年齢、賃金と転職の傾向、教育訓練休暇給付金、出産・育休・児童手当、住宅ローン減税と省エネ住宅の補助、40歳からの介護保険と親の介護への備え</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-08">2026年11月8日</time></span>
@@ -98,6 +110,7 @@
       </li>
       <li data-seq="30">
         <a class="article-card" href="articles/20s-checklist-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/20s-checklist-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">20代のうちにやっておきたいこと：年齢で決まる制度と、お金・健康・仕事の土台（2026年版）</span>
           <span class="article-card-desc">20歳の国民年金と学生納付特例・追納、NISAとiDeCoの枠、20代の金融資産、奨学金と信用情報、子宮頸がん検診・歯周病検診・会社の健診、転職の傾向と若者向けの相談窓口、有給休暇と副業の申告、消費者トラブル、結婚の補助</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-08">2026年11月8日</time></span>
@@ -105,113 +118,11 @@
       </li>
     </ul>
 
-    <h3 class="article-group-title">お金・投資</h3>
-    <ul class="article-list">
-      <li data-seq="38">
-        <a class="article-card" href="articles/bonus-tsukaimichi-2026.html">
-          <span class="article-card-title">ボーナスの使い道：冬の平均額と手取りの目安、みんなの使い道、考える順番（2026年冬）</span>
-          <span class="article-card-desc">民間の平均支給額と2026年冬の予測、額面50万円の手取りの試算と所得税の率の決まり方、夏のボーナスの使い道の調査、金利の高い借入れ・先取り貯蓄・NISAとiDeCoの枠、個人向け国債とふるさと納税の年末の期限、もうけ話の勧誘への注意</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="33">
-        <a class="article-card" href="articles/nisa-ideco-2027.html">
-          <span class="article-card-title">iDeCo・NISAの2027年改正まとめ：掛金上限の引き上げ、70歳までの加入、0歳からのNISA</span>
-          <span class="article-card-desc">働き方別のiDeCoの掛金上限（改正前→改正後）、増額の手続きと12月24日の締め切り、70歳までの加入、企業型DCのマッチング拠出と退職金の9年ルール、2027年1月からの0〜17歳のNISAと払出しのルール、まだ要望段階の項目</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="24">
-        <a class="article-card" href="articles/system-trade-2026.html">
-          <span class="article-card-title">個人のシステムトレード入門：手法の種類と、研究で分かっていること（2026年版）</span>
-          <span class="article-card-desc">売買の規則を先に決めて守るやり方の種類、論文で分かっていること（バリューとモメンタム、トレンドフォロー、優待の先回り、効果が薄れた手法）、バックテストの落とし穴、税金・データ・発注の仕組み（特定の手法の推奨ではありません）</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
-        </a>
-      </li>
-      <li data-seq="20">
-        <a class="article-card" href="articles/kabunushi-yutai-2026.html">
-          <span class="article-card-title">株主優待の基本と、暮らしに役立つ優待の例（2026年版）</span>
-          <span class="article-card-desc">権利付最終日・100株・継続保有と株主番号の基本、税金とNISA、長期保有の条件化や新設・廃止の動き、交通・食事・買い物などの優待の例、選ぶときの確認点（特定銘柄の推奨ではありません）</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">仕事の基礎知識</h3>
-    <ul class="article-list">
-      <li data-seq="45">
-        <a class="article-card" href="articles/yukyu-tsukaikata-2026.html">
-          <span class="article-card-title">有給休暇の上手な使い方：半日・時間単位・計画年休と、2027年の連休のつなげ方</span>
-          <span class="article-card-desc">取得率66.9%と国の目標、付与日数の表、半日・時間単位・計画的付与の違いと年5日の義務での数え方、2027年に何日足せば何連休になるか、理由を言わなくてよいことや時季変更権・買い取り・退職前の消化、業種別の取得率、相談先</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="44">
-        <a class="article-card" href="articles/business-manner-kihon.html">
-          <span class="article-card-title">ビジネスマナーの基本：敬語の指針と世論調査でわかる、根拠のあるマナーと根拠のない俗説</span>
-          <span class="article-card-desc">敬語の指針による5分類と「御苦労様」「とんでもございません」「させていただく」の扱い、社外に上司のことを話すときの言い方、「了解しました」に公的な根拠がないこと、世論調査の数字、メールと文書、クールビズの今、パワハラとカスハラ、検定</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="43">
-        <a class="article-card" href="articles/kessansho-yomikata.html">
-          <span class="article-card-title">会社の決算書の読み方：3つの表と5つの利益、平均と比べる指標（2026年版）</span>
-          <span class="article-card-desc">損益計算書・貸借対照表・キャッシュ・フロー計算書の読み方を任天堂の決算短信で解説、5段階の利益、利益と現金の違い、営業利益率・自己資本比率・ROEの式と業種別・規模別の平均、決算短信と有報と決算公告の時期</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="42">
-        <a class="article-card" href="articles/yuho-edinet.html">
-          <span class="article-card-title">有価証券報告書から会社を調べる方法：EDINETの使い方と、従業員・リスク・株主の見方（2026年版）</span>
-          <span class="article-card-desc">EDINETでの探し方と10年分の閲覧、どこに何が書いてあるかの早見表、2026年3月期から変わった「従業員の状況等」と平均年収の注意点（トヨタと三菱UFJの例）、多様性の指標、事業等のリスクと大株主、総会前の開示</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">学び直し・キャリア</h3>
-    <ul class="article-list">
-      <li data-seq="48">
-        <a class="article-card" href="articles/plant-engineering.html">
-          <span class="article-card-title">プラントエンジニアリングとは：EPCの仕組み、業界の規模と主な会社、仕事の流れと3D設計（2026年版）</span>
-          <span class="article-card-desc">EPC・FEED・一括請負の意味、業界の受注高32兆円の内訳、日揮HD・千代田化工建設・東洋エンジニアリングの売上と受注残高、仕事の流れと職種、3D設計とデジタルツイン、海外駐在と資格の合格率、脱炭素と大型案件の損失</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="41">
-        <a class="article-card" href="articles/daigaku-kokai-koza-2026.html">
-          <span class="article-card-title">社会人でも参加できる大学の公開講座：5つの学び方の違い、費用の例、探し方（2026年版）</span>
-          <span class="article-card-desc">公開講座・履修証明プログラム・科目等履修生・BP・大学院入学の違い、受講者約93万人などの統計、東大・京大・阪大・慶應MCC・神戸大の講座の料金と形式、マナパスやJMOOCでの探し方、教育訓練給付などの支援</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="40">
-        <a class="article-card" href="articles/shokugyo-taiken-2026.html">
-          <span class="article-card-title">大人が参加できる職業体験：地方で働く、農林漁業、福祉の職場体験、トライアル雇用（2026年版）</span>
-          <span class="article-card-desc">ふるさとワーキングホリデー・おためし地域おこし協力隊・協力隊インターン、農業体験の料金、無料の林業講習、漁業就業支援フェア、福祉・介護の職場体験、原則3か月のトライアル雇用、民間の職業体験サービス</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="23">
-        <a class="article-card" href="articles/tenshoku-agent-site-2026.html">
-          <span class="article-card-title">転職エージェントと転職サイトのしくみ、使い分け（2026年版）</span>
-          <span class="article-card-desc">許可制の有料職業紹介と届出制の求人サイトの違い、誰が手数料を払うか、2025年の転職者が使った方法、人材サービス総合サイトでの確認、お祝い金禁止などのルール、退職と雇用保険の手続き、相談先</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
-        </a>
-      </li>
-      <li data-seq="19">
-        <a class="article-card" href="articles/kyoiku-kunren-kyufu-2026.html">
-          <span class="article-card-title">教育訓練給付の対象講座と受け取り方（2026年版）</span>
-          <span class="article-card-desc">一般20%・特定一般最大50%・専門実践最大80%の違い、受け取れる条件、検索システムでの探し方、IT・建設・語学・大学院の講座の例、2週間前の手続きと落とし穴</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">暮らし・健康</h3>
+    <h3 class="article-group-title" data-icon="life">暮らし・健康</h3>
     <ul class="article-list">
       <li data-seq="64">
         <a class="article-card" href="articles/kenshin-kekka-mikata.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kenshin-kekka-mikata.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">健康診断の結果の見方：数値の意味と再検査の目安（判定値の一覧つき）</span>
           <span class="article-card-desc">定期健康診断・特定健診・人間ドックの違い、判定の言葉と基準範囲の意味、血圧・脂質・血糖・肝臓・腎臓の保健指導判定値と受診勧奨判定値、すぐ受診する目安、会社の義務と二次健康診断等給付、2027年4月からの項目の変更</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -219,6 +130,7 @@
       </li>
       <li data-seq="63">
         <a class="article-card" href="articles/desk-work-tsukare.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/desk-work-tsukare.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">デスクワークの疲れを減らす方法：机・椅子・画面の目安、休憩のとり方、目と体のケア</span>
           <span class="article-card-desc">画面との距離40cm以上・照度300ルクス以上などの目安、自宅で働くとき、1時間ごとの作業休止、座りすぎ対策とスタンディングデスクの根拠、座ったままできるストレッチ、目の疲れとドライアイの対策、ブルーライトカット眼鏡の根拠</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -226,6 +138,7 @@
       </li>
       <li data-seq="62">
         <a class="article-card" href="articles/shokuhin-hyouji-yomikata.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shokuhin-hyouji-yomikata.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">食品表示の読み方：パッケージの裏をどこから見るか（原材料・添加物・アレルギー・期限・栄養成分）</span>
           <span class="article-card-desc">表示の義務がある売り方とない売り方、一括表示の見本と見る順番、原材料の並びと添加物、原料原産地と遺伝子組換え、アレルギー表示の9品目と2026年の変更、消費期限と賞味期限、食塩相当量と「ゼロ」「オフ」の基準、トクホと機能性表示食品</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -233,6 +146,7 @@
       </li>
       <li data-seq="61">
         <a class="article-card" href="articles/password-kanri.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/password-kanri.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">パスワード管理の基本：使い回しを防ぐ方法（管理ツール・2段階認証・パスキー）</span>
           <span class="article-card-desc">リスト型攻撃の仕組み、令和7年の不正アクセス7,190件と手口、強いパスワードの条件と定期変更が不要な理由、管理ツールと紙のメモ、2段階認証とパスキー、漏えいの確かめ方と漏れたときの対応、相談窓口</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -240,6 +154,7 @@
       </li>
       <li data-seq="51">
         <a class="article-card" href="articles/furima-otoku-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/furima-otoku-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">メルカリやヤフオクで買うとお得なものは？ 中古向きの品目、避けたいもの、手数料と補償（2026年版）</span>
           <span class="article-card-desc">個人間ECの市場規模2兆6,870億円、品目別の「中古で買ってもよい」割合（書籍63.5%など）、医薬品・コンタクトレンズ・PSマークのない製品など出品禁止のもの、中古品の事故とリコール、メルカリの支払い手数料と値下げ依頼、ヤフオクの自動入札、補償とトラブルの防ぎ方</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -247,6 +162,7 @@
       </li>
       <li data-seq="47">
         <a class="article-card" href="articles/smartphone-kaikae-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/smartphone-kaikae-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">スマートフォンの買い替え時期と費用：使用年数・OSの更新期限・電池の目安と、値引きのルール（2026年版）</span>
           <span class="article-card-desc">平均使用年数4.6年と買い替えの理由、PixelやGalaxyのOS更新の年数、iPhoneの電池の目安、3Gの終了、iPhoneとPixelの公式の価格、端末値引きの上限4万円（税抜）と端末購入プログラム、中古の注意点と古い端末の手放し方</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -254,6 +170,7 @@
       </li>
       <li data-seq="46">
         <a class="article-card" href="articles/chuko-jutaku-taishin.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/chuko-jutaku-taishin.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">中古住宅の耐震性能の調べ方：建てた時期、書類、耐震診断、補助と税の制度（2026年版）</span>
           <span class="article-card-desc">1981年6月と2000年6月の基準の節目と熊本地震の倒壊率、確認済証などの書類、インスペクションと耐震診断の違い、横浜市・神戸市・大阪市などの無料診断と改修の補助、住宅ローン減税、地震保険の割引、耐震化率</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
@@ -261,6 +178,7 @@
       </li>
       <li data-seq="27">
         <a class="article-card" href="articles/sake-basics-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/sake-basics-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">日本酒の基本と楽しみ方：種類・ラベル・保存・適量と、関西の酒蔵見学（2026年版）</span>
           <span class="article-card-desc">純米・吟醸など8つの特定名称と普通酒の違い、ラベルの読み方と賞味期限がない理由、日本酒度・温度・酒器・料理との合わせ方、保存と開栓後の目安、厚労省ガイドラインに沿った適量とカロリー、酒税と小売価格、灘・伏見・大阪・奈良・滋賀の酒蔵見学の料金と予約</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
@@ -268,6 +186,7 @@
       </li>
       <li data-seq="25">
         <a class="article-card" href="articles/home-buying-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/home-buying-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">家を買うときに考えること（2026年版）</span>
           <span class="article-card-desc">買うか借りるかの考え方、フラット35利用者の年収倍率、大阪・近畿の相場、住宅ローンと金利の現状、税金・諸費用・住宅ローン控除・補助金、買った後の費用、耐震とハザードマップの確認、契約の流れ、売るときの税金と相談先</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
@@ -275,6 +194,7 @@
       </li>
       <li data-seq="22">
         <a class="article-card" href="articles/hikkoshi-2027.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/hikkoshi-2027.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">引っ越し費用を抑える方法と、春の繁忙期の相場のイメージ（2027年春）</span>
           <span class="article-card-desc">3月は通常の月の約2倍という繁忙期の実態、通常期と繁忙期の料金の目安（民間の集計2つ）、見積もりとキャンセルのルール、単身パック・宅配便、仲介手数料と退去費用、手続きのタイムライン</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
@@ -282,188 +202,15 @@
       </li>
       <li data-seq="21">
         <a class="article-card" href="articles/suimin-guide.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/suimin-guide.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">国の睡眠ガイドに沿った、睡眠の質を上げる方法</span>
           <span class="article-card-desc">厚生労働省「睡眠ガイド2023」の6時間以上の目安と睡眠休養感、日本人の睡眠時間の実態、朝から夜までの工夫（光・スマホ・入浴・カフェイン・お酒）、よくある誤解、医師に相談する目安</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
         </a>
       </li>
-    </ul>
-
-    <h3 class="article-group-title">身近な科学</h3>
-    <ul class="article-list">
-      <li data-seq="55">
-        <a class="article-card" href="articles/kakuyugo-hatsuden.html">
-          <span class="article-card-title">核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）</span>
-          <span class="article-card-desc">重水素と三重水素の反応と燃料1gで石油約8トン分のエネルギー、1億度以上などの条件、ITERの新計画（燃料の運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJ、民間企業の目標、三重水素・材料・コスト・規制の課題</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="50">
-        <a class="article-card" href="articles/kumo-tenki.html">
-          <span class="article-card-title">雲の種類で天気が分かるのはなぜ？ 雲のでき方、十種雲形、前線と雲の順番、天気のことわざ</span>
-          <span class="article-card-desc">空気が上がって冷えると雲ができる仕組み、高さと形で10種類に分ける十種雲形、温暖前線が近づくと雲が低く厚くなる理由、積乱雲が近づくサインと雷までの距離、「かさが出ると雨」などのことわざの理屈、気象台の目視観測の自動化</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="49">
-        <a class="article-card" href="articles/taion-37do.html">
-          <span class="article-card-title">人間の体温はなぜ約37℃なのか：37℃の由来、体温を保つ仕組み、平熱の実際と測り方</span>
-          <span class="article-card-desc">37℃という数字の由来、熱をつくる・逃がす仕組みと1日のリズム、カビを防ぐ効果とエネルギーのコストで36.7℃になるという研究、日本人の平熱（1957年36.89℃、2019年36.47℃）、「発熱」37.5℃以上の定義、熱中症と低体温症、体温計の使い方</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">プラント</h3>
-    <ul class="article-list">
-      <li data-seq="60">
-        <a class="article-card" href="articles/plant-kensetsu-nagare.html">
-          <span class="article-card-title">プラント建設工事の全体的な流れ：準備工事から据付・配管・検査・試運転まで</span>
-          <span class="article-card-desc">着工前の許可と届出、杭・基礎・鉄骨、大型クレーンでの据付とモジュール工法、配管・電気計装・保温塗装と耐圧試験、完成検査・落成検査、試運転への引き渡し、現場の安全管理と1日の流れ、規模の例</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="58">
-        <a class="article-card" href="articles/plant-shigoto-susumekata.html">
-          <span class="article-card-title">プラント業界の仕事の進め方：プロジェクトの流れ、契約の形、チームの体制、調達と建設、管理の手法</span>
-          <span class="article-card-desc">FS・FEED・入札から設計・調達・建設・試運転・引き渡し・保証期間までの流れ、ランプサムと実費精算などの契約の形、プロジェクトマネージャーを頂点とする体制、調達と建設の進め方、WBS・クリティカルパス・アーンドバリュー、見積りの精度、LNGプラントの期間の例、海外勤務</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="57">
-        <a class="article-card" href="articles/plant-ryakugo.html">
-          <span class="article-card-title">プラント業界で使われる英語の略語一覧：約80語を分野別に（契約・設計・安全・計装・検査・保全・規格）</span>
-          <span class="article-card-desc">EPC・FEED・LSTK・FID・P&amp;ID・HAZOP・SIL・SIS・DCS・PLC・FIC・NDT・FAT・RBI・ASME・APIなど約80語を7分野に分け、英語の正式名と意味を整理。計装の記号の読み方とまぎらわしい略語も</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="56">
-        <a class="article-card" href="articles/plant-sekkei-yougo.html">
-          <span class="article-card-title">プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面</span>
-          <span class="article-card-desc">呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など100語を、法令や公的な解説をもとに説明</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="54">
-        <a class="article-card" href="articles/plant-towa.html">
-          <span class="article-card-title">プラントとは何かを分かりやすく解説：工場との違い、種類、中にある設備、プラントの一生、日本のどこにあるか</span>
-          <span class="article-card-desc">装置産業という考え方、製油所19か所・エチレンプラント12基・ごみ焼却施設991施設などの種類と数、中にある設備、許可・完成検査・保安検査・定期修理・廃止というプラントの一生、全国76地区の特別防災区域、働く人と安全の仕組み</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="53">
-        <a class="article-card" href="articles/kagaku-plant-shikumi.html">
-          <span class="article-card-title">化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全</span>
-          <span class="article-card-desc">前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・バルブなどの役割、製油所の常圧蒸留とナフサ分解によるエチレン製造、DCSと安全計装、PFD・P&amp;ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-      <li data-seq="52">
-        <a class="article-card" href="articles/plant-3d-model.html">
-          <span class="article-card-title">プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト</span>
-          <span class="article-card-desc">数千〜数万本の配管を3Dで配置する理由、30%・60%・90%のモデルレビュー、カタログとスペックで部品を選ぶ仕組み、アイソメ図を3Dモデルから書き出す仕組み、レーザースキャナーの点群、AVEVA E3D・Forte 3D・Plant 3D・Navisworks、日本の会社の自動設計</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">仕事・学習の道具</h3>
-    <ul class="article-list">
-      <li data-seq="39">
-        <a class="article-card" href="articles/obsidian-ai-2026.html">
-          <span class="article-card-title">Obsidianと生成AIを組み合わせる方法：3つのやり方、費用、プライバシーの注意（2026年版）</span>
-          <span class="article-card-desc">プラグインで使う・外のAIにフォルダを読ませる（MCP）・自分のパソコンでAIを動かすの3つのやり方、主なAIプラグインのダウンロード数と公式ディレクトリの評価、APIと月額プランの料金、入力が学習に使われるかの違い</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="26">
-        <a class="article-card" href="articles/obsidian-notes-2026.html">
-          <span class="article-card-title">Obsidian（オブシディアン）の始め方と注意点：料金・同期・バックアップ（2026年版）</span>
-          <span class="article-card-desc">ノートを端末内の Markdown ファイルで持つノートアプリの、無料の範囲と Sync・Publish の料金、インストールからノートをつなぐまで、主な機能、プラグインの安全上の注意、複数端末での同期、バックアップ、Notion・Evernote などとの違い、他アプリからの移行</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">BIM・建設ソフト</h3>
-    <ul class="article-list">
-      <li data-seq="16">
-        <a class="article-card" href="articles/navisworks-simulate-guide.html">
-          <span class="article-card-title">Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）</span>
-          <span class="article-card-desc">Manageとの違いと価格、ファイル形式（NWD・NWF・NWC）、ナビゲーション、選択・検索セット、断面・測定、TimeLinerの4D工程シミュレーション、Animator・Scripter、数量拾い、動画の書き出し</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-04">2026年11月4日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">資格試験</h3>
-    <ul class="article-list">
-      <li data-seq="32">
-        <a class="article-card" href="articles/it-passport-last-week-2026.html">
-          <span class="article-card-title">ITパスポート 直前1週間の勉強法：過去問道場の使い方と、記憶に残る解き方（2026年版）</span>
-          <span class="article-card-desc">読み返すより解くほうが1週間後の記憶に残る研究、過去問道場の3つの出題モードと「復習を開始」の使い方、分野別の収録問数、合格者が最も使った教材、600〜649点が最多の評価点分布、直前7日間の回し方、当日の時間配分と持ち物</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="15">
-        <a class="article-card" href="articles/it-passport-key-points.html">
-          <span class="article-card-title">ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）</span>
-          <span class="article-card-desc">計算問題の解き方（稼働率・損益分岐点・転送時間・2進数・クリティカルパス）、過去問から覚える用語、法律の数字、セキュリティの基本</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-03">2026年11月3日</time></span>
-        </a>
-      </li>
-      <li data-seq="9">
-        <a class="article-card" href="articles/it-passport-1week.html">
-          <span class="article-card-title">ITパスポートに1週間で合格するための勉強法</span>
-          <span class="article-card-desc">試験の仕組み、合格者データ、無料の公式教材、7日間の学習プラン。現行試験は2026年12月27日まで</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">おでかけ・見学</h3>
-    <ul class="article-list">
-      <li data-seq="37">
-        <a class="article-card" href="articles/green-expo-2027.html">
-          <span class="article-card-title">GREEN×EXPO 2027ガイド：会期、チケットの値段、3つの予約、会場への行き方（横浜の国際園芸博覧会）</span>
-          <span class="article-card-desc">2027年3月19日〜9月26日の会期と見どころ、券種ごとの値段と早割の期限、入場・シャトルバス・駐車場の予約、4駅からのシャトルバスと駐車場の料金、上瀬谷ラインがない理由、持ち込めないもの、建設費と運営費、まだ決まっていないこと</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="36">
-        <a class="article-card" href="articles/rokko-zenzan-2026.html">
-          <span class="article-card-title">六甲全山縦走ガイド：4つの区間、途中で下りる方法、大会の条件と安全（2026年版）</span>
-          <span class="article-card-desc">公称56kmと実測の違い、神戸市が分ける4つの区間と難所、まやビューライン・六甲ケーブルで途中から下りる方法、大会の定員・参加料・関門の時刻と完走率、遭難の原因と日の入り、イノシシ・クマ・マダニ、装備</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
-        </a>
-      </li>
-      <li data-seq="29">
-        <a class="article-card" href="articles/kawasaki-food-2026.html">
-          <span class="article-card-title">川崎駅周辺と川崎大師で食べたい店：老舗と名物、観光協会が紹介する店（2026年版）</span>
-          <span class="article-card-desc">川崎市観光協会が紹介する川崎駅周辺の老舗（とんかつ和幸の本店、1955年創業のイタリア料理、1914年創業の蕎麦など）、ニュータンタンメン・クラフトビール・カフェ、川崎大師の久寿餅・とんとこ飴・わらび餅、かわさき名産品のおみやげ</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-06">2026年11月6日</time></span>
-        </a>
-      </li>
-      <li data-seq="28">
-        <a class="article-card" href="articles/nazotoki-2026.html">
-          <span class="article-card-title">謎解きゲームの主な団体と、初めての遊び方（2026年版）</span>
-          <span class="article-card-desc">SCRAP・タカラッシュ・NAZO×NAZO劇団・よだかのレコード・RIDDLERなど主な団体の特徴、ルーム型・ホール型・街歩き・キットの形式と料金の目安、東京ミステリーサーカスなどの常設店、学生団体と自治体のコラボ、初めて参加するときの決まりごと、謎検</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-06">2026年11月6日</time></span>
-        </a>
-      </li>
-      <li data-seq="14">
-        <a class="article-card" href="articles/factory-tours-2026.html">
-          <span class="article-card-title">大人も楽しめる工場見学・社会科見学（2026年版）</span>
-          <span class="article-card-desc">試飲つきのビール工場・蒸溜所、お菓子の工場、車の組立ライン、国会・日本銀行・造幣局・皇居などを、料金・予約・所要時間つきで紹介</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-02">2026年11月2日</time></span>
-        </a>
-      </li>
-    </ul>
-
-    <h3 class="article-group-title">クルマ</h3>
-    <ul class="article-list">
       <li data-seq="13">
         <a class="article-card" href="articles/car-buying-guide-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/car-buying-guide-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">車を買う前に知っておきたいこと（2026年版）</span>
           <span class="article-card-desc">選ぶ順番、2026年に変わった税金とEV補助金、軽・普通車・EVの違い、維持費の目安、残クレ・カーリース・中古車の注意点、安全性能の見方</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-02">2026年11月2日</time></span>
@@ -471,10 +218,43 @@
       </li>
     </ul>
 
-    <h3 class="article-group-title">税金・お金の手続き</h3>
+    <h3 class="article-group-title" data-icon="money">お金・税金</h3>
     <ul class="article-list">
+      <li data-seq="38">
+        <a class="article-card" href="articles/bonus-tsukaimichi-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/bonus-tsukaimichi-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">ボーナスの使い道：冬の平均額と手取りの目安、みんなの使い道、考える順番（2026年冬）</span>
+          <span class="article-card-desc">民間の平均支給額と2026年冬の予測、額面50万円の手取りの試算と所得税の率の決まり方、夏のボーナスの使い道の調査、金利の高い借入れ・先取り貯蓄・NISAとiDeCoの枠、個人向け国債とふるさと納税の年末の期限、もうけ話の勧誘への注意</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="33">
+        <a class="article-card" href="articles/nisa-ideco-2027.html">
+          <span class="article-card-thumb is-icon" data-icon="money" aria-hidden="true"></span>
+          <span class="article-card-title">iDeCo・NISAの2027年改正まとめ：掛金上限の引き上げ、70歳までの加入、0歳からのNISA</span>
+          <span class="article-card-desc">働き方別のiDeCoの掛金上限（改正前→改正後）、増額の手続きと12月24日の締め切り、70歳までの加入、企業型DCのマッチング拠出と退職金の9年ルール、2027年1月からの0〜17歳のNISAと払出しのルール、まだ要望段階の項目</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="24">
+        <a class="article-card" href="articles/system-trade-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/system-trade-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">個人のシステムトレード入門：手法の種類と、研究で分かっていること（2026年版）</span>
+          <span class="article-card-desc">売買の規則を先に決めて守るやり方の種類、論文で分かっていること（バリューとモメンタム、トレンドフォロー、優待の先回り、効果が薄れた手法）、バックテストの落とし穴、税金・データ・発注の仕組み（特定の手法の推奨ではありません）</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
+        </a>
+      </li>
+      <li data-seq="20">
+        <a class="article-card" href="articles/kabunushi-yutai-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kabunushi-yutai-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">株主優待の基本と、暮らしに役立つ優待の例（2026年版）</span>
+          <span class="article-card-desc">権利付最終日・100株・継続保有と株主番号の基本、税金とNISA、長期保有の条件化や新設・廃止の動き、交通・食事・買い物などの優待の例、選ぶときの確認点（特定銘柄の推奨ではありません）</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
+        </a>
+      </li>
       <li data-seq="18">
         <a class="article-card" href="articles/furusato-nozei-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/furusato-nozei-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">ふるさと納税の2026年版（約10万円分を使う場合のイメージ）</span>
           <span class="article-card-desc">ポイント付与の禁止と経費基準の厳格化、10万円が上限内に収まる年収の目安と自分での確かめ方、ワンストップ特例の条件と期限、年末の締め切り、配分例とよくある失敗</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
@@ -482,6 +262,7 @@
       </li>
       <li data-seq="17">
         <a class="article-card" href="articles/nencho-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/nencho-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">年末調整の書き方（2026年分・令和8年分）</span>
           <span class="article-card-desc">基礎控除が最大104万円、家族の所得要件136万円、23歳未満の扶養親族の生命保険料控除6万円などの改正点、4つの申告書の書き方、控除額の早見表、年調ソフト、確定申告が必要なもの</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
@@ -489,6 +270,7 @@
       </li>
       <li data-seq="12">
         <a class="article-card" href="articles/gensen-choshuhyo-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/gensen-choshuhyo-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">源泉徴収票の読み方（2026年分）</span>
           <span class="article-card-desc">まず見る4つの数字、税額が決まる流れ（年収500万円の計算例）、2026年分の変更点、確定申告が必要な人・税金が戻る人</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-02">2026年11月2日</time></span>
@@ -496,28 +278,195 @@
       </li>
     </ul>
 
-    <h3 class="article-group-title">英語学習</h3>
+    <h3 class="article-group-title" data-icon="work">仕事の基礎知識</h3>
+    <ul class="article-list">
+      <li data-seq="45">
+        <a class="article-card" href="articles/yukyu-tsukaikata-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/yukyu-tsukaikata-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">有給休暇の上手な使い方：半日・時間単位・計画年休と、2027年の連休のつなげ方</span>
+          <span class="article-card-desc">取得率66.9%と国の目標、付与日数の表、半日・時間単位・計画的付与の違いと年5日の義務での数え方、2027年に何日足せば何連休になるか、理由を言わなくてよいことや時季変更権・買い取り・退職前の消化、業種別の取得率、相談先</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="44">
+        <a class="article-card" href="articles/business-manner-kihon.html">
+          <span class="article-card-thumb is-icon" data-icon="work" aria-hidden="true"></span>
+          <span class="article-card-title">ビジネスマナーの基本：敬語の指針と世論調査でわかる、根拠のあるマナーと根拠のない俗説</span>
+          <span class="article-card-desc">敬語の指針による5分類と「御苦労様」「とんでもございません」「させていただく」の扱い、社外に上司のことを話すときの言い方、「了解しました」に公的な根拠がないこと、世論調査の数字、メールと文書、クールビズの今、パワハラとカスハラ、検定</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="43">
+        <a class="article-card" href="articles/kessansho-yomikata.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kessansho-yomikata.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">会社の決算書の読み方：3つの表と5つの利益、平均と比べる指標（2026年版）</span>
+          <span class="article-card-desc">損益計算書・貸借対照表・キャッシュ・フロー計算書の読み方を任天堂の決算短信で解説、5段階の利益、利益と現金の違い、営業利益率・自己資本比率・ROEの式と業種別・規模別の平均、決算短信と有報と決算公告の時期</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="42">
+        <a class="article-card" href="articles/yuho-edinet.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/yuho-edinet.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">有価証券報告書から会社を調べる方法：EDINETの使い方と、従業員・リスク・株主の見方（2026年版）</span>
+          <span class="article-card-desc">EDINETでの探し方と10年分の閲覧、どこに何が書いてあるかの早見表、2026年3月期から変わった「従業員の状況等」と平均年収の注意点（トヨタと三菱UFJの例）、多様性の指標、事業等のリスクと大株主、総会前の開示</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="article-group-title" data-icon="career">学び直し・キャリア</h3>
+    <ul class="article-list">
+      <li data-seq="41">
+        <a class="article-card" href="articles/daigaku-kokai-koza-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/daigaku-kokai-koza-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">社会人でも参加できる大学の公開講座：5つの学び方の違い、費用の例、探し方（2026年版）</span>
+          <span class="article-card-desc">公開講座・履修証明プログラム・科目等履修生・BP・大学院入学の違い、受講者約93万人などの統計、東大・京大・阪大・慶應MCC・神戸大の講座の料金と形式、マナパスやJMOOCでの探し方、教育訓練給付などの支援</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="40">
+        <a class="article-card" href="articles/shokugyo-taiken-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shokugyo-taiken-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">大人が参加できる職業体験：地方で働く、農林漁業、福祉の職場体験、トライアル雇用（2026年版）</span>
+          <span class="article-card-desc">ふるさとワーキングホリデー・おためし地域おこし協力隊・協力隊インターン、農業体験の料金、無料の林業講習、漁業就業支援フェア、福祉・介護の職場体験、原則3か月のトライアル雇用、民間の職業体験サービス</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="23">
+        <a class="article-card" href="articles/tenshoku-agent-site-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/tenshoku-agent-site-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">転職エージェントと転職サイトのしくみ、使い分け（2026年版）</span>
+          <span class="article-card-desc">許可制の有料職業紹介と届出制の求人サイトの違い、誰が手数料を払うか、2025年の転職者が使った方法、人材サービス総合サイトでの確認、お祝い金禁止などのルール、退職と雇用保険の手続き、相談先</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
+        </a>
+      </li>
+      <li data-seq="19">
+        <a class="article-card" href="articles/kyoiku-kunren-kyufu-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kyoiku-kunren-kyufu-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">教育訓練給付の対象講座と受け取り方（2026年版）</span>
+          <span class="article-card-desc">一般20%・特定一般最大50%・専門実践最大80%の違い、受け取れる条件、検索システムでの探し方、IT・建設・語学・大学院の講座の例、2週間前の手続きと落とし穴</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="article-group-title" data-icon="exam">資格・語学</h3>
     <ul class="article-list">
       <li data-seq="59">
         <a class="article-card" href="articles/toeic-speaking-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/toeic-speaking-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">TOEIC Speaking Testとは：問題の形式、採点とスコア、受験料、申込みから結果まで（2026年）</span>
           <span class="article-card-desc">11問・約20分の問題の形式、当日の流れと本人確認書類、採点のしくみと0〜200点のスコアの見方、受験料6,930円（税込）と日程、2025年度の平均点とL&amp;Rとの関係、企業での使われ方、公式の準備方法</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
         </a>
       </li>
+      <li data-seq="32">
+        <a class="article-card" href="articles/it-passport-last-week-2026.html">
+          <span class="article-card-thumb is-icon" data-icon="exam" aria-hidden="true"></span>
+          <span class="article-card-title">ITパスポート 直前1週間の勉強法：過去問道場の使い方と、記憶に残る解き方（2026年版）</span>
+          <span class="article-card-desc">読み返すより解くほうが1週間後の記憶に残る研究、過去問道場の3つの出題モードと「復習を開始」の使い方、分野別の収録問数、合格者が最も使った教材、600〜649点が最多の評価点分布、直前7日間の回し方、当日の時間配分と持ち物</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="15">
+        <a class="article-card" href="articles/it-passport-key-points.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/it-passport-key-points.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）</span>
+          <span class="article-card-desc">計算問題の解き方（稼働率・損益分岐点・転送時間・2進数・クリティカルパス）、過去問から覚える用語、法律の数字、セキュリティの基本</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-03">2026年11月3日</time></span>
+        </a>
+      </li>
       <li data-seq="11">
         <a class="article-card" href="articles/ef-english-live-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/ef-english-live-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">EF English Liveを効果的に受講する方法</span>
           <span class="article-card-desc">レッスンの前・中・後にやること、研究で効果が確かめられた練習法、グループとプライベートの使い分け、1週間の受講モデル</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-02">2026年11月2日</time></span>
         </a>
       </li>
+      <li data-seq="9">
+        <a class="article-card" href="articles/it-passport-1week.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/it-passport-1week.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">ITパスポートに1週間で合格するための勉強法</span>
+          <span class="article-card-desc">試験の仕組み、合格者データ、無料の公式教材、7日間の学習プラン。現行試験は2026年12月27日まで</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
+        </a>
+      </li>
     </ul>
 
-    <h3 class="article-group-title">旅行・きっぷ</h3>
+    <h3 class="article-group-title" data-icon="tools">仕事・学習の道具</h3>
     <ul class="article-list">
+      <li data-seq="39">
+        <a class="article-card" href="articles/obsidian-ai-2026.html">
+          <span class="article-card-thumb is-icon" data-icon="tools" aria-hidden="true"></span>
+          <span class="article-card-title">Obsidianと生成AIを組み合わせる方法：3つのやり方、費用、プライバシーの注意（2026年版）</span>
+          <span class="article-card-desc">プラグインで使う・外のAIにフォルダを読ませる（MCP）・自分のパソコンでAIを動かすの3つのやり方、主なAIプラグインのダウンロード数と公式ディレクトリの評価、APIと月額プランの料金、入力が学習に使われるかの違い</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="26">
+        <a class="article-card" href="articles/obsidian-notes-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/obsidian-notes-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">Obsidian（オブシディアン）の始め方と注意点：料金・同期・バックアップ（2026年版）</span>
+          <span class="article-card-desc">ノートを端末内の Markdown ファイルで持つノートアプリの、無料の範囲と Sync・Publish の料金、インストールからノートをつなぐまで、主な機能、プラグインの安全上の注意、複数端末での同期、バックアップ、Notion・Evernote などとの違い、他アプリからの移行</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-05">2026年11月5日</time></span>
+        </a>
+      </li>
+      <li data-seq="16">
+        <a class="article-card" href="articles/navisworks-simulate-guide.html">
+          <span class="article-card-thumb is-icon" data-icon="tools" aria-hidden="true"></span>
+          <span class="article-card-title">Navisworks Simulateの操作方法まとめ（2027版ヘルプ準拠）</span>
+          <span class="article-card-desc">Manageとの違いと価格、ファイル形式（NWD・NWF・NWC）、ナビゲーション、選択・検索セット、断面・測定、TimeLinerの4D工程シミュレーション、Animator・Scripter、数量拾い、動画の書き出し</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-04">2026年11月4日</time></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="article-group-title" data-icon="outing">おでかけ・旅行</h3>
+    <ul class="article-list">
+      <li data-seq="37">
+        <a class="article-card" href="articles/green-expo-2027.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/green-expo-2027.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">GREEN×EXPO 2027ガイド：会期、チケットの値段、3つの予約、会場への行き方（横浜の国際園芸博覧会）</span>
+          <span class="article-card-desc">2027年3月19日〜9月26日の会期と見どころ、券種ごとの値段と早割の期限、入場・シャトルバス・駐車場の予約、4駅からのシャトルバスと駐車場の料金、上瀬谷ラインがない理由、持ち込めないもの、建設費と運営費、まだ決まっていないこと</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="36">
+        <a class="article-card" href="articles/rokko-zenzan-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/rokko-zenzan-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">六甲全山縦走ガイド：4つの区間、途中で下りる方法、大会の条件と安全（2026年版）</span>
+          <span class="article-card-desc">公称56kmと実測の違い、神戸市が分ける4つの区間と難所、まやビューライン・六甲ケーブルで途中から下りる方法、大会の定員・参加料・関門の時刻と完走率、遭難の原因と日の入り、イノシシ・クマ・マダニ、装備</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-09">2026年11月9日</time></span>
+        </a>
+      </li>
+      <li data-seq="29">
+        <a class="article-card" href="articles/kawasaki-food-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kawasaki-food-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">川崎駅周辺と川崎大師で食べたい店：老舗と名物、観光協会が紹介する店（2026年版）</span>
+          <span class="article-card-desc">川崎市観光協会が紹介する川崎駅周辺の老舗（とんかつ和幸の本店、1955年創業のイタリア料理、1914年創業の蕎麦など）、ニュータンタンメン・クラフトビール・カフェ、川崎大師の久寿餅・とんとこ飴・わらび餅、かわさき名産品のおみやげ</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-06">2026年11月6日</time></span>
+        </a>
+      </li>
+      <li data-seq="28">
+        <a class="article-card" href="articles/nazotoki-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/nazotoki-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">謎解きゲームの主な団体と、初めての遊び方（2026年版）</span>
+          <span class="article-card-desc">SCRAP・タカラッシュ・NAZO×NAZO劇団・よだかのレコード・RIDDLERなど主な団体の特徴、ルーム型・ホール型・街歩き・キットの形式と料金の目安、東京ミステリーサーカスなどの常設店、学生団体と自治体のコラボ、初めて参加するときの決まりごと、謎検</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-06">2026年11月6日</time></span>
+        </a>
+      </li>
+      <li data-seq="14">
+        <a class="article-card" href="articles/factory-tours-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/factory-tours-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">大人も楽しめる工場見学・社会科見学（2026年版）</span>
+          <span class="article-card-desc">試飲つきのビール工場・蒸溜所、お菓子の工場、車の組立ライン、国会・日本銀行・造幣局・皇居などを、料金・予約・所要時間つきで紹介</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-02">2026年11月2日</time></span>
+        </a>
+      </li>
       <li data-seq="10">
         <a class="article-card" href="articles/wester-kansai-hokuriku-pass-2026.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/wester-kansai-hokuriku-pass-2026.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">WESTERポイント関西・北陸フリーパスの注意点と、北陸3日間の観光・グルメ</span>
           <span class="article-card-desc">6,000ポイントで3日間乗り放題。対象外の路線、払い戻し、冬の運休、駅から行ける観光地と名物の店、モデルコース</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -525,11 +474,116 @@
       </li>
     </ul>
 
-    <h3 class="article-group-title">社会人お得技ノート（全8回）</h3>
+    <h3 class="article-group-title" data-icon="science">身近な科学</h3>
+    <ul class="article-list">
+      <li data-seq="55">
+        <a class="article-card" href="articles/kakuyugo-hatsuden.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kakuyugo-hatsuden.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）</span>
+          <span class="article-card-desc">重水素と三重水素の反応と燃料1gで石油約8トン分のエネルギー、1億度以上などの条件、ITERの新計画（燃料の運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJ、民間企業の目標、三重水素・材料・コスト・規制の課題</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="50">
+        <a class="article-card" href="articles/kumo-tenki.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kumo-tenki.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">雲の種類で天気が分かるのはなぜ？ 雲のでき方、十種雲形、前線と雲の順番、天気のことわざ</span>
+          <span class="article-card-desc">空気が上がって冷えると雲ができる仕組み、高さと形で10種類に分ける十種雲形、温暖前線が近づくと雲が低く厚くなる理由、積乱雲が近づくサインと雷までの距離、「かさが出ると雨」などのことわざの理屈、気象台の目視観測の自動化</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="49">
+        <a class="article-card" href="articles/taion-37do.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/taion-37do.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">人間の体温はなぜ約37℃なのか：37℃の由来、体温を保つ仕組み、平熱の実際と測り方</span>
+          <span class="article-card-desc">37℃という数字の由来、熱をつくる・逃がす仕組みと1日のリズム、カビを防ぐ効果とエネルギーのコストで36.7℃になるという研究、日本人の平熱（1957年36.89℃、2019年36.47℃）、「発熱」37.5℃以上の定義、熱中症と低体温症、体温計の使い方</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="article-group-title" data-icon="plant">プラント</h3>
+    <ul class="article-list">
+      <li data-seq="60">
+        <a class="article-card" href="articles/plant-kensetsu-nagare.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-kensetsu-nagare.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラント建設工事の全体的な流れ：準備工事から据付・配管・検査・試運転まで</span>
+          <span class="article-card-desc">着工前の許可と届出、杭・基礎・鉄骨、大型クレーンでの据付とモジュール工法、配管・電気計装・保温塗装と耐圧試験、完成検査・落成検査、試運転への引き渡し、現場の安全管理と1日の流れ、規模の例</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="58">
+        <a class="article-card" href="articles/plant-shigoto-susumekata.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-shigoto-susumekata.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラント業界の仕事の進め方：プロジェクトの流れ、契約の形、チームの体制、調達と建設、管理の手法</span>
+          <span class="article-card-desc">FS・FEED・入札から設計・調達・建設・試運転・引き渡し・保証期間までの流れ、ランプサムと実費精算などの契約の形、プロジェクトマネージャーを頂点とする体制、調達と建設の進め方、WBS・クリティカルパス・アーンドバリュー、見積りの精度、LNGプラントの期間の例、海外勤務</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="57">
+        <a class="article-card" href="articles/plant-ryakugo.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-ryakugo.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラント業界で使われる英語の略語一覧：約80語を分野別に（契約・設計・安全・計装・検査・保全・規格）</span>
+          <span class="article-card-desc">EPC・FEED・LSTK・FID・P&amp;ID・HAZOP・SIL・SIS・DCS・PLC・FIC・NDT・FAT・RBI・ASME・APIなど約80語を7分野に分け、英語の正式名と意味を整理。計装の記号の読み方とまぎらわしい略語も</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="56">
+        <a class="article-card" href="articles/plant-sekkei-yougo.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-sekkei-yougo.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面</span>
+          <span class="article-card-desc">呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など100語を、法令や公的な解説をもとに説明</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="54">
+        <a class="article-card" href="articles/plant-towa.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-towa.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラントとは何かを分かりやすく解説：工場との違い、種類、中にある設備、プラントの一生、日本のどこにあるか</span>
+          <span class="article-card-desc">装置産業という考え方、製油所19か所・エチレンプラント12基・ごみ焼却施設991施設などの種類と数、中にある設備、許可・完成検査・保安検査・定期修理・廃止というプラントの一生、全国76地区の特別防災区域、働く人と安全の仕組み</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="53">
+        <a class="article-card" href="articles/kagaku-plant-shikumi.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/kagaku-plant-shikumi.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全</span>
+          <span class="article-card-desc">前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・バルブなどの役割、製油所の常圧蒸留とナフサ分解によるエチレン製造、DCSと安全計装、PFD・P&amp;ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="52">
+        <a class="article-card" href="articles/plant-3d-model.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-3d-model.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト</span>
+          <span class="article-card-desc">数千〜数万本の配管を3Dで配置する理由、30%・60%・90%のモデルレビュー、カタログとスペックで部品を選ぶ仕組み、アイソメ図を3Dモデルから書き出す仕組み、レーザースキャナーの点群、AVEVA E3D・Forte 3D・Plant 3D・Navisworks、日本の会社の自動設計</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+      <li data-seq="48">
+        <a class="article-card" href="articles/plant-engineering.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/plant-engineering.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">プラントエンジニアリングとは：EPCの仕組み、業界の規模と主な会社、仕事の流れと3D設計（2026年版）</span>
+          <span class="article-card-desc">EPC・FEED・一括請負の意味、業界の受注高32兆円の内訳、日揮HD・千代田化工建設・東洋エンジニアリングの売上と受注残高、仕事の流れと職種、3D設計とデジタルツイン、海外駐在と資格の合格率、脱炭素と大型案件の損失</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-10">2026年11月10日</time></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="article-group-title" data-icon="series">社会人お得技ノート（全8回）</h3>
     <p>社会人が使える制度・割引・控除を分野別にまとめたシリーズです。2026年の制度改正も反映しています。</p>
     <ul class="article-list">
+      <li data-seq="8">
+        <a class="article-card" href="articles/shakaijin-otoku-5-travel.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-5-travel.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
+          <span class="article-card-title">社会人お得技ノート⑤ 交通・旅行</span>
+          <span class="article-card-desc">JRの割引制度、株主優待券、ETC割引、旅行支援、海外決済</span>
+          <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
+        </a>
+      </li>
       <li data-seq="7">
         <a class="article-card" href="articles/shakaijin-otoku-1-ouj.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-1-ouj.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート① 放送大学で学生身分を得る</span>
           <span class="article-card-desc">放送大学の学生になって学割・図書館を使う</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -537,6 +591,7 @@
       </li>
       <li data-seq="6">
         <a class="article-card" href="articles/shakaijin-otoku-2-tax.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-2-tax.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート② 税金・控除</span>
           <span class="article-card-desc">特定支出控除、医療費控除、2026年の税制改正など</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -544,6 +599,7 @@
       </li>
       <li data-seq="5">
         <a class="article-card" href="articles/shakaijin-otoku-3-social-insurance.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-3-social-insurance.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート③ 社会保険・年金・雇用保険</span>
           <span class="article-card-desc">iDeCo改正、国民年金、退職時の社会保険、教育訓練給付など</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -551,20 +607,15 @@
       </li>
       <li data-seq="4">
         <a class="article-card" href="articles/shakaijin-otoku-4-medical.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-4-medical.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート④ 医療</span>
           <span class="article-card-desc">高額療養費の改定、付加給付、長期収載品、申請しないともらえない給付</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
         </a>
       </li>
-      <li data-seq="8">
-        <a class="article-card" href="articles/shakaijin-otoku-5-travel.html">
-          <span class="article-card-title">社会人お得技ノート⑤ 交通・旅行</span>
-          <span class="article-card-desc">JRの割引制度、株主優待券、ETC割引、旅行支援、海外決済</span>
-          <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
-        </a>
-      </li>
       <li data-seq="3">
         <a class="article-card" href="articles/shakaijin-otoku-6-points.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-6-points.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート⑥ 通信・サブスク・クレカ・ポイント</span>
           <span class="article-card-desc">格安SIMの維持費、ファミリープラン、カード還元率の改定</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -572,6 +623,7 @@
       </li>
       <li data-seq="2">
         <a class="article-card" href="articles/shakaijin-otoku-7-housing-finance.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-7-housing-finance.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート⑦ 住まい・金融・福利厚生</span>
           <span class="article-card-desc">住宅ローン控除、家賃補助、個人向け国債、奨学金の代理返還</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
@@ -579,12 +631,76 @@
       </li>
       <li data-seq="1">
         <a class="article-card" href="articles/shakaijin-otoku-8-learning.html">
+          <span class="article-card-thumb"><img src="articles/images/thumbs/shakaijin-otoku-8-learning.jpg" width="480" height="360" alt="" loading="lazy" decoding="async"></span>
           <span class="article-card-title">社会人お得技ノート⑧ 図書館・学習・資格試験</span>
           <span class="article-card-desc">国立国会図書館の個人送信、英検・TOEICの割引、資格取得補助</span>
           <span class="article-card-date">調査日: <time datetime="2026-11-01">2026年11月1日</time></span>
         </a>
       </li>
     </ul>
+    <details class="sources-box" id="photo-credits">
+      <summary>記事一覧の写真の出典（57件）</summary>
+      <p class="sources-note">記事一覧の小さな写真は、各記事の最初の写真の中央を切り抜いて縮小したものです。</p>
+      <ol class="sources">
+          <li id="credit-30s-checklist-2026"><a href="articles/30s-checklist-2026.html">30代のうちにやっておきたいこと</a> の写真<br>写真: rawpixel.com／<a href="https://commons.wikimedia.org/wiki/File:Blood_pressure_monitoring.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-20s-checklist-2026"><a href="articles/20s-checklist-2026.html">20代のうちにやっておきたいこと</a> の写真<br>写真: Heavy Frisker／<a href="https://commons.wikimedia.org/wiki/File:Series_F_1K_Yen_Bank_of_Japan_note_-_reverse.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-kenshin-kekka-mikata"><a href="articles/kenshin-kekka-mikata.html">健康診断の結果の見方</a> の写真<br>写真: Fumikas Sagisavas／<a href="https://commons.wikimedia.org/wiki/File:Blood_collection_renal_function_test_tube.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-desk-work-tsukare"><a href="articles/desk-work-tsukare.html">デスクワークの疲れを減らす方法</a> の写真<br>写真: www.Pixel.la Free Stock Photos／<a href="https://commons.wikimedia.org/wiki/File:Hands-desk-office-working_(24326654535).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-shokuhin-hyouji-yomikata"><a href="articles/shokuhin-hyouji-yomikata.html">食品表示の読み方</a> の写真<br>写真: Kanesue／<a href="https://commons.wikimedia.org/wiki/File:JaSupermarket_Instant_noodles.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>（パブリックドメイン）</li>
+          <li id="credit-password-kanri"><a href="articles/password-kanri.html">パスワード管理の基本</a> の写真<br>写真: Santeri Viinamäki／<a href="https://commons.wikimedia.org/wiki/File:Username_and_password_20170626.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-furima-otoku-2026"><a href="articles/furima-otoku-2026.html">メルカリやヤフオクで買うとお得なものは？</a> の写真<br>写真: Nenad Stojkovic／<a href="https://commons.wikimedia.org/wiki/File:Close-up_of_stacked_books._(51539890528).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li id="credit-smartphone-kaikae-2026"><a href="articles/smartphone-kaikae-2026.html">スマートフォンの買い替え時期と費用</a> の写真<br>写真: Artem Beliaikin／<a href="https://commons.wikimedia.org/wiki/File:Top_view_image_of_two_smartphone_on_a_wooden_table,_space_for_text,_ready_for_mockup._Empty_space._(47955056488).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li id="credit-chuko-jutaku-taishin"><a href="articles/chuko-jutaku-taishin.html">中古住宅の耐震性能の調べ方</a> の写真<br>写真: メルビル／<a href="https://commons.wikimedia.org/wiki/File:Pin-conect.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>）</li>
+          <li id="credit-sake-basics-2026"><a href="articles/sake-basics-2026.html">日本酒の基本と楽しみ方</a> の写真<br>写真: Celuici／<a href="https://commons.wikimedia.org/wiki/File:Sugidama_(cedar_ball)_outside_sake_brewery,_Takayama,_May_2017.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-home-buying-2026"><a href="articles/home-buying-2026.html">家を買うときに考えること（2026年版）</a> の写真<br>写真: 掬茶／<a href="https://commons.wikimedia.org/wiki/File:Aerial_view_of_Toyonaka_City.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-hikkoshi-2027"><a href="articles/hikkoshi-2027.html">引っ越し費用を抑える方法と、春の繁忙期の相場のイメージ（2027年春）</a> の写真<br>写真: MoveON moving／<a href="https://commons.wikimedia.org/wiki/File:Moving-boxes.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-suimin-guide"><a href="articles/suimin-guide.html">国の睡眠ガイドに沿った、睡眠の質を上げる方法</a> の写真<br>写真: David McKelvey／<a href="https://commons.wikimedia.org/wiki/File:Futon_and_desk_in_a_Ryokan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li id="credit-car-buying-guide-2026"><a href="articles/car-buying-guide-2026.html">車を買う前に知っておきたいこと（2026年版）</a> の写真<br>写真: TTTNIS／<a href="https://commons.wikimedia.org/wiki/File:Honda_N-BOX_Slash.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0（パブリックドメイン）</a>）</li>
+          <li id="credit-bonus-tsukaimichi-2026"><a href="articles/bonus-tsukaimichi-2026.html">ボーナスの使い道</a> の写真<br>写真: stevepb／<a href="https://commons.wikimedia.org/wiki/File:Piggy-bank-968302.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-system-trade-2026"><a href="articles/system-trade-2026.html">個人のシステムトレード入門</a> の写真<br>写真: Sakai Yayoi／<a href="https://commons.wikimedia.org/wiki/File:Osaka_Exchange.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-kabunushi-yutai-2026"><a href="articles/kabunushi-yutai-2026.html">株主優待の基本と、暮らしに役立つ優待の例（2026年版）</a> の写真<br>写真: Kakidai／<a href="https://commons.wikimedia.org/wiki/File:Tokyo_Stock_Exchange_Main_Building_(1988).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-furusato-nozei-2026"><a href="articles/furusato-nozei-2026.html">ふるさと納税の2026年版（約10万円分を使う場合のイメージ）</a> の写真<br>写真: rikky_photography／<a href="https://commons.wikimedia.org/wiki/File:Hyogo-Rice_terraces_in_Ueyama.(early_autumn.)-xl.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+          <li id="credit-nencho-2026"><a href="articles/nencho-2026.html">年末調整の書き方（2026年分・令和8年分）</a> の写真<br>写真: っ／<a href="https://commons.wikimedia.org/wiki/File:Kokuzeicho.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-gensen-choshuhyo-2026"><a href="articles/gensen-choshuhyo-2026.html">源泉徴収票の読み方（2026年分）</a> の写真<br>写真: LoMit／<a href="https://commons.wikimedia.org/wiki/File:Citizen_SLD-100NR_calculator.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-yukyu-tsukaikata-2026"><a href="articles/yukyu-tsukaikata-2026.html">有給休暇の上手な使い方</a> の写真<br>写真: Ph0kin／<a href="https://commons.wikimedia.org/wiki/File:Japanese_calendar_december.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-kessansho-yomikata"><a href="articles/kessansho-yomikata.html">会社の決算書の読み方</a> の写真<br>写真: Dave Dugdale／<a href="https://commons.wikimedia.org/wiki/File:Analyzing_Financial_Data_(5099605109).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>）</li>
+          <li id="credit-yuho-edinet"><a href="articles/yuho-edinet.html">有価証券報告書から会社を調べる方法</a> の写真<br>写真: Rs1421／<a href="https://commons.wikimedia.org/wiki/File:Kasumigaseki-Common-Gate-03.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-daigaku-kokai-koza-2026"><a href="articles/daigaku-kokai-koza-2026.html">社会人でも参加できる大学の公開講座</a> の写真<br>写真: Soraie8288／<a href="https://commons.wikimedia.org/wiki/File:Kyoto_University_Clock_Tower.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shokugyo-taiken-2026"><a href="articles/shokugyo-taiken-2026.html">大人が参加できる職業体験</a> の写真<br>写真: Σ64／<a href="https://commons.wikimedia.org/wiki/File:Wind_Farm_in_Choshi_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>）</li>
+          <li id="credit-tenshoku-agent-site-2026"><a href="articles/tenshoku-agent-site-2026.html">転職エージェントと転職サイトのしくみ、使い分け（2026年版）</a> の写真<br>写真: SH6188／<a href="https://commons.wikimedia.org/wiki/File:Umeda_Sky_Building_201807.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-kyoiku-kunren-kyufu-2026"><a href="articles/kyoiku-kunren-kyufu-2026.html">教育訓練給付の対象講座と受け取り方（2026年版）</a> の写真<br>写真: Yinan Chen／<a href="https://commons.wikimedia.org/wiki/File:Gfp-lecture-hall.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（パブリックドメイン）</li>
+          <li id="credit-toeic-speaking-2026"><a href="articles/toeic-speaking-2026.html">TOEIC Speaking Testとは</a> の写真<br>写真: PantheraLeo1359531／<a href="https://commons.wikimedia.org/wiki/File:Computerhardware_und_Peripherie_20240203_HOF07007_RAW-Export.png" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+          <li id="credit-it-passport-key-points"><a href="articles/it-passport-key-points.html">ITパスポートで覚えておくべき重要ポイント（シラバスVer.6.5）</a> の写真<br>写真: Brion Testaccount／<a href="https://commons.wikimedia.org/wiki/File:Close-up_keyboard_view.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-ef-english-live-2026"><a href="articles/ef-english-live-2026.html">EF English Liveを効果的に受講する方法</a> の写真<br>写真: Zephyris at English Wikipedia／<a href="https://commons.wikimedia.org/wiki/File:Headphones_with_Microphone.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-it-passport-1week"><a href="articles/it-passport-1week.html">ITパスポートに1週間で合格するための勉強法</a> の写真<br>写真: Shixart1985／<a href="https://commons.wikimedia.org/wiki/File:Desk_with_notebook_pens_and_glasses.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li id="credit-obsidian-notes-2026"><a href="articles/obsidian-notes-2026.html">Obsidian（オブシディアン）の始め方と注意点</a> の写真<br>写真: Michiel Streijger／<a href="https://commons.wikimedia.org/wiki/File:Zettelarchiv4.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+          <li id="credit-green-expo-2027"><a href="articles/green-expo-2027.html">GREEN×EXPO 2027ガイド</a> の写真<br>写真: ジョジョの珍妙な冒険／<a href="https://commons.wikimedia.org/wiki/File:GREEN%C3%97EXPO_2027_wrapping_train_by_T%C5%8Dky%C5%AB_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>）</li>
+          <li id="credit-rokko-zenzan-2026"><a href="articles/rokko-zenzan-2026.html">六甲全山縦走ガイド</a> の写真<br>写真: KENPEI／<a href="https://commons.wikimedia.org/wiki/File:Mount_Higashi_(Suma-ku,_Kobe)_umanose.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-kawasaki-food-2026"><a href="articles/kawasaki-food-2026.html">川崎駅周辺と川崎大師で食べたい店</a> の写真<br>写真: MaedaAkihiko／<a href="https://commons.wikimedia.org/wiki/File:Kawasaki-STA_West_Muza-Kawasaki.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-nazotoki-2026"><a href="articles/nazotoki-2026.html">謎解きゲームの主な団体と、初めての遊び方（2026年版）</a> の写真<br>写真: 深鸣／<a href="https://commons.wikimedia.org/wiki/File:Room_Escape_Games_in_Guangde.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-factory-tours-2026"><a href="articles/factory-tours-2026.html">大人も楽しめる工場見学・社会科見学（2026年版）</a> の写真<br>写真: 663highland／<a href="https://commons.wikimedia.org/wiki/File:130823Nikka_Wisky_Yoichi_Distillery_Hokkaido_Japan01s3.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.5" target="_blank" rel="noopener">CC BY 2.5</a>）</li>
+          <li id="credit-wester-kansai-hokuriku-pass-2026"><a href="articles/wester-kansai-hokuriku-pass-2026.html">WESTERポイント関西・北陸フリーパスの注意点と、北陸3日間の観光・グルメ</a> の写真<br>写真: Toshinori baba／<a href="https://commons.wikimedia.org/wiki/File:Kanazawa_station_E7%E3%83%BBW7.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-kakuyugo-hatsuden"><a href="articles/kakuyugo-hatsuden.html">核融合発電は実現できるのか？</a> の写真<br>写真: National Institute for Fusion Science／<a href="https://commons.wikimedia.org/wiki/File:Large_Helical_Device_2014.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-kumo-tenki"><a href="articles/kumo-tenki.html">雲の種類で天気が分かるのはなぜ？</a> の写真<br>写真: Rasbak／<a href="https://commons.wikimedia.org/wiki/File:Cumulus_humilis.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-taion-37do"><a href="articles/taion-37do.html">人間の体温はなぜ約37℃なのか</a> の写真<br>写真: Jacek Halicki／<a href="https://commons.wikimedia.org/wiki/File:2023_Rt%C4%99ciowy_termometr_lekarski.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-plant-kensetsu-nagare"><a href="articles/plant-kensetsu-nagare.html">プラント建設工事の全体的な流れ</a> の写真<br>写真: Pbujair／<a href="https://commons.wikimedia.org/wiki/File:Pipe_rack_constructing.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-plant-shigoto-susumekata"><a href="articles/plant-shigoto-susumekata.html">プラント業界の仕事の進め方</a> の写真<br>写真: Calistemon／<a href="https://commons.wikimedia.org/wiki/File:Kwinana_Waste_to_Energy_Plant_under_construction,_December_2020_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-plant-ryakugo"><a href="articles/plant-ryakugo.html">プラント業界で使われる英語の略語一覧</a> の写真<br>画像: Ub／<a href="https://commons.wikimedia.org/wiki/File:P%26ID.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-plant-sekkei-yougo"><a href="articles/plant-sekkei-yougo.html">プラント設計で使われる専門用語100選</a> の写真<br>写真: Dietmar Rabich／<a href="https://commons.wikimedia.org/wiki/File:Haltern_am_See,_Silbersee_III,_Rohre_--_2025_--_8555.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-plant-towa"><a href="articles/plant-towa.html">プラントとは何かを分かりやすく解説</a> の写真<br>写真: ccfarmer／<a href="https://commons.wikimedia.org/wiki/File:Some_part_of_the_industrial_complex_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>）</li>
+          <li id="credit-kagaku-plant-shikumi"><a href="articles/kagaku-plant-shikumi.html">化学プラントの基本構成と仕組み</a> の写真<br>写真: CEphoto, Uwe Aranas／<a href="https://commons.wikimedia.org/wiki/File:Cologne_Germany_Windsock-in-a-petrochemical-plant-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-plant-3d-model"><a href="articles/plant-3d-model.html">プラントの3Dモデルはどう作られるのか？</a> の写真<br>写真: PEO ACWA／<a href="https://commons.wikimedia.org/wiki/File:Pueblo_Chemical_Agent-Destruction_Pilot_Plant_Pipe_Rack_(3859814466).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li id="credit-plant-engineering"><a href="articles/plant-engineering.html">プラントエンジニアリングとは</a> の写真<br>写真: Kaz Ish／<a href="https://commons.wikimedia.org/wiki/File:Negishi_oil_refinery_from_Sankeien_garden_-_panoramio_(2).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-shakaijin-otoku-5-travel"><a href="articles/shakaijin-otoku-5-travel.html">社会人お得技ノート⑤ 交通・旅行</a> の写真<br>写真: Charlie fong／<a href="https://commons.wikimedia.org/wiki/File:N700_in_Tokaido_Shinkansen_%26Mt.Fuji.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-1-ouj"><a href="articles/shakaijin-otoku-1-ouj.html">社会人お得技ノート① 放送大学で学生身分を得る</a> の写真<br>写真: 掬茶／<a href="https://commons.wikimedia.org/wiki/File:The_Open_University_of_Japan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+          <li id="credit-shakaijin-otoku-2-tax"><a href="articles/shakaijin-otoku-2-tax.html">社会人お得技ノート② 税金・控除</a> の写真<br>写真: Ebiebi2／<a href="https://commons.wikimedia.org/wiki/File:Tsuruoka_tax_office_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-3-social-insurance"><a href="articles/shakaijin-otoku-3-social-insurance.html">社会人お得技ノート③ 社会保険・年金・雇用保険</a> の写真<br>写真: Suikotei／<a href="https://commons.wikimedia.org/wiki/File:Hello_Work_Asaka.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-4-medical"><a href="articles/shakaijin-otoku-4-medical.html">社会人お得技ノート④ 医療</a> の写真<br>写真: Muyo／<a href="https://commons.wikimedia.org/wiki/File:Shinseidoyakkyoku_drugstore%26pharmacy_Muromi_Shop.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-6-points"><a href="articles/shakaijin-otoku-6-points.html">社会人お得技ノート⑥ 通信・サブスク・クレカ・ポイント</a> の写真<br>写真: RuinDig/Yuki Uchida／<a href="https://commons.wikimedia.org/wiki/File:Ebisu-Tokyo---2025-04-05_015.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-7-housing-finance"><a href="articles/shakaijin-otoku-7-housing-finance.html">社会人お得技ノート⑦ 住まい・金融・福利厚生</a> の写真<br>写真: Peka／<a href="https://commons.wikimedia.org/wiki/File:Tosu_Yayoigaoka_residential_area.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li id="credit-shakaijin-otoku-8-learning"><a href="articles/shakaijin-otoku-8-learning.html">社会人お得技ノート⑧ 図書館・学習・資格試験</a> の写真<br>写真: Uploader; Vantey／<a href="https://commons.wikimedia.org/wiki/File:NDL_Tokyo_Main_Bldg_20070520.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>）</li>
+      </ol>
+    </details>
   </main>
 
   <footer class="site-footer">
