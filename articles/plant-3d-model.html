@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト｜雑学アーカイブ</title>
+  <meta name="description" content="プラントの3Dモデルの作り方を、ソフトウェア会社のヘルプ・エンジニアリング会社の公式発表・国土交通省の資料でまとめました。数千〜数万本の配管を3Dで配置する理由、PFD・P&IDから30%・60%・90%のモデルレビューまでの流れ、カタログとスペック（配管クラス）で部品を選ぶ仕組み、アイソメ図や平面図を3Dモデルから書き出す仕組み、レーザースキャナーの点群による既設プラントの3D化、AVEVA E3D・Forte 3D（旧Smart 3D）・AutoCAD Plant 3D・Navisworksの役割、ISO 15926・CFIHOS・DEXPI、日本の会社の自動設計とBIM/CIM。2026年11月10日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/plant-3d-model.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト">
+  <meta property="og:description" content="プラントの3Dモデルの作り方を、ソフトウェア会社のヘルプ・エンジニアリング会社の公式発表・国土交通省の資料でまとめました。数千〜数万本の配管を3Dで配置する理由、PFD・P&IDから30%・60%・90%のモデルレビューまでの流れ、カタログとスペック（配管クラス）で部品を選ぶ仕組み、アイソメ図や平面図を3Dモデルから書き出す仕組み、レーザースキャナーの点群による既設プラントの3D化、AVEVA E3D・Forte 3D（旧Smart 3D）・AutoCAD Plant 3D・Navisworksの役割、ISO 15926・CFIHOS・DEXPI、日本の会社の自動設計とBIM/CIM。2026年11月10日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/plant-3d-model.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › プラント</p>
+
+      <h1>プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-10">2026年11月10日</time></li>
+        <li><span class="tag">プラント</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>数千〜数万本の配管のルートを決めて、3Dモデルにする<a class="ref" href="#src-1">[1]</a></li>
+          <li>部品は、カタログとスペック（配管の仕様）から選んで置く<a class="ref" href="#src-2">[2]</a></li>
+          <li>アイソメ図や平面図は、3Dモデルから書き出して作る<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-4">[4]</a></li>
+          <li>既設のプラントは、レーザースキャナーの点群から3D化する<a class="ref" href="#src-5">[5]</a><a class="ref" href="#src-6">[6]</a></li>
+          <li>Smart 3Dは、2026年に<strong>Forte 3D</strong>へ名前が変わった<a class="ref" href="#src-7">[7]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">なぜ3Dモデルを使うのか</a></li>
+          <li><a href="#sec-2">新しいプラントの3Dモデルができるまで</a></li>
+          <li><a href="#sec-3">部品は仕様とカタログから選ぶ</a></li>
+          <li><a href="#sec-4">既設のプラントを3Dにする</a></li>
+          <li><a href="#sec-5">主なソフトと、データの規格</a></li>
+          <li><a href="#sec-6">日本の会社の取り組みとBIM/CIM</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>石油・化学などのプラントの設計では、機器や配管を3Dモデルにして、ぶつかり合いを確かめたり、図面や部品の数量を自動で出したりします。この記事では、新しく建てるプラントと、すでにあるプラントの3Dモデルの作り方を、ソフトウェア会社のヘルプやエンジニアリング会社の公式発表でまとめました。設計レビューのソフトの操作は<a href="navisworks-simulate-guide.html">Navisworks Simulateの操作ガイド</a>、業界の話は<a href="plant-engineering.html">プラントエンジニアリングとは</a>にまとめています。</p>
+
+      <figure class="photo">
+        <img src="images/plant-3d-model/pipe-rack.jpg" width="960" height="643" loading="lazy" alt="建設中のプラントで、鉄骨のパイプラック（配管を載せる棚）が奥へ続き、手前に大きな円筒形のタンクがある">
+        <figcaption>建設中のプラントのパイプラック（米国）</figcaption>
+      </figure>
+
+      <h2 id="sec-1">なぜ3Dモデルを使うのか</h2>
+
+      <section class="item-card">
+        <h3>数千〜数万本の配管を、ぶつからないように通す</h3>
+        <p class="item-point">配管・電気・構造などの干渉を、設計の段階で見つける</p>
+        <p>日揮グループの採用サイトは、配管設計（レイアウト）の仕事を、機器や構造物の配置と高さを決め、数千〜数万本にもなる配管のルートを決めて3Dモデルにしていく仕事だと説明しています<a class="ref" href="#src-1">[1]</a>。千代田グループの配管エンジニアの募集では、電気ケーブルと配管がぶつからないよう電気エンジニアと調整しながら3D設計を行うとしています<a class="ref" href="#src-8">[8]</a>。AVEVA E3D Designは、分野をまたぐ干渉を見つけて解消できるとしています<a class="ref" href="#src-9">[9]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>建設の段階でも、施工管理のシステムと3Dモデルをつないで進み具合を把握する例がある<a class="ref" href="#src-1">[1]</a></li>
+            <li>完成後の保全でも、3Dモデルや点群とデータを一緒に使うサービスがある<a class="ref" href="#src-10">[10]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-2">新しいプラントの3Dモデルができるまで</h2>
+
+      <p>新しく建てるプラントでは、プロセス設計の図面をもとに3Dモデルを育てていきます。モデルの完成度に応じたレビューの段階は、発注者が設計会社に示す仕様書の例です。</p>
+      <ol class="timeline">
+        <li><span class="timeline-day">はじめ</span><p class="timeline-title">PFD・P&amp;IDなど、プロセス設計の図面</p><p class="timeline-note">すべての詳細設計のベースになる<a class="ref" href="#src-1">[1]</a></p></li>
+        <li><span class="timeline-day">配置</span><p class="timeline-title">機器・構造物の配置と高さを決める</p><p class="timeline-note">3Dで配置の案を比べる取り組みもある<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-11">[11]</a></p></li>
+        <li><span class="timeline-day">30%</span><p class="timeline-title">全機器の位置と向き、主な梁・柱、主要な配管、パイプラック</p><p class="timeline-note"><a class="ref" href="#src-12">[12]</a></p></li>
+        <li><span class="timeline-day">60%</span><p class="timeline-title">その他の配管がほぼ完成。メーカーの確定情報を入れる</p><p class="timeline-note">機器の寸法・重量・ノズルの向きなど<a class="ref" href="#src-12">[12]</a></p></li>
+        <li><span class="timeline-day">90%</span><p class="timeline-title">計装を含めてほぼ完成。最終のコメントを出す</p><p class="timeline-note"><a class="ref" href="#src-12">[12]</a></p></li>
+        <li><span class="timeline-day">100%</span><p class="timeline-title">完成時の状態（アズビルト）を表すモデル</p><p class="timeline-note"><a class="ref" href="#src-12">[12]</a></p></li>
+      </ol>
+      <p>レビューの段階と中身は、会社や案件によって違います（例はTata Steelの3Dモデル仕様書、2018年4月版）<a class="ref" href="#src-12">[12]</a>。</p>
+
+      <section class="item-card">
+        <h3>P&amp;IDと3Dモデルが合っているかを照合する</h3>
+        <p class="item-point">P&amp;IDを直しても、3Dモデルは自動では変わらない</p>
+        <p>AutoCAD Plant 3Dのヘルプによると、P&amp;IDのデータと3Dモデルのデータはプロジェクトのデータベースに別々に保存されるため、両者を照合する機能があります<a class="ref" href="#src-13">[13]</a>。発注者の仕様書の例では、配管はP&amp;ID・ラインリスト・配管仕様に従って設計し、3Dソフトの配管仕様とプロジェクトの配管仕様の食い違いは認めないとしています<a class="ref" href="#src-12">[12]</a>。</p>
+      </section>
+
+      <h2 id="sec-3">部品は仕様とカタログから選ぶ</h2>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 292" width="340" height="292" role="img" aria-label="3Dモデルから図面ができる流れの図。工業規格の部品を集めたカタログから、プロジェクトで使うスペック（配管クラス）をつくる。スペックの部品で機器・配管・構造の3Dモデルを組み立て、干渉チェックとP&IDとの照合をする。3Dモデルから、寸法と部品表の入ったアイソメ図と、平面図などのオルソ図を書き出す" font-family="inherit"><rect x="4" y="8" width="150" height="58" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="79" y="32" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">カタログ</text><text x="79" y="52" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">規格の部品を集める</text><rect x="186" y="8" width="150" height="58" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="261" y="32" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">スペック</text><text x="261" y="52" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">使う部品（配管クラス）</text><path d="M154 37 L186 37" stroke-width="2" style="stroke:var(--accent);fill:none"/><rect x="40" y="100" width="260" height="78" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="170" y="124" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">3Dモデル</text><text x="170" y="145" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">機器・配管・構造を配置</text><text x="170" y="165" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">干渉チェック・P&amp;IDと照合</text><path d="M261 66 L230 100" stroke-width="2" style="stroke:var(--accent);fill:none"/><rect x="4" y="222" width="150" height="62" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="79" y="246" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">アイソメ図</text><text x="79" y="267" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">寸法・部品表つき</text><rect x="186" y="222" width="150" height="62" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="261" y="246" font-size="13" text-anchor="middle" font-weight="700" style="fill:var(--text)">平面図など</text><text x="261" y="267" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">オルソ図</text><path d="M130 178 L90 222 M210 178 L250 222" stroke-width="2" style="stroke:var(--accent);fill:none"/></svg>
+        <figcaption>3Dモデルから図面ができる流れ（AutoCAD Plant 3Dのヘルプをもとに筆者が整理）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>カタログからスペックをつくり、スペックの部品で配管する</h3>
+        <p class="item-point">決められた部品しか使えないので、部品どうしが確実に合う</p>
+        <p>AutoCAD Plant 3Dのヘルプは、工業規格の部品を集めたカタログからスペックをつくり、スペックを使って3Dモデルの配管をすると説明しています<a class="ref" href="#src-2">[2]</a>。AVEVA E3D Designは、仕様の決まった部品と材料の仕様でモデルを作り、部品どうしの適合を強制するとしています<a class="ref" href="#src-9">[9]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>図面は3Dモデルから書き出すので、モデルと食い違わない</h3>
+        <p class="item-point">アイソメ図には、寸法と部品表が入る</p>
+        <p>AutoCAD Plant 3Dでは、3Dモデルから注釈と寸法の入ったアイソメ図（配管を立体的に描いた図）を作れ、アイソメ図には通常、部品表（BOM）が入ります<a class="ref" href="#src-14">[14]</a>。アイソメ図は3Dモデルから書き出すものなので、ほとんどのCAD管理者はアイソメ図の編集を許可しないとしています<a class="ref" href="#src-3">[3]</a>。平面図などのオルソ図も3Dモデルから作り、モデルが変わったら更新して反映できます<a class="ref" href="#src-4">[4]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Forte Isogen（旧Isogen）は、3D配管から寸法・部品表付きのアイソメ図を自動で作る<a class="ref" href="#src-15">[15]</a></li>
+            <li>AVEVA E3D Designも、3Dモデルから図面やレポートを自動で作り、設計と同時に更新する<a class="ref" href="#src-16">[16]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-4">既設のプラントを3Dにする</h2>
+
+      <section class="item-card">
+        <h3>レーザースキャナーで、現地の形を点の集まりとして取り込む</h3>
+        <p class="item-point">1秒間に200万点を測るスキャナーもある（メーカーの説明）</p>
+        <p>Leica Geosystemsは、レーザースキャンで既設のプラントを記録し、計画・製作・干渉チェックのための3Dモデルを作れると説明しています<a class="ref" href="#src-5">[5]</a>。危険な場所でも、離れた所から現況のデータを取れるとしています<a class="ref" href="#src-5">[5]</a>。同社のブログでは、スキャナーRTC360は1秒間に200万点を測り、重さは6kgです<a class="ref" href="#src-17">[17]</a>。</p>
+      </section>
+
+      <figure class="photo">
+        <img src="images/plant-3d-model/laser-scanner.jpg" width="960" height="720" loading="lazy" alt="橋の下に三脚で立てられたレーザースキャナーと、青空と雲">
+        <figcaption>地上型のレーザースキャナー（橋の点検の例）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>点群から配管を自動で抜き出して、モデルや図面にする</h3>
+        <p class="item-point">点群のまま設計ソフトに読み込んで使う方法もある</p>
+        <p>トプコンは、点群を読み込むと配管などを自動で抜き出して3Dモデルを作るソフトを発売しています<a class="ref" href="#src-6">[6]</a>。日揮グループのブラウンリバースは、360度画像と点群から配管ルートの中心線を3次元で抜き出す機能（2023年）と、そこからアイソメ図を出す機能（2024年）を提供しています<a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-19">[19]</a>。Forte 3Dは、既設部分をモデル化しなくても、点群を設計の画面に取り込んで全体を表示できるとしています<a class="ref" href="#src-7">[7]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>既設の配管は、図面の劣化や改造で実物とずれることが課題だった<a class="ref" href="#src-18">[18]</a></li>
+            <li>Navisworks Manageは、3Dモデルと点群の干渉もチェックできる<a class="ref" href="#src-20">[20]</a></li>
+            <li>千代田化工建設は、360度画像→メッシュ→3Dモデルと段階的に育てる仕組みを提供している<a class="ref" href="#src-21">[21]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>新設と既設の3Dモデルの作り方の違い（筆者の整理）</caption>
+          <thead><tr><th scope="col">項目</th><th scope="col">新しく建てるプラント</th><th scope="col">既設のプラント</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">出発点</th><td>P&amp;IDと配管の仕様<a class="ref" href="#src-12">[12]</a></td><td>現地にある実物の形<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">データの取り方</th><td>設計者がスペックの部品を3Dで置く<a class="ref" href="#src-2">[2]</a></td><td>レーザースキャナー・360度画像<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">主な使いみち</th><td>設計・図面・部品の数量<a class="ref" href="#src-14">[14]</a></td><td>改造の設計・保全・干渉チェック<a class="ref" href="#src-5">[5]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-5">主なソフトと、データの規格</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>プラントの3D設計で使われる主なソフト</caption>
+          <thead><tr><th scope="col">ソフト</th><th scope="col">主な役割</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">AVEVA E3D Design</th><td>複雑な産業設備向けの3D設計。図面・レポートの自動作成、スキャナーの点群の読み込み<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">Forte 3D（旧 Intergraph Smart 3D）</th><td>設計ルールを強制して正確さを保つ3D設計。点群の表示<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">AutoCAD Plant 3D</th><td>スペックとカタログによる配管、アイソメ図・オルソ図の作成、P&amp;IDとの照合<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-14">[14]</a><a class="ref" href="#src-13">[13]</a></td></tr>
+            <tr><th scope="row">Navisworks</th><td>いろいろなソフトのモデルを1つにまとめてレビュー。干渉チェックはManageだけ<a class="ref" href="#src-22">[22]</a><a class="ref" href="#src-20">[20]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Forte 3Dは、2026年5月22日にHexagonから分かれた会社Octaveが、Intergraph Smart 3Dの名前を変えたものです<a class="ref" href="#src-7">[7]</a><a class="ref" href="#src-23">[23]</a>。各社が示す効率化の数字は、メーカーの説明です。</p>
+
+      <section class="item-card">
+        <h3>設計から運転まで、データを受け渡すための規格がある</h3>
+        <p class="item-point">ISO 15926、CFIHOS、DEXPIなど</p>
+        <p>ISO 15926は、石油・ガスの生産設備を含むプロセスプラントのライフサイクルのデータを統合するための規格です<a class="ref" href="#src-24">[24]</a>。CFIHOSは、施設の情報を発注者・設計会社・機器メーカーの間で引き渡すための共通の仕様で、2012年に始まりました<a class="ref" href="#src-25">[25]</a>。2024年後半にバージョン2.0が出ています<a class="ref" href="#src-26">[26]</a>。DEXPIは、今はP&amp;IDのデータ交換に重点を置いていて、2026年9月30日にDEXPI 2.0.1を公開しました<a class="ref" href="#src-27">[27]</a><a class="ref" href="#src-28">[28]</a>。</p>
+      </section>
+
+      <h2 id="sec-6">日本の会社の取り組みとBIM/CIM</h2>
+
+      <section class="item-card">
+        <h3>配管の自動ルーティングで、3D作業を80%減らす</h3>
+        <p class="item-point">約1,000本の配管の3Dモデルを、数か月から60秒以内に</p>
+        <p>千代田化工建設とArentは、配管の自動ルーティングと3D配置設計のシステム「PlantStream」を開発し、2020年に合弁会社を設立しました<a class="ref" href="#src-11">[11]</a>。千代田化工建設は、基本設計の3D作業量を80%減らし、約1,000本の配管の3Dモデルづくりを数か月から60秒以内に短くしたと発表しています<a class="ref" href="#src-29">[29]</a>。2025年3月に、同社の株はすべてArentに譲渡されました<a class="ref" href="#src-30">[30]</a>。東洋エンジニアリングは、過去のトラブルをもとにAIで3D上のリスクを見つけて設計に反映する取り組みを示しています<a class="ref" href="#src-31">[31]</a>。</p>
+      </section>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">1987年</span><p class="timeline-title">日立評論に、3次元の配管レイアウトを含むプラント配管CADの論文</p><p class="timeline-note"><a class="ref" href="#src-32">[32]</a></p></li>
+        <li><span class="timeline-day">2012年度</span><p class="timeline-title">国土交通省が土木でBIM/CIMの試行を始める</p><p class="timeline-note"><a class="ref" href="#src-33">[33]</a></p></li>
+        <li><span class="timeline-day">2023年度</span><p class="timeline-title">直轄の土木の業務・工事にBIM/CIMを原則適用</p><p class="timeline-note">小規模なものなどを除く<a class="ref" href="#src-34">[34]</a></p></li>
+        <li><span class="timeline-day">2026年4月</span><p class="timeline-title">建築分野で、BIM図面審査が始まる</p><p class="timeline-note"><a class="ref" href="#src-35">[35]</a></p></li>
+      </ol>
+      <p>プラントの配管では1980年代から3次元のCADが使われていたことが、日立評論の論文から分かります<a class="ref" href="#src-32">[32]</a>。</p>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>30%・60%・90%のモデルレビューを説明した、日本の公的機関・業界団体の資料</li>
+          <li>Autodeskの日本語の製品ページと、Hexagonの製品ページ・カタログ（読めなかった）</li>
+          <li>新しいプラントの設計でVRを使ってモデルをレビューする、日本の各社の公式発表</li>
+          <li>写真から直接プラントの3Dモデルを作る手順と、電気・計装の3D化の手順の公式な説明</li>
+          <li>経済産業省の「スマート保安」の資料（読めなかった）</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="navisworks-simulate-guide.html">Navisworks Simulateの操作ガイド</a></li>
+          <li><a href="kagaku-plant-shikumi.html">化学プラントの基本構成と仕組み</a></li>
+          <li><a href="plant-towa.html">プラントとは何かを分かりやすく解説</a></li>
+          <li><a href="plant-engineering.html">プラントエンジニアリングとは</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（35件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月10日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.jgc.com/saiyo/work-person/job.html" target="_blank" rel="noopener">新卒採用 日揮グループの職種</a>（日揮ホールディングス）</li>
+          <li id="src-2"><a href="https://help.autodesk.com/cloudhelp/2016/JPN/Plant3D-SpecEditor/files/GUID-A9603953-421C-4686-8F3C-C2FE8599FF4A.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「スペックおよびカタログの概要」</a>（Autodesk）</li>
+          <li id="src-3"><a href="https://help.autodesk.com/cloudhelp/2025/JPN/Plant3D-Managing-Large-Projects/files/GUID-B9208550-8073-4D63-B12A-32B10FDD3681.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - 配管アイソメ図」</a>（Autodesk）</li>
+          <li id="src-4"><a href="https://help.autodesk.com/cloudhelp/2017/JPN/Plant3D-UserGuide/files/GUID-4856C0C3-01FD-4062-B21F-6A0F731088D5.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - オルソ図面(投影図)」</a>（Autodesk）</li>
+          <li id="src-5"><a href="https://leica-geosystems.com/industries/pure-surveying/get-inspired-to-grow-your-business/laser-scanning/power-and-plant" target="_blank" rel="noopener">Power & Plant 3D Laser Scanning</a>（Leica Geosystems）</li>
+          <li id="src-6"><a href="https://www.topcon.co.jp/topics/4816/" target="_blank" rel="noopener">建築業界の生産性向上に役立つ3つのソフトウェアを発売（2019年10月7日）</a>（トプコン）</li>
+          <li id="src-7"><a href="https://www.octave.com/ja/products/schematics-3d-modeling/forte/3d" target="_blank" rel="noopener">Octave Forte 3D（旧 Intergraph Smart 3D）</a>（Octave）</li>
+          <li id="src-8"><a href="https://cxo.chiyodacorp.com/recruit/career/jobs/job04.html" target="_blank" rel="noopener">配管エンジニアの業務内容とキャリア形成</a>（千代田エクスワンエンジニアリング）</li>
+          <li id="src-9"><a href="https://www.aveva.com/en/products/e3d-design/" target="_blank" rel="noopener">AVEVA E3D Design（英語）</a>（AVEVA）</li>
+          <li id="src-10"><a href="https://www.toyo-eng.com/jp/ja/solution/dxplant/" target="_blank" rel="noopener">プラント運営支援サービス DX-PLANT</a>（東洋エンジニアリング）</li>
+          <li id="src-11"><a href="https://arent.co.jp/news/20200907/" target="_blank" rel="noopener">「株式会社PlantStream」の設立について（2020年9月7日）</a>（Arent）</li>
+          <li id="src-12"><a href="https://products.tatasteelnederland.com/sites/producttsn/files/R1058005%20Tata%20Steel%20E3D%20Model%20Criteria.pdf" target="_blank" rel="noopener">Tata Steel E3D Model Criteria（2018年4月版）</a>（Tata Steel IJmuiden）</li>
+          <li id="src-13"><a href="https://help.autodesk.com/cloudhelp/2027/JPN/Plant3D-UserGuide/files/GUID-E3FE36AC-BEA3-4C0C-93CE-EC1A93104D23.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - P&ID 図面と Plant 3D モデルを検証する」</a>（Autodesk）</li>
+          <li id="src-14"><a href="https://help.autodesk.com/cloudhelp/2026/JPN/Plant3D-UserGuide/files/GUID-B9085D60-CD0C-4160-8EEF-7B527D59E476.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - アイソメ図面」</a>（Autodesk）</li>
+          <li id="src-15"><a href="https://www.octave.com/products/schematics-3d-modeling/forte/isogen" target="_blank" rel="noopener">Octave Forte Isogen</a>（Octave）</li>
+          <li id="src-16"><a href="https://www.aveva.com/ja-jp/products/e3d-design/" target="_blank" rel="noopener">AVEVA E3D Design（日本語）</a>（AVEVA）</li>
+          <li id="src-17"><a href="https://blog.hexagongeosystems.com/simplify-plant-maintenance-with-as-built-documentation/" target="_blank" rel="noopener">Simplify plant maintenance with as-built documentation（2019年9月23日）</a>（Hexagon Geosystems（公式ブログ））</li>
+          <li id="src-18"><a href="https://www.jgc.com/jp/news/2023/20230630.html" target="_blank" rel="noopener">ブラウンリバースが「INTEGNANCE VR」で「配管NAVI」の提供を開始（2023年6月30日）</a>（日揮ホールディングス）</li>
+          <li id="src-19"><a href="https://www.jgc.com/jp/news/2024/20240710.html" target="_blank" rel="noopener">ブラウンリバースがINTEGNANCE VRでアイソメ図出力機能の提供を開始（2024年7月10日）</a>（日揮ホールディングス）</li>
+          <li id="src-20"><a href="https://help.autodesk.com/cloudhelp/2025/JPN/Navisworks-Clash-Detective/files/GUID-36D9904E-12F3-4F82-8DD3-C2103DB0BC29.htm" target="_blank" rel="noopener">Navisworks ヘルプ「Clash Detective ツールの概要」</a>（Autodesk）</li>
+          <li id="src-21"><a href="https://www.chiyodacorp.com/jp/media/assets/250624.pdf" target="_blank" rel="noopener">当社3Dデジタルツインソリューションを、三菱ガス化学株式会社が国内初導入（2025年6月24日）</a>（千代田化工建設）</li>
+          <li id="src-22"><a href="https://help.autodesk.com/cloudhelp/2023/JPN/Navisworks/files/GUID-82273D46-50EB-42F1-A1BC-0F60DF68621D.htm" target="_blank" rel="noopener">Navisworks ヘルプ「Autodesk Navisworks へようこそ」</a>（Autodesk）</li>
+          <li id="src-23"><a href="https://www.inderes.fi/en/releases/octave-intelligence-plc-listed-on-nasdaq-new-york" target="_blank" rel="noopener">Octave Intelligence plc listed on Nasdaq New York（2026年5月28日）</a>（Octave Intelligence（Inderes掲載のプレスリリース））</li>
+          <li id="src-24"><a href="https://knowledge.bsigroup.com/products/industrial-automation-systems-and-integration-integration-of-life-cycle-data-for-process-plants-including-oil-and-gas-production-facilities-overview-and-fundamental-principles-1" target="_blank" rel="noopener">BS ISO 15926-1:2004</a>（BSI（英国規格協会））</li>
+          <li id="src-25"><a href="https://www.iogp.org/blog/standards/new-initiative-will-ease-information-handover/" target="_blank" rel="noopener">New initiative will ease information handover（2020年4月23日）</a>（IOGP）</li>
+          <li id="src-26"><a href="https://www.iogp.org/workstreams/joint-industry-programmes/" target="_blank" rel="noopener">Joint Industry Programmes</a>（IOGP）</li>
+          <li id="src-27"><a href="https://dexpi.org/" target="_blank" rel="noopener">DEXPI – Data Exchange in the Process Industry</a>（DEXPI e.V.）</li>
+          <li id="src-28"><a href="https://dexpi.org/dexpi-2-0-1-specification-published-the-update-replacing-dexpi-2-0/" target="_blank" rel="noopener">DEXPI 2.0.1 Specification Published（2026年9月30日）</a>（DEXPI e.V.）</li>
+          <li id="src-29"><a href="https://www.chiyodacorp.com/media/pdf/200907_e.pdf" target="_blank" rel="noopener">"PlantStream Inc." Starts Operating（2020年9月7日）</a>（千代田化工建設）</li>
+          <li id="src-30"><a href="https://www.chiyodacorp.com/en/media/assets/250225_e.pdf" target="_blank" rel="noopener">Announcement of Transfer of shares in an Affiliated Company（2025年2月25日）</a>（千代田化工建設）</li>
+          <li id="src-31"><a href="https://www.toyo-eng.com/jp/ja/company/plan/mid-meeting/pdf/20241210_%E6%8F%90%E5%87%BA%E7%94%A8_%E4%BA%8B%E6%A5%AD%E6%88%A6%E7%95%A5%E8%AA%AC%E6%98%8E%E4%BC%9A_DXoT.pdf" target="_blank" rel="noopener">事業戦略説明会 DXoT推進部（2024年12月10日）</a>（東洋エンジニアリング）</li>
+          <li id="src-32"><a href="https://www.hitachihyoron.com/jp/pdf/1987/02/1987_02_05.pdf" target="_blank" rel="noopener">総合プラント配管設計システム "HICAD/PIPE"（1987年2月）</a>（日立評論）</li>
+          <li id="src-33"><a href="https://www.mlit.go.jp/hakusyo/mlit/r01/hakusho/r02/html/n2a32000.html" target="_blank" rel="noopener">国土交通白書2020「BIM/CIMの取組み」</a>（国土交通省）</li>
+          <li id="src-34"><a href="https://www.mlit.go.jp/hakusyo/mlit/r06/hakusho/r07/html/n2942000.html" target="_blank" rel="noopener">国土交通白書2025「BIM/CIMの取組」</a>（国土交通省）</li>
+          <li id="src-35"><a href="https://www.mlit.go.jp/jutakukentiku/kenchikuBIMsuishinkaigi.html" target="_blank" rel="noopener">建築BIM推進会議</a>（国土交通省）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（2件）</summary>
+        <ol class="sources">
+          <li>建設中のプラントのパイプラック（米国）<br>写真: PEO ACWA／<a href="https://commons.wikimedia.org/wiki/File:Pueblo_Chemical_Agent-Destruction_Pilot_Plant_Pipe_Rack_(3859814466).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>）</li>
+          <li>地上型のレーザースキャナー<br>写真: FedericaGaspari／<a href="https://commons.wikimedia.org/wiki/File:Terrestrial_Laser_Scanning_of_a_bridge.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月10日時点の情報をもとにまとめたものです。ソフトの名前や機能は、変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
