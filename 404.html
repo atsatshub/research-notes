@@ -13,6 +13,7 @@
   <link rel="icon" href="/research-notes/assets/favicon-32.png" sizes="32x32" type="image/png">
 </head>
 <body>
+  <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header">
     <div class="container">
       <a class="site-title" href="/research-notes/index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
@@ -20,10 +21,14 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main">
     <h1>ページが見つかりません</h1>
     <p>お探しのページは、移動または削除された可能性があります。URLに誤りがないかもご確認ください。</p>
-    <p><a href="/research-notes/">トップページの記事一覧へ</a>（キーワードやカテゴリで記事を探せます）</p>
+    <form class="search-form" action="/research-notes/index.html" method="get" role="search">
+      <input type="search" name="q" class="search-input" placeholder="キーワードで記事を探す" aria-label="キーワードで記事を探す">
+      <button type="submit">探す</button>
+    </form>
+    <p><a href="/research-notes/">トップページの記事一覧へ</a>（カテゴリからも記事を探せます）</p>
   </main>
 
   <footer class="site-footer">

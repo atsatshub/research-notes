@@ -10,6 +10,8 @@
       SOURCES = {"key": ("発行元", "ページ名", "URL"), ...}
 - 本文で最初に出てきた順に [1], [2], ... と番号を振り、末尾に折りたたみ式の出典一覧を作る。
 - 定義していない key を使った場合と、定義したのに使っていない出典がある場合はエラーで止まる。
+- 最後に tools/update_pages.py と同じ処理をして、「本文へ移動」のリンク、パンくずのカテゴリへのリンク、
+  構造化データ（JSON-LD）を入れる。
 
 公開済みの記事を直すときは、完成版の HTML を直接編集してよい
 （出典を1件消すときは tools/drop_source.py で番号を詰める）。
@@ -17,6 +19,10 @@
 import re
 import sys
 from pathlib import Path
+
+# -I（隔離モード）ではこのフォルダが検索先に入らないので、自分で足してから読み込む
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import update_pages  # noqa: E402
 
 if len(sys.argv) != 4:
     sys.exit(__doc__)
@@ -54,5 +60,6 @@ lines += ["        </ol>", "      </details>"]
 html = html.replace("<!-- SOURCES -->", "\n".join(lines))
 if "[[" in html:
     sys.exit("unresolved marker left")
+html = update_pages.apply("articles/" + out.name, html)
 out.write_text(html, encoding="utf-8")
 print("ok", len(order), "sources ->", out)

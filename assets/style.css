@@ -100,6 +100,12 @@
   box-sizing: border-box;
 }
 
+/* hidden 属性を付けた要素は、display を指定していても必ず隠す
+   （これがないと、絞り込み中に display: flex の見出しだけが残る） */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -279,8 +285,18 @@ main {
   text-decoration: underline;
 }
 
-/* スマホでは文字のリンクを隠し、サイト名と「表示」だけにする */
+/* スマホでは「記事一覧」と「表示」だけにする（ごく狭い画面ではサイト名と「表示」だけ） */
 @media (max-width: 479px) {
+  .site-nav {
+    gap: 10px;
+  }
+
+  .site-nav .nav-link + .nav-link {
+    display: none;
+  }
+}
+
+@media (max-width: 339px) {
   .site-nav .nav-link {
     display: none;
   }
@@ -1598,6 +1614,157 @@ article strong {
   color: var(--text-muted);
 }
 
+/* ---------- 探しやすさ・回遊（assets/site.js） ---------- */
+
+/* キーボード操作向け: 本文へ移動（フォーカスしたときだけ見える） */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 40;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+}
+
+.skip-link:visited {
+  color: var(--accent-ink);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* 固定ヘッダーの下に隠れないように、移動先の位置をずらす */
+.article-search-box,
+article h2[id],
+article h3[id],
+.sources-box,
+.sources li {
+  scroll-margin-top: 72px;
+}
+
+/* パンくずのカテゴリ */
+.breadcrumb a {
+  color: var(--text-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+/* カテゴリのボタンの件数 */
+.chip-count {
+  margin-left: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chip[aria-pressed="true"] .chip-count {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* カテゴリごとの「残りN件を表示」 */
+.more-row {
+  margin: 4px 0 8px;
+}
+
+.more-btn {
+  width: 100%;
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  color: var(--link);
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.more-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.more-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 新着記事のカードに添えるカテゴリ名 */
+.article-card-cat {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* 新着は6件。スマホ（1列）では4件までにして、カテゴリ別の一覧に早く届くようにする */
+@media (max-width: 639px) {
+  .latest-list > li:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+/* 記事の最後: 同じカテゴリの記事（スマホでは3件まで） */
+.more-articles {
+  margin-top: 8px;
+}
+
+@media (max-width: 639px) {
+  .more-articles .article-list > li:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+.section-head .more-link {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* 404 ページの検索欄 */
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.search-form .search-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-form button {
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0 16px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.search-form button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* ---------- 印刷 ---------- */
 @media print {
   /* ダーク表示のまま印刷すると紙で読めないので、印刷は常にライト配色にする
@@ -1636,7 +1803,9 @@ article strong {
   .share-row,
   .expand-all,
   .tools-panel,
-  .ref-pop {
+  .ref-pop,
+  .skip-link,
+  .more-articles {
     display: none;
   }
 

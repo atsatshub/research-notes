@@ -42,7 +42,7 @@
 
 1. `template.html` を `articles/` にコピーする（ファイル名は英小文字・数字・ハイフン。例: `articles/furusato-nozei-basics.html`）
 2. `【 】` の部分を書き換え、出典と調査日を記入する
-3. `index.html` の記事一覧と `sitemap.xml` に1件追加する
+3. `index.html` の記事一覧（`data-seq` は追加順の通し番号）と `sitemap.xml` に1件追加し、`python3 -I tools/update_pages.py` を実行する（構造化データなどが入る）
 4. `tools/check_site.py` と `tools/check_pages.js` で確認してから、コミットしてプッシュする（手順は [tools/README.md](tools/README.md)）
 
 ## ローカルでの確認
