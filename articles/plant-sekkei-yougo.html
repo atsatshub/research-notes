@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面｜雑学アーカイブ</title>
+  <meta name="description" content="プラント設計でよく使う専門用語100語を、配管・バルブ・機器・設計条件と材料・配置と土木・計装と電気・図面の7分野に分けて、法令（一般高圧ガス保安規則・特定設備検査規則・コンビナート等保安規則・危険物の政令）や公的機関・業界団体・メーカーの解説をもとに1〜2行で説明しました。呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など。2026年11月10日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/plant-sekkei-yougo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面">
+  <meta property="og:description" content="プラント設計でよく使う専門用語100語を、配管・バルブ・機器・設計条件と材料・配置と土木・計装と電気・図面の7分野に分けて、法令（一般高圧ガス保安規則・特定設備検査規則・コンビナート等保安規則・危険物の政令）や公的機関・業界団体・メーカーの解説をもとに1〜2行で説明しました。呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など。2026年11月10日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/plant-sekkei-yougo.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › プラント</p>
+
+      <h1>プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-10">2026年11月10日</time></li>
+        <li><span class="tag">プラント</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>配管の大きさは「呼び径」で表し、100A・4Bのように書く<a class="ref" href="#src-1">[1]</a></li>
+          <li>設計圧力は、設備を使ってよい最高の圧力として設計した圧力<a class="ref" href="#src-2">[2]</a></li>
+          <li>耐圧試験は、常用の圧力か設計圧力の<strong>1.5倍以上</strong>で行う（法令で違う）<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>爆発の危険がある場所は、危険の頻度で3つに分ける<a class="ref" href="#src-4">[4]</a></li>
+          <li>100語のうち16語は、出典で名称や使い方だけを確かめた語（※印）</li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">配管（34語）</a></li>
+          <li><a href="#sec-2">バルブ（15語）</a></li>
+          <li><a href="#sec-3">機器（20語）</a></li>
+          <li><a href="#sec-4">設計条件・材料（11語）</a></li>
+          <li><a href="#sec-5">配置・構造・土木（8語）</a></li>
+          <li><a href="#sec-6">計装・電気（9語）</a></li>
+          <li><a href="#sec-7">図面・文書（3語）</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <p>石油・化学などのプラントの設計では、配管・バルブ・機器・法令に関わる専門用語が数多く使われます。この記事では、設計の現場でよく使う100語を7分野に分け、法令や公的機関・業界団体・メーカーの解説をもとに1〜2行で説明しました。英語の略語は<a href="plant-ryakugo.html">プラント業界で使われる英語の略語一覧</a>、装置の仕組みは<a href="kagaku-plant-shikumi.html">化学プラントの基本構成と仕組み</a>にまとめています。</p>
+      <p>用語の定義は、規格（JIS）や会社によって細かく違うことがあります。今回はJISの本文を閲覧できなかったため、法令や公的な解説を優先しました。「※」の付いた語は、出典では名称や使い方だけを確かめたもので、意味は一般的な説明です（筆者の説明）。</p>
+
+      <figure class="photo">
+        <img src="images/plant-sekkei-yougo/flange.jpg" width="960" height="640" loading="lazy" alt="さびた太い配管どうしが、円形のつば（フランジ）とたくさんのボルトでつながれている">
+        <figcaption>フランジとボルトでつないだ配管</figcaption>
+      </figure>
+
+      <h2 id="sec-1">配管（34語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>配管の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1. 呼び径（よびけい）</th><td>配管の内径を基準にして、配管やフランジの大きさを決めた呼び名<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">2. A呼称・B呼称</th><td>呼び径の書き方。ミリ単位のA呼称（100Aなど）と、インチ単位のB呼称（4Bなど）<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">3. 呼び圧力</th><td>バルブやフランジの圧力の区分。10Kは10kgf/cm²（約1MPa）の区分<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">4. 肉厚（にくあつ）※</th><td>管の壁の厚さ。圧力配管用の鋼管は、呼び径ごとに厚さが規格で決まっている<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">5. スケジュール番号※</th><td>同じ呼び径の管の厚さの段階を表す番号（スケジュール10〜80など）<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">6. 圧力配管用炭素鋼鋼管※</th><td>JIS G 3454の鋼管（記号STPG）。圧力のかかる配管に使う<a class="ref" href="#src-5">[5]</a></td></tr>
+            <tr><th scope="row">7. 配管クラス（配管サービスクラス）</th><td>流体の性質などに応じて、使う管・継手・バルブの材料や仕様をまとめた決まり<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">8. スペック</th><td>3D配管設計ソフトで、工業規格の部品カタログから作る「使ってよい部品」の設定<a class="ref" href="#src-7">[7]</a></td></tr>
+            <tr><th scope="row">9. エルボ※</th><td>配管の向きを変える曲がった管継手。ロング・ショートなどの種類がある<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">10. ティー※</th><td>配管を枝分かれさせるT字形の管継手。同じ径と径違いがある<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">11. レジューサ※</th><td>管の径を変える管継手。同心と偏心がある<a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">12. 突合せ溶接※</th><td>管や継手の端を突き合わせて溶接する接続方法<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-8">[8]</a></td></tr>
+            <tr><th scope="row">13. 差込み溶接※</th><td>継手の受け口に管を差し込んで溶接する接続方法<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">14. ねじ込み（ねじ込形）</th><td>接続する端にねじ山をもつ形式。一般に管用テーパねじを使う<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">15. フランジ接続</th><td>接続面にガスケットをはさみ、ボルトで締める接続方法<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">16. ガスケット</th><td>フランジの間にはさんで漏れを防ぐシール材（パッキン）<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">17. RF形・GF形</th><td>フランジの合わせ面の形。RF形は大平面座で汎用性、GF形は溝形で耐震性にすぐれる<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">18. 伸縮管継手</th><td>温度の変化で生じる配管の伸び縮みを吸収する継手<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">19. ストレーナ</th><td>流体に混じって流れるごみやスケールを取り除く、こし器<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">20. スチームトラップ</th><td>蒸気が冷えてできた水（ドレン）を排水するための機器<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">21. ドレン</th><td>蒸気が凝縮してできた水。たまるとウォーターハンマーなどの原因になる<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">22. ウォーターハンマー（水撃作用）</th><td>バルブなどを急に閉めたとき、管の中の圧力が急に変動する作用（水道の基準での定義）<a class="ref" href="#src-11">[11]</a>。蒸気配管ではドレンがたまって起きる<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">23. スプリングハンガー</th><td>配管の小さな上下の動きを吸収するため、ばねを使って配管を支える製品<a class="ref" href="#src-12">[12]</a></td></tr>
+            <tr><th scope="row">24. コンスタントハンガー</th><td>配管が大きく上下に動いても、ほぼ一定の力で支え続ける吊り具<a class="ref" href="#src-13">[13]</a></td></tr>
+            <tr><th scope="row">25. 熱応力解析</th><td>温度変化による配管の伸び縮みで生じる力を計算し、ルートや支持を決める作業<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">26. ローディングデータ</th><td>配管がパイプラックやサポートの基礎に与える荷重や反力のデータ。土木の設計に渡す<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">27. 保温</th><td>常温より高い温度の配管・機器を保温材でおおい、熱が逃げるのを防ぐこと。JIS A 9501に施工の標準がある<a class="ref" href="#src-14">[14]</a></td></tr>
+            <tr><th scope="row">28. 保冷</th><td>常温より低い温度の配管・機器を保冷材でおおうこと。表面の結露も防ぐ<a class="ref" href="#src-14">[14]</a></td></tr>
+            <tr><th scope="row">29. 放出管</th><td>安全弁や破裂板から出たガスを導いて放出する管。高圧ガスの設備では設置が必要<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">30. 管板（かんばん）※</th><td>熱交換器で、多くの管（チューブ）の端を差し込んで固定する板<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">31. ノズル（機器ノズル）※</th><td>塔や槽などの機器に配管をつなぐ口。向き（方位）や荷重を配管側と調整する<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">32. パイプラック※</th><td>多くの配管をまとめて載せる棚状の構造物。配管の荷重や熱による反力を受ける<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">33. 腐食しろ※</th><td>腐食や摩耗で薄くなる分を見込んで、計算上の厚さに足す厚さ（法令では「1mmを加えた厚さ」など）<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">34. ウェハー形※</th><td>2枚のフランジの間にはさんで取り付ける、フランジのないバルブの接続形式<a class="ref" href="#src-1">[1]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/plant-sekkei-yougo/insulation.jpg" width="960" height="918" loading="lazy" alt="太い配管の周りに、白っぽいブロック状の保温材を巻き付けて帯で留めた見本">
+        <figcaption>配管に巻く保温材（ケイ酸カルシウム製）</figcaption>
+      </figure>
+
+      <h2 id="sec-2">バルブ（15語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>バルブの用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">35. 弁箱（べんばこ）</th><td>バルブの外側の容器で、圧力を受け持つ部分<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">36. 弁体（べんたい）</th><td>流量を調整する部品<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">37. 弁棒（べんぼう）</th><td>開け閉めの操作を伝える棒<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">38. 玉形弁（グローブバルブ）</th><td>流れにくいが、途中の開き具合（中間開度）で使えるバルブ<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">39. 仕切弁（ゲートバルブ）</th><td>板状の弁体で通路を仕切るバルブ。圧力損失が小さい<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">40. ボール弁</th><td>流れやすく、シール性能がよいバルブ<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">41. バタフライ弁</th><td>面間が短く、軽いバルブ<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">42. 逆止弁（チャッキ弁）</th><td>圧力差で弁体が開閉し、流体を一方向にだけ流すバルブ<a class="ref" href="#src-1">[1]</a></td></tr>
+            <tr><th scope="row">43. 調節弁</th><td>流量や圧力などを精密に制御するバルブ<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">44. 安全弁</th><td>許容圧力を超えたとき、すぐに許容圧力以下に戻す安全装置の一つ<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">45. 破裂板（ラプチャーディスク）※</th><td>安全弁と並ぶ安全装置。決められた圧力で薄い板が破れて圧力を逃がす<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">46. 緊急遮断装置</th><td>緊急時に、計器室からの操作や自動で、速やかに遮断する措置<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">47. 地震防災遮断弁</th><td>地震時と地震後の災害の発生と拡大を防ぐための遮断機能をもつ弁<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">48. 手動弁・自動弁</th><td>人の力で開け閉めするバルブと、自動的に開け閉めや開度の保持をするバルブ<a class="ref" href="#src-9">[9]</a></td></tr>
+            <tr><th scope="row">49. 面間（めんかん）※</th><td>バルブの両端の接続面の間の長さ。バルブの種類で大小が違う<a class="ref" href="#src-1">[1]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/plant-sekkei-yougo/control-valve.jpg" width="960" height="720" loading="lazy" alt="配管の途中にフランジとボルトで取り付けられた、灰色の弁箱の調節弁">
+        <figcaption>調節弁の弁箱</figcaption>
+      </figure>
+
+      <h2 id="sec-3">機器（20語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>機器の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">50. 回転機</th><td>コンプレッサーやポンプ、ガスタービンなど、軸を中心に回転する機器<a class="ref" href="#src-17">[17]</a></td></tr>
+            <tr><th scope="row">51. 塔（法令の定義）</th><td>高圧ガスの設備で、正接線の間の長さが5m以上のもの（貯槽を除く）<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">52. 蒸留塔</th><td>沸点の差を利用して、各留分に分ける塔<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">53. 反応塔</th><td>塔の中に詰めた触媒などのもとで化学反応を行わせる機器<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">54. 槽（ベッセル）</th><td>製造の工程の途中で、一時的にためる・分けるために使う容器<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">55. 熱交換器</th><td>2つの流体の間で熱のやりとりをさせる機器<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">56. 多管式熱交換器</th><td>胴の中に多くの管を通した熱交換器。プロセス用の大型機器に使う<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">57. チューブ（伝熱管）</th><td>熱交換器で、2つの流体を隔てる金属の管<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">58. 固定管板型・遊動頭式</th><td>多管式熱交換器の型。固定管板型は安価だが管の束を抜き出せない。遊動頭式は最も広く使われる<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">59. 空冷式熱交換器</th><td>管の中に流体を通し、外側にファンで空気を送って冷やす熱交換器<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">60. 加熱炉</th><td>燃料を燃やして、炉内の管を流れる流体を加熱する機器。ほとんどが管式<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">61. ポンプ</th><td>外部の動力で液体に運動エネルギーを与え、圧力として取り出して送る機器<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">62. キャビテーション</th><td>ポンプの羽根車の入口で局部的に真空状態ができ、小さな泡が発生する現象<a class="ref" href="#src-19">[19]</a></td></tr>
+            <tr><th scope="row">63. 圧縮機（コンプレッサー）</th><td>気体を圧送する機械。ターボ型（遠心式など）と容積型（往復動式など）がある<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">64. 送風機（ファン・ブロアー）</th><td>圧縮機より低い圧力で気体を送る機械<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">65. 貯槽（ちょそう）</th><td>高圧ガスの貯蔵設備のうち、地盤面に対して移動できないもの<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">66. 低温貯槽</th><td>大気圧での沸点が0℃以下のガスを、液体の状態でためる貯槽<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">67. 浮き屋根式タンク</th><td>液面に鋼製のふたを浮かべた構造のタンク。揮発しやすいものの貯蔵に向く<a class="ref" href="#src-20">[20]</a></td></tr>
+            <tr><th scope="row">68. 浮き蓋付きタンク（インナーフロート）</th><td>固定屋根のタンクの内部に浮き蓋を浮かべた構造のタンク<a class="ref" href="#src-20">[20]</a></td></tr>
+            <tr><th scope="row">69. 機器設計の図面（計画図・組立図・部品図）</th><td>機器設計では主な仕様を決めた計画図を作り、詳細設計で組立図・部品図を作る<a class="ref" href="#src-21">[21]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-4">設計条件・材料（11語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>設計条件・材料の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">70. 設計圧力</th><td>設備を使うことができる最高の圧力として設計した圧力<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">71. 設計温度</th><td>設備を使うことができる最高または最低の温度として設定した温度<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">72. 常用の圧力</th><td>ふだんの使用状態で設備にかかる圧力。変動する場合はその最高の圧力<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">73. 耐圧試験</th><td>水などの安全な液体で高い圧力をかけて確かめる試験。一般高圧ガス保安規則は常用の圧力の1.5倍以上、特定設備検査規則は設計圧力の1.5倍以上<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">74. 気密試験</th><td>常用の圧力以上の圧力で、漏れがないかを確かめる試験<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">75. 許容引張応力</th><td>材料にかけてよい引張の力の上限。常温の最小引張強さの4分の1などで決める<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">76. 非破壊試験</th><td>壊さずに、内部に有害な欠陥がないかを確かめる試験<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">77. ステンレス鋼</th><td>クロムを重量で10.5%以上ふくむ、さびにくい鋼<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">78. 合金鋼</th><td>炭素鋼にモリブデンなどを加えた鋼<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">79. 低温脆性（ていおんぜいせい）</th><td>低い温度で、オーステナイト系ステンレスなどを除く鉄系の材料がもろくなる性質<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">80. 放射線透過試験</th><td>溶接部の全長などについて、内部の欠陥の有無を調べる非破壊試験の一つ<a class="ref" href="#src-2">[2]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-5">配置・構造・土木（8語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>配置・構造・土木の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">81. プロットプラン</th><td>敷地の中に、生産設備・ユーティリティ設備・配管路・倉庫・事務管理棟などをどう置くかの配置計画<a class="ref" href="#src-24">[24]</a></td></tr>
+            <tr><th scope="row">82. 機器配置</th><td>経済性・効率性・保全性・安全性など、ときに矛盾する要求を両立させて機器の位置を決めること<a class="ref" href="#src-24">[24]</a></td></tr>
+            <tr><th scope="row">83. 防液堤（ぼうえきてい）</th><td>液化ガスの貯槽から漏れた液の流出を防ぐ堤。内側と外面から10m以内には原則として設備を置けない<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">84. 防油堤（ぼうゆてい）</th><td>屋外の危険物タンクから漏れた危険物の流出を防ぐ堤<a class="ref" href="#src-25">[25]</a></td></tr>
+            <tr><th scope="row">85. 保安距離</th><td>危険物の製造所などと、住宅・学校などとの間に保つ距離（法令の文言は「距離を保つこと」）<a class="ref" href="#src-25">[25]</a></td></tr>
+            <tr><th scope="row">86. 保有空地（ほゆうくうち）</th><td>危険物の施設の周りに確保しておく、決められた幅の空き地<a class="ref" href="#src-25">[25]</a></td></tr>
+            <tr><th scope="row">87. 設備距離（第一種・第二種）</th><td>高圧ガスの設備と保安物件の間に必要な距離。貯蔵能力・処理能力に応じて決まる<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">88. 保安区画</th><td>コンビナートの事業所で、通路や空地などで区切った区域（面積2万m²以下）<a class="ref" href="#src-16">[16]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/plant-sekkei-yougo/globe-valve.jpg" width="960" height="720" loading="lazy" alt="フランジでつながれた緑色のバルブと、その先で直角に曲がった銀色の配管">
+        <figcaption>フランジでつないだバルブと、向きを変える配管</figcaption>
+      </figure>
+
+      <h2 id="sec-6">計装・電気（9語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>計装・電気の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">89. 計装（けいそう）</th><td>流量・温度・圧力・液面などを計器で測り、決めた運転条件に合うように操作すること<a class="ref" href="#src-18">[18]</a></td></tr>
+            <tr><th scope="row">90. 計器室</th><td>製造を制御するための機器を集中的に置いた部屋<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">91. インターロック機構</th><td>正常な製造の条件から外れたとき、自動的に原材料の供給を止めるなどする仕組み<a class="ref" href="#src-16">[16]</a></td></tr>
+            <tr><th scope="row">92. 伝送器</th><td>測った量を、直流4〜20mAなどの標準の信号に変えて送る機器<a class="ref" href="#src-26">[26]</a></td></tr>
+            <tr><th scope="row">93. 調節計</th><td>伝送器からの信号を受けて、調節弁などを動かす信号を計算する機器<a class="ref" href="#src-26">[26]</a></td></tr>
+            <tr><th scope="row">94. 操作端（制御端）</th><td>調節計の信号を受けて、実際にプロセスを動かす部分（多くは調節弁）<a class="ref" href="#src-26">[26]</a><a class="ref" href="#src-27">[27]</a></td></tr>
+            <tr><th scope="row">95. 防爆構造</th><td>設置場所とガスの種類に応じた防爆性能をもつ電気設備の構造<a class="ref" href="#src-3">[3]</a></td></tr>
+            <tr><th scope="row">96. 危険場所の3区分</th><td>特別危険箇所（ふだんから連続・長時間・頻繁に存在）、第一類（しばしば生成）、第二類（生成しにくく、生成しても短時間）<a class="ref" href="#src-4">[4]</a></td></tr>
+            <tr><th scope="row">97. 接地（静電気の除去）</th><td>危険物の設備で、静電気を有効に除去するための接地電極を設けること<a class="ref" href="#src-25">[25]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-7">図面・文書（3語）</h2>
+
+      <div class="table-wrap">
+        <table>
+          <caption>図面・文書の用語</caption>
+          <thead><tr><th scope="col">用語</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">98. データシート※</th><td>機器などの条件や仕様をまとめた書類。P&amp;IDの後に、プロセス仕様書とともに作る<a class="ref" href="#src-28">[28]</a></td></tr>
+            <tr><th scope="row">99. アイソメ図</th><td>3Dモデルから作る、注釈と寸法を書き込んだ配管の図面。製作用のものもある<a class="ref" href="#src-29">[29]</a></td></tr>
+            <tr><th scope="row">100. オルソ図</th><td>3Dモデルから作る、配管・バルブ・機器・構造用鋼の2次元の図（平面図など）<a class="ref" href="#src-30">[30]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>JIS（バルブ用語・管継手用語・自動制御用語など）の定義。JISのサイトが停止中で、本文を閲覧できなかった</li>
+          <li>勾配・NPSH・マンホール・メンテナンススペース・配管用炭素鋼鋼管（SGP）の、公的な出典での意味</li>
+          <li>安全弁と逃し弁の違い、常用の温度・最高使用圧力・許容圧力の定義文</li>
+          <li>伝送器・調節計などの計装の用語は、1961年・1972年の技術記事でしか確かめられなかった</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <p class="box-title">関連する記事</p>
+        <ul>
+          <li><a href="plant-ryakugo.html">プラント業界で使われる英語の略語一覧</a></li>
+          <li><a href="plant-shigoto-susumekata.html">プラント業界の仕事の進め方</a></li>
+          <li><a href="kagaku-plant-shikumi.html">化学プラントの基本構成と仕組み</a></li>
+          <li><a href="plant-3d-model.html">プラントの3Dモデルはどう作られるのか</a></li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（30件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月10日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://www.pref.shiga.lg.jp/hik/32634.html" target="_blank" rel="noopener">バルブのいろは（1）ー構造と接続方法ー</a>（滋賀県 北部産業技術共創センター）</li>
+          <li id="src-2"><a href="https://laws.e-gov.go.jp/law/351M50000400004" target="_blank" rel="noopener">特定設備検査規則</a>（e-Gov法令検索）</li>
+          <li id="src-3"><a href="https://laws.e-gov.go.jp/law/341M50000400053" target="_blank" rel="noopener">一般高圧ガス保安規則</a>（e-Gov法令検索）</li>
+          <li id="src-4"><a href="https://www.jniosh.johas.go.jp/publication/doc/tr/TR_No39.pdf" target="_blank" rel="noopener">工場電気設備防爆指針（ガス蒸気防爆 2006）</a>（労働安全衛生総合研究所（旧産業安全研究所））</li>
+          <li id="src-5"><a href="https://www.nipponsteel.com/product/construction/handbook/pdf/4-10.pdf" target="_blank" rel="noopener">建設用資材ハンドブック 4-10 圧力配管用炭素鋼鋼管</a>（日本製鉄）</li>
+          <li id="src-6"><a href="https://cxo.chiyodacorp.com/recruit/career/jobs/job04.html" target="_blank" rel="noopener">配管エンジニアの業務内容とキャリア形成</a>（千代田エクスワンエンジニアリング）</li>
+          <li id="src-7"><a href="https://help.autodesk.com/cloudhelp/2016/JPN/Plant3D-SpecEditor/files/GUID-A9603953-421C-4686-8F3C-C2FE8599FF4A.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「スペックおよびカタログの概要」</a>（Autodesk）</li>
+          <li id="src-8"><a href="https://www.nipponsteel.com/product/construction/handbook/pdf/4-25.pdf" target="_blank" rel="noopener">建設用資材ハンドブック 4-25 鋼管製突合せ溶接式管継手</a>（日本製鉄）</li>
+          <li id="src-9"><a href="https://www.venn.co.jp/content/download/6548/143072/file/1.%E5%9F%BA%E7%A4%8E%E7%B7%A8.pdf" target="_blank" rel="noopener">技術資料「1.基礎編」</a>（ベン）</li>
+          <li id="src-10"><a href="https://www.tlv.com/sites/default/files/tlv_assets/ja/articles/pdf/sekkei_haikangijutu2210.pdf" target="_blank" rel="noopener">スチームトラップの仕様と設計（配管技術研究協会誌 2022年）</a>（テイエルブイ）</li>
+          <li id="src-11"><a href="https://laws.e-gov.go.jp/law/409M50000100014" target="_blank" rel="noopener">給水装置の構造及び材質の基準に関する省令</a>（e-Gov法令検索）</li>
+          <li id="src-12"><a href="https://pr.mono.ipros.com/yamashita-seisaku/product/detail/2000621436" target="_blank" rel="noopener">スプリングハンガー・サポート</a>（山下製作所）</li>
+          <li id="src-13"><a href="https://pr.mono.ipros.com/yamashita-seisaku/product/detail/2000625363" target="_blank" rel="noopener">コンスタントハンガー・コンスタントサポート</a>（山下製作所）</li>
+          <li id="src-14"><a href="https://nichias.co.jp/cms/nichias/pdf/report/2023/401_04.pdf" target="_blank" rel="noopener">ニチアス技術時報「プラント設備の保温保冷材」（2023年）</a>（ニチアス）</li>
+          <li id="src-15"><a href="https://www.azbil.com/jp/corporate/pr/library/review/pdf/Review2026_01.pdf" target="_blank" rel="noopener">azbil Technical Review 2026</a>（アズビル）</li>
+          <li id="src-16"><a href="https://laws.e-gov.go.jp/law/361M50000400088" target="_blank" rel="noopener">コンビナート等保安規則</a>（e-Gov法令検索）</li>
+          <li id="src-17"><a href="https://www.jgc.com/saiyo/work-person/job.html" target="_blank" rel="noopener">新卒採用 日揮グループの職種</a>（日揮ホールディングス）</li>
+          <li id="src-18"><a href="https://www.pecj.or.jp/japanese/safer/knowledge/doc/no-31.doc" target="_blank" rel="noopener">製油所の機器・計装の解説（安全に関する知識 No.31）</a>（石油エネルギー技術センター）</li>
+          <li id="src-19"><a href="https://jsim.or.jp/pdf/publication/a-1-55-00-00-00-20260218.pdf" target="_blank" rel="noopener">汎用ポンプに関するFAQ</a>（日本産業機械工業会）</li>
+          <li id="src-20"><a href="https://www.city.maizuru.kyoto.jp/sigikai/cmsfiles/contents/0000012/12127/14giansiryou_2024031808172655.pdf" target="_blank" rel="noopener">屋外タンクの種類（市議会 総務消防委員会資料）</a>（舞鶴市）</li>
+          <li id="src-21"><a href="https://www.mhlw.go.jp/content/11800000/000588929.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「機器設計」</a>（厚生労働省）</li>
+          <li id="src-22"><a href="https://www.nipponsteel.com/product/faq/stainless/" target="_blank" rel="noopener">ステンレス鋼 FAQ</a>（日本製鉄）</li>
+          <li id="src-23"><a href="https://www.pref.shiga.lg.jp/hik/32633.html" target="_blank" rel="noopener">バルブのいろは（2）ー加工方法と材料ー</a>（滋賀県 北部産業技術共創センター）</li>
+          <li id="src-24"><a href="https://www.mhlw.go.jp/content/11800000/000588925.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「全体・部分配置計画」</a>（厚生労働省）</li>
+          <li id="src-25"><a href="https://laws.e-gov.go.jp/law/334CO0000000306" target="_blank" rel="noopener">危険物の規制に関する政令</a>（e-Gov法令検索）</li>
+          <li id="src-26"><a href="https://www.hitachihyoron.com/jp/pdf/1972/10/1972_10_14.pdf" target="_blank" rel="noopener">計装システムの記事（1972年10月）</a>（日立評論）</li>
+          <li id="src-27"><a href="https://www.hitachihyoron.com/jp/pdf/1961/02/1961_02_00_gijyutsusya.pdf" target="_blank" rel="noopener">空気作動式調節計の取扱い（その1）（1961年2月）</a>（日立評論）</li>
+          <li id="src-28"><a href="https://www.mhlw.go.jp/content/11800000/000588928.doc" target="_blank" rel="noopener">職業情報【エンジニアリング業】設計「プロセス設計」</a>（厚生労働省）</li>
+          <li id="src-29"><a href="https://help.autodesk.com/cloudhelp/2026/JPN/Plant3D-UserGuide/files/GUID-B9085D60-CD0C-4160-8EEF-7B527D59E476.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - アイソメ図面」</a>（Autodesk）</li>
+          <li id="src-30"><a href="https://help.autodesk.com/cloudhelp/2017/JPN/Plant3D-UserGuide/files/GUID-4856C0C3-01FD-4062-B21F-6A0F731088D5.htm" target="_blank" rel="noopener">AutoCAD Plant 3D ヘルプ「概要 - オルソ図面(投影図)」</a>（Autodesk）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（4件）</summary>
+        <ol class="sources">
+          <li>フランジとボルトでつないだ配管<br>写真: Dietmar Rabich／<a href="https://commons.wikimedia.org/wiki/File:Haltern_am_See,_Silbersee_III,_Rohre_--_2025_--_8555.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>配管に巻く保温材（ケイ酸カルシウム製）<br>写真: Achim Hering／<a href="https://commons.wikimedia.org/wiki/File:Calcium_silicate_pipe_covering,_scored_block_sheets,_used_over_half_shells,_that_top_out_at_20%22_diameter.png" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>）</li>
+          <li>調節弁の弁箱<br>写真: Bitjungle／<a href="https://commons.wikimedia.org/wiki/File:Globe_Control_Valve.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>フランジでつないだバルブと、向きを変える配管<br>写真: Bitjungle／<a href="https://commons.wikimedia.org/wiki/File:Globe_valve_in_open_position.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月10日時点の情報をもとにまとめたものです。用語の意味は、規格・法令・会社によって違うことがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
