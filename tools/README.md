@@ -6,6 +6,7 @@
 | ファイル | 役割 |
 |---|---|
 | `build_article.py` | 下書き（`[[key]]` で出典を参照）と出典リスト（`sources.py`）から、出典番号を自動で振った完成版を作る |
+| `update_pages.py` | 全ページに「本文へ移動」のリンク、パンくずのカテゴリへのリンク、構造化データ（JSON-LD）を入れる。何度実行してもよい。`build_article.py` も最後にこれを呼ぶ |
 | `drop_source.py` | 公開済みの記事から出典を1件消し、後ろの番号を詰める |
 | `check_site.py` | HTML を読むだけでできるチェック（head・canonical・sitemap・出典の対応・文字数ルールなど） |
 | `check_pages.js` | ブラウザ（Playwright）での表示チェック（はみ出し・折りたたみ・出典の吹き出し・印刷・トップの検索） |
@@ -23,7 +24,9 @@
    - 出典を参照する場所に `[[key]]`、出典一覧を置く場所に `<!-- SOURCES -->` と書く。
    - `sources.py` の形式は `build_article.py` の説明を参照。
 3. **ビルド**: `python3 -I tools/build_article.py <下書き> <sources.py> articles/<ファイル名>.html`
-4. **一覧への追加**: `index.html`（新しい記事が上、カテゴリは `h3.article-group-title`）と `sitemap.xml` に追加する。
+4. **一覧への追加**: `index.html`（新しい記事が上、カテゴリは `h3.article-group-title`、`<li data-seq="いま一番大きい番号＋1">`）と `sitemap.xml` に追加する。トップページの `lastmod` も追加した日にする。
+   - 記事のパンくずのカテゴリ名は、`index.html` の見出しと同じにする（`update_pages.py` がリンクにする）。
+   - 公開済みの記事の題名・説明・調査日・更新日を直したら、`python3 -I tools/update_pages.py` で構造化データを作り直す。
 5. **確認**:
    - `python3 -I tools/check_site.py` → `ALL OK` になるまで直す
    - `node tools/check_pages.js articles/<新しい記事>.html` → `ALL OK`

@@ -4,17 +4,21 @@
     python3 -I tools/check_site.py
 
 CLAUDE.md のルールのうち、HTML を読むだけで確かめられるものを調べる。
-- 全ページ: lang="ja"・文字コード・viewport・アイコン・site.js・canonical・OGP
+- 全ページ: lang="ja"・文字コード・viewport・アイコン・site.js・canonical・OGP・「本文へ移動」のリンク
 - 記事: canonical / og:url が記事の URL と一致、og:title / og:description が title / description と一致、
   article.js、調査日、index.html と sitemap.xml への掲載、sitemap の lastmod（更新日があれば更新日）、
   出典番号 [n] と出典一覧の対応・連番・件数、目次などのページ内リンク、記事間リンク、
-  表の table-wrap、画像の alt、取り消し線、【 】プレースホルダの残り、閉じ忘れタグ、重複 id
+  表の table-wrap、画像の alt、取り消し線、【 】プレースホルダの残り、閉じ忘れタグ、重複 id、
+  パンくずのカテゴリ（index.html の見出しと同じ名前で、絞り込みへのリンクになっているか）、
+  構造化データ（JSON-LD の題名・日付が本文と同じか。違うときは tools/update_pages.py を実行する）
+- トップ: 記事カードの data-seq（追加順の通し番号）が全件にあり、重複していないか
 - 文字数: 要点まとめ 45字・ひとこと（item-point）35字・「くわしく」の箇条書き 60字（目安は40字前後）、
   1文に強調（strong）は1か所まで
 問題がなければ「ALL OK」と出る。
 """
 import glob
 import html
+import json
 import os
 import re
 import sys
@@ -66,7 +70,8 @@ def check_common(path, s, out):
     dup = sorted({i for i in p.ids if p.ids.count(i) > 1})
     if dup:
         out.append("重複 id " + str(dup))
-    need = ['<html lang="ja">', 'charset="utf-8"', 'name="viewport"', 'rel="icon"', "assets/site.js"]
+    need = ['<html lang="ja">', 'charset="utf-8"', 'name="viewport"', 'rel="icon"', "assets/site.js",
+            'class="skip-link" href="#main"', '<main class="container" id="main">']
     if path != "404.html":
         need += ['rel="canonical"', "og:url", "og:title", "og:description", "twitter:card"]
     for n in need:
@@ -92,6 +97,34 @@ def check_article(f, s, idx, sm, out):
         out.append("og:description が description と違う")
     if "assets/article.js" not in s:
         out.append("article.js がない")
+    # パンくずのカテゴリ（index.html の見出しと同じ名前で、絞り込みへのリンク）
+    cats = {re.sub(r"（.*?）", "", c).strip() for c in re.findall(r'<h3 class="article-group-title">(.*?)</h3>', idx)}
+    crumb = re.search(r'<p class="breadcrumb"><a href="\.\./index\.html">トップ</a> › <a href="\.\./index\.html\?cat=[^"]+">([^<]+)</a></p>', s)
+    if not crumb:
+        out.append("パンくずのカテゴリがリンクになっていない（tools/update_pages.py を実行）")
+    elif crumb.group(1) not in cats:
+        out.append("パンくずのカテゴリが index.html の見出しにない: " + crumb.group(1))
+    # 構造化データ（題名・日付が本文と同じか）
+    ld = re.search(r'<script type="application/ld\+json">(.*?)</script>', s, re.S)
+    h1 = re.search(r"<h1>(.*?)</h1>", s, re.S)
+    try:
+        art = json.loads(ld.group(1))["@graph"][0]
+    except (AttributeError, ValueError, KeyError, IndexError):
+        art = None
+    if not art:
+        out.append("構造化データ（JSON-LD）がない（tools/update_pages.py を実行）")
+    else:
+        date = re.search(r'調査日: <time datetime="(\d{4}-\d\d-\d\d)">', s)
+        upds = re.findall(r'更新日: <time datetime="([\d-]+)"', s)
+        want = {
+            "headline": text(h1.group(1)) if h1 else "",
+            "datePublished": date.group(1) if date else "",
+            "dateModified": upds[-1] if upds else (date.group(1) if date else ""),
+            "mainEntityOfPage": url,
+        }
+        for k, v in want.items():
+            if art.get(k) != v:
+                out.append(f"構造化データの {k} が本文と違う（tools/update_pages.py を実行）")
     tm = re.search(r'調査日: <time datetime="(\d{4}-\d\d-\d\d)">', s)
     if not tm:
         out.append("調査日の <time> がない")
@@ -185,6 +218,13 @@ def main():
             print("==", f)
             for o in out:
                 print("  -", o)
+    # トップ: 記事カードの data-seq（追加順の通し番号）
+    cards = re.findall(r'<li( data-seq="(\d+)")?>\s*<a class="article-card" href="articles/[a-z0-9-]+\.html"', idx)
+    seqs = [n for _, n in cards if n]
+    if len(seqs) != len(cards) or len(set(seqs)) != len(seqs):
+        print("== index.html")
+        print("  - 記事カードの data-seq がない、または重複している")
+        total += 1
     for loc in re.findall(r"<loc>([^<]+)</loc>", sm):
         p = loc.replace(BASE, "") or "index.html"
         if not os.path.exists(p):
