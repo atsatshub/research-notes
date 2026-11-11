@@ -77,10 +77,13 @@
         <li><p class="service-name">くわしく／すべて開く</p><p class="service-what">項目ごとの「くわしく」を押すと開きます。目次の下のボタンで一度に開閉できます</p><p class="service-cond">印刷するときは自動ですべて開きます</p></li>
         <li><p class="service-name">表示設定</p><p class="service-what">画面右上の「メニュー」から、文字の大きさ（標準／大きめ）と配色（自動／ライト／ダーク）を変えられます</p><p class="service-cond">設定はこの端末のブラウザにだけ保存されます</p></li>
         <li><p class="service-name">メニュー</p><p class="service-what">画面右上の「メニュー」に、記事の検索、カテゴリの一覧、各ページへのリンク、表示設定をまとめています</p><p class="service-cond">記事を読んでいるときは「この記事の目次」も出て、いま読んでいる章が分かります。パソコンの広い画面では、本文の右にも目次が出ます</p></li>
-        <li><p class="service-name">記事を探す</p><p class="service-what">トップページで、キーワード検索とカテゴリでの絞り込みができます。題名と説明のほか、記事の中の見出しと要点も探します</p><p class="service-cond">キーワードを空白で区切ると、すべてを含む記事だけに絞れます。一致した見出しがカードの下に出て、その章へ直接移れます。絞り込んだ状態は、そのままURLで共有できます</p></li>
+        <li><p class="service-name">記事を探す</p><p class="service-what">トップページで、キーワード検索とカテゴリでの絞り込みができます。題名と説明のほか、記事の中の見出しと要点も探します</p><p class="service-cond">キーワードを空白で区切ると、すべてを含む記事だけに絞れます。一致した見出しがカードの下に出て、その章へ直接移れます（対応しているブラウザでは、探した語に色が付きます）。絞り込んだ状態は、そのままURLで共有できます</p></li>
         <li><p class="service-name">並び順・おまかせ</p><p class="service-what">記事一覧は「カテゴリ別」「新しい順」「古い順」を切り替えられます</p><p class="service-cond">「おまかせで1本読む」を押すと、記事を1本選んで開きます（絞り込み中は、その中から選びます）</p></li>
         <li><p class="service-name">続けて読む</p><p class="service-what">記事の最後に、内容の近い「関連する記事」が出ます（ほかのカテゴリの記事も含みます）</p><p class="service-cond">記事の上の「トップ › カテゴリ名」からも、同じカテゴリの一覧に移れます</p></li>
-        <li><p class="service-name">共有</p><p class="service-what">記事の冒頭のボタンで、記事のリンクを共有・コピーできます</p></li>
+        <li><p class="service-name">あとで読む</p><p class="service-what">記事の題名の下の「あとで読む」を押すと、その記事を保存できます</p><p class="service-cond">保存した記事は、トップページの「保存した記事」やメニューから一覧できます。もう一度押すと取り消せます</p></li>
+        <li><p class="service-name">続きから読む</p><p class="service-what">途中まで読んだ記事を開くと、前回読んでいた章へ移るボタンが出ます</p><p class="service-cond">記事一覧には「読みかけ」「読了」の印と、前回の訪問より後に追加された記事の「新着」の印が付きます</p></li>
+        <li><p class="service-name">共有・印刷</p><p class="service-what">記事の冒頭のボタンで、記事のリンクの共有・コピーと、印刷（PDF での保存）ができます</p><p class="service-cond">見出しの横の「#」を押すと、その見出しへのリンクをコピーできます</p></li>
+        <li><p class="service-name">誤りを知らせる</p><p class="service-what">記事の最後のリンクから、誤りや古くなった内容を GitHub の Issue で知らせることができます</p><p class="service-cond">Issue は公開の場です。個人情報は書かないでください</p></li>
         <li><p class="service-name">新着を受け取る</p><p class="service-what">新しい記事は <a href="feed.xml">RSS</a> で配信しています（新しい順に30件）</p><p class="service-cond">RSS リーダーに登録すると、追加された記事を確認できます</p></li>
       </ul>
     </section>
@@ -91,7 +94,7 @@
       <h3>アクセス解析は入れていません</h3>
       <p class="item-point">当サイト自身が閲覧した人の情報を集める仕組みはありません</p>
       <ul class="service-list">
-        <li><p class="service-name">表示設定の保存</p><p class="service-what">文字の大きさと配色の設定だけを、閲覧している端末のブラウザ（localStorage）に保存します</p><p class="service-cond">サーバーには送られません。ブラウザのサイトデータを消すと元に戻ります</p></li>
+        <li><p class="service-name">設定と記録の保存</p><p class="service-what">文字の大きさ・配色の設定と、「あとで読む」・読んだ記事の記録を、閲覧している端末のブラウザ（localStorage）にだけ保存します</p><p class="service-cond">サーバーには送られません。メニューの「この端末の記録」で、記録をやめる・消すことができます</p></li>
         <li><p class="service-name">広告</p><p class="service-what">運営費にあてるため、第三者配信の広告（Google AdSense）を掲載することがあります</p><p class="service-cond">広告配信に使われる Cookie と、無効にする方法は<a href="privacy.html">プライバシーポリシー</a>に書いています。2026年11月9日時点では、まだ掲載していません</p></li>
         <li><p class="service-name">記事の内容</p><p class="service-what">個人を特定できる情報は掲載しません。広告主や企業から対価を受けて書いた記事はありません</p></li>
       </ul>

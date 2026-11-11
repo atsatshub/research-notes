@@ -17,6 +17,13 @@
      「おまかせで1本読む」は記事を1本選んで開く。
      記事カードの題名は「：」の前後で分け、後ろを小さく表示する。
      検索語・カテゴリ・並び順は URL（?q=…&cat=…&sort=new または old）に残すので、共有や「戻る」で同じ状態に戻れる
+  5. この端末に残す記録（ブラウザの localStorage だけ。外には送らない）
+     - あとで読む: 記事の「あとで読む」で保存し、トップの「保存した記事」で一覧する
+     - 読んだ記事: 読み進んだ割合と章を記録し、カードに「読みかけ」「読了」の印を出す。
+       読みかけの記事を開くと「続きから読む」を出す。メニューの「この端末の記録」で、記録をやめる・消すことができる
+     - 前回の訪問より後に追加された記事に「新着」の印を出す
+  6. 記事ページの道具: 見出しへのリンクのコピー、印刷、横に長い表の「横にスクロールできます」、
+     誤りを知らせるリンク（GitHub の Issue）。検索結果から章へ移るときは、検索語を記事の中で目立たせる
   assets/search-index.json と assets/related.json は tools/make_data.py が作る
 */
 (function () {
@@ -55,6 +62,122 @@
 
   applyTheme(load(KEY_THEME));
   applyFont(load(KEY_FONT));
+
+  // ---------- この端末に残す記録（表示設定と同じく、ブラウザの localStorage だけ。外には送らない） ----------
+  var KEY_SAVED = "rn-saved"; // あとで読む: 記事名の配列（新しく保存したものが先）
+  var KEY_READ = "rn-read"; // 読んだ記事: { 記事名: [開いた時刻, いちばん先まで読んだ割合, 最後にいた章の id, そのときの割合] }
+  var KEY_HISTORY = "rn-history"; // "off" のとき、読んだ記事を記録しない
+  var KEY_SEEN = "rn-seen"; // トップで見た新着: [前回までに見た通し番号, いま見ている通し番号, 区切りを進めた時刻]
+  var SAVED_MAX = 200; // 保存できる記事の数
+  var READ_MAX = 200; // 読んだ記事の記録の数（古いものから捨てる）
+  var READ_DONE = 90; // この割合まで読んだら「読了」
+  var READ_PART = 10; // この割合まで読んだら「読みかけ」（開いてすぐ閉じた記事は数えない）
+  var SEEN_HOURS = 6; // 前の訪問からこの時間があいたら、「新着」の区切りを進める
+
+  function loadJson(key, fallback) {
+    try {
+      var v = JSON.parse(load(key));
+      return v === null || v === undefined ? fallback : v;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function savedList() {
+    var v = loadJson(KEY_SAVED, []);
+    return Array.isArray(v)
+      ? v.filter(function (x) {
+          return typeof x === "string";
+        })
+      : [];
+  }
+
+  function setSaved(slug, on) {
+    var list = savedList().filter(function (x) {
+      return x !== slug;
+    });
+    if (on) list.unshift(slug);
+    save(KEY_SAVED, list.length ? JSON.stringify(list.slice(0, SAVED_MAX)) : "");
+  }
+
+  function historyOn() {
+    return load(KEY_HISTORY) !== "off";
+  }
+
+  function readMap() {
+    var v = loadJson(KEY_READ, {});
+    return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+  }
+
+  // 読んだ割合（0〜100）と、いまいる章を記録する
+  function recordRead(slug, percent, sectionId) {
+    if (!historyOn() || !slug) return;
+    var map = readMap();
+    var old = Array.isArray(map[slug]) ? map[slug] : [0, 0, "", 0];
+    var entry = [Date.now(), Math.max(old[1] || 0, percent), old[2] || "", old[3] || 0];
+    // 最後にいた場所は、本文を読み進めたときだけ書き換える（開いてすぐ閉じても、前回の続きが消えないように）
+    if (percent >= READ_PART) {
+      entry[2] = sectionId || "";
+      entry[3] = percent;
+    }
+    map[slug] = entry;
+    var keys = Object.keys(map);
+    if (keys.length > READ_MAX) {
+      keys
+        .sort(function (a, b) {
+          return (map[b][0] || 0) - (map[a][0] || 0);
+        })
+        .slice(READ_MAX)
+        .forEach(function (k) {
+          delete map[k];
+        });
+    }
+    save(KEY_READ, JSON.stringify(map));
+  }
+
+  // 記録からの状態: "done"（最後まで読んだ）/ "part"（途中まで）/ ""（なし）
+  function readState(entry) {
+    if (!Array.isArray(entry)) return "";
+    if ((entry[1] || 0) >= READ_DONE) return "done";
+    return (entry[1] || 0) >= READ_PART ? "part" : "";
+  }
+
+  // カードの調査日の行に、この端末の記録からの印（新着・保存済み・読みかけ・読了）を添える
+  function addFlags(li, slug, saved, map, isNew) {
+    var date = li.querySelector(".article-card-date");
+    if (!date) return;
+    Array.prototype.forEach.call(date.querySelectorAll(".card-flag"), function (n) {
+      n.remove();
+    });
+    var doc = li.ownerDocument || document;
+    function flag(cls, text) {
+      var span = doc.createElement("span");
+      span.className = "card-flag " + cls;
+      span.textContent = text;
+      date.appendChild(span); // 日付の文字のあとに置く（入りきらないときは、印だけが次の行に回る）
+    }
+    var state = readState(map[slug]);
+    if (state === "done") flag("is-done", "読了");
+    else if (state === "part") flag("is-part", "読みかけ");
+    if (saved.indexOf(slug) !== -1) flag("is-saved", "保存済み");
+    if (isNew) flag("is-new", "新着");
+  }
+
+  // 文字列をクリップボードへ（できたかどうかを done に伝える）
+  function copyText(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () {
+          done(true);
+        },
+        function () {
+          done(false);
+        }
+      );
+    } else {
+      done(false);
+    }
+  }
 
   function ready(fn) {
     if (document.readyState !== "loading") fn();
@@ -205,7 +328,7 @@
     var span = doc.createElement("span");
     span.className = "card-cat";
     span.textContent = name;
-    date.insertBefore(span, date.firstChild);
+    date.appendChild(span); // 日付の文字のあとに置く（入りきらないときは、印だけが次の行に回る）
   }
 
   // 関連する記事（tools/make_data.py が、本文の言葉の近さで記事ごとに選んだもの）。読めないときは空
@@ -330,6 +453,15 @@
         });
     });
     findSec.appendChild(lucky);
+    // 保存した記事（あとで読む）: トップの一覧を、保存した記事だけにして開く
+    var savedLink = el("a", { class: "menu-saved", href: base + "index.html?list=saved" }, "保存した記事（" + savedList().length + "）");
+    savedLink.addEventListener("click", function (e) {
+      if (!indexApi) return;
+      e.preventDefault();
+      open(false);
+      indexApi.saved();
+    });
+    findSec.appendChild(savedLink);
 
     // 3. カテゴリ（開いたときに一度だけ作る）
     var catSec = section("カテゴリから探す");
@@ -403,6 +535,24 @@
       save(KEY_THEME, v);
     }));
     viewSec.appendChild(el("p", { class: "tools-note" }, "設定はこの端末のブラウザにだけ保存されます。"));
+
+    // 6. この端末の記録（あとで読む・読んだ記事）: 記録をやめる・消す
+    var recSec = section("この端末の記録");
+    recSec.appendChild(group("読んだ記事の記録", "rn-history", [["", "残す"], ["off", "残さない"]], historyOn() ? "" : "off", function (v) {
+      save(KEY_HISTORY, v);
+      // 残さないにしたら、いまある記録も消す
+      if (v === "off") save(KEY_READ, "");
+    }));
+    var clearBtn = el("button", { type: "button", class: "random-btn clear-btn" }, "保存した記事と記録を消す");
+    clearBtn.addEventListener("click", function () {
+      if (!window.confirm("「あとで読む」で保存した記事と、読んだ記事の記録を、この端末から消します。よろしいですか？")) return;
+      save(KEY_SAVED, "");
+      save(KEY_READ, "");
+      save(KEY_SEEN, "");
+      location.reload();
+    });
+    recSec.appendChild(clearBtn);
+    recSec.appendChild(el("p", { class: "tools-note" }, "「あとで読む」と読んだ記事の記録は、この端末のブラウザにだけ保存されます（外には送られません）。"));
 
     btn.addEventListener("click", function () {
       open(panel.hidden);
@@ -513,6 +663,8 @@
           Array.prototype.forEach.call(copy.querySelectorAll(".article-card-date time[datetime]"), addAgo);
           // ほかのカテゴリの記事も混ざるので、カテゴリ名を添える
           addCatLabel(copy, catOf[name.replace(/\.html$/, "")]);
+          // この端末の記録からの印（保存済み・読みかけ・読了）
+          addFlags(copy, name.replace(/\.html$/, ""), savedList(), readMap(), false);
           list.appendChild(copy);
         });
         section.appendChild(head);
@@ -541,6 +693,7 @@
 
   function setupArticle(article) {
     var meta = article.querySelector(".article-meta");
+    var slug = location.pathname.split("/").pop().replace(/\.html$/, "");
 
     // 調査日・更新日からの経過
     if (meta) Array.prototype.forEach.call(meta.querySelectorAll("time[datetime]"), addAgo);
@@ -561,6 +714,14 @@
     if (meta) {
       var share = el("button", { type: "button", class: "share-btn" }, navigator.share ? "この記事を共有" : "リンクをコピー");
       var status = el("span", { class: "share-status", role: "status", "aria-live": "polite" });
+      var sayTimer = null;
+      var say = function (text) {
+        status.textContent = text;
+        clearTimeout(sayTimer);
+        sayTimer = setTimeout(function () {
+          status.textContent = "";
+        }, 4000);
+      };
       share.addEventListener("click", function () {
         var url = location.href.split("#")[0];
         var title = document.title;
@@ -569,10 +730,7 @@
           return;
         }
         var done = function () {
-          status.textContent = "コピーしました";
-          setTimeout(function () {
-            status.textContent = "";
-          }, 2500);
+          say("コピーしました");
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(url).then(done, function () {
@@ -582,8 +740,33 @@
           status.textContent = url;
         }
       });
+      // あとで読む（この端末に保存する。トップの「保存した記事」で一覧できる）
+      var keep = el("button", { type: "button", class: "share-btn save-btn", "aria-pressed": "false" });
+      var showKeep = function () {
+        var on = savedList().indexOf(slug) !== -1;
+        keep.setAttribute("aria-pressed", on ? "true" : "false");
+        keep.textContent = on ? "保存済み" : "あとで読む";
+        keep.title = on ? "押すと、保存を取り消します" : "この端末に保存します";
+      };
+      keep.addEventListener("click", function () {
+        var on = savedList().indexOf(slug) === -1;
+        setSaved(slug, on);
+        showKeep();
+        if ((savedList().indexOf(slug) !== -1) !== on) say("この端末では保存できませんでした（ブラウザの設定で、サイトのデータの保存が止められています）");
+        else say(on ? "保存しました。トップの「保存した記事」から開けます" : "保存を取り消しました");
+      });
+      showKeep();
+
+      // 印刷（PDF として保存もできる。折りたたみは印刷のときに自動で開く）
+      var print = el("button", { type: "button", class: "share-btn" }, "印刷・PDF");
+      print.addEventListener("click", function () {
+        window.print();
+      });
+
       var wrap = el("div", { class: "share-row" });
       wrap.appendChild(share);
+      wrap.appendChild(keep);
+      wrap.appendChild(print);
       wrap.appendChild(status);
       meta.insertAdjacentElement("afterend", wrap);
     }
@@ -613,10 +796,29 @@
         Array.prototype.forEach.call(document.querySelectorAll(".menu-toc a"), function (m) {
           if (m.getAttribute("href") === "#" + id) links.push(m);
         });
-        spy.push({ target: target, links: links });
+        spy.push({ id: id, label: a.textContent, target: target, links: links });
       });
       sideToc.appendChild(sideList);
       document.body.appendChild(sideToc);
+    }
+
+    // 読んだ記事の記録（この端末だけ）。読み進んだ割合と、いまいる章を残す
+    var before = readMap()[slug]; // 書き換える前の記録（「続きから読む」に使う）
+    var recorded = -1;
+    var recordedAt = 0;
+    function readPercent() {
+      var r = article.getBoundingClientRect();
+      if (r.height <= 0) return 0;
+      return Math.max(0, Math.min(100, Math.round(((window.innerHeight - r.top) / r.height) * 100)));
+    }
+    // こまめに書きすぎないよう、3ポイント以上進み、前の記録から2秒たったときだけ書く（force のときは必ず書く）
+    function keepRecord(force) {
+      var p = readPercent();
+      var now = Date.now();
+      if (!force && (Math.abs(p - recorded) < 3 || now - recordedAt < 2000)) return;
+      recorded = p;
+      recordedAt = now;
+      recordRead(slug, p, spyCurrent >= 0 ? spy[spyCurrent].id : "");
     }
 
     // 読み進み具合のバー
@@ -658,6 +860,7 @@
         }
         sideToc.classList.toggle("is-visible", tocBox.getBoundingClientRect().bottom < 56);
       }
+      keepRecord(false);
     }
     window.addEventListener("scroll", function () {
       if (!ticking) {
@@ -667,6 +870,112 @@
     }, { passive: true });
     window.addEventListener("resize", update);
     update();
+    keepRecord(true);
+    // ページを離れるとき・隠れるときにも記録する（スマホではタブを切り替えたまま閉じることが多い）
+    window.addEventListener("pagehide", function () {
+      keepRecord(true);
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") keepRecord(true);
+    });
+
+    // 章を指す URL に検索語の強調（:~:text=）を付けて開いたとき、語が記事の中に見つからないと、
+    // 章へ移らずページの先頭のままになるブラウザがある。そのときは、少し待ってから自分で章へ移す
+    if (location.hash.length > 1) {
+      setTimeout(function () {
+        var to = document.getElementById(location.hash.slice(1));
+        if (to && window.scrollY < 50 && to.getBoundingClientRect().top > window.innerHeight) to.scrollIntoView({ block: "start" });
+      }, 800);
+    }
+
+    // 続きから読む: 前に途中まで読んだ記事を開いたら、最後にいた章へ移るボタンを出す
+    // （章を指して開いたとき、最後まで読んだ記事、ブラウザが元の位置に戻したときは出さない）
+    if (before && historyOn() && !location.hash && readState(before) === "part" && (before[3] || 0) >= READ_PART && before[2]) {
+      var resumeAt = null;
+      spy.forEach(function (x) {
+        if (x.id === before[2]) resumeAt = x;
+      });
+      if (resumeAt) {
+        setTimeout(function () {
+          if (window.scrollY > 400) return;
+          var toast = el("div", { class: "resume-toast", role: "status" });
+          toast.appendChild(el("span", { class: "resume-text" }, "前回は「" + resumeAt.label + "」まで読みました"));
+          var go = el("button", { type: "button", class: "share-btn resume-go" }, "続きから読む");
+          var close = el("button", { type: "button", class: "resume-close", "aria-label": "閉じる" }, "×");
+          var hide = function () {
+            toast.remove();
+          };
+          go.addEventListener("click", function () {
+            hide();
+            resumeAt.target.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+          });
+          close.addEventListener("click", hide);
+          toast.appendChild(go);
+          toast.appendChild(close);
+          document.body.appendChild(toast);
+          setTimeout(hide, 20000);
+        }, 600);
+      }
+    }
+
+    // 見出しへのリンクをコピー（章を指して共有できるように。アドレス欄もその章の URL にする）
+    var headingStatus = el("span", { class: "sr-only", role: "status", "aria-live": "polite" });
+    document.body.appendChild(headingStatus);
+    Array.prototype.forEach.call(article.querySelectorAll("h2[id]"), function (h) {
+      var name = h.textContent.trim();
+      var b = el("button", { type: "button", class: "heading-link", "aria-label": "「" + name + "」へのリンクをコピー", title: "この見出しへのリンクをコピー" }, "#");
+      b.addEventListener("click", function () {
+        var url = location.href.split("#")[0] + "#" + h.id;
+        if (window.history && history.replaceState && /^https?:$/.test(location.protocol)) history.replaceState(null, "", "#" + h.id);
+        copyText(url, function (ok) {
+          b.setAttribute("data-done", ok ? "コピーしました" : "アドレス欄の URL をコピーしてください");
+          headingStatus.textContent = ok ? "「" + name + "」へのリンクをコピーしました" : "アドレス欄の URL が、この見出しへのリンクになりました";
+          setTimeout(function () {
+            b.removeAttribute("data-done");
+            headingStatus.textContent = "";
+          }, 2500);
+        });
+      });
+      h.appendChild(b);
+    });
+
+    // 横に長い表: はみ出しているときだけ「横にスクロールできます」と添える（一度動かしたら消す）
+    Array.prototype.forEach.call(article.querySelectorAll(".table-wrap"), function (w) {
+      var hint = null;
+      var used = false;
+      var check = function () {
+        var over = !used && w.scrollWidth > w.clientWidth + 4;
+        if (over && !hint) {
+          hint = el("p", { class: "table-hint", "aria-hidden": "true" }, "表は横にスクロールできます →");
+          w.insertAdjacentElement("beforebegin", hint);
+        }
+        if (hint) hint.hidden = !over;
+      };
+      w.addEventListener("scroll", function () {
+        if (!used && w.scrollLeft > 8) {
+          used = true;
+          check();
+        }
+      }, { passive: true });
+      // 折りたたみの中の表は、開いたときに幅が決まるので、大きさが変わるたびに確かめる
+      if (window.ResizeObserver) new ResizeObserver(check).observe(w);
+      else window.addEventListener("resize", check);
+      check();
+    });
+
+    // 誤りを知らせるリンク（フッターのお問い合わせと同じ GitHub の Issue に、記事名と URL を入れて開く）
+    var disclaimer = article.querySelector(".disclaimer");
+    var issues = document.querySelector('.site-footer a[href*="github.com"][href$="/issues"]');
+    var h1 = article.querySelector("h1");
+    if (disclaimer && issues && h1) {
+      var issueUrl = issues.getAttribute("href") + "/new?title=" + encodeURIComponent("［記事の指摘］" + h1.textContent.trim()) +
+        "&body=" + encodeURIComponent("記事: " + location.href.split("#")[0].split("?")[0] + "\n\n気づいた点（どの部分が、どう違うか。根拠になるページがあれば、その URL も）:\n");
+      var report = el("p", { class: "report-line" });
+      report.appendChild(document.createTextNode("誤りや古くなった内容に気づいたら、"));
+      report.appendChild(el("a", { href: issueUrl, target: "_blank", rel: "noopener" }, "GitHub で知らせる"));
+      report.appendChild(document.createTextNode("ことができます（投稿は公開されます）。"));
+      disclaimer.appendChild(report);
+    }
 
     // 印刷時は折りたたみをすべて開く（印刷後に元へ戻す）
     var closed = [];
@@ -735,6 +1044,8 @@
           li: li,
           group: g,
           slug: slugOf(li),
+          seq: parseInt(li.getAttribute("data-seq"), 10) || 0,
+          isNew: false, // 前回の訪問より後に追加された記事か
           text: normalize(li.textContent + " " + g.heading.textContent),
           deep: null, // 記事の中の見出し・要点（検索用データを読んだあとに入る）
           hits: null, // 一致した章へのリンク（検索中だけ、カードの下に出す）
@@ -780,6 +1091,25 @@
     var byOldest = byNewest.slice().reverse();
     var total = allItems.length;
 
+    // この端末の記録: 保存した記事・読んだ記事・前回の訪問より後に追加された記事
+    var saved = savedList();
+    var readRec = readMap();
+    var maxSeq = allItems.reduce(function (m, it) {
+      return Math.max(m, it.seq);
+    }, 0);
+    // [前回までに見た通し番号, いま見ている通し番号, 区切りを進めた時刻]。
+    // 前の訪問から時間があいていたら区切りを進めるので、同じ訪問のあいだは「新着」の印が残る
+    var seen = loadJson(KEY_SEEN, null);
+    if (!Array.isArray(seen) || seen.length !== 3) seen = [maxSeq, maxSeq, Date.now()];
+    else if (Date.now() - seen[2] > SEEN_HOURS * 3600000) seen = [seen[1], maxSeq, Date.now()];
+    else seen[1] = maxSeq;
+    save(KEY_SEEN, JSON.stringify(seen));
+    var newCount = 0;
+    allItems.forEach(function (it) {
+      it.isNew = seen[0] > 0 && it.seq > seen[0];
+      if (it.isNew) newCount++;
+    });
+
     // 「カテゴリ別の記事一覧」の見出し（並び順が「新しい順」のときは書き換える）
     var major = document.getElementById("categories");
     var majorTitle = major ? major.querySelector("h2") : null;
@@ -800,15 +1130,16 @@
         return g.name === cat;
       });
       var sort = p.get("sort");
-      return { q: p.get("q") || "", cat: known ? cat : "", view: major && (sort === "new" || sort === "old") ? sort : "" };
+      return { q: p.get("q") || "", cat: known ? cat : "", view: major && (sort === "new" || sort === "old") ? sort : "", saved: p.get("list") === "saved" };
     }
 
-    function writeUrl(q, cat, sort) {
+    function writeUrl(q, cat, sort, list) {
       if (!window.history || !history.replaceState || !/^https?:$/.test(location.protocol)) return;
       var p = [];
       if (q) p.push("q=" + encodeURIComponent(q));
       if (cat) p.push("cat=" + encodeURIComponent(cat));
       if (sort) p.push("sort=" + encodeURIComponent(sort));
+      if (list) p.push("list=saved");
       var url = location.pathname + (p.length ? "?" + p.join("&") : "") + location.hash;
       if (url !== location.pathname + location.search + location.hash) history.replaceState(null, "", url);
     }
@@ -817,11 +1148,13 @@
     var active = state.cat;
     var view = state.view; // "" = カテゴリ別、"new" = 新しい順、"old" = 古い順
     var flatLimit = FLAT_PAGE;
+    var onlySaved = !!state.saved; // 「保存した記事」だけを出しているか
     input.value = state.q;
 
     // カテゴリの見出しがない並び（新しい順・古い順）で見せるカテゴリ名
     allItems.forEach(function (it) {
       addCatLabel(it.li, it.group.name);
+      addFlags(it.li, it.slug, saved, readRec, it.isNew);
     });
 
     // 並び順の切り替え（カテゴリ別／新しい順／古い順）と、新しい順・古い順のときに使う一覧
@@ -911,9 +1244,21 @@
     // カテゴリの絞り込みと、検索語（すべての語を、カードか記事の中の見出し・要点に含む）に合うか
     function matches(it, terms) {
       if (active && it.group.name !== active) return false;
+      if (onlySaved && saved.indexOf(it.slug) === -1) return false;
       return terms.every(function (t) {
         return it.text.indexOf(t) !== -1 || (!!it.deep && it.deep.text.indexOf(t) !== -1);
       });
+    }
+
+    // 検索語を、移動先の記事の中で目立たせる指定（URL の「:~:text=」。対応しているブラウザだけ）。
+    // 記事の中にその語が見つからないときは、章の先頭へ移るだけになる
+    function textDirective(terms) {
+      if (!document.fragmentDirective) return "";
+      return ":~:" + terms
+        .map(function (t) {
+          return "text=" + encodeURIComponent(t).replace(/-/g, "%2D");
+        })
+        .join("&");
     }
 
     // 検索語に一致した章へのリンクを、カードの下に3件まで出す（移動先は章の先頭）
@@ -966,7 +1311,7 @@
             return hit;
           });
         }
-        p.appendChild(el("a", { href: "articles/" + it.slug + ".html#" + f.s.id }, label));
+        p.appendChild(el("a", { href: "articles/" + it.slug + ".html#" + f.s.id + textDirective(terms) }, label));
       });
       it.li.appendChild(p);
       it.hits = p;
@@ -974,7 +1319,7 @@
 
     function render() {
       var terms = searchTerms(input.value);
-      var filtering = terms.length > 0 || !!active;
+      var filtering = terms.length > 0 || !!active || onlySaved;
       var flat = view === "new" || view === "old";
       var shown = 0;
       flatList.hidden = !flat;
@@ -1017,9 +1362,18 @@
       if (majorTitle) majorTitle.textContent = flat ? (view === "old" ? "記事一覧（古い順）" : "記事一覧（新しい順）") : majorTitleText;
       if (catNote) catNote.textContent = flat ? "全" + total + "件" : groups.length + "カテゴリ・全" + total + "件";
       var deepNote = terms.length && deepState === "ready" ? "。記事の中の見出し・要点も検索" : "";
-      count.textContent = filtering ? shown + "件見つかりました（全" + total + "件" + deepNote + "）" : "全" + total + "件の記事";
-      if (empty) empty.hidden = shown !== 0;
-      writeUrl(input.value.trim(), active, view);
+      if (onlySaved && !terms.length && !active) count.textContent = "保存した記事 " + shown + "件（全" + total + "件）";
+      else count.textContent = filtering ? shown + "件見つかりました（全" + total + "件" + deepNote + "）" : "全" + total + "件の記事";
+      if (empty) {
+        empty.textContent = onlySaved && !saved.length ? "保存した記事はまだありません。記事の題名の下にある「あとで読む」を押すと、ここに並びます。" : emptyText;
+        empty.hidden = shown !== 0;
+      }
+      // 保存した記事のボタン（1件もなく、絞り込んでもいないときは出さない）
+      savedBtn.hidden = !saved.length && !onlySaved;
+      savedBtn.setAttribute("aria-pressed", onlySaved ? "true" : "false");
+      // 前回の訪問より後に追加された記事の案内（絞り込み中と、新しい順のときは出さない）
+      newNote.hidden = !newCount || filtering || view === "new";
+      writeUrl(input.value.trim(), active, view, onlySaved);
     }
 
     function setView(value) {
@@ -1055,10 +1409,28 @@
       chip(g.name, g.name, g.items.length);
     });
 
-    // 件数の右に「おまかせで1本読む」（絞り込み中は、その中から選ぶ）
+    // 件数の行: 左に件数と「前回から N件追加」、右に「保存した記事」「おまかせで1本読む」
+    var emptyText = empty ? empty.textContent : "";
     var foot = el("div", { class: "search-foot" });
     count.parentNode.insertBefore(foot, count);
-    foot.appendChild(count);
+    var footMain = el("div", { class: "search-foot-main" });
+    footMain.appendChild(count);
+    var newNote = el("button", { type: "button", class: "new-note", hidden: "" }, "前回から" + newCount + "件追加（新しい順で見る）");
+    newNote.addEventListener("click", function () {
+      setView("new");
+      if (major) major.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+    });
+    footMain.appendChild(newNote);
+    foot.appendChild(footMain);
+    var actions = el("div", { class: "search-actions" });
+    foot.appendChild(actions);
+    var savedBtn = el("button", { type: "button", class: "random-btn saved-btn", "aria-pressed": "false", hidden: "" }, "保存した記事");
+    savedBtn.appendChild(el("span", { class: "chip-count" }, String(saved.length)));
+    savedBtn.addEventListener("click", function () {
+      onlySaved = !onlySaved;
+      render();
+    });
+    actions.appendChild(savedBtn);
     var randomBtn = el("button", { type: "button", class: "random-btn" }, "おまかせで1本読む");
     randomBtn.addEventListener("click", function () {
       var terms = searchTerms(input.value);
@@ -1069,7 +1441,29 @@
       var a = pool.length ? pool[Math.floor(Math.random() * pool.length)].li.querySelector("a.article-card") : null;
       if (a) location.href = a.href;
     });
-    foot.appendChild(randomBtn);
+    actions.appendChild(randomBtn);
+
+    // 読みかけの記事（いちばん最近のもの）への近道。最後にいた章へ移る
+    var resume = null;
+    allItems.forEach(function (it) {
+      var rec = readRec[it.slug];
+      if (readState(rec) !== "part" || (rec[3] || 0) < READ_PART) return;
+      if (!resume || (rec[0] || 0) > (resume.rec[0] || 0)) resume = { it: it, rec: rec };
+    });
+    if (resume) {
+      var titleEl = resume.it.li.querySelector(".article-card-title");
+      var titleCopy = titleEl ? titleEl.cloneNode(true) : null;
+      if (titleCopy) {
+        Array.prototype.forEach.call(titleCopy.querySelectorAll(".article-card-sub"), function (n) {
+          n.remove();
+        });
+        var line = el("p", { class: "resume-line" });
+        line.appendChild(el("span", { class: "card-flag is-part" }, "読みかけ"));
+        line.appendChild(el("a", { href: "articles/" + resume.it.slug + ".html" + (resume.rec[2] ? "#" + resume.rec[2] : "") }, titleCopy.textContent.trim()));
+        line.appendChild(el("span", { class: "resume-note" }, "（" + resume.rec[3] + "%まで）"));
+        box.appendChild(line);
+      }
+    }
 
     input.addEventListener("input", render);
     // 検索用データは、検索欄に入ったとき（または打ち始めたとき）に読む
@@ -1097,6 +1491,7 @@
     }
     indexApi = {
       search: function (text) {
+        onlySaved = false;
         input.value = text || "";
         if (input.value) loadDeep();
         setCategory("");
@@ -1104,7 +1499,14 @@
       },
       category: function (name) {
         input.value = "";
+        onlySaved = false;
         setCategory(name);
+        showResults();
+      },
+      saved: function () {
+        input.value = "";
+        onlySaved = true;
+        setCategory("");
         showResults();
       }
     };
