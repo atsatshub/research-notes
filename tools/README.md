@@ -6,10 +6,11 @@
 | ファイル | 役割 |
 |---|---|
 | `build_article.py` | 下書き（`[[key]]` で出典を参照）と出典リスト（`sources.py`）から、出典番号を自動で振った完成版を作る |
-| `update_pages.py` | 全ページに「本文へ移動」のリンク、パンくずのカテゴリへのリンク、構造化データ（JSON-LD）を入れる。何度実行してもよい。`build_article.py` も最後にこれを呼ぶ |
+| `update_pages.py` | 全ページに「本文へ移動」のリンク、パンくずのカテゴリへのリンク、構造化データ（JSON-LD）、共有されたときの画像（og:image＝記事の最初の写真）、RSS の案内を入れる。何度実行してもよい。`build_article.py` も最後にこれを呼ぶ。全ページを対象にしたときは、最後に `make_data.py` と同じ処理もする |
+| `make_data.py` | 検索用のデータ（`assets/search-index.json`。記事の中の見出し・要点）、関連する記事（`assets/related.json`。本文の言葉の近さで4件）、RSS（`feed.xml`）を作る。ふだんは `update_pages.py` が呼ぶので、単独で実行しなくてよい |
 | `make_thumbs.py` | 記事一覧のサムネイルを作る（各記事の最初の写真を 4:3 に切り抜いて `articles/images/thumbs/` へ。どの記事にも写真を1枚以上入れる）。トップ末尾の「記事一覧の写真の出典」も作り直す。Pillow が必要。何度実行してもよい |
 | `drop_source.py` | 公開済みの記事から出典を1件消し、後ろの番号を詰める |
-| `check_site.py` | HTML を読むだけでできるチェック（head・canonical・sitemap・出典の対応・文字数ルール・サムネイルと写真の出典など） |
+| `check_site.py` | HTML を読むだけでできるチェック（head・canonical・sitemap・出典の対応・文字数ルール・サムネイルと写真の出典、検索用のデータ・関連する記事・RSS が古くないか、など） |
 | `check_pages.js` | ブラウザ（Playwright）での表示チェック（はみ出し・折りたたみ・出典の吹き出し・印刷・トップの検索） |
 | `check_links.py` | 外部リンクが開けるか（200 以外を表示） |
 | `shot.js` | ページの一部をスクリーンショットして目で確認する |
@@ -27,7 +28,8 @@
 3. **ビルド**: `python3 -I tools/build_article.py <下書き> <sources.py> articles/<ファイル名>.html`
 4. **一覧への追加**: `index.html`（新しい記事が上、カテゴリは `h3.article-group-title`、`<li data-seq="いま一番大きい番号＋1">`）と `sitemap.xml` に追加する。トップページの `lastmod` も追加した日にする。
    - 記事のパンくずのカテゴリ名は、`index.html` の見出しと同じにする（`update_pages.py` がリンクにする）。
-   - 公開済みの記事の題名・説明・調査日・更新日を直したら、`python3 -I tools/update_pages.py` で構造化データを作り直す。
+   - 追加したら `python3 -I tools/update_pages.py` を実行する。構造化データと共有用の画像（og:image）が入り、検索用のデータ・関連する記事・RSS も作り直される。
+   - 公開済みの記事の題名・説明・調査日・更新日・見出しを直したときも、`python3 -I tools/update_pages.py` を実行する（検索用のデータなども作り直される。古いままだと `check_site.py` が知らせる）。
    - `python3 -I tools/make_thumbs.py` で、一覧のサムネイルと「記事一覧の写真の出典」を作る（記事の最初の写真を差し替えたら `--force`）。
      ほかの記事と同じ写真になる・被写体が写真の端にあるときは、`make_thumbs.py` の `ADJUST` で使う写真や切り抜く位置を変える。
 5. **確認**:

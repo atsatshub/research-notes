@@ -10,7 +10,11 @@ CLAUDE.md のルールのうち、HTML を読むだけで確かめられるも�
   出典番号 [n] と出典一覧の対応・連番・件数、目次などのページ内リンク、記事間リンク、
   表の table-wrap、画像の alt、取り消し線、【 】プレースホルダの残り、閉じ忘れタグ、重複 id、
   パンくずのカテゴリ（index.html の見出しと同じ名前で、絞り込みへのリンクになっているか）、
-  構造化データ（JSON-LD の題名・日付が本文と同じか。違うときは tools/update_pages.py を実行する）
+  構造化データ（JSON-LD の題名・日付が本文と同じか。違うときは tools/update_pages.py を実行する）、
+  共有されたときの画像（og:image）が記事の最初の写真になっているか
+- 全ページ: RSS の案内（<head> の <link rel="alternate"> と、フッターのリンク）
+- 検索用のデータ（assets/search-index.json）・関連する記事（assets/related.json）・RSS（feed.xml）が
+  いまの記事の内容と合っているか（古いときは tools/update_pages.py を実行する）
 - トップ: 記事カードの data-seq（追加順の通し番号）が全件にあり、重複していないか、
   サムネイル（tools/make_thumbs.py が入れる）が全カードに1つずつあり、写真のファイルと
   「記事一覧の写真の出典」の行がそろっているか、カテゴリの見出しのアイコン（data-icon）が
@@ -25,7 +29,13 @@ import json
 import os
 import re
 import sys
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
+
+# -I（隔離モード）ではこのフォルダが検索先に入らないので、自分で足してから読み込む
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import make_data  # noqa: E402
+import update_pages  # noqa: E402
 
 BASE = "https://atsatshub.github.io/research-notes/"
 ROOT_PAGES = ["index.html", "about.html", "privacy.html", "404.html"]
@@ -80,6 +90,11 @@ def check_common(path, s, out):
     for n in need:
         if n not in s:
             out.append("ない: " + n)
+    # RSS の案内（tools/update_pages.py が入れる）
+    if not re.search(r'<link rel="alternate" type="application/rss\+xml" title="[^"]+" href="[^"]*feed\.xml">', s):
+        out.append("RSS の案内（<link rel=\"alternate\">）がない（tools/update_pages.py を実行）")
+    if not re.search(r'<li><a href="[^"]*feed\.xml">' + re.escape(update_pages.FEED_LABEL) + "</a></li>", s):
+        out.append("フッターに RSS のリンクがない（tools/update_pages.py を実行）")
 
 
 def check_article(f, s, idx, sm, out):
@@ -100,6 +115,10 @@ def check_article(f, s, idx, sm, out):
         out.append("og:description が description と違う")
     if "assets/article.js" not in s:
         out.append("article.js がない")
+    # 共有されたときの画像は、記事の最初の写真（tools/update_pages.py が入れる）
+    ogi = re.search(r'og:image" content="([^"]+)"', s)
+    if not ogi or ogi.group(1) != update_pages.og_image(s):
+        out.append("og:image が記事の最初の写真になっていない（tools/update_pages.py を実行）")
     # パンくずのカテゴリ（index.html の見出しと同じ名前で、絞り込みへのリンク）
     cats = {re.sub(r"（.*?）", "", c).strip() for c in re.findall(r'<h3 class="article-group-title"[^>]*>(.*?)</h3>', idx)}
     crumb = re.search(r'<p class="breadcrumb"><a href="\.\./index\.html">トップ</a> › <a href="\.\./index\.html\?cat=[^"]+">([^<]+)</a></p>', s)
@@ -282,6 +301,17 @@ def main():
         if not os.path.exists(p):
             print("== sitemap.xml\n  - 存在しないページ", loc)
             total += 1
+    # 検索用のデータ・関連する記事・RSS が、いまの記事の内容と合っているか
+    data_errs = [f"{p} が古い、またはない（tools/update_pages.py を実行）" for p in make_data.stale()]
+    try:
+        ET.parse(make_data.FEED_PATH)
+    except (OSError, ET.ParseError) as e:
+        data_errs.append(f"{make_data.FEED_PATH} を XML として読めない: {e}")
+    if data_errs:
+        print("== 検索用データ・関連する記事・RSS")
+        for o in data_errs:
+            print("  -", o)
+        total += len(data_errs)
     print("ALL OK" if total == 0 else f"{total} 件の指摘")
     sys.exit(1 if total else 0)
 

@@ -6,7 +6,8 @@
        ※ CSS・リンクのパスは articles/ に置く前提（../）で書いてあります。
     2. 【 】で囲まれた部分をすべて書き換える。使わないサンプルは削除する。
     3. index.html の記事一覧に追加し、tools/update_pages.py と tools/make_thumbs.py を実行する
-       （最初の写真 figure.photo が、記事一覧のサムネイルになる）。
+       （最初の写真 figure.photo が、記事一覧のサムネイルと、共有されたときの画像 og:image になる。
+        og:image は update_pages.py が書き換えるので、下の head ではそのままでよい）。
   ルールは CLAUDE.md を参照（個人情報禁止・出典必須・調査日必須）。
 -->
 <html lang="ja">
@@ -24,6 +25,7 @@
   <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/【ファイル名】.html">
   <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="雑学アーカイブ 新着記事" href="../feed.xml">
   <link rel="stylesheet" href="../assets/style.css">
   <script src="../assets/site.js"></script>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -34,8 +36,8 @@
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header">
     <div class="container">
-      <a class="site-title" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
-      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="index.html">記事一覧</a><a class="nav-link" href="about.html">このサイトについて</a></nav>
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
     </div>
   </header>
 
@@ -188,12 +190,13 @@
 
   <footer class="site-footer">
     <div class="container">
-      <a class="footer-brand" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
       <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
       <ul class="footer-nav">
-        <li><a href="index.html">記事一覧</a></li>
-        <li><a href="about.html">このサイトについて</a></li>
-        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../feed.xml">RSS（新着記事）</a></li>
         <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
       </ul>
       <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>

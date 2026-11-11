@@ -14,6 +14,11 @@
    - トップ: WebSite
    題名・説明・日付は、そのページの <h1>・description・調査日（更新日）から作る。
    記事の題名や日付を直したら、もう一度このツールを実行する（check_site.py が食い違いを知らせる）。
+4. 記事: SNS で共有されたときの画像（og:image）を、その記事の最初の写真にする
+5. RSS（feed.xml）の案内: <head> の <link rel="alternate">（RSS リーダーが自動で見つける）と、フッターのリンク
+
+全ページを対象にしたとき（ページを指定しないとき）は、最後に tools/make_data.py と同じ処理をして、
+検索用のデータ（assets/search-index.json）・関連する記事（assets/related.json）・RSS（feed.xml）も作り直す。
 """
 import glob
 import html
@@ -28,6 +33,10 @@ SITE = "雑学アーカイブ"
 ROOT_PAGES = ["index.html", "about.html", "privacy.html", "404.html"]
 SKIP = '<a class="skip-link" href="#main">本文へ移動</a>'
 LD_RE = re.compile(r'[ \t]*<script type="application/ld\+json">.*?</script>\r?\n', re.S)
+CSS_RE = re.compile(r'([ \t]*)<link rel="stylesheet" href="([^"]*)assets/style\.css">')
+PRIVACY_RE = re.compile(r'([ \t]*)<li><a href="[^"]*privacy\.html">プライバシーポリシー</a></li>(\r?\n)')
+FEED_TITLE = SITE + " 新着記事"
+FEED_LABEL = "RSS（新着記事）"
 
 
 def plain(fragment):
@@ -102,7 +111,26 @@ def apply(path, s):
     if data is not None:
         s = LD_RE.sub("", s)
         s = s.replace("</head>", ld_script(data, nl) + "</head>", 1)
+    # 4. 記事: 共有されたときの画像を、最初の写真にする（写真がなければサイト共通の画像）
+    if path.startswith("articles/"):
+        image = og_image(s)
+        s = re.sub(r'(<meta property="og:image" content=")[^"]*(">)', lambda m: m.group(1) + image + m.group(2), s, count=1)
+    # 5. RSS の案内（<head> と、フッターの「プライバシーポリシー」の次）
+    css = CSS_RE.search(s)
+    if css:
+        indent, prefix = css.group(1), css.group(2)
+        if 'type="application/rss+xml"' not in s:
+            link = f'{indent}<link rel="alternate" type="application/rss+xml" title="{FEED_TITLE}" href="{prefix}feed.xml">{nl}'
+            s = s[:css.start()] + link + s[css.start():]
+        if f'feed.xml">{FEED_LABEL}</a>' not in s:
+            s = PRIVACY_RE.sub(lambda m: m.group(0) + f'{m.group(1)}<li><a href="{prefix}feed.xml">{FEED_LABEL}</a></li>{m.group(2)}', s, count=1)
     return s
+
+
+def og_image(s):
+    """記事の HTML から、共有されたときに出す画像の URL を返す（最初の写真。なければサイト共通の画像）"""
+    photo = re.search(r'<figure class="photo">\s*<img src="(images/[^"]+)"', s)
+    return BASE + ("articles/" + photo.group(1) if photo else "assets/ogp.png")
 
 
 def update_file(path):
@@ -121,6 +149,13 @@ def main():
     targets = sys.argv[1:] or sorted(p.replace(os.sep, "/") for p in glob.glob("articles/*.html")) + ROOT_PAGES
     changed = [p for p in targets if update_file(p)]
     print(f"{len(targets)} ページを確認、{len(changed)} ページを更新")
+    if not sys.argv[1:]:
+        # 全ページのときは、検索用のデータ・関連する記事・RSS も作り直す
+        # -I（隔離モード）ではこのフォルダが検索先に入らないので、自分で足してから読み込む
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import make_data
+        made = make_data.write_all()
+        print("検索用データ・関連する記事・RSS: " + ("更新 " + ", ".join(made) if made else "変更なし"))
 
 
 if __name__ == "__main__":

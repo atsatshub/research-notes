@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>雑学アーカイブ</title>
+  <link>https://atsatshub.github.io/research-notes/</link>
+  <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
+  <language>ja</language>
+  <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
+  <lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>日本の祝日はどう決まる？ 振替休日と国民の休日の違い（2026・2027年の休日つき）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/shukujitsu-kimarikata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/shukujitsu-kimarikata.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>国民の祝日に関する法律と16の祝日、春分・秋分の日の決まり方と月曜日に移った祝日、振替休日と国民の休日のしくみと違い、祝日法の改正と2019〜2021年の特例、2026年・2027年の祝日と休日、会社・役所・銀行の休み</description>
+  </item>
+  <item>
+    <title>日本の水道水の安全性：水質基準と検査のしくみ、家庭で気をつけること</title>
+    <link>https://atsatshub.github.io/research-notes/articles/suidosui-anzen.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/suidosui-anzen.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>水道法と国の担当（2024年4月の移管）、水質基準52項目と主な基準値、検査の頻度と公表、浄水場のしくみと高度浄水処理、PFOS・PFOAの水質基準化（2026年4月）、受水槽・鉛製給水管・くみ置き・備蓄、普及率と水道管の老朽化</description>
+  </item>
+  <item>
+    <title>なぜ国によってコンセントの形が違う？ 電圧・周波数・プラグの違いと、海外で使うときの注意</title>
+    <link>https://atsatshub.github.io/research-notes/articles/consent-plug-voltage.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/consent-plug-voltage.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>プラグの型（A〜Oの15種類）と国ごとの違い、国際規格が広まらなかった経緯、主な国の電圧・周波数の表、日本の50Hzと60Hzの歴史と周波数変換所、日本のコンセントとPSEマーク、変換プラグと変圧器の違い</description>
+  </item>
+  <item>
+    <title>水素エネルギーとは？ 作り方・ため方・燃料電池の仕組みと、日本の目標</title>
+    <link>https://atsatshub.github.io/research-notes/articles/suiso-energy.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/suiso-energy.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>水素の性質とグレー・ブルー・グリーンの呼び方、低炭素水素の基準、水電解などの作り方、圧縮・液化・MCH・アンモニアでの貯蔵と輸送、燃料電池の仕組みとエネファーム・MIRAI、水素基本戦略と水素社会推進法、コストと効率の課題</description>
+  </item>
+  <item>
+    <title>潜水艦はどうやって浮いたり沈んだりする？ 浮力・バラストタンクと、しんかい6500との違い</title>
+    <link>https://atsatshub.github.io/research-notes/articles/sensuikan-shikumi.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/sensuikan-shikumi.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>アルキメデスの原理と浮力、深さと水圧の表、バラストタンクへの注水と高圧空気での排水、海上自衛隊のたいげい型・そうりゅう型の公開情報、しんかい6500がおもりで潜って浮く仕組み、潜水艦救難艦</description>
+  </item>
+  <item>
+    <title>エアバッグはなぜ一瞬で膨らむ？ 仕組みと、正しく効かせるための乗り方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/airbag-shikumi.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/airbag-shikumi.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>衝突の検知から膨らんでしぼむまでの流れ、膨らむ条件と種類、シートベルトとの関係と着用・非着用の致死率、正しい乗り方と子どもの座席、タカタ製エアバッグのリコール、保安基準と衝突被害軽減ブレーキの義務化</description>
+  </item>
+  <item>
+    <title>飛行機の窓にはなぜ小さな穴がある？ 窓・与圧・座席に隠れた航空機の安全設計</title>
+    <link>https://atsatshub.github.io/research-notes/articles/hikoki-mado-anzen.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/hikoki-mado-anzen.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>客室の窓のパネルと小さな穴の役割、窓の角が丸い理由とコメット機の事故、上空の気圧と与圧・酸素マスク、離着陸時の日よけ・背もたれ・シートベルトの理由、脱出90秒・座席16g・雷・ETOPS、モバイルバッテリーの新ルール、事故率</description>
+  </item>
+  <item>
+    <title>トンネルを掘っても地上の建物が崩れないのはなぜ？ 工法・支え方・計測と、陥没事故の教訓</title>
+    <link>https://atsatshub.github.io/research-notes/articles/tunnel-jiban.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/tunnel-jiban.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>掘ると地中で起きること（土圧・水圧・アーチの働き）、NATM・シールド・開削・推進の使い分け、シールド工法の支え方、沈下の計測と家屋調査、大深度地下の定義、外環・博多駅前・新横浜の陥没の原因と教訓</description>
+  </item>
+  <item>
+    <title>データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き</title>
+    <link>https://atsatshub.github.io/research-notes/articles/data-center.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/data-center.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>データセンターの定義と種類、受電・UPS・発電機・冷却・通信の設備、液冷などの冷却、世界と日本の電力消費の見通し（IEA・広域機関）、PUEと省エネ法の新しい基準、立地の集中とGX戦略地域、電力・水・廃熱の課題</description>
+  </item>
+  <item>
+    <title>健康診断の結果の見方：数値の意味と再検査の目安（判定値の一覧つき）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kenshin-kekka-mikata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kenshin-kekka-mikata.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>定期健康診断・特定健診・人間ドックの違い、判定の言葉と基準範囲の意味、血圧・脂質・血糖・肝臓・腎臓の保健指導判定値と受診勧奨判定値、すぐ受診する目安、会社の義務と二次健康診断等給付、2027年4月からの項目の変更</description>
+  </item>
+  <item>
+    <title>デスクワークの疲れを減らす方法：机・椅子・画面の目安、休憩のとり方、目と体のケア</title>
+    <link>https://atsatshub.github.io/research-notes/articles/desk-work-tsukare.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/desk-work-tsukare.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>画面との距離40cm以上・照度300ルクス以上などの目安、自宅で働くとき、1時間ごとの作業休止、座りすぎ対策とスタンディングデスクの根拠、座ったままできるストレッチ、目の疲れとドライアイの対策、ブルーライトカット眼鏡の根拠</description>
+  </item>
+  <item>
+    <title>食品表示の読み方：パッケージの裏をどこから見るか（原材料・添加物・アレルギー・期限・栄養成分）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/shokuhin-hyouji-yomikata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/shokuhin-hyouji-yomikata.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>表示の義務がある売り方とない売り方、一括表示の見本と見る順番、原材料の並びと添加物、原料原産地と遺伝子組換え、アレルギー表示の9品目と2026年の変更、消費期限と賞味期限、食塩相当量と「ゼロ」「オフ」の基準、トクホと機能性表示食品</description>
+  </item>
+  <item>
+    <title>パスワード管理の基本：使い回しを防ぐ方法（管理ツール・2段階認証・パスキー）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/password-kanri.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/password-kanri.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>リスト型攻撃の仕組み、令和7年の不正アクセス7,190件と手口、強いパスワードの条件と定期変更が不要な理由、管理ツールと紙のメモ、2段階認証とパスキー、漏えいの確かめ方と漏れたときの対応、相談窓口</description>
+  </item>
+  <item>
+    <title>プラント建設工事の全体的な流れ：準備工事から据付・配管・検査・試運転まで</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-kensetsu-nagare.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-kensetsu-nagare.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>着工前の許可と届出、杭・基礎・鉄骨、大型クレーンでの据付とモジュール工法、配管・電気計装・保温塗装と耐圧試験、完成検査・落成検査、試運転への引き渡し、現場の安全管理と1日の流れ、規模の例</description>
+  </item>
+  <item>
+    <title>TOEIC Speaking Testとは：問題の形式、採点とスコア、受験料、申込みから結果まで（2026年）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/toeic-speaking-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/toeic-speaking-2026.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>資格・語学</category>
+    <description>11問・約20分の問題の形式、当日の流れと本人確認書類、採点のしくみと0〜200点のスコアの見方、受験料6,930円（税込）と日程、2025年度の平均点とL&amp;Rとの関係、企業での使われ方、公式の準備方法</description>
+  </item>
+  <item>
+    <title>プラント業界の仕事の進め方：プロジェクトの流れ、契約の形、チームの体制、調達と建設、管理の手法</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-shigoto-susumekata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-shigoto-susumekata.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>FS・FEED・入札から設計・調達・建設・試運転・引き渡し・保証期間までの流れ、ランプサムと実費精算などの契約の形、プロジェクトマネージャーを頂点とする体制、調達と建設の進め方、WBS・クリティカルパス・アーンドバリュー、見積りの精度、LNGプラントの期間の例、海外勤務</description>
+  </item>
+  <item>
+    <title>プラント業界で使われる英語の略語一覧：約80語を分野別に（契約・設計・安全・計装・検査・保全・規格）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-ryakugo.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-ryakugo.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>EPC・FEED・LSTK・FID・P&amp;ID・HAZOP・SIL・SIS・DCS・PLC・FIC・NDT・FAT・RBI・ASME・APIなど約80語を7分野に分け、英語の正式名と意味を整理。計装の記号の読み方とまぎらわしい略語も</description>
+  </item>
+  <item>
+    <title>プラント設計で使われる専門用語100選：配管・バルブ・機器・設計条件・配置・計装・図面</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-sekkei-yougo.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-sekkei-yougo.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など100語を、法令や公的な解説をもとに説明</description>
+  </item>
+  <item>
+    <title>核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>重水素と三重水素の反応と燃料1gで石油約8トン分のエネルギー、1億度以上などの条件、ITERの新計画（燃料の運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJ、民間企業の目標、三重水素・材料・コスト・規制の課題</description>
+  </item>
+  <item>
+    <title>プラントとは何かを分かりやすく解説：工場との違い、種類、中にある設備、プラントの一生、日本のどこにあるか</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-towa.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-towa.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>装置産業という考え方、製油所19か所・エチレンプラント12基・ごみ焼却施設991施設などの種類と数、中にある設備、許可・完成検査・保安検査・定期修理・廃止というプラントの一生、全国76地区の特別防災区域、働く人と安全の仕組み</description>
+  </item>
+  <item>
+    <title>化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・バルブなどの役割、製油所の常圧蒸留とナフサ分解によるエチレン製造、DCSと安全計装、PFD・P&amp;ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計</description>
+  </item>
+  <item>
+    <title>プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-3d-model.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-3d-model.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>数千〜数万本の配管を3Dで配置する理由、30%・60%・90%のモデルレビュー、カタログとスペックで部品を選ぶ仕組み、アイソメ図を3Dモデルから書き出す仕組み、レーザースキャナーの点群、AVEVA E3D・Forte 3D・Plant 3D・Navisworks、日本の会社の自動設計</description>
+  </item>
+  <item>
+    <title>メルカリやヤフオクで買うとお得なものは？ 中古向きの品目、避けたいもの、手数料と補償（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/furima-otoku-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/furima-otoku-2026.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>個人間ECの市場規模2兆6,870億円、品目別の「中古で買ってもよい」割合（書籍63.5%など）、医薬品・コンタクトレンズ・PSマークのない製品など出品禁止のもの、中古品の事故とリコール、メルカリの支払い手数料と値下げ依頼、ヤフオクの自動入札、補償とトラブルの防ぎ方</description>
+  </item>
+  <item>
+    <title>雲の種類で天気が分かるのはなぜ？ 雲のでき方、十種雲形、前線と雲の順番、天気のことわざ</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kumo-tenki.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kumo-tenki.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>空気が上がって冷えると雲ができる仕組み、高さと形で10種類に分ける十種雲形、温暖前線が近づくと雲が低く厚くなる理由、積乱雲が近づくサインと雷までの距離、「かさが出ると雨」などのことわざの理屈、気象台の目視観測の自動化</description>
+  </item>
+  <item>
+    <title>人間の体温はなぜ約37℃なのか：37℃の由来、体温を保つ仕組み、平熱の実際と測り方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/taion-37do.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/taion-37do.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>身近な科学</category>
+    <description>37℃という数字の由来、熱をつくる・逃がす仕組みと1日のリズム、カビを防ぐ効果とエネルギーのコストで36.7℃になるという研究、日本人の平熱（1957年36.89℃、2019年36.47℃）、「発熱」37.5℃以上の定義、熱中症と低体温症、体温計の使い方</description>
+  </item>
+  <item>
+    <title>プラントエンジニアリングとは：EPCの仕組み、業界の規模と主な会社、仕事の流れと3D設計（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-engineering.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-engineering.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>プラント</category>
+    <description>EPC・FEED・一括請負の意味、業界の受注高32兆円の内訳、日揮HD・千代田化工建設・東洋エンジニアリングの売上と受注残高、仕事の流れと職種、3D設計とデジタルツイン、海外駐在と資格の合格率、脱炭素と大型案件の損失</description>
+  </item>
+  <item>
+    <title>スマートフォンの買い替え時期と費用：使用年数・OSの更新期限・電池の目安と、値引きのルール（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/smartphone-kaikae-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/smartphone-kaikae-2026.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>平均使用年数4.6年と買い替えの理由、PixelやGalaxyのOS更新の年数、iPhoneの電池の目安、3Gの終了、iPhoneとPixelの公式の価格、端末値引きの上限4万円（税抜）と端末購入プログラム、中古の注意点と古い端末の手放し方</description>
+  </item>
+  <item>
+    <title>中古住宅の耐震性能の調べ方：建てた時期、書類、耐震診断、補助と税の制度（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/chuko-jutaku-taishin.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/chuko-jutaku-taishin.html</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>1981年6月と2000年6月の基準の節目と熊本地震の倒壊率、確認済証などの書類、インスペクションと耐震診断の違い、横浜市・神戸市・大阪市などの無料診断と改修の補助、住宅ローン減税、地震保険の割引、耐震化率</description>
+  </item>
+  <item>
+    <title>有給休暇の上手な使い方：半日・時間単位・計画年休と、2027年の連休のつなげ方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/yukyu-tsukaikata-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/yukyu-tsukaikata-2026.html</guid>
+    <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事の基礎知識</category>
+    <description>取得率66.9%と国の目標、付与日数の表、半日・時間単位・計画的付与の違いと年5日の義務での数え方、2027年に何日足せば何連休になるか、理由を言わなくてよいことや時季変更権・買い取り・退職前の消化、業種別の取得率、相談先</description>
+  </item>
+  <item>
+    <title>ビジネスマナーの基本：敬語の指針と世論調査でわかる、根拠のあるマナーと根拠のない俗説</title>
+    <link>https://atsatshub.github.io/research-notes/articles/business-manner-kihon.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/business-manner-kihon.html</guid>
+    <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事の基礎知識</category>
+    <description>敬語の指針による5分類と「御苦労様」「とんでもございません」「させていただく」の扱い、社外に上司のことを話すときの言い方、「了解しました」に公的な根拠がないこと、世論調査の数字、メールと文書、クールビズの今、パワハラとカスハラ、検定</description>
+  </item>
+</channel>
+</rss>
