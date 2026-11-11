@@ -521,15 +521,13 @@ main {
   color: var(--text-muted);
 }
 
-/* 新着（assets/site.js が調査日の新しい順に作る） */
-.latest-title,
+/* カテゴリの見出し（先頭に丸い点。アイコンがあるときはアイコンに置き換わる） */
 .article-group-title {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.latest-title::before,
 .article-group-title::before {
   content: "";
   width: 8px;
@@ -1746,97 +1744,7 @@ article h3[id],
   outline-offset: 2px;
 }
 
-/* 新着記事のカードに添えるカテゴリ名 */
-.article-card-cat {
-  align-self: flex-start;
-  margin-bottom: 6px;
-  font-size: 0.72rem;
-  line-height: 1.6;
-  padding: 0 8px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-/* ---------- トップ: 新着（色つきの枠）とカテゴリ別の一覧（区切り線つきの見出し）を見分けやすくする ---------- */
-.latest {
-  margin: 20px 0 8px;
-  padding: 4px 16px 16px;
-  background: var(--accent-soft);
-  border-radius: 16px;
-}
-
-.latest .section-head {
-  margin-top: 0.9em;
-}
-
-.latest-title {
-  color: var(--accent);
-}
-
-/* 新着のカードは、写真を上に大きく（16:9）出して、カテゴリ名・題名・説明・調査日を縦に並べる */
-.latest-list .article-card {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 14px;
-  overflow: hidden;
-}
-
-.latest-list .article-card > * {
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
-.latest-list .article-card > .article-card-thumb {
-  align-self: stretch;
-  aspect-ratio: 16 / 9;
-  margin: 0 0 12px;
-  border-radius: 0;
-}
-
-.latest-list .article-card-date {
-  align-self: stretch;
-  margin-top: auto;
-}
-
-/* スマホ: 新着は横に送る列（次のカードが少し見えるようにして、続きがあると分かるようにする） */
-@media (max-width: 639px) {
-  .latest-list {
-    display: flex;
-    gap: 10px;
-    margin: 0 -16px;
-    padding: 2px 16px 6px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 16px;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .latest-list > li {
-    flex: 0 0 78%;
-    scroll-snap-align: start;
-  }
-}
-
-/* パソコン: 3列×2段（6件） */
-@media (min-width: 640px) {
-  .latest-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* 新着では説明を省き、写真・カテゴリ・題名だけで見渡せるようにする（題名の後半は2行まで） */
-.latest-list .article-card-desc {
-  display: none;
-}
-
-.latest-list .article-card-sub {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
+/* ---------- トップ: 記事一覧の見出し（区切り線つき） ---------- */
 /* 「カテゴリ別の記事一覧」の始まり: 区切り線と、記事ページと同じ帯つきの見出し */
 .section-head.is-major {
   margin-top: 36px;
@@ -1930,6 +1838,26 @@ article h3[id],
   .menu-icon span {
     transition: none;
   }
+}
+
+/* ラベル「メニュー」と「閉じる」を同じ場所に重ね、見せるほうだけを切り替える。
+   幅は長いほうで決まるので、開閉してもボタンの大きさが変わらず、隣のリンクが動かない */
+.menu-btn-label {
+  display: inline-grid;
+}
+
+.menu-btn-text {
+  grid-area: 1 / 1;
+  text-align: center;
+}
+
+.menu-btn .is-opened,
+.menu-btn.is-open .is-closed {
+  visibility: hidden;
+}
+
+.menu-btn.is-open .is-opened {
+  visibility: visible;
 }
 
 @media (max-width: 359px) {
@@ -2163,10 +2091,6 @@ article h3[id],
   opacity: 0.85;
 }
 
-.latest-list .article-card-thumb.is-icon::after {
-  width: 22%;
-}
-
 /* メニューのカテゴリ: アイコン・名前・件数 */
 .menu-cats a {
   justify-content: flex-start;
@@ -2252,8 +2176,7 @@ article h3[id],
 }
 
 .random-btn:focus-visible,
-.view-btn:focus-visible,
-.text-btn:focus-visible {
+.view-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -2284,7 +2207,7 @@ article h3[id],
   border-color: var(--accent);
 }
 
-/* 新しい順の一覧（カテゴリの見出しがないので、少し間をあけて始める） */
+/* 新しい順・古い順の一覧（カテゴリの見出しがないので、少し間をあけて始める） */
 .flat-list {
   margin-top: 14px;
 }
@@ -2310,23 +2233,6 @@ article h3[id],
 .flat-list .article-card-date,
 .more-articles .article-card-date {
   display: flow-root;
-}
-
-/* 新着記事の下: 新しい順の一覧へ */
-.latest-more {
-  margin: 10px 0 0;
-  font-size: 0.85rem;
-  text-align: right;
-}
-
-.text-btn {
-  font: inherit;
-  padding: 4px 0;
-  color: var(--link);
-  background: none;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 /* 検索に一致した章へのリンク（カードのすぐ下に、小さく並べる） */

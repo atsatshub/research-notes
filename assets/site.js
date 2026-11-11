@@ -9,12 +9,14 @@
      記事の最後に「関連する記事」を出す（assets/related.json の4件を index.html から取り込む。
      読めないときは同じカテゴリの記事。サムネイルの写真の出典も添える）
   4. トップページ: 記事の検索（空白で区切ると、すべてを含む記事）・カテゴリ絞り込み、
-     新着記事、カテゴリごとの「残りを表示」、調査日からの経過。
+     カテゴリごとの「残りを表示」、調査日からの経過。
      検索は、カードの題名・説明に加えて、記事の中の見出し・要点まで探す
      （assets/search-index.json を、検索欄を使うときに読む。一致した章へのリンクをカードの下に出す）。
-     並び順は「カテゴリ別」と「新しい順」を切り替えられる。「おまかせで1本読む」は記事を1本選んで開く。
+     並び順は「カテゴリ別」「新しい順」「古い順」を切り替えられる
+     （以前あった「新着記事」の枠は、新しい順の一覧と重なるのでなくした）。
+     「おまかせで1本読む」は記事を1本選んで開く。
      記事カードの題名は「：」の前後で分け、後ろを小さく表示する。
-     検索語・カテゴリ・並び順は URL（?q=…&cat=…&sort=new）に残すので、共有や「戻る」で同じ状態に戻れる
+     検索語・カテゴリ・並び順は URL（?q=…&cat=…&sort=new または old）に残すので、共有や「戻る」で同じ状態に戻れる
   assets/search-index.json と assets/related.json は tools/make_data.py が作る
 */
 (function () {
@@ -250,7 +252,12 @@
     icon.appendChild(el("span"));
     icon.appendChild(el("span"));
     icon.appendChild(el("span"));
-    var btnLabel = el("span", { class: "menu-btn-label" }, "メニュー");
+    // ラベルは「メニュー」と「閉じる」を同じ場所に重ねておき、見せるほうを CSS で切り替える
+    // （文字数が違ってもボタンの幅が変わらないので、隣の「記事一覧」などが動かない）
+    var btnLabel = el("span", { class: "menu-btn-label" });
+    btnLabel.appendChild(el("span", { class: "menu-btn-text is-closed" }, "メニュー"));
+    btnLabel.appendChild(el("span", { class: "menu-btn-text is-opened" }, "閉じる"));
+    btn.setAttribute("aria-label", "メニューを開く");
     btn.appendChild(icon);
     btn.appendChild(btnLabel);
 
@@ -268,7 +275,7 @@
       panel.hidden = !state;
       scrim.hidden = !state;
       btn.setAttribute("aria-expanded", state ? "true" : "false");
-      btnLabel.textContent = state ? "閉じる" : "メニュー";
+      btn.setAttribute("aria-label", state ? "メニューを閉じる" : "メニューを開く");
       btn.classList.toggle("is-open", state);
       if (state) fillCategories();
     }
@@ -700,7 +707,6 @@
   }
 
   var PER_CATEGORY = 4; // カテゴリごとに最初に見せる件数（これより2件以上多いときだけ、残りをたたむ）
-  var LATEST_COUNT = 6; // 新着記事の件数（パソコンは3列×2段、スマホは横に送る列）
   var FLAT_PAGE = 24; // 「新しい順」で最初に見せる件数（「さらに表示」でこの数ずつ増やす）
   // まとめる前のカテゴリ名（共有・ブックマークされた ?cat= のURLを、いまのカテゴリで開くため）
   var OLD_CATEGORY = {
@@ -756,7 +762,11 @@
       return g;
     });
 
-    // すべての記事（一覧に書いてある順）と、新しい順に並べたもの
+    // メニュー（カテゴリの件数・おまかせ）にも、ここで読んだ内容を渡す
+    // （並び順を変えるとカードが別の一覧へ移るので、あとから画面を読み直すと件数が 0 になる）
+    indexPromise = Promise.resolve({ groups: groups, doc: document });
+
+    // すべての記事（一覧に書いてある順）と、新しい順・古い順に並べたもの
     var allItems = [];
     groups.forEach(function (g) {
       allItems = allItems.concat(g.items);
@@ -767,6 +777,7 @@
     var byNewest = newestFirst(allLis).map(function (li) {
       return allItems[allLis.indexOf(li)];
     });
+    var byOldest = byNewest.slice().reverse();
     var total = allItems.length;
 
     // 「カテゴリ別の記事一覧」の見出し（並び順が「新しい順」のときは書き換える）
@@ -775,7 +786,7 @@
     var majorTitleText = majorTitle ? majorTitle.textContent : "";
     var catNote = document.querySelector(".categories-note");
 
-    // URL（?q=…&cat=…&sort=new）から状態を読む
+    // URL（?q=…&cat=…&sort=new または old）から状態を読む
     function readUrl() {
       var p;
       try {
@@ -788,7 +799,8 @@
       var known = groups.some(function (g) {
         return g.name === cat;
       });
-      return { q: p.get("q") || "", cat: known ? cat : "", view: major && p.get("sort") === "new" ? "new" : "" };
+      var sort = p.get("sort");
+      return { q: p.get("q") || "", cat: known ? cat : "", view: major && (sort === "new" || sort === "old") ? sort : "" };
     }
 
     function writeUrl(q, cat, sort) {
@@ -803,49 +815,19 @@
 
     var state = readUrl();
     var active = state.cat;
-    var view = state.view; // "" = カテゴリ別、"new" = 新しい順
+    var view = state.view; // "" = カテゴリ別、"new" = 新しい順、"old" = 古い順
     var flatLimit = FLAT_PAGE;
     input.value = state.q;
 
-    // 新着: 全カテゴリの記事を新しい順に並べ、上位を複製して「新着記事」に入れる（カテゴリ名を添える）
-    var latest = document.querySelector(".latest");
-    var latestList = latest ? latest.querySelector(".latest-list") : null;
-    var hasLatest = false;
-    if (latestList) {
-      byNewest.slice(0, LATEST_COUNT).forEach(function (it) {
-        var copy = it.li.cloneNode(true);
-        copy.hidden = false;
-        var card = copy.querySelector("a.article-card");
-        if (card) {
-          var thumb = card.querySelector(".article-card-thumb");
-          card.insertBefore(el("span", { class: "article-card-cat" }, it.group.name), thumb ? thumb.nextSibling : card.firstChild);
-        }
-        latestList.appendChild(copy);
-      });
-      hasLatest = total > 0;
-      latest.hidden = !hasLatest;
-      // 新着に入りきらない記事も、新しい順にたどれるようにする
-      if (major && total > LATEST_COUNT) {
-        var moreNew = el("p", { class: "latest-more" });
-        var moreNewBtn = el("button", { type: "button", class: "text-btn" }, "新しい順にすべて見る（全" + total + "件）");
-        moreNewBtn.addEventListener("click", function () {
-          setView("new");
-          major.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
-        });
-        moreNew.appendChild(moreNewBtn);
-        latest.appendChild(moreNew);
-      }
-    }
-
-    // カテゴリの見出しがない並び（新しい順）で見せるカテゴリ名（新着の複製を作ったあとに足す）
+    // カテゴリの見出しがない並び（新しい順・古い順）で見せるカテゴリ名
     allItems.forEach(function (it) {
       addCatLabel(it.li, it.group.name);
     });
 
-    // 並び順の切り替え（カテゴリ別／新しい順）と、新しい順のときに使う一覧
+    // 並び順の切り替え（カテゴリ別／新しい順／古い順）と、新しい順・古い順のときに使う一覧
     var switchWrap = el("div", { class: "view-switch", role: "group", "aria-label": "並び順" });
     switchWrap.appendChild(el("span", { class: "view-switch-label", "aria-hidden": "true" }, "並び順"));
-    [["", "カテゴリ別"], ["new", "新しい順"]].forEach(function (v) {
+    [["", "カテゴリ別"], ["new", "新しい順"], ["old", "古い順"]].forEach(function (v) {
       var b = el("button", { type: "button", class: "view-btn", "data-view": v[0], "aria-pressed": v[0] === view ? "true" : "false" }, v[1]);
       b.addEventListener("click", function () {
         setView(v[0]);
@@ -856,7 +838,7 @@
     var flatMore = el("p", { class: "more-row", hidden: "" });
     var flatMoreBtn = el("button", { type: "button", class: "more-btn" });
     flatMoreBtn.addEventListener("click", function () {
-      var first = byNewest[flatLimit];
+      var first = flatOrder()[flatLimit];
       flatLimit += FLAT_PAGE;
       render();
       var next = first ? first.li.querySelector("a") : null;
@@ -869,10 +851,15 @@
       flatList.insertAdjacentElement("afterend", flatMore);
     }
 
-    // 記事カードを、並び順に合った場所へ移す（新しい順: ひとつの一覧へ。カテゴリ別: 元のカテゴリへ、元の順で）
+    // 新しい順・古い順のときの並び（カテゴリ別のときは使わない）
+    function flatOrder() {
+      return view === "old" ? byOldest : byNewest;
+    }
+
+    // 記事カードを、並び順に合った場所へ移す（新しい順・古い順: ひとつの一覧へ。カテゴリ別: 元のカテゴリへ、元の順で）
     function placeItems() {
-      if (view === "new") {
-        byNewest.forEach(function (it) {
+      if (view) {
+        flatOrder().forEach(function (it) {
           flatList.appendChild(it.li);
         });
       } else {
@@ -988,13 +975,11 @@
     function render() {
       var terms = searchTerms(input.value);
       var filtering = terms.length > 0 || !!active;
-      var flat = view === "new";
+      var flat = view === "new" || view === "old";
       var shown = 0;
-      // 検索・絞り込み中と「新しい順」のときは新着を隠す（同じ記事が2回出ないように）
-      if (latest) latest.hidden = !hasLatest || filtering || flat;
       flatList.hidden = !flat;
       if (flat) {
-        byNewest.forEach(function (it) {
+        flatOrder().forEach(function (it) {
           var hit = matches(it, terms);
           // 絞り込んでいないときは、最初の24件だけ出す（「さらに表示」で増やす）
           it.li.hidden = !hit || (!filtering && shown >= flatLimit);
@@ -1029,7 +1014,7 @@
           shown += visible;
         });
       }
-      if (majorTitle) majorTitle.textContent = flat ? "記事一覧（新しい順）" : majorTitleText;
+      if (majorTitle) majorTitle.textContent = flat ? (view === "old" ? "記事一覧（古い順）" : "記事一覧（新しい順）") : majorTitleText;
       if (catNote) catNote.textContent = flat ? "全" + total + "件" : groups.length + "カテゴリ・全" + total + "件";
       var deepNote = terms.length && deepState === "ready" ? "。記事の中の見出し・要点も検索" : "";
       count.textContent = filtering ? shown + "件見つかりました（全" + total + "件" + deepNote + "）" : "全" + total + "件の記事";

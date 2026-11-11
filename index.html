@@ -49,7 +49,7 @@
 
     <!-- 検索・カテゴリ絞り込み（assets/site.js が動くときだけ表示。カテゴリは下の h3.article-group-title から自動で作る）
          検索は、記事の中の見出し・要点（assets/search-index.json。tools/make_data.py が作る）まで探す。
-         件数の右の「おまかせで1本読む」と、下の「並び順」（カテゴリ別／新しい順）のボタンも site.js が足す -->
+         件数の右の「おまかせで1本読む」と、下の「並び順」（カテゴリ別／新しい順／古い順）のボタンも site.js が足す -->
     <div class="article-search-box" hidden>
       <label class="search-label" for="article-search">記事を探す</label>
       <input type="search" id="article-search" class="search-input" placeholder="キーワード（例: 確定申告、北陸、英語）" autocomplete="off">
@@ -58,18 +58,11 @@
     </div>
     <p class="empty search-empty" hidden>該当する記事がありません。別のキーワードで探してみてください。</p>
 
-    <!-- 新着（assets/site.js が、下の一覧から data-seq の大きい順に6件を複製して入れる。検索・絞り込み中は隠す）
-         色つきの枠で囲み、スマホでは横に送る列にして、下の「カテゴリ別の記事一覧」と見分けやすくしている -->
-    <section class="latest" hidden aria-label="新着記事">
-      <div class="section-head"><h2 class="latest-title">新着記事</h2><span class="section-note">新しく追加した順</span></div>
-      <ul class="article-list latest-list"></ul>
-    </section>
-
     <div class="section-head is-major" id="categories"><h2>カテゴリ別の記事一覧</h2><span class="section-note categories-note"></span></div>
 
     <!--
       記事を追加するときは、新しい記事が上になるように <li> を1件追加する。
-      data-seq は「追加した順の通し番号」。いま一番大きい番号に 1 を足した数にする（新着記事の並び順に使う）。
+      data-seq は「追加した順の通し番号」。いま一番大きい番号に 1 を足した数にする（並び順の「新しい順」「古い順」に使う）。
       書式:
       <li data-seq="番号">
         <a class="article-card" href="articles/ファイル名.html">
