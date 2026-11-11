@@ -22,7 +22,7 @@
      - 読んだ記事: 読み進んだ割合と章を記録し、カードに「読みかけ」「読了」の印を出す。
        読みかけの記事を開くと「続きから読む」を出す。メニューの「この端末の記録」で、記録をやめる・消すことができる
      - 前回の訪問より後に追加された記事に「新着」の印を出す
-  6. 記事ページの道具: 見出しへのリンクのコピー、印刷、横に長い表の「横にスクロールできます」、
+  6. 記事ページの道具: 見出しへのリンクのコピー、横に長い表の「横にスクロールできます」、
      誤りを知らせるリンク（GitHub の Issue）。検索結果から章へ移るときは、検索語を記事の中で目立たせる
   assets/search-index.json と assets/related.json は tools/make_data.py が作る
 */
@@ -757,16 +757,9 @@
       });
       showKeep();
 
-      // 印刷（PDF として保存もできる。折りたたみは印刷のときに自動で開く）
-      var print = el("button", { type: "button", class: "share-btn" }, "印刷・PDF");
-      print.addEventListener("click", function () {
-        window.print();
-      });
-
       var wrap = el("div", { class: "share-row" });
       wrap.appendChild(share);
       wrap.appendChild(keep);
-      wrap.appendChild(print);
       wrap.appendChild(status);
       meta.insertAdjacentElement("afterend", wrap);
     }
