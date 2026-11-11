@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """サイトの公開URL（ベースURL）を一括で書き換える。
 
-独自ドメインへ切り替えるときに使う。書き換えるのは次の4種類。
+独自ドメインへ切り替えるときに使う。書き換えるのは次の5種類。
   1. 全ページの canonical / og:url / og:image などの絶対URL
   2. sitemap.xml の <loc>
   3. 404.html のルートからの絶対パス（/research-notes/ → /）
-  4. tools/check_site.py の BASE
+  4. tools/check_site.py と tools/update_pages.py の BASE
+  5. feed.xml（RSS）の記事のURL
 
 使い方（リポジトリのルートで）:
   python3 -I tools/change_base_url.py https://atsatshub.github.io/research-notes/ https://example.com/
@@ -27,7 +28,7 @@ def main():
     old_path = "/" + old.split("/", 3)[3] if old.count("/") >= 3 else "/"
     new_path = "/" + new.split("/", 3)[3] if new.count("/") >= 3 else "/"
 
-    targets = sorted(glob.glob("*.html") + glob.glob("articles/*.html")) + ["sitemap.xml", "tools/check_site.py"]
+    targets = sorted(glob.glob("*.html") + glob.glob("articles/*.html")) + ["sitemap.xml", "feed.xml", "tools/check_site.py", "tools/update_pages.py"]
     changed = 0
     for f in targets:
         s = open(f, encoding="utf-8").read()

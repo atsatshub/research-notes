@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://atsatshub.github.io/research-notes/">
   <meta property="og:image" content="https://atsatshub.github.io/research-notes/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="雑学アーカイブ 新着記事" href="feed.xml">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/site.js"></script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -46,7 +47,9 @@
       <p class="hero-links"><a href="about.html">このサイトについて</a></p>
     </section>
 
-    <!-- 検索・カテゴリ絞り込み（assets/site.js が動くときだけ表示。カテゴリは下の h3.article-group-title から自動で作る） -->
+    <!-- 検索・カテゴリ絞り込み（assets/site.js が動くときだけ表示。カテゴリは下の h3.article-group-title から自動で作る）
+         検索は、記事の中の見出し・要点（assets/search-index.json。tools/make_data.py が作る）まで探す。
+         件数の右の「おまかせで1本読む」と、下の「並び順」（カテゴリ別／新しい順）のボタンも site.js が足す -->
     <div class="article-search-box" hidden>
       <label class="search-label" for="article-search">記事を探す</label>
       <input type="search" id="article-search" class="search-input" placeholder="キーワード（例: 確定申告、北陸、英語）" autocomplete="off">
@@ -800,6 +803,7 @@
         <li><a href="index.html">記事一覧</a></li>
         <li><a href="about.html">このサイトについて</a></li>
         <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="feed.xml">RSS（新着記事）</a></li>
         <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
       </ul>
       <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>

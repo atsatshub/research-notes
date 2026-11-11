@@ -76,7 +76,7 @@
 - 画像のライセンスは**商用利用可**のものだけを使う（CC0・パブリックドメイン・CC BY・CC BY-SA）。**CC BY-NC（非営利のみ）の画像は使わない**（広告を載せるサイトなので）。ソフトの画面は、ヘルプの画像を転載せず、自分で描いた模式図（`figure.diagram`、インラインSVG）にする。
 - 全ページ共通のヘッダー・フッター（ロゴ・サイト名・フッターのリンク）は `template.html` のものをそのまま使う。サイト名は「雑学アーカイブ」、`<title>` は「記事タイトル｜雑学アーカイブ」。
 - 文字コードは UTF-8、`<html lang="ja">`、viewport メタタグ、サイトのアイコン（`favicon.svg` などの `<link rel="icon">`）を必ず入れる（ひな形どおり）。
-- `<head>` には、共通スクリプト `assets/site.js`（defer なし。表示設定・読了の目安・共有ボタン・トップへ戻るなどを担当）と、SNSで共有されたときの表示用タグ（`canonical`・`og:*`・`twitter:card`）を入れる（ひな形どおり）。`canonical` と `og:url` は記事のURLに、`og:title`・`og:description` は `<title>`・`description` に合わせる。
+- `<head>` には、共通スクリプト `assets/site.js`（defer なし。表示設定・読了の目安・共有ボタン・トップへ戻るなどを担当）と、SNSで共有されたときの表示用タグ（`canonical`・`og:*`・`twitter:card`）を入れる（ひな形どおり）。`canonical` と `og:url` は記事のURLに、`og:title`・`og:description` は `<title>`・`description` に合わせる。`og:image` は `tools/update_pages.py` が記事の最初の写真に書き換える（ひな形のままでよい）。
 - アクセス解析・外部送信はしない。表示設定はブラウザの localStorage にだけ保存する（`about.html`・`privacy.html` に明記済み）。
 
 ## 6. 記事の追加手順
@@ -94,7 +94,9 @@
    - どの記事にも写真（`figure.photo`）を1枚以上入れる。最初の写真が記事一覧のサムネイルになるので、写真のない記事があると一覧の見た目がそろわない（オーナーの希望。`tools/check_site.py` が指摘する）。
    - `python3 -I tools/make_thumbs.py` を実行する（Pillow が必要）。記事の最初の写真から一覧のサムネイルを作り、トップ末尾の「記事一覧の写真の出典」も作り直す。サムネイルの行は手で書かない。
 6. `sitemap.xml` に記事のURLを1行追加する（`lastmod` は調査日。更新したら更新日に）。トップページの `lastmod` も、記事を追加した日にする。
-   - `python3 -I tools/update_pages.py` を実行する（`build_article.py` で作った記事には自動で入る）。「本文へ移動」のリンク、パンくずのカテゴリへのリンク、検索エンジン向けの構造化データ（JSON-LD）が入る。題名・説明・日付を直したときも実行する。
+   - `python3 -I tools/update_pages.py` を実行する。「本文へ移動」のリンク、パンくずのカテゴリへのリンク、検索エンジン向けの構造化データ（JSON-LD）、共有されたときの画像（`og:image`＝記事の最初の写真）、RSS の案内が入る。
+   - 同じツールが、トップの検索用のデータ（`assets/search-index.json`）、記事の最後に出す「関連する記事」（`assets/related.json`）、RSS（`feed.xml`）も作り直す。これらは手で書かない。
+   - 題名・説明・日付・見出しを直したときも実行する（古いままだと `tools/check_site.py` が知らせる）。
 7. 記事ができたら、コミット・プッシュに加えて、プルリクエストを作成して `main` にマージし、公開URLで表示を確認するところまで行ってよい（サイトのオーナーが了承済み）。
 
 ## 7. 公開前チェックリスト
@@ -109,7 +111,7 @@
 - [ ] スマホ幅（約375px）で横スクロールや崩れがない
 - [ ] `index.html` の記事一覧に追加した
 - [ ] `sitemap.xml` に追加した
-- [ ] `index.html` の `data-seq` を付けた／`tools/update_pages.py` を実行した（構造化データ・パンくずのリンク）
+- [ ] `index.html` の `data-seq` を付けた／`tools/update_pages.py` を実行した（構造化データ・パンくずのリンク・共有用の画像・検索用のデータ・関連する記事・RSS）
 - [ ] 写真を1枚以上入れ、`tools/make_thumbs.py` を実行した（サムネイルと写真の出典）
 - [ ] `<head>` の `canonical`・`og:url` を記事のURLにした
 

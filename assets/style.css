@@ -2219,6 +2219,227 @@ article h3[id],
   margin-top: 12px;
 }
 
+/* ---------- 探しやすさの追加: 記事の中まで探す検索・並び順・おまかせ・横の目次（assets/site.js） ---------- */
+
+/* 検索欄の下: 左に件数、右に「おまかせで1本読む」 */
+.search-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.random-btn,
+.view-btn {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.random-btn {
+  color: var(--link);
+}
+
+.random-btn:hover,
+.view-btn:hover {
+  border-color: var(--accent);
+}
+
+.random-btn:focus-visible,
+.view-btn:focus-visible,
+.text-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* メニューの中では、検索欄の下に置く */
+.menu-random {
+  margin-top: 10px;
+}
+
+/* 並び順の切り替え（カテゴリ別／新しい順）。カテゴリのボタンと同じ見た目にそろえる */
+.view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+}
+
+.view-switch-label {
+  margin-right: 4px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.view-btn[aria-pressed="true"] {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* 新しい順の一覧（カテゴリの見出しがないので、少し間をあけて始める） */
+.flat-list {
+  margin-top: 14px;
+}
+
+/* カードに添えるカテゴリ名（調査日の行の右端）。カテゴリの見出しがない並びだけで見せる */
+.card-cat {
+  display: none;
+}
+
+.flat-list .card-cat,
+.more-articles .card-cat {
+  display: inline-block;
+  float: right;
+  margin-left: 8px;
+  padding: 0 8px;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.flat-list .article-card-date,
+.more-articles .article-card-date {
+  display: flow-root;
+}
+
+/* 新着記事の下: 新しい順の一覧へ */
+.latest-more {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.text-btn {
+  font: inherit;
+  padding: 4px 0;
+  color: var(--link);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 検索に一致した章へのリンク（カードのすぐ下に、小さく並べる） */
+.article-list > li.has-hits {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-list > li.has-hits > .article-card {
+  flex: 1 1 auto;
+  height: auto;
+}
+
+.card-hits {
+  margin: 6px 4px 4px;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.card-hits-label {
+  margin-right: 8px;
+  color: var(--text-muted);
+}
+
+.card-hits a {
+  margin-right: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* 記事の最後の「関連する記事」: 見出しとカテゴリへのリンクが長いときは折り返す */
+.more-articles .section-head {
+  flex-wrap: wrap;
+}
+
+/* メニューの目次: いま読んでいる章 */
+.menu-toc a.is-current {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* 横の目次（広い画面だけ。本文の右の余白に固定し、本文の目次が画面の外に出たら現れる） */
+.side-toc {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .side-toc {
+    display: block;
+    position: fixed;
+    top: 88px;
+    left: calc(50% + 396px);
+    width: min(240px, calc(50% - 420px));
+    max-height: calc(100vh - 176px);
+    overflow-y: auto;
+    padding: 2px 0;
+    border-left: 2px solid var(--border);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .side-toc.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .side-toc-title {
+    margin: 0 0 4px;
+    padding-left: 14px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .side-toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .side-toc li {
+    margin: 0;
+  }
+
+  /* いまの章は、左の線をアクセント色に重ねて示す */
+  .side-toc a {
+    display: block;
+    margin-left: -2px;
+    padding: 4px 0 4px 14px;
+    border-left: 2px solid transparent;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .side-toc a:hover {
+    color: var(--accent);
+  }
+
+  .side-toc a.is-current {
+    border-left-color: var(--accent);
+    font-weight: 700;
+    color: var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-toc {
+    transition: none;
+  }
+}
+
 /* ---------- 印刷 ---------- */
 @media print {
   /* ダーク表示のまま印刷すると紙で読めないので、印刷は常にライト配色にする
@@ -2260,6 +2481,7 @@ article h3[id],
   .menu-scrim,
   .ref-pop,
   .skip-link,
+  .side-toc,
   .more-articles {
     display: none;
   }

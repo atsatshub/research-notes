@@ -18,7 +18,7 @@
 
 ```
 .
-├── index.html         トップページ（記事一覧・検索・カテゴリ絞り込み）
+├── index.html         トップページ（記事一覧・検索・カテゴリ絞り込み・並び順の切り替え）
 ├── about.html         このサイトについて（運営者、出典・調査日の方針、お問い合わせ、広告）
 ├── privacy.html       プライバシーポリシー（表示設定の保存、広告配信事業者の Cookie、免責）
 ├── 404.html           ページが見つからないときの表示
@@ -28,11 +28,14 @@
 │       └── thumbs/    記事一覧のサムネイル（tools/make_thumbs.py が作る）
 ├── assets/
 │   ├── style.css      共通デザイン（ライト/ダーク対応）
-│   ├── site.js        全ページ共通: メニュー、表示設定（文字の大きさ・配色）、読了の目安、共有、トップへ戻る、検索、同じカテゴリの記事
+│   ├── site.js        全ページ共通: メニュー、表示設定（文字の大きさ・配色）、読了の目安、共有、トップへ戻る、検索、関連する記事、横の目次
+│   ├── search-index.json  検索用のデータ（記事の中の見出し・要点。tools/make_data.py が作る）
+│   ├── related.json   記事ごとの「関連する記事」（tools/make_data.py が作る）
 │   ├── article.js     記事ページ: 出典の吹き出し、「くわしく」の一括開閉
 │   ├── favicon.svg ほか  サイトのアイコン
-│   └── ogp.png        SNSで共有されたときの画像
+│   └── ogp.png        SNSで共有されたときの画像（トップなど。記事は最初の写真）
 ├── sitemap.xml        検索エンジン向けのページ一覧
+├── feed.xml           新着記事の RSS（tools/make_data.py が作る）
 ├── tools/             記事づくりの補助ツール（ビルド・チェック。サイト本体は依存しない）
 ├── CLAUDE.md          記事作成ルール
 ├── .nojekyll          GitHub Pages で Jekyll 処理をしないための設定
@@ -43,7 +46,7 @@
 
 1. `template.html` を `articles/` にコピーする（ファイル名は英小文字・数字・ハイフン。例: `articles/furusato-nozei-basics.html`）
 2. `【 】` の部分を書き換え、出典と調査日を記入する
-3. `index.html` の記事一覧（`data-seq` は追加順の通し番号）と `sitemap.xml` に1件追加し、`python3 -I tools/update_pages.py` を実行する（構造化データなどが入る）。続けて `python3 -I tools/make_thumbs.py` を実行する（一覧のサムネイルと写真の出典。Pillow が必要）
+3. `index.html` の記事一覧（`data-seq` は追加順の通し番号）と `sitemap.xml` に1件追加し、`python3 -I tools/update_pages.py` を実行する（構造化データ・共有用の画像が入り、検索用のデータ・関連する記事・RSS も作り直される）。続けて `python3 -I tools/make_thumbs.py` を実行する（一覧のサムネイルと写真の出典。Pillow が必要）
 4. `tools/check_site.py` と `tools/check_pages.js` で確認してから、コミットしてプッシュする（手順は [tools/README.md](tools/README.md)）
 
 ## ローカルでの確認

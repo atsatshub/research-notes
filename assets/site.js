@@ -5,11 +5,17 @@
   2. ヘッダーに「メニュー」ボタンを追加する（この記事の目次・記事を探す・カテゴリ・ページ・表示設定）
   3. 記事ページ: 読了の目安、調査日からの経過、読み進み具合のバー、共有ボタン、
      トップへ戻るボタン、印刷時に折りたたみをすべて開く、
-     記事の最後に「同じカテゴリの記事」を出す（index.html を読んで作る。サムネイルの写真の出典も添える）
+     広い画面では本文の横に目次を出し、いま読んでいる章に印を付ける（メニューの目次にも）、
+     記事の最後に「関連する記事」を出す（assets/related.json の4件を index.html から取り込む。
+     読めないときは同じカテゴリの記事。サムネイルの写真の出典も添える）
   4. トップページ: 記事の検索（空白で区切ると、すべてを含む記事）・カテゴリ絞り込み、
      新着記事、カテゴリごとの「残りを表示」、調査日からの経過。
+     検索は、カードの題名・説明に加えて、記事の中の見出し・要点まで探す
+     （assets/search-index.json を、検索欄を使うときに読む。一致した章へのリンクをカードの下に出す）。
+     並び順は「カテゴリ別」と「新しい順」を切り替えられる。「おまかせで1本読む」は記事を1本選んで開く。
      記事カードの題名は「：」の前後で分け、後ろを小さく表示する。
-     検索語とカテゴリは URL（?q=…&cat=…）に残すので、共有や「戻る」で同じ状態に戻れる
+     検索語・カテゴリ・並び順は URL（?q=…&cat=…&sort=new）に残すので、共有や「戻る」で同じ状態に戻れる
+  assets/search-index.json と assets/related.json は tools/make_data.py が作る
 */
 (function () {
   "use strict";
@@ -183,6 +189,41 @@
     return indexPromise;
   }
 
+  // 記事カードのファイル名から「.html」を除いたもの（例: articles/data-center.html → data-center）
+  function slugOf(li) {
+    var a = li.querySelector("a.article-card");
+    return a ? (a.getAttribute("href") || "").split("/").pop().replace(/\.html$/, "") : "";
+  }
+
+  // カードの調査日の行に、カテゴリ名を添える（カテゴリの見出しがない並び＝新しい順・関連する記事で見せる）
+  function addCatLabel(li, name) {
+    var date = li.querySelector(".article-card-date");
+    if (!date || !name || date.querySelector(".card-cat")) return;
+    var doc = li.ownerDocument || document;
+    var span = doc.createElement("span");
+    span.className = "card-cat";
+    span.textContent = name;
+    date.insertBefore(span, date.firstChild);
+  }
+
+  // 関連する記事（tools/make_data.py が、本文の言葉の近さで記事ごとに選んだもの）。読めないときは空
+  var relatedPromise = null;
+  function loadRelated() {
+    if (relatedPromise) return relatedPromise;
+    if (!window.fetch || !/^https?:$/.test(location.protocol)) {
+      relatedPromise = Promise.resolve({});
+    } else {
+      relatedPromise = fetch(siteBase() + "assets/related.json")
+        .then(function (res) {
+          return res.ok ? res.json() : {};
+        })
+        .catch(function () {
+          return {};
+        });
+    }
+    return relatedPromise;
+  }
+
   // トップページの検索・絞り込みを外から動かす窓口（setupIndex が入れる）
   var indexApi = null;
 
@@ -262,6 +303,26 @@
       indexApi.search(q.value);
     });
     findSec.appendChild(form);
+    // おまかせ: いまのページ以外から1本選んで開く
+    var lucky = el("button", { type: "button", class: "random-btn menu-random" }, "おまかせで1本読む");
+    lucky.addEventListener("click", function () {
+      loadIndex()
+        .then(function (index) {
+          var here = location.pathname.split("/").pop().replace(/\.html$/, "");
+          var links = [];
+          index.groups.forEach(function (g) {
+            g.lis.forEach(function (li) {
+              var a = li.querySelector("a.article-card");
+              if (a && slugOf(li) !== here) links.push(a.getAttribute("href"));
+            });
+          });
+          if (links.length) location.href = base + links[Math.floor(Math.random() * links.length)];
+        })
+        .catch(function () {
+          location.href = base + "index.html";
+        });
+    });
+    findSec.appendChild(lucky);
 
     // 3. カテゴリ（開いたときに一度だけ作る）
     var catSec = section("カテゴリから探す");
@@ -359,21 +420,37 @@
   }
 
   // ---------- 記事ページ ----------
-  // 記事の最後に、同じカテゴリのほかの記事（なければ新着の記事）を出す
+  // 記事の最後に、関連する記事を出す
+  // （内容の近い4件。データを読めないときは同じカテゴリのほかの記事、それもなければ新着の記事）
   function setupMoreArticles(article) {
-    var file = location.pathname.split("/").pop();
-    if (!file) return;
-    loadIndex()
-      .then(function (index) {
+    var self = location.pathname.split("/").pop().replace(/\.html$/, "");
+    if (!self) return;
+    Promise.all([loadIndex(), loadRelated()])
+      .then(function (both) {
+        var index = both[0];
+        var related = both[1] || {};
         var groups = index.groups;
         var isSelf = function (li) {
-          var a = li.querySelector("a.article-card");
-          return !!a && a.getAttribute("href").split("/").pop() === file;
+          return slugOf(li) === self;
         };
         var mine = null;
+        var bySlug = {};
+        var catOf = {};
         groups.forEach(function (g) {
+          g.lis.forEach(function (li) {
+            bySlug[slugOf(li)] = li;
+            catOf[slugOf(li)] = g.name;
+          });
           if (g.lis.some(isSelf)) mine = g;
         });
+        // 内容の近い記事（一覧にあるものだけ）
+        var picks = (related[self] || [])
+          .map(function (slug) {
+            return bySlug[slug];
+          })
+          .filter(function (li) {
+            return li && !isSelf(li);
+          });
         var others = mine
           ? mine.lis.filter(function (li) {
               return !isSelf(li);
@@ -381,7 +458,13 @@
           : [];
         var title;
         var more = null;
-        if (mine && others.length) {
+        if (picks.length >= 2) {
+          others = picks;
+          title = "関連する記事";
+          more = mine
+            ? el("a", { class: "more-link", href: "../index.html?cat=" + encodeURIComponent(mine.name) }, "「" + mine.name + "」の記事一覧（" + mine.lis.length + "件）")
+            : el("a", { class: "more-link", href: "../index.html" }, "記事一覧へ");
+        } else if (mine && others.length) {
           title = "「" + mine.name + "」のほかの記事";
           more = el("a", { class: "more-link", href: "../index.html?cat=" + encodeURIComponent(mine.name) }, "すべて見る（" + mine.lis.length + "件）");
         } else {
@@ -421,6 +504,8 @@
           var copy = document.importNode(src, true);
           splitTitles(copy);
           Array.prototype.forEach.call(copy.querySelectorAll(".article-card-date time[datetime]"), addAgo);
+          // ほかのカテゴリの記事も混ざるので、カテゴリ名を添える
+          addCatLabel(copy, catOf[name.replace(/\.html$/, "")]);
           list.appendChild(copy);
         });
         section.appendChild(head);
@@ -499,6 +584,34 @@
     // 同じカテゴリの記事（読了の目安を数えた後に足す）
     setupMoreArticles(article);
 
+    // 横の目次（広い画面だけ。本文の目次が画面の外に出たら現れる）と、いま読んでいる章の印
+    // 本文とメニューに同じ目次があるので、読み上げとキーボードの移動先からは外す（マウスで使う近道）
+    var tocBox = article.querySelector(".toc");
+    var spy = [];
+    var spyCurrent = -1;
+    var sideToc = null;
+    if (tocBox) {
+      sideToc = el("nav", { class: "side-toc", "aria-hidden": "true" });
+      sideToc.appendChild(el("p", { class: "side-toc-title" }, "目次"));
+      var sideList = el("ol");
+      Array.prototype.forEach.call(tocBox.querySelectorAll("ol a[href^='#']"), function (a) {
+        var id = a.getAttribute("href").slice(1);
+        var target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        var link = el("a", { href: "#" + id, tabindex: "-1" }, a.textContent);
+        var item = el("li");
+        item.appendChild(link);
+        sideList.appendChild(item);
+        var links = [link];
+        Array.prototype.forEach.call(document.querySelectorAll(".menu-toc a"), function (m) {
+          if (m.getAttribute("href") === "#" + id) links.push(m);
+        });
+        spy.push({ target: target, links: links });
+      });
+      sideToc.appendChild(sideList);
+      document.body.appendChild(sideToc);
+    }
+
     // 読み進み具合のバー
     var bar = el("div", { class: "read-progress", "aria-hidden": "true" });
     document.body.appendChild(bar);
@@ -522,6 +635,22 @@
       var ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
       bar.style.transform = "scaleX(" + ratio + ")";
       toTop.hidden = window.scrollY < 800;
+      if (sideToc) {
+        // いま読んでいる章 = 見出しが画面の上（固定ヘッダーのすぐ下）を過ぎた、いちばん後ろの章
+        var current = -1;
+        for (var i = 0; i < spy.length; i++) {
+          if (spy[i].target.getBoundingClientRect().top <= 96) current = i;
+        }
+        if (current !== spyCurrent) {
+          spy.forEach(function (s, n) {
+            s.links.forEach(function (l) {
+              l.classList.toggle("is-current", n === current);
+            });
+          });
+          spyCurrent = current;
+        }
+        sideToc.classList.toggle("is-visible", tocBox.getBoundingClientRect().bottom < 56);
+      }
     }
     window.addEventListener("scroll", function () {
       if (!ticking) {
@@ -572,6 +701,7 @@
 
   var PER_CATEGORY = 4; // カテゴリごとに最初に見せる件数（これより2件以上多いときだけ、残りをたたむ）
   var LATEST_COUNT = 6; // 新着記事の件数（パソコンは3列×2段、スマホは横に送る列）
+  var FLAT_PAGE = 24; // 「新しい順」で最初に見せる件数（「さらに表示」でこの数ずつ増やす）
   // まとめる前のカテゴリ名（共有・ブックマークされた ?cat= のURLを、いまのカテゴリで開くため）
   var OLD_CATEGORY = {
     "お金・投資": "お金・税金",
@@ -595,7 +725,15 @@
 
     var groups = readGroups(document).map(function (g) {
       g.items = g.lis.map(function (li) {
-        return { li: li, text: normalize(li.textContent + " " + g.heading.textContent) };
+        return {
+          li: li,
+          group: g,
+          slug: slugOf(li),
+          text: normalize(li.textContent + " " + g.heading.textContent),
+          deep: null, // 記事の中の見出し・要点（検索用データを読んだあとに入る）
+          hits: null, // 一致した章へのリンク（検索中だけ、カードの下に出す）
+          hitsKey: ""
+        };
       });
       g.expanded = false;
       g.moreBtn = null;
@@ -618,41 +756,55 @@
       return g;
     });
 
-    var total = groups.reduce(function (sum, g) {
-      return sum + g.items.length;
-    }, 0);
+    // すべての記事（一覧に書いてある順）と、新しい順に並べたもの
+    var allItems = [];
+    groups.forEach(function (g) {
+      allItems = allItems.concat(g.items);
+    });
+    var allLis = allItems.map(function (it) {
+      return it.li;
+    });
+    var byNewest = newestFirst(allLis).map(function (li) {
+      return allItems[allLis.indexOf(li)];
+    });
+    var total = allItems.length;
 
-    // 「カテゴリ別の記事一覧」の見出しに、カテゴリ数と全体の件数を添える
+    // 「カテゴリ別の記事一覧」の見出し（並び順が「新しい順」のときは書き換える）
+    var major = document.getElementById("categories");
+    var majorTitle = major ? major.querySelector("h2") : null;
+    var majorTitleText = majorTitle ? majorTitle.textContent : "";
     var catNote = document.querySelector(".categories-note");
-    if (catNote) catNote.textContent = groups.length + "カテゴリ・全" + total + "件";
 
-    // URL（?q=…&cat=…）から状態を読む
+    // URL（?q=…&cat=…&sort=new）から状態を読む
     function readUrl() {
       var p;
       try {
         p = new URLSearchParams(location.search);
       } catch (e) {
-        return { q: "", cat: "" };
+        return { q: "", cat: "", view: "" };
       }
       var cat = p.get("cat") || "";
       if (OLD_CATEGORY.hasOwnProperty(cat)) cat = OLD_CATEGORY[cat];
       var known = groups.some(function (g) {
         return g.name === cat;
       });
-      return { q: p.get("q") || "", cat: known ? cat : "" };
+      return { q: p.get("q") || "", cat: known ? cat : "", view: major && p.get("sort") === "new" ? "new" : "" };
     }
 
-    function writeUrl(q, cat) {
+    function writeUrl(q, cat, sort) {
       if (!window.history || !history.replaceState || !/^https?:$/.test(location.protocol)) return;
       var p = [];
       if (q) p.push("q=" + encodeURIComponent(q));
       if (cat) p.push("cat=" + encodeURIComponent(cat));
+      if (sort) p.push("sort=" + encodeURIComponent(sort));
       var url = location.pathname + (p.length ? "?" + p.join("&") : "") + location.hash;
       if (url !== location.pathname + location.search + location.hash) history.replaceState(null, "", url);
     }
 
     var state = readUrl();
     var active = state.cat;
+    var view = state.view; // "" = カテゴリ別、"new" = 新しい順
+    var flatLimit = FLAT_PAGE;
     input.value = state.q;
 
     // 新着: 全カテゴリの記事を新しい順に並べ、上位を複製して「新着記事」に入れる（カテゴリ名を添える）
@@ -660,55 +812,240 @@
     var latestList = latest ? latest.querySelector(".latest-list") : null;
     var hasLatest = false;
     if (latestList) {
-      var all = [];
-      var catOf = [];
-      groups.forEach(function (g) {
-        g.lis.forEach(function (li) {
-          all.push(li);
-          catOf.push(g.name);
-        });
-      });
-      newestFirst(all).slice(0, LATEST_COUNT).forEach(function (li) {
-        var copy = li.cloneNode(true);
+      byNewest.slice(0, LATEST_COUNT).forEach(function (it) {
+        var copy = it.li.cloneNode(true);
         copy.hidden = false;
         var card = copy.querySelector("a.article-card");
         if (card) {
           var thumb = card.querySelector(".article-card-thumb");
-          card.insertBefore(el("span", { class: "article-card-cat" }, catOf[all.indexOf(li)]), thumb ? thumb.nextSibling : card.firstChild);
+          card.insertBefore(el("span", { class: "article-card-cat" }, it.group.name), thumb ? thumb.nextSibling : card.firstChild);
         }
         latestList.appendChild(copy);
       });
-      hasLatest = all.length > 0;
+      hasLatest = total > 0;
       latest.hidden = !hasLatest;
+      // 新着に入りきらない記事も、新しい順にたどれるようにする
+      if (major && total > LATEST_COUNT) {
+        var moreNew = el("p", { class: "latest-more" });
+        var moreNewBtn = el("button", { type: "button", class: "text-btn" }, "新しい順にすべて見る（全" + total + "件）");
+        moreNewBtn.addEventListener("click", function () {
+          setView("new");
+          major.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
+        });
+        moreNew.appendChild(moreNewBtn);
+        latest.appendChild(moreNew);
+      }
+    }
+
+    // カテゴリの見出しがない並び（新しい順）で見せるカテゴリ名（新着の複製を作ったあとに足す）
+    allItems.forEach(function (it) {
+      addCatLabel(it.li, it.group.name);
+    });
+
+    // 並び順の切り替え（カテゴリ別／新しい順）と、新しい順のときに使う一覧
+    var switchWrap = el("div", { class: "view-switch", role: "group", "aria-label": "並び順" });
+    switchWrap.appendChild(el("span", { class: "view-switch-label", "aria-hidden": "true" }, "並び順"));
+    [["", "カテゴリ別"], ["new", "新しい順"]].forEach(function (v) {
+      var b = el("button", { type: "button", class: "view-btn", "data-view": v[0], "aria-pressed": v[0] === view ? "true" : "false" }, v[1]);
+      b.addEventListener("click", function () {
+        setView(v[0]);
+      });
+      switchWrap.appendChild(b);
+    });
+    var flatList = el("ul", { class: "article-list flat-list", hidden: "" });
+    var flatMore = el("p", { class: "more-row", hidden: "" });
+    var flatMoreBtn = el("button", { type: "button", class: "more-btn" });
+    flatMoreBtn.addEventListener("click", function () {
+      var first = byNewest[flatLimit];
+      flatLimit += FLAT_PAGE;
+      render();
+      var next = first ? first.li.querySelector("a") : null;
+      if (next) next.focus();
+    });
+    flatMore.appendChild(flatMoreBtn);
+    if (major) {
+      major.insertAdjacentElement("afterend", switchWrap);
+      switchWrap.insertAdjacentElement("afterend", flatList);
+      flatList.insertAdjacentElement("afterend", flatMore);
+    }
+
+    // 記事カードを、並び順に合った場所へ移す（新しい順: ひとつの一覧へ。カテゴリ別: 元のカテゴリへ、元の順で）
+    function placeItems() {
+      if (view === "new") {
+        byNewest.forEach(function (it) {
+          flatList.appendChild(it.li);
+        });
+      } else {
+        allItems.forEach(function (it) {
+          it.group.list.appendChild(it.li);
+        });
+      }
+    }
+
+    // 検索用データ（記事の中の見出し・要点）。検索欄を使うときに一度だけ読む。
+    // 読めないときは、これまでどおりカードの題名・説明だけで探す
+    var deepState = ""; // "" → "loading" → "ready"（読めなければ "failed"）
+    function loadDeep() {
+      if (deepState || !window.fetch || !/^https?:$/.test(location.protocol)) return;
+      deepState = "loading";
+      fetch("assets/search-index.json")
+        .then(function (res) {
+          return res.ok ? res.json() : Promise.reject(new Error("検索用データを読めない"));
+        })
+        .then(function (data) {
+          allItems.forEach(function (it) {
+            var d = data[it.slug];
+            if (!d) return;
+            var secs = (d.s || []).map(function (s) {
+              var heads = s[2] || [];
+              return {
+                id: s[0],
+                title: s[1],
+                titleText: normalize(s[1]),
+                heads: heads.map(function (h) {
+                  return { label: h, text: normalize(h) };
+                }),
+                text: normalize(s[1] + " " + heads.join(" ") + " " + (s[3] || ""))
+              };
+            });
+            var texts = secs.map(function (s) {
+              return s.text;
+            });
+            it.deep = { secs: secs, text: normalize(d.p || "") + " " + texts.join(" ") };
+          });
+          deepState = "ready";
+          render();
+        })
+        .catch(function () {
+          deepState = "failed";
+        });
+    }
+
+    // カテゴリの絞り込みと、検索語（すべての語を、カードか記事の中の見出し・要点に含む）に合うか
+    function matches(it, terms) {
+      if (active && it.group.name !== active) return false;
+      return terms.every(function (t) {
+        return it.text.indexOf(t) !== -1 || (!!it.deep && it.deep.text.indexOf(t) !== -1);
+      });
+    }
+
+    // 検索語に一致した章へのリンクを、カードの下に3件まで出す（移動先は章の先頭）
+    function updateHits(it, terms) {
+      var found = [];
+      if (terms.length && it.deep) {
+        it.deep.secs.forEach(function (s, order) {
+          var n = terms.filter(function (t) {
+            return s.text.indexOf(t) !== -1;
+          }).length;
+          if (n) found.push({ s: s, n: n, order: order });
+        });
+        // いちばん多くの語に一致した章だけを、記事の中の順に3件まで出す
+        // （2語で探したとき、片方の語しかない章を並べないように）
+        var best = found.reduce(function (m, f) {
+          return Math.max(m, f.n);
+        }, 0);
+        found = found
+          .filter(function (f) {
+            return f.n === best;
+          })
+          .slice(0, 3);
+      }
+      var ids = found.map(function (f) {
+        return f.s.id;
+      });
+      var key = found.length ? terms.join(" ") + "|" + ids.join(",") : "";
+      if (it.hitsKey === key) return;
+      it.hitsKey = key;
+      if (it.hits) {
+        it.hits.remove();
+        it.hits = null;
+      }
+      it.li.classList.toggle("has-hits", found.length > 0);
+      if (!found.length) return;
+      var p = el("p", { class: "card-hits" });
+      p.appendChild(el("span", { class: "card-hits-label" }, "記事の中"));
+      found.forEach(function (f) {
+        // 章の見出しに語がなく、小見出しにあるときは、小見出しを出す
+        var label = f.s.title;
+        var inTitle = terms.some(function (t) {
+          return f.s.titleText.indexOf(t) !== -1;
+        });
+        if (!inTitle) {
+          f.s.heads.some(function (h) {
+            var hit = terms.some(function (t) {
+              return h.text.indexOf(t) !== -1;
+            });
+            if (hit) label = h.label;
+            return hit;
+          });
+        }
+        p.appendChild(el("a", { href: "articles/" + it.slug + ".html#" + f.s.id }, label));
+      });
+      it.li.appendChild(p);
+      it.hits = p;
     }
 
     function render() {
       var terms = searchTerms(input.value);
       var filtering = terms.length > 0 || !!active;
+      var flat = view === "new";
       var shown = 0;
-      // 検索・絞り込み中は新着を隠す（同じ記事が2回出ないように）
-      if (latest) latest.hidden = !hasLatest || filtering;
-      groups.forEach(function (g) {
-        var inCategory = !active || g.name === active;
-        var visible = 0;
-        g.items.forEach(function (it, i) {
-          var hit = inCategory && terms.every(function (t) {
-            return it.text.indexOf(t) !== -1;
+      // 検索・絞り込み中と「新しい順」のときは新着を隠す（同じ記事が2回出ないように）
+      if (latest) latest.hidden = !hasLatest || filtering || flat;
+      flatList.hidden = !flat;
+      if (flat) {
+        byNewest.forEach(function (it) {
+          var hit = matches(it, terms);
+          // 絞り込んでいないときは、最初の24件だけ出す（「さらに表示」で増やす）
+          it.li.hidden = !hit || (!filtering && shown >= flatLimit);
+          updateHits(it, hit ? terms : []);
+          if (hit) shown++;
+        });
+        groups.forEach(function (g) {
+          g.parts.forEach(function (p) {
+            p.hidden = true;
           });
-          // 絞り込んでいないときは、多いカテゴリの5件目以降をたたむ
-          var folded = !filtering && !g.expanded && !!g.moreBtn && i >= PER_CATEGORY;
-          it.li.hidden = !hit || folded;
-          if (hit) visible++;
+          if (g.moreBtn) g.moreBtn.hidden = true;
         });
-        g.parts.forEach(function (p) {
-          p.hidden = visible === 0;
+        var rest = filtering ? 0 : total - flatLimit;
+        flatMore.hidden = rest <= 0;
+        if (rest > 0) flatMoreBtn.textContent = "さらに表示（残り" + rest + "件）";
+      } else {
+        flatMore.hidden = true;
+        groups.forEach(function (g) {
+          var visible = 0;
+          g.items.forEach(function (it, i) {
+            var hit = matches(it, terms);
+            // 絞り込んでいないときは、多いカテゴリの5件目以降をたたむ
+            var folded = !filtering && !g.expanded && !!g.moreBtn && i >= PER_CATEGORY;
+            it.li.hidden = !hit || folded;
+            updateHits(it, hit ? terms : []);
+            if (hit) visible++;
+          });
+          g.parts.forEach(function (p) {
+            p.hidden = visible === 0;
+          });
+          if (g.moreBtn) g.moreBtn.hidden = filtering || g.expanded || visible === 0;
+          shown += visible;
         });
-        if (g.moreBtn) g.moreBtn.hidden = filtering || g.expanded || visible === 0;
-        shown += visible;
-      });
-      count.textContent = filtering ? shown + "件見つかりました（全" + total + "件）" : "全" + total + "件の記事";
+      }
+      if (majorTitle) majorTitle.textContent = flat ? "記事一覧（新しい順）" : majorTitleText;
+      if (catNote) catNote.textContent = flat ? "全" + total + "件" : groups.length + "カテゴリ・全" + total + "件";
+      var deepNote = terms.length && deepState === "ready" ? "。記事の中の見出し・要点も検索" : "";
+      count.textContent = filtering ? shown + "件見つかりました（全" + total + "件" + deepNote + "）" : "全" + total + "件の記事";
       if (empty) empty.hidden = shown !== 0;
-      writeUrl(input.value.trim(), active);
+      writeUrl(input.value.trim(), active, view);
+    }
+
+    function setView(value) {
+      if (!major) return;
+      view = value;
+      flatLimit = FLAT_PAGE;
+      Array.prototype.forEach.call(switchWrap.querySelectorAll(".view-btn"), function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-view") === value ? "true" : "false");
+      });
+      placeItems();
+      render();
     }
 
     function setCategory(value) {
@@ -733,7 +1070,26 @@
       chip(g.name, g.name, g.items.length);
     });
 
+    // 件数の右に「おまかせで1本読む」（絞り込み中は、その中から選ぶ）
+    var foot = el("div", { class: "search-foot" });
+    count.parentNode.insertBefore(foot, count);
+    foot.appendChild(count);
+    var randomBtn = el("button", { type: "button", class: "random-btn" }, "おまかせで1本読む");
+    randomBtn.addEventListener("click", function () {
+      var terms = searchTerms(input.value);
+      var pool = allItems.filter(function (it) {
+        return matches(it, terms);
+      });
+      if (!pool.length) pool = allItems;
+      var a = pool.length ? pool[Math.floor(Math.random() * pool.length)].li.querySelector("a.article-card") : null;
+      if (a) location.href = a.href;
+    });
+    foot.appendChild(randomBtn);
+
     input.addEventListener("input", render);
+    // 検索用データは、検索欄に入ったとき（または打ち始めたとき）に読む
+    input.addEventListener("focus", loadDeep);
+    input.addEventListener("input", loadDeep);
 
     // 「/」キーで検索欄へ（入力中は除く）
     document.addEventListener("keydown", function (e) {
@@ -745,7 +1101,10 @@
     });
 
     box.hidden = false;
+    if (view) placeItems();
     render();
+    // 検索語つきで開いたとき（メニューや 404 の検索から）は、すぐに記事の中まで探す
+    if (state.q) loadDeep();
 
     // メニューから、その場で検索・絞り込みをするための窓口
     function showResults() {
@@ -754,6 +1113,7 @@
     indexApi = {
       search: function (text) {
         input.value = text || "";
+        if (input.value) loadDeep();
         setCategory("");
         showResults();
       },
