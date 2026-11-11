@@ -77,7 +77,7 @@
 - 全ページ共通のヘッダー・フッター（ロゴ・サイト名・フッターのリンク）は `template.html` のものをそのまま使う。サイト名は「雑学アーカイブ」、`<title>` は「記事タイトル｜雑学アーカイブ」。
 - 文字コードは UTF-8、`<html lang="ja">`、viewport メタタグ、サイトのアイコン（`favicon.svg` などの `<link rel="icon">`）を必ず入れる（ひな形どおり）。
 - `<head>` には、共通スクリプト `assets/site.js`（defer なし。表示設定・読了の目安・共有ボタン・トップへ戻るなどを担当）と、SNSで共有されたときの表示用タグ（`canonical`・`og:*`・`twitter:card`）を入れる（ひな形どおり）。`canonical` と `og:url` は記事のURLに、`og:title`・`og:description` は `<title>`・`description` に合わせる。`og:image` は `tools/update_pages.py` が記事の最初の写真に書き換える（ひな形のままでよい）。
-- アクセス解析・外部送信はしない。表示設定はブラウザの localStorage にだけ保存する（`about.html`・`privacy.html` に明記済み）。
+- アクセス解析・外部送信はしない。表示設定と、読むための記録（あとで読む・読んだ記事と位置・前回見た新着の番号）は、ブラウザの localStorage にだけ保存する（`about.html`・`privacy.html` に明記済み）。保存するものを増やすときは、この2ページの記載も直す。
 
 ## 6. 記事の追加手順
 
