@@ -6,7 +6,63 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 12 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>ロードバイクの始め方：選び方・費用・装備と、2026年4月からの自転車の交通ルール</title>
+    <link>https://atsatshub.github.io/research-notes/articles/roadbike-hajimekata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/roadbike-hajimekata.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>クロスバイクとの違いと各部の名前、身長とサイズ、完成車の価格の例、ヘルメットの努力義務と着用率、ライト・防犯登録・自転車保険の決まり、2026年4月からの青切符と反則金、車が自転車の横を通るときの決まり、輪行とナショナルサイクルルート、点検</description>
+  </item>
+  <item>
+    <title>キャンプの始め方：形と費用、道具、火・一酸化炭素・川・クマの安全と決まり</title>
+    <link>https://atsatshub.github.io/research-notes/articles/camp-hajimekata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/camp-hajimekata.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>オートキャンプの数字、サイトの種類と国営公園などの料金の例、テントを張ってよい場所、2026年1月からの林野火災注意報・警報とたき火、テントの中の一酸化炭素、川の増水と天気、クマとマダニ、肉の加熱、刃物の持ち歩き</description>
+  </item>
+  <item>
+    <title>おすすめの車をデータで選ぶ：販売台数・安全性能・燃費・補助金で見る候補（2026年）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kuruma-data-erabikata-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kuruma-data-erabikata-2026.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>2025年の新車販売台数の上位10（登録車・軽）、自動車アセスメントの★5の車種、国の燃費一覧で見る燃費の良い車、電気自動車の補助金の車種別の額、踏み間違い防止装置の義務化、3つの軸に重なる車種</description>
+  </item>
+  <item>
+    <title>国内旅行の行き先をデータで選ぶ：人気の地域と混む時期、世界遺産・温泉、2026年の宿泊税と料金</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kokunai-ryoko-saki.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kokunai-ryoko-saki.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>宿泊旅行統計で見る人が多く泊まる都道府県と混む月・空く月、旅行の費用と北陸新幹線の所要時間、2026年の宿泊税と富士山・姫路城などの料金、世界遺産・国立公園・温泉・国宝の多い地域、桜と紅葉の平年日</description>
+  </item>
+  <item>
+    <title>海外旅行の行き先を選ぶ：渡航者数の統計、事前の入国申請、安全と費用の決まり（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kaigai-ryoko-saki.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kaigai-ryoko-saki.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>出国日本人数の推移、2026年7月の出国税の引き上げと旅券手数料の値下げ、ESTA・ETA・EES・K-ETA などの事前の入国申請、アジアのオンライン到着カード、危険情報と海外邦人援護の統計、燃油サーチャージと現地の観光税</description>
+  </item>
+  <item>
+    <title>定年退職を迎えた親へのプレゼント：いまの定年の実態、親世代が喜ぶこと、相場とマナー</title>
+    <link>https://atsatshub.github.io/research-notes/articles/teinen-oya-present.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/teinen-oya-present.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>60歳定年と65歳までの雇用確保、60代の就業率、親世代が喜びを感じること（内閣府の調査）、百貨店のマナーの説明の違い、贈与税の110万円と祝物、ジパング倶楽部の2026年の変更、退職後の手続きの窓口</description>
+  </item>
+  <item>
+    <title>趣味の見つけ方：統計で見るみんなの趣味、始めやすさ、健康との関係と決まり</title>
+    <link>https://atsatshub.github.io/research-notes/articles/shumi-mitsukekata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/shumi-mitsukekata.html</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>社会生活基本調査とレジャー白書で見るみんなの趣味、年代別の違い、屋内・屋外とひとり・仲間で分けた趣味の例、運動の実施率と国の目安、趣味と健康の研究（観察研究）、教養娯楽費、登山届・遊漁・ドローンなど始めるときの決まり</description>
+  </item>
   <item>
     <title>日本の祝日はどう決まる？ 振替休日と国民の休日の違い（2026・2027年の休日つき）</title>
     <link>https://atsatshub.github.io/research-notes/articles/shukujitsu-kimarikata.html</link>
@@ -190,62 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>暮らし・健康</category>
     <description>個人間ECの市場規模2兆6,870億円、品目別の「中古で買ってもよい」割合（書籍63.5%など）、医薬品・コンタクトレンズ・PSマークのない製品など出品禁止のもの、中古品の事故とリコール、メルカリの支払い手数料と値下げ依頼、ヤフオクの自動入札、補償とトラブルの防ぎ方</description>
-  </item>
-  <item>
-    <title>雲の種類で天気が分かるのはなぜ？ 雲のでき方、十種雲形、前線と雲の順番、天気のことわざ</title>
-    <link>https://atsatshub.github.io/research-notes/articles/kumo-tenki.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kumo-tenki.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>空気が上がって冷えると雲ができる仕組み、高さと形で10種類に分ける十種雲形、温暖前線が近づくと雲が低く厚くなる理由、積乱雲が近づくサインと雷までの距離、「かさが出ると雨」などのことわざの理屈、気象台の目視観測の自動化</description>
-  </item>
-  <item>
-    <title>人間の体温はなぜ約37℃なのか：37℃の由来、体温を保つ仕組み、平熱の実際と測り方</title>
-    <link>https://atsatshub.github.io/research-notes/articles/taion-37do.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/taion-37do.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>37℃という数字の由来、熱をつくる・逃がす仕組みと1日のリズム、カビを防ぐ効果とエネルギーのコストで36.7℃になるという研究、日本人の平熱（1957年36.89℃、2019年36.47℃）、「発熱」37.5℃以上の定義、熱中症と低体温症、体温計の使い方</description>
-  </item>
-  <item>
-    <title>プラントエンジニアリングとは：EPCの仕組み、業界の規模と主な会社、仕事の流れと3D設計（2026年版）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-engineering.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-engineering.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>EPC・FEED・一括請負の意味、業界の受注高32兆円の内訳、日揮HD・千代田化工建設・東洋エンジニアリングの売上と受注残高、仕事の流れと職種、3D設計とデジタルツイン、海外駐在と資格の合格率、脱炭素と大型案件の損失</description>
-  </item>
-  <item>
-    <title>スマートフォンの買い替え時期と費用：使用年数・OSの更新期限・電池の目安と、値引きのルール（2026年版）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/smartphone-kaikae-2026.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/smartphone-kaikae-2026.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>暮らし・健康</category>
-    <description>平均使用年数4.6年と買い替えの理由、PixelやGalaxyのOS更新の年数、iPhoneの電池の目安、3Gの終了、iPhoneとPixelの公式の価格、端末値引きの上限4万円（税抜）と端末購入プログラム、中古の注意点と古い端末の手放し方</description>
-  </item>
-  <item>
-    <title>中古住宅の耐震性能の調べ方：建てた時期、書類、耐震診断、補助と税の制度（2026年版）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/chuko-jutaku-taishin.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/chuko-jutaku-taishin.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>暮らし・健康</category>
-    <description>1981年6月と2000年6月の基準の節目と熊本地震の倒壊率、確認済証などの書類、インスペクションと耐震診断の違い、横浜市・神戸市・大阪市などの無料診断と改修の補助、住宅ローン減税、地震保険の割引、耐震化率</description>
-  </item>
-  <item>
-    <title>有給休暇の上手な使い方：半日・時間単位・計画年休と、2027年の連休のつなげ方</title>
-    <link>https://atsatshub.github.io/research-notes/articles/yukyu-tsukaikata-2026.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/yukyu-tsukaikata-2026.html</guid>
-    <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
-    <category>仕事の基礎知識</category>
-    <description>取得率66.9%と国の目標、付与日数の表、半日・時間単位・計画的付与の違いと年5日の義務での数え方、2027年に何日足せば何連休になるか、理由を言わなくてよいことや時季変更権・買い取り・退職前の消化、業種別の取得率、相談先</description>
-  </item>
-  <item>
-    <title>ビジネスマナーの基本：敬語の指針と世論調査でわかる、根拠のあるマナーと根拠のない俗説</title>
-    <link>https://atsatshub.github.io/research-notes/articles/business-manner-kihon.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/business-manner-kihon.html</guid>
-    <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
-    <category>仕事の基礎知識</category>
-    <description>敬語の指針による5分類と「御苦労様」「とんでもございません」「させていただく」の扱い、社外に上司のことを話すときの言い方、「了解しました」に公的な根拠がないこと、世論調査の数字、メールと文書、クールビズの今、パワハラとカスハラ、検定</description>
   </item>
 </channel>
 </rss>
