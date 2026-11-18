@@ -6,7 +6,31 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Thu, 12 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>基本情報技術者試験の基本：科目A・Bの中身、合格率、2026年12月からの休止と新制度の案</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kihon-joho-gijutsusha-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kihon-joho-gijutsusha-2026.html</guid>
+    <pubDate>Tue, 17 Nov 2026 00:00:00 +0900</pubDate>
+    <category>資格・語学</category>
+    <description>試験の位置づけ（レベル2）、科目A・科目Bの時間・問題数・合格基準、2023年4月の変更、2026年12月28日からの一時休止と2027年1月下旬の再開予定、新制度の案、年度別の合格率、申込みと受験手数料、科目A免除、合格後の使い道</description>
+  </item>
+  <item>
+    <title>オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/opensource-soft-erabikata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/opensource-soft-erabikata.html</guid>
+    <pubDate>Tue, 17 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事・学習の道具</category>
+    <description>オープンソースの定義と「無料」との違い、使うだけの人に関係するライセンスの要点、フランス政府のリスト（SILL）などで確かめる選び方、用途別の代表的なソフト12本の運営・ライセンス・最新版、行政での採用例、安全な入れ方と更新、2025〜2026年の動き</description>
+  </item>
+  <item>
+    <title>ビワイチの始め方：距離と日程、自転車の借り方・運び方、滋賀県の決まり（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/biwaichi-hajimekata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/biwaichi-hajimekata.html</guid>
+    <pubDate>Tue, 17 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>国のルートの193kmと北湖一周の約150km、反時計回りと路面の青線、日程の例、米原駅・大津港のレンタサイクルと近江鉄道・船での運び方、滋賀県の自転車保険の義務とビワイチ推進条例、サポートステーションと認定証、季節と天気、体験者数</description>
+  </item>
   <item>
     <title>ロードバイクの始め方：選び方・費用・装備と、2026年4月からの自転車の交通ルール</title>
     <link>https://atsatshub.github.io/research-notes/articles/roadbike-hajimekata.html</link>
@@ -222,30 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>プラント</category>
     <description>装置産業という考え方、製油所19か所・エチレンプラント12基・ごみ焼却施設991施設などの種類と数、中にある設備、許可・完成検査・保安検査・定期修理・廃止というプラントの一生、全国76地区の特別防災区域、働く人と安全の仕組み</description>
-  </item>
-  <item>
-    <title>化学プラントの基本構成と仕組み：原料から製品までの流れ、主な装置、蒸留とエチレン製造、制御と安全</title>
-    <link>https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kagaku-plant-shikumi.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>前処理・反応・分離精製という流れ、蒸留塔・反応塔・熱交換器・加熱炉・バルブなどの役割、製油所の常圧蒸留とナフサ分解によるエチレン製造、DCSと安全計装、PFD・P&amp;ID・配管図、高圧ガス保安法と消防法、コンビナート事故の統計</description>
-  </item>
-  <item>
-    <title>プラントの3Dモデルはどう作られるのか？ 設計の流れ、仕様とカタログ、図面の書き出し、点群による既設の3D化、主なソフト</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-3d-model.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-3d-model.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>数千〜数万本の配管を3Dで配置する理由、30%・60%・90%のモデルレビュー、カタログとスペックで部品を選ぶ仕組み、アイソメ図を3Dモデルから書き出す仕組み、レーザースキャナーの点群、AVEVA E3D・Forte 3D・Plant 3D・Navisworks、日本の会社の自動設計</description>
-  </item>
-  <item>
-    <title>メルカリやヤフオクで買うとお得なものは？ 中古向きの品目、避けたいもの、手数料と補償（2026年版）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/furima-otoku-2026.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/furima-otoku-2026.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>暮らし・健康</category>
-    <description>個人間ECの市場規模2兆6,870億円、品目別の「中古で買ってもよい」割合（書籍63.5%など）、医薬品・コンタクトレンズ・PSマークのない製品など出品禁止のもの、中古品の事故とリコール、メルカリの支払い手数料と値下げ依頼、ヤフオクの自動入札、補償とトラブルの防ぎ方</description>
   </item>
 </channel>
 </rss>

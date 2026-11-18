@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方｜雑学アーカイブ</title>
+  <meta name="description" content="オープンソースのソフトを選んで使うための基本を、経済産業省・総務省・IPA、フランス政府のリスト（SILL）、各開発団体の公式情報でまとめました。無料との違い、使うだけの人に関係するライセンスの要点、選ぶ軸、用途別の代表例、行政の採用例、安全な入れ方、2025〜2026年の動き。2026年11月17日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/opensource-soft-erabikata.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方">
+  <meta property="og:description" content="オープンソースのソフトを選んで使うための基本を、経済産業省・総務省・IPA、フランス政府のリスト（SILL）、各開発団体の公式情報でまとめました。無料との違い、使うだけの人に関係するライセンスの要点、選ぶ軸、用途別の代表例、行政の採用例、安全な入れ方、2025〜2026年の動き。2026年11月17日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/opensource-soft-erabikata.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/articles/images/opensource-soft-erabikata/home-office.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="雑学アーカイブ 新着記事" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方","description":"オープンソースのソフトを選んで使うための基本を、経済産業省・総務省・IPA、フランス政府のリスト（SILL）、各開発団体の公式情報でまとめました。無料との違い、使うだけの人に関係するライセンスの要点、選ぶ軸、用途別の代表例、行政の採用例、安全な入れ方、2025〜2026年の動き。2026年11月17日調査。","inLanguage":"ja","datePublished":"2026-11-17","dateModified":"2026-11-17","mainEntityOfPage":"https://atsatshub.github.io/research-notes/articles/opensource-soft-erabikata.html","image":["https://atsatshub.github.io/research-notes/assets/ogp.png","https://atsatshub.github.io/research-notes/articles/images/opensource-soft-erabikata/home-office.jpg","https://atsatshub.github.io/research-notes/articles/images/opensource-soft-erabikata/source-code.jpg","https://atsatshub.github.io/research-notes/articles/images/opensource-soft-erabikata/server-aisle.jpg"],"author":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html"},"publisher":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html","logo":{"@type":"ImageObject","url":"https://atsatshub.github.io/research-notes/assets/apple-touch-icon.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"トップ","item":"https://atsatshub.github.io/research-notes/"},{"@type":"ListItem","position":2,"name":"仕事・学習の道具","item":"https://atsatshub.github.io/research-notes/?cat=%E4%BB%95%E4%BA%8B%E3%83%BB%E5%AD%A6%E7%BF%92%E3%81%AE%E9%81%93%E5%85%B7"},{"@type":"ListItem","position":3,"name":"オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › <a href="../index.html?cat=%E4%BB%95%E4%BA%8B%E3%83%BB%E5%AD%A6%E7%BF%92%E3%81%AE%E9%81%93%E5%85%B7">仕事・学習の道具</a></p>
+
+      <h1>オープンソースの便利なソフト：無料との違い、ライセンスの要点、用途別の代表例と安全な入れ方</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-17">2026年11月17日</time></li>
+        <li><span class="tag">仕事・学習の道具</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>オープンソースは「無料」とは別。ソース公開と改変・再配布の自由が条件<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-2">[2]</a></li>
+          <li>使うだけなら、会社でも義務はない。条件が付くのは外に配るとき<a class="ref" href="#src-3">[3]</a><a class="ref" href="#src-4">[4]</a></li>
+          <li>選ぶ軸は、公的なリスト・運営・ライセンス・対応OS・更新・公式の入手先</li>
+          <li>ドイツの州は、税務以外の職場の<strong>約8割</strong>を LibreOffice に移した<a class="ref" href="#src-5">[5]</a></li>
+          <li>入手は公式サイトから。7-Zip の脆弱性は悪用も確認、更新が大事<a class="ref" href="#src-6">[6]</a><a class="ref" href="#src-7">[7]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">オープンソースとは：「無料」とは別の話</a></li>
+          <li><a href="#sec-2">使うだけなら何に気をつける？ ライセンスの要点</a></li>
+          <li><a href="#sec-3">選ぶときに確かめる軸と、用途別の代表例</a></li>
+          <li><a href="#sec-4">行政も使っている：国内外の採用例</a></li>
+          <li><a href="#sec-5">安全な入れ方：公式サイトから入れ、更新を続ける</a></li>
+          <li><a href="#sec-6">2025〜2026年の動き</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>文書作成、写真の加工、動画の再生など、パソコンでよく使う作業には、オープンソースのソフトもあります。ただし「オープンソース」は「無料」と同じ意味ではありません。この記事では、オープンソースの意味と、使うだけの人に関係するライセンスの要点、選ぶときに確かめられる軸、用途ごとの代表的なソフト、行政での採用例、安全な入れ方を、公的機関と開発団体の公式情報でまとめました。特定のソフトを「一番よい」と勧めるのではなく、運営する団体・ライセンス・対応OS・最新版の日付・公的なリストへの掲載といった、確かめられる情報を並べています。メモアプリは<a href="obsidian-notes-2026.html">Obsidian の記事</a>、パスワードの管理は<a href="password-kanri.html">パスワード管理の記事</a>にまとめています。</p>
+
+      <figure class="photo">
+        <img src="images/opensource-soft-erabikata/home-office.jpg" width="960" height="640" loading="lazy" alt="木の机の上に、開いたノートパソコン、ペンを載せた手帳、コーヒーカップ、スマートフォンが置かれている">
+        <figcaption>木の机に置いたノートパソコンと手帳</figcaption>
+      </figure>
+
+      <h2 id="sec-1">オープンソースとは：「無料」とは別の話</h2>
+
+      <section class="item-card">
+        <h3>ソースが見られるだけでは、オープンソースではない</h3>
+        <p class="item-point">配布の条件が、10の基準を満たす必要がある<a class="ref" href="#src-1">[1]</a></p>
+        <p>オープンソースの考え方を広めている団体 OSI（Open Source Initiative）の「オープンソースの定義」（1.9版、2007年3月22日最終改訂）は、ソースコード（プログラムの設計図にあたる文字の並び）が見られるだけでは足りず、配布の条件が10の基準を満たすことを求めています<a class="ref" href="#src-1">[1]</a>。経済産業省の事例集（令和4年8月1日）も、OSS（オープンソースソフトウェア）を、ソースコードが公開され、利用・改変・再配布が誰に対しても許可されているソフトと説明し、同じ10の条件を紹介しています<a class="ref" href="#src-2">[2]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>自由な再配布、ソースコードの利用の自由、派生物の利用の自由を認める<a class="ref" href="#src-2">[2]</a></li>
+            <li>特定の人や集団、使う分野で差別しない<a class="ref" href="#src-2">[2]</a></li>
+            <li>たとえば、仕事（ビジネス）で使うことを制限してはならない<a class="ref" href="#src-1">[1]</a></li>
+            <li>特定の製品に限らない、ほかのソフトを制限しない、特定の技術に縛らない<a class="ref" href="#src-2">[2]</a></li>
+            <li>この定義は、Debian（Linux の配布版の一つ）の指針がもとになっている<a class="ref" href="#src-1">[1]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>無料でも、オープンソースとは限らない</h3>
+        <p class="item-point">無料で配られる、中身を公開しないソフトもある<a class="ref" href="#src-2">[2]</a></p>
+        <p>経済産業省は、OSS と対比されるものとして、改変や複製が制限された「プロプライエタリソフトウェア」を挙げています。ソースコードを公開しなかったり、使用許諾契約で使い方を制限したりするもので、多くは有償の商用ソフトですが、無償で提供されるもの（フリーソフトウェア）もあると説明しています<a class="ref" href="#src-2">[2]</a>。逆に、自由ソフトウェア（オープンソースに近い考え方）を広める GNU プロジェクトは、そのコピーをお金を払って手に入れた人もいるだろうと書いています<a class="ref" href="#src-8">[8]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>英語の「free」には「無料」と「自由」の意味があり、まぎらわしい</li>
+            <li>GNU は、自由ソフトウェアは値段ではなく自由の問題だとしている<a class="ref" href="#src-8">[8]</a></li>
+            <li>GNU は「無料」という言い回しは避けるのが最上だとしている<a class="ref" href="#src-8">[8]</a></li>
+            <li>GNU が挙げる「第零の自由」は、どんな目的でも望むままに実行する自由<a class="ref" href="#src-8">[8]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>オープンソースとプロプライエタリの違い</caption>
+          <thead><tr><th scope="col">項目</th><th scope="col">オープンソース</th><th scope="col">プロプライエタリ</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">料金</th><td>無料で手に入るものが多いが、お金を払って入手することもある<a class="ref" href="#src-8">[8]</a></td><td>主に有償。無償のものもある<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">ソースコード</th><td>公開されている<a class="ref" href="#src-2">[2]</a></td><td>公開しないことがある<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">改変・再配布</th><td>誰に対しても許可されている<a class="ref" href="#src-2">[2]</a></td><td>制限されている<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">仕事での利用</th><td>制限してはならない<a class="ref" href="#src-1">[1]</a></td><td>使用許諾契約で制限されることがある<a class="ref" href="#src-2">[2]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/opensource-soft-erabikata/source-code.jpg" width="960" height="720" loading="lazy" alt="黒い画面に、赤・黄・緑・青などに色分けされたコードの文字が斜めに写っている">
+        <figcaption>ウェブページのソースコード（HTML と JavaScript）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>利点と、気をつけたい点</h3>
+        <p class="item-point">透明性などの利点の一方、サポートの期間に注意<a class="ref" href="#src-2">[2]</a></p>
+        <p>経済産業省の事例集は、OSS を使う利点として、開発費の抑制と開発期間の短縮、高い安定性・品質・透明性、ベンダロックイン（特定の会社の製品から乗り換えにくくなること）の回避を挙げています<a class="ref" href="#src-2">[2]</a>。気をつける点としては、ライセンスを守ること、サポート期間が比較的短くサポートが十分でない場合があること、取引先などサプライチェーンでの使われ方を挙げています<a class="ref" href="#src-2">[2]</a>。企業向けの資料ですが、サポート期間と更新は、個人で使うときにも確かめたい点です（筆者の見解）。</p>
+      </section>
+
+      <h2 id="sec-2">使うだけなら何に気をつける？ ライセンスの要点</h2>
+
+      <p>オープンソースのソフトには、それぞれライセンス（利用の条件）が付いています。主なライセンスの説明を読むと、条件が付くのは「使う」ときではなく、主に「外に配る」ときです。</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 300" width="340" height="300" role="img" aria-label="ライセンスの条件がかかる場面の模式図。使う（個人でも会社でも）場合は義務なし。社内でコピー・改変して使う場合は、組織の中は配布に当たらず、公開しなくてよい。外に配る（コピーや改変版を渡す）場合は、ソースの提供や表示など、ライセンスの条件を守る。作った作品は作った人のもの" font-family="inherit"><rect x="6" y="8" width="150" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="81" y="36" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">使う</text><text x="81" y="58" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">個人でも会社でも</text><path d="M160 41 H178 M172 35 L179 41 L172 47" stroke-width="2" style="stroke:var(--text-muted);fill:none"/><rect x="184" y="8" width="150" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="259" y="36" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">義務なし</text><text x="259" y="58" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">実行の許可は無制限</text><rect x="6" y="96" width="150" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="81" y="124" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">社内でコピー・改変</text><text x="81" y="146" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">組織の中だけで使う</text><path d="M160 129 H178 M172 123 L179 129 L172 135" stroke-width="2" style="stroke:var(--text-muted);fill:none"/><rect x="184" y="96" width="150" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="259" y="124" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">公開しなくてよい</text><text x="259" y="146" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">組織内は配布に当たらない</text><rect x="6" y="184" width="150" height="66" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="81" y="212" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">外に配る</text><text x="81" y="234" font-size="11.5" text-anchor="middle" style="fill:var(--text-muted)">コピーや改変版を渡す</text><path d="M160 217 H178 M172 211 L179 217 L172 223" stroke-width="2" style="stroke:var(--accent);fill:none"/><rect x="184" y="184" width="150" height="66" rx="8" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="259" y="212" font-size="14" font-weight="700" text-anchor="middle" style="fill:var(--text)">条件を守る</text><text x="259" y="234" font-size="11.5" text-anchor="middle" style="fill:var(--text)">ソースの提供・表示など</text><text x="170" y="282" font-size="12" text-anchor="middle" style="fill:var(--text-muted)">作った文書や画像などの作品は、作った人のもの</text></svg>
+        <figcaption>ライセンスの条件がかかる場面（GNU・Mozilla・Inkscape・Blender の説明をもとに筆者が作図）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>使うだけなら、義務はない</h3>
+        <p class="item-point">個人でも会社でも、使うこと自体に条件はない<a class="ref" href="#src-3">[3]</a></p>
+        <p>Mozilla の MPL（Mozilla Public License）の FAQ は、MPL のソフトを使うためにしなければならないことは「Nothing（何もない）」で、個人でも会社でも誰でもどんな目的にも使え、義務が生じるのは組織の外に配布したいときだけだと説明しています<a class="ref" href="#src-3">[3]</a>。GPL（GNU General Public License）第3版も、改変していないプログラムを実行する許可は無制限だと明記しています<a class="ref" href="#src-9">[9]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>VideoLAN は、VLC などの使い方に制限はなく、仕事や行政などどんな目的にも使えるとしている<a class="ref" href="#src-10">[10]</a></li>
+            <li>7-Zip は、会社のパソコンを含め、どのパソコンでも使えると明記している<a class="ref" href="#src-11">[11]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>社内で改変して使うだけなら、公開しなくてよい</h3>
+        <p class="item-point">組織の中で作るコピーは「配布」に当たらない<a class="ref" href="#src-4">[4]</a></p>
+        <p>GNU の FAQ は、GPL のプログラムを改変し、公開せずに個人的に使うのは自由で、組織（企業を含む）でも同じだとしています<a class="ref" href="#src-4">[4]</a>。組織の中で複数のコピーを作って使うのは配布ではなく、コピーをほかの組織や個人に渡したときに配布になると説明しています<a class="ref" href="#src-4">[4]</a>。MPL の FAQ も、会社や組織の中での改変や配布は「private（私的なもの）」に当たり、義務はないとしています<a class="ref" href="#src-3">[3]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>外に配るときは、ライセンスの条件を守る</h3>
+        <p class="item-point">ソースの共有、表示を残すなど、種類で条件が違う</p>
+        <p>ライセンスは、外に配るときの条件の厳しさで、大きく3つに分けて説明されることがあります。経済産業省の事例集に載った国内企業の例では、条件の厳しい順に、コピーレフト型（GPL、AGPL など）、準コピーレフト型（EPL、MPL など）、非コピーレフト型（Apache、MIT、BSD など）としています<a class="ref" href="#src-2">[2]</a>。</p>
+        <div class="table-wrap">
+          <table>
+            <caption>外に配るときの主な条件と、この記事で取り上げるソフトの例</caption>
+            <thead><tr><th scope="col">型</th><th scope="col">外に配るときの主な条件</th><th scope="col">例</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">コピーレフト型（GPL など）</th><td>ソフトを公に配るときは、改変した部分も共有する（Blender の説明）<a class="ref" href="#src-12">[12]</a></td><td>GIMP・Inkscape・Blender・VLC・OBS Studio など</td></tr>
+              <tr><th scope="row">準コピーレフト型（MPL など）</th><td>「ファイル単位」のコピーレフト。他のライセンスのコードとも組み合わせやすい<a class="ref" href="#src-3">[3]</a></td><td>LibreOffice・Firefox・Thunderbird</td></tr>
+              <tr><th scope="row">非コピーレフト型（Apache・MIT など）</th><td>ライセンス文や著作権表示を付ける・残す<a class="ref" href="#src-13">[13]</a><a class="ref" href="#src-14">[14]</a></td><td>VSCodium（MIT）<a class="ref" href="#src-15">[15]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>MIT は、使用・複製・改変・販売などを無料で許し、条件は著作権表示と許諾表示を残すこと<a class="ref" href="#src-14">[14]</a></li>
+            <li>Apache 2.0 は、再配布の条件を第4条にまとめ、受け取る人にライセンスの写しを渡すことなどを求める<a class="ref" href="#src-13">[13]</a></li>
+            <li>Blender は、配るときに改変も共有させるこの性質を「コピーレフト」と呼ぶと説明している<a class="ref" href="#src-12">[12]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>作った作品は、作った人のもの</h3>
+        <p class="item-point">Inkscape や Blender は、作品は作者のものと明記</p>
+        <p>Inkscape は、Inkscape で保存・書き出したファイル（svg、png、pdf など）は、作品を作った人のものだとしています<a class="ref" href="#src-16">[16]</a>。Blender も、Blender で作った画像や動画、.blend ファイルは作った人だけのもので、自由に使えると説明しています<a class="ref" href="#src-12">[12]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Noto Sans CJK と源ノ角ゴシックは、SIL Open Font License 1.1 で配られている<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-18">[18]</a></li>
+            <li>IPAex フォントの「IPAフォントライセンス」は、2009年4月1日に OSI から定義に準拠すると認定された<a class="ref" href="#src-19">[19]</a></li>
+            <li>IPAフォントは、印刷物やデジタル・コンテンツで文字として使える<a class="ref" href="#src-20">[20]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">補足</p>
+        <p>この章は、ソフトを使う人向けの要点です。ソフトを改変して配る、製品やサービスに組み込むといった場合は、そのソフトのライセンスの全文を確かめる必要があります（筆者の見解）。</p>
+      </div>
+
+      <h2 id="sec-3">選ぶときに確かめる軸と、用途別の代表例</h2>
+
+      <p>オープンソースのソフトは、誰が作り、どの条件で、いつまで更新されているかを、公式の情報で確かめられます。筆者が考える、選ぶときに確かめたい6つの軸を表にしました。</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>選ぶときに確かめる6つの軸</caption>
+          <thead><tr><th scope="col">軸</th><th scope="col">どこで確かめるか</th><th scope="col">例</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">① 公的機関のリスト</th><td>フランス政府の SILL など</td><td>下の表のソフトは、いずれも SILL に載っている<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">② 運営する団体</th><td>公式サイトの「About」「Legal」など</td><td>VLC の VideoLAN は、プロジェクトであり非営利団体<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">③ ライセンス</th><td>公式サイトの「License」や、配布物の COPYING</td><td>同じソースから作られても、配布版のライセンスが違うことがある（下のカード）</td></tr>
+            <tr><th scope="row">④ 対応OS</th><td>ダウンロードページ</td><td>OBS Studio の Windows 版は、Windows 10 と 11 に対応<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">⑤ 更新の頻度</th><td>リリースノートや更新履歴</td><td>7-Zip は2026年に、26.00（2月）から26.06（11月）まで版を重ねた<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">⑥ 公式の入手先</th><td>公式サイトのアドレス</td><td>総務省は、公式サイト等の信頼できるサイトからの入手を勧める<a class="ref" href="#src-6">[6]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>フランス政府の「SILL」は、公的機関向けの推奨リスト</h3>
+        <p class="item-point">2026年11月17日時点で<strong>672件</strong>のソフトが載っている<a class="ref" href="#src-21">[21]</a></p>
+        <p>SILL（Socle interministériel de logiciels libres、省庁横断のフリーソフトの基盤）は、フランスの公的機関向けに推奨されるフリーソフトのリストです。ソフトごとの担当（リファレント）を自ら引き受けた公務員がまとめ、フランス政府のデジタル部局（DINUM）が code.gouv.fr で公開しています<a class="ref" href="#src-24">[24]</a>。国の保証は付きませんが、誰でも自由に無料で使えるとしています<a class="ref" href="#src-24">[24]</a>。2026年11月17日に公開データを数えると、672件が載っていました<a class="ref" href="#src-21">[21]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>SILL のデータは、フランス政府のデータサイト data.gouv.fr でも毎週更新されている<a class="ref" href="#src-24">[24]</a></li>
+            <li>SILL はフランスの公的機関向けのリストで、日本の制度とは関係がない（筆者の注意）</li>
+            <li>7-Zip のライセンスは、SILL と開発元の記載が食い違う。開発元を優先したい<a class="ref" href="#src-21">[21]</a><a class="ref" href="#src-11">[11]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="table-wrap is-wide">
+        <table>
+          <caption>用途ごとの代表的なオープンソースのソフト（最新版は2026年11月17日時点。順位ではありません）</caption>
+          <thead><tr><th scope="col">用途</th><th scope="col">ソフト（運営）</th><th scope="col">ライセンス</th><th scope="col">対応OS</th><th scope="col">最新版（公開日）</th><th scope="col">公式サイト</th><th scope="col">SILL</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">文書・表計算</th><td>LibreOffice（The Document Foundation）<a class="ref" href="#src-25">[25]</a></td><td>MPL v2<a class="ref" href="#src-26">[26]</a></td><td>Windows・macOS・Linux<a class="ref" href="#src-25">[25]</a></td><td>26.8.3（2026年11月12日）<a class="ref" href="#src-25">[25]</a></td><td>libreoffice.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">ブラウザ</th><td>Firefox（Mozilla）</td><td>MPL 2.0（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>Windows・macOS・Linux・Android・iOS（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>160.0（2026年11月10日）<a class="ref" href="#src-27">[27]</a></td><td>firefox.com</td><td>ESR 版が掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">メール</th><td>Thunderbird（非営利の Mozilla の下の営利子会社）<a class="ref" href="#src-28">[28]</a></td><td>MPL 2.0（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>Windows・macOS・Linux・Android（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>160.0（2026年11月10日）<a class="ref" href="#src-29">[29]</a></td><td>thunderbird.net</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">動画の再生</th><td>VLC（VideoLAN）<a class="ref" href="#src-10">[10]</a></td><td>大部分が GNU GPL v2<a class="ref" href="#src-10">[10]</a></td><td>Windows・Linux・Mac OS X・Unix・iOS・Android など<a class="ref" href="#src-30">[30]</a></td><td>3.0.24（2026年9月22日）<a class="ref" href="#src-31">[31]</a></td><td>videolan.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">録画・配信</th><td>OBS Studio（OBS Project）<a class="ref" href="#src-32">[32]</a></td><td>GNU GPL v2<a class="ref" href="#src-33">[33]</a></td><td>Windows 10・11、macOS 13.0 以降、Linux<a class="ref" href="#src-22">[22]</a></td><td>33.0.1（2026年10月29日）<a class="ref" href="#src-34">[34]</a></td><td>obsproject.com</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">音声の編集</th><td>Audacity（著作権表示は Muse Group と貢献者）<a class="ref" href="#src-35">[35]</a></td><td>GPLv3（一部は GPLv2 以降）<a class="ref" href="#src-36">[36]</a></td><td>Windows・macOS・Linux（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>4.0.2（2026年11月2日）<a class="ref" href="#src-37">[37]</a></td><td>audacityteam.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">写真の加工</th><td>GIMP</td><td>GNU GPLv3（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>Linux・macOS・Windows<a class="ref" href="#src-38">[38]</a></td><td>3.2.8（2026年11月2日）<a class="ref" href="#src-38">[38]</a></td><td>gimp.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">お絵描き</th><td>Krita</td><td>GNU GPL v3<a class="ref" href="#src-39">[39]</a></td><td>Windows・macOS・Linux（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>5.3.4.1（2026年10月7日）<a class="ref" href="#src-39">[39]</a></td><td>krita.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">図・ロゴ（ベクター）</th><td>Inkscape</td><td>配布物全体は GNU GPL v3 以降<a class="ref" href="#src-40">[40]</a></td><td>Windows・macOS・Linux（SILL の記載）<a class="ref" href="#src-21">[21]</a></td><td>1.4.4（2026年5月6日）<a class="ref" href="#src-41">[41]</a></td><td>inkscape.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">3DCG</th><td>Blender（Blender Foundation が調整するコミュニティのプロジェクト）<a class="ref" href="#src-42">[42]</a></td><td>配布物は GNU GPL v3 以降<a class="ref" href="#src-12">[12]</a></td><td>Windows 11・10・8.1、macOS 13 以降、Linux など<a class="ref" href="#src-43">[43]</a></td><td>5.3.0（2026年11月10日）<a class="ref" href="#src-43">[43]</a></td><td>blender.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">圧縮・展開</th><td>7-Zip（個人の開発者）</td><td>主に GNU LGPL。一部に unRAR の制限など<a class="ref" href="#src-11">[11]</a></td><td>Windows。Linux はコマンド版<a class="ref" href="#src-44">[44]</a></td><td>26.06（2026年11月6日）<a class="ref" href="#src-44">[44]</a></td><td>7-zip.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+            <tr><th scope="row">パスワード管理</th><td>KeePassXC（KeePassXC Team）<a class="ref" href="#src-45">[45]</a></td><td>GPLv3<a class="ref" href="#src-45">[45]</a></td><td>Windows・macOS 12 以降・Linux<a class="ref" href="#src-45">[45]</a></td><td>2.8.0（2026年10月21日）<a class="ref" href="#src-46">[46]</a></td><td>keepassxc.org</td><td>掲載<a class="ref" href="#src-21">[21]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-note">公開日は、開発団体の発表や GitHub の公開記録の日付です（GitHub は協定世界時）。「SILL の記載」は、開発元の公式文書で確かめられなかった項目を SILL のデータで補ったものです。各ソフトの画面が日本語で使えるかどうかは、今回は一つずつ確かめていません。</p>
+
+      <section class="item-card">
+        <h3>名前が似ていても、配布版のライセンスが違うことがある</h3>
+        <p class="item-point">VS Code の配布版は、Microsoft 製品のライセンス<a class="ref" href="#src-47">[47]</a></p>
+        <p>Microsoft によると、プログラムを書くためのエディタ Visual Studio Code は、ソースのリポジトリ「Code - OSS」に Microsoft 独自の変更を加え、従来の Microsoft 製品のライセンスで配っているものです<a class="ref" href="#src-47">[47]</a>。リポジトリ自体は MIT ライセンスです<a class="ref" href="#src-47">[47]</a>。配布版のライセンスは「MICROSOFT SOFTWARE LICENSE TERMS」です<a class="ref" href="#src-48">[48]</a>。一方、VSCodium は、Code - OSS から作ったバイナリ（すぐ使える形のプログラム）を MIT ライセンスで配り、テレメトリ（利用状況の送信）を無効にしていると説明しています<a class="ref" href="#src-15">[15]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>パスワード管理は、ライセンスと対応OSだけ確かめる</h3>
+        <p class="item-point">使い方や選び方は、パスワード管理の記事で</p>
+        <p>パスワード管理ソフトでは、KeePassXC が GPLv3 で配られ、macOS 12 以降・Windows・Linux 向けの版があります<a class="ref" href="#src-45">[45]</a>。Bitwarden のクライアントは、GPL v3.0 と Bitwarden License v1.0 の二本立てです<a class="ref" href="#src-49">[49]</a>。管理ツールの使い方や、紙のメモとの使い分けは、<a href="password-kanri.html">パスワード管理の基本</a>にまとめています。</p>
+      </section>
+
+      <h2 id="sec-4">行政も使っている：国内外の採用例</h2>
+
+      <p>オープンソースのオフィスソフトなどを、役所で標準にする動きがあります。公式の発表で確かめられたものを、時系列で並べました。</p>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2008年10月</span><p class="timeline-title">会津若松市が、事務用パソコン240台を原則オープンオフィスだけに</p><p class="timeline-note">パソコンの入れ替えに合わせて<a class="ref" href="#src-50">[50]</a></p></li>
+        <li><span class="timeline-day">2012年4月</span><p class="timeline-title">会津若松市が、LibreOffice を庁内標準のオフィスソフトに</p><p class="timeline-note">全面的に採用<a class="ref" href="#src-50">[50]</a></p></li>
+        <li><span class="timeline-day">2024年4月3日</span><p class="timeline-title">ドイツのシュレースヴィヒ＝ホルシュタイン州が、LibreOffice の標準化を発表</p><p class="timeline-note">閣議決定。職員約3万人の IT 職場が対象<a class="ref" href="#src-51">[51]</a></p></li>
+        <li><span class="timeline-day">2025年6月19日</span><p class="timeline-title">デンマークのデジタル化省が、Office の代わりを試す試験を開始</p><p class="timeline-note">LibreOffice をもとにした Collabora を使う<a class="ref" href="#src-52">[52]</a></p></li>
+        <li><span class="timeline-day">2025年12月4日</span><p class="timeline-title">シュレースヴィヒ＝ホルシュタイン州が、職場の約8割で移行と発表</p><p class="timeline-note">税務の部門を除く<a class="ref" href="#src-5">[5]</a></p></li>
+        <li><span class="timeline-day">2026年4月24日</span><p class="timeline-title">デジタル庁が、ガバメントAI「源内」の一部を OSS として公開</p><p class="timeline-note">商用利用できるライセンスで無償公開<a class="ref" href="#src-53">[53]</a></p></li>
+      </ol>
+
+      <figure class="photo">
+        <img src="images/opensource-soft-erabikata/server-aisle.jpg" width="960" height="560" loading="lazy" alt="両側に黒いサーバーのラックが並び、小さな緑や青のランプが光っている通路">
+        <figcaption>サーバーが並ぶ部屋の通路（イギリス国立公文書館）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>ドイツの州：税務以外の職場の約8割が LibreOffice に</h3>
+        <p class="item-point">Office と Outlook は、削除済みか作業中<a class="ref" href="#src-5">[5]</a></p>
+        <p>ドイツのシュレースヴィヒ＝ホルシュタイン州は、2024年4月の発表で、LibreOffice を標準のオフィスソフトとして全面的に導入する閣議決定を示し、州行政の職員約3万人の IT 職場をオープンソースへ移す方針を打ち出しました<a class="ref" href="#src-51">[51]</a>。計画には、Windows から Linux への移行なども含まれます<a class="ref" href="#src-51">[51]</a>。2025年12月の州の発表では、税務の部門以外の職場の「ほぼ80%」で LibreOffice が使われ、Microsoft Office と Outlook はアンインストール済みか作業中としています<a class="ref" href="#src-5">[5]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>州は、ライセンス費をすでに1,500万ユーロ超節約していると説明している<a class="ref" href="#src-5">[5]</a></li>
+            <li>一方、2026年に移行と開発のための一時的な投資900万ユーロを見込む<a class="ref" href="#src-5">[5]</a></li>
+            <li>メールは、約4万4千のメールボックスを Open-Xchange に移した<a class="ref" href="#src-5">[5]</a></li>
+            <li>残る約20%の職場は、業務システムの都合で Word や Excel が必要<a class="ref" href="#src-5">[5]</a></li>
+            <li>州は、業務システムの多くが今は Windows 用で、Linux では動かないと説明している<a class="ref" href="#src-54">[54]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>デンマーク：デジタル化省が2025年6月に試験を開始</h3>
+        <p class="item-point">一部の職員が、Office の代わりに Collabora を試す<a class="ref" href="#src-52">[52]</a></p>
+        <p>デンマークのデジタル化省は、一部の職員が、案件処理システム「F2」の中で Microsoft Office の代わりに、LibreOffice をもとにした Collabora を試す試験を始めました。省本部での試験の開始は2025年6月19日です<a class="ref" href="#src-52">[52]</a>。大臣は、これですぐに大手 IT 企業を追い出せるとは思っていないとし、正しい方向への一歩と位置づけています<a class="ref" href="#src-52">[52]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>会津若松市：2012年から LibreOffice を庁内標準に</h3>
+        <p class="item-point">導入当時の試算は、約5年で約1500万円の削減<a class="ref" href="#src-50">[50]</a></p>
+        <p>福島県会津若松市は、2008年10月からの事務用パソコン240台の入れ替えで、原則としてオープンオフィス（OpenOffice.org）だけを入れ、2012年4月から LibreOffice を庁内標準のオフィスソフトとして全面的に採用しました<a class="ref" href="#src-50">[50]</a>。2007年の導入当時の試算では、有償ソフトを15%程度併用しても、パソコンが入れ替わる約5年間で約1500万円程度の削減効果があるとしています。市は、この試算は現在の状況とは異なると注記しています<a class="ref" href="#src-50">[50]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>市のページの記載は、2014年7月に全パソコンへ LibreOffice 4.0.6.2 を入れたところまで<a class="ref" href="#src-55">[55]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>デジタル庁：「源内」の一部を OSS として公開</h3>
+        <p class="item-point">重複開発を防ぎ、特定の事業者への依存を抑える<a class="ref" href="#src-53">[53]</a></p>
+        <p>デジタル庁は2026年4月24日、政府職員が使う生成AIの基盤「源内」の一部を、商用利用できるライセンスで、無償の OSS として公開しました。公開したのは、Web 画面の部分のソースコードと構築手順などです<a class="ref" href="#src-53">[53]</a>。自治体や政府機関で似た AI 基盤を重複して開発するのを防ぎ、特定の事業者やサービスへの依存を抑えながら運用できることを狙いに挙げています<a class="ref" href="#src-53">[53]</a>。</p>
+      </section>
+
+      <figure class="bar-chart">
+        <figcaption class="chart-title">SILL で、そのソフトの利用者・担当者がいると登録した組織の数 <span class="chart-sub">（参考。フランスの公的機関の職員による自己申告。2026年11月17日のデータ）</span><a class="ref" href="#src-21">[21]</a></figcaption>
+        <div role="img" aria-label="SILL で、そのソフトの利用者・担当者がいると登録した組織の数（参考、自己申告、2026年11月17日のデータ）：LibreOffice 104、Firefox ESR 78、GIMP 57、7-Zip 53、Thunderbird 53、Inkscape 42、VLC 32、OBS Studio 30、Blender 16、KeePassXC 14、Audacity 2、Krita 2">
+          <div class="bar-row is-key"><span class="bar-label">LibreOffice</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">104</span></div>
+          <div class="bar-row"><span class="bar-label">Firefox ESR</span><span class="bar-track"><span class="bar" style="width:75%"></span></span><span class="bar-value">78</span></div>
+          <div class="bar-row"><span class="bar-label">GIMP</span><span class="bar-track"><span class="bar" style="width:54.8%"></span></span><span class="bar-value">57</span></div>
+          <div class="bar-row"><span class="bar-label">7-Zip</span><span class="bar-track"><span class="bar" style="width:51%"></span></span><span class="bar-value">53</span></div>
+          <div class="bar-row"><span class="bar-label">Thunderbird</span><span class="bar-track"><span class="bar" style="width:51%"></span></span><span class="bar-value">53</span></div>
+          <div class="bar-row"><span class="bar-label">Inkscape</span><span class="bar-track"><span class="bar" style="width:40.4%"></span></span><span class="bar-value">42</span></div>
+          <div class="bar-row"><span class="bar-label">VLC</span><span class="bar-track"><span class="bar" style="width:30.8%"></span></span><span class="bar-value">32</span></div>
+          <div class="bar-row"><span class="bar-label">OBS Studio</span><span class="bar-track"><span class="bar" style="width:28.8%"></span></span><span class="bar-value">30</span></div>
+          <div class="bar-row"><span class="bar-label">Blender</span><span class="bar-track"><span class="bar" style="width:15.4%"></span></span><span class="bar-value">16</span></div>
+          <div class="bar-row"><span class="bar-label">KeePassXC</span><span class="bar-track"><span class="bar" style="width:13.5%"></span></span><span class="bar-value">14</span></div>
+          <div class="bar-row"><span class="bar-label">Audacity</span><span class="bar-track"><span class="bar" style="width:1.9%"></span></span><span class="bar-value">2</span></div>
+          <div class="bar-row"><span class="bar-label">Krita</span><span class="bar-track"><span class="bar" style="width:1.9%"></span></span><span class="bar-value">2</span></div>
+        </div>
+      </figure>
+      <p>見方: SILL の公開データで、ソフトごとに利用者か担当者（リファレント）がいると登録した組織を、筆者が数えました<a class="ref" href="#src-21">[21]</a>。職員の自己申告にもとづく数なので、実際に使っている機関や人の数を表すものではありません。Krita は2026年5月29日、KeePassXC は2025年11月21日に載ったばかりです<a class="ref" href="#src-21">[21]</a>。</p>
+
+      <h2 id="sec-5">安全な入れ方：公式サイトから入れ、更新を続ける</h2>
+
+      <section class="item-card">
+        <h3>口コミのリンクから、偽のダウンロードサイトへ</h3>
+        <p class="item-point">総務省は、公式サイト等からの入手を勧めている<a class="ref" href="#src-6">[6]</a></p>
+        <p>総務省は、検索の上位に出た口コミサイトのリンクから、有名なダウンロードサイトに似せた偽のホームページに誘導され、画像加工ソフトに見せかけたマルウェア（悪意のあるソフト）を入れてしまった事例を紹介しています。新種だったため、入れたときにはマルウェア対策ソフトも検知できませんでした<a class="ref" href="#src-6">[6]</a>。予防法として、公式サイト等の信頼できるサイトから入手したソフトを使うよう勧めています<a class="ref" href="#src-6">[6]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>IPA は、サービス名で検索すると、検索結果の最上位に罠の広告が出ることがあると注意している<a class="ref" href="#src-56">[56]</a></li>
+            <li>IPA の注意はサポート詐欺についてだが、検索結果の広告に気をつける点は同じ（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>公式サイトでも、一緒に入るものを確かめる</h3>
+        <p class="item-point">Audacity は「MuseHub なし」の入手も用意している<a class="ref" href="#src-35">[35]</a></p>
+        <p>Audacity の公式サイトには、「Download Audacity」のほかに、「Download without MuseHub」（MuseHub なしでダウンロード）というボタンがあります<a class="ref" href="#src-35">[35]</a>。MuseHub は、同じサイトでプラグインやアプリなどを販売するサービスとして案内されています<a class="ref" href="#src-35">[35]</a>。ダウンロードの画面に選択肢があれば、何が一緒に入るのかを読んでから選ぶと安心です（筆者の提案）。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>更新を続ける：7-Zip の脆弱性は悪用も確認</h3>
+        <p class="item-point">米国の当局が、悪用された脆弱性の一覧に加えた<a class="ref" href="#src-7">[7]</a></p>
+        <p>7-Zip の脆弱性 CVE-2025-0411 は、細工した圧縮ファイルを展開すると、ネットから来たことを示す印（Mark-of-the-Web）が展開したファイルに引き継がれず、その印による保護を回避されるおそれがあるものです<a class="ref" href="#src-7">[7]</a>。米国の脆弱性データベース NVD の記録では、米国の CISA（サイバーセキュリティ・インフラストラクチャー安全保障庁）が2025年2月6日に「悪用が確認された脆弱性」の一覧に加えています<a class="ref" href="#src-7">[7]</a>。対象は24.09より前の版で、深刻度（CVSS v3.1）は10点満点の7.0です<a class="ref" href="#src-7">[7]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>7-Zip は2024年11月29日の24.09で、入れ子の書庫で印が伝わらない不具合を直した<a class="ref" href="#src-23">[23]</a></li>
+            <li>2026年も、26.01〜26.06 で脆弱性の修正が続いている<a class="ref" href="#src-23">[23]</a></li>
+            <li>26.03 では、印を保てない別の脆弱性（CVE-2026-58052）を修正した<a class="ref" href="#src-23">[23]</a></li>
+            <li>経産省は、脆弱性情報の入手先として、IPA と JPCERT/CC の JVN を紹介している<a class="ref" href="#src-2">[2]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>更新の通知が出たら、速やかに更新する</h3>
+        <p class="item-point">サポートが切れたソフトは、脆弱性が直らない<a class="ref" href="#src-57">[57]</a></p>
+        <p>総務省は、更新の通知が表示されたら速やかに更新し、自動更新の機能があれば有効にするのもよい方法だとしています<a class="ref" href="#src-57">[57]</a>。サポート期間が切れたソフトは、脆弱性が見つかっても修正されないと注意しています<a class="ref" href="#src-57">[57]</a>。たとえば LibreOffice の26.2系は2026年11月30日でサポートが終わり、その後は不具合やセキュリティの修正が出ないため、開発団体は26.8.3への更新を勧めています<a class="ref" href="#src-25">[25]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>ソースが公開されていても、混入は起きる</h3>
+        <p class="item-point">XZ Utils に、共同開発者が悪意あるコードを入れた<a class="ref" href="#src-58">[58]</a></p>
+        <p>2024年3月29日（現地時間）、Linux などで使われる圧縮ツール XZ Utils に、悪意のあるコードが入れられていたことが分かりました。JPCERT/CC によると、共同開発者が2024年2月24日ごろに入れたもので、対象は5.6.0と5.6.1です。特定の条件では、SSH（遠隔操作の仕組み）を通じて外部から接続されるおそれがありました<a class="ref" href="#src-58">[58]</a>。NVD の深刻度は10点満点の10.0です<a class="ref" href="#src-59">[59]</a>。ソースが公開されていることは、安全の保証そのものではありません（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>NVD は、配布用の圧縮ファイル（tarball）に悪意のあるコードが見つかったとしている<a class="ref" href="#src-59">[59]</a></li>
+            <li>JPCERT/CC は、版の確認は xz コマンドでなく、パッケージ管理ソフトで行うよう勧めた<a class="ref" href="#src-58">[58]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <caption>入れる前・入れた後のチェックリスト（総務省・IPA などの説明をもとに筆者がまとめたもの）</caption>
+          <thead><tr><th scope="col">確かめること</th><th scope="col">理由</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">□ 公式サイトのアドレスを確かめ、ブックマークから開く</th><td>総務省は、公式サイト等の信頼できるサイトからの入手を勧める<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">□ 検索結果の広告や、口コミサイトのリンクから入らない</th><td>罠の広告が検索結果の最上位に出ることがある<a class="ref" href="#src-56">[56]</a>。偽サイトへの誘導の事例もある<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">□ 対応OSと、サポート中の版かを確かめる</th><td>サポートが切れたソフトは、脆弱性が修正されない<a class="ref" href="#src-57">[57]</a></td></tr>
+            <tr><th scope="row">□ 一緒に入るものの選択肢を読む</th><td>公式サイトでも、付属サービスの有無を選べることがある<a class="ref" href="#src-35">[35]</a></td></tr>
+            <tr><th scope="row">□ 更新の通知が出たら更新する。自動更新があれば有効に</th><td>総務省が勧めている<a class="ref" href="#src-57">[57]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-6">2025〜2026年の動き</h2>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2025年3月16日</span><p class="timeline-title">GIMP 3.0</p><p class="timeline-note">ボランティアの開発者などの7年の作業の成果と発表<a class="ref" href="#src-60">[60]</a></p></li>
+        <li><span class="timeline-day">2025年10月14日</span><p class="timeline-title">Windows 10 のサポートが終了</p><p class="timeline-note"><a class="ref" href="#src-61">[61]</a></p></li>
+        <li><span class="timeline-day">2025年11月18日</span><p class="timeline-title">Blender 5.0</p><p class="timeline-note"><a class="ref" href="#src-62">[62]</a></p></li>
+        <li><span class="timeline-day">2026年3月14日</span><p class="timeline-title">GIMP 3.2</p><p class="timeline-note"><a class="ref" href="#src-63">[63]</a></p></li>
+        <li><span class="timeline-day">2026年8月26日</span><p class="timeline-title">LibreOffice 26.8</p><p class="timeline-note">生成AIの機能は入れていないと説明<a class="ref" href="#src-26">[26]</a></p></li>
+        <li><span class="timeline-day">2026年9月3日</span><p class="timeline-title">Audacity 4.0.0</p><p class="timeline-note">GitHub の公開記録の日付<a class="ref" href="#src-37">[37]</a></p></li>
+        <li><span class="timeline-day">2026年9月11日</span><p class="timeline-title">EU のサイバーレジリエンス法で、報告の義務が始まる</p><p class="timeline-note">製造者が対象<a class="ref" href="#src-64">[64]</a></p></li>
+        <li><span class="timeline-day">2026年10月23日</span><p class="timeline-title">OBS Studio 33.0.0</p><p class="timeline-note">GitHub の公開記録の日付<a class="ref" href="#src-34">[34]</a></p></li>
+        <li><span class="timeline-day">2026年11月10日</span><p class="timeline-title">Blender 5.3.0、Firefox 160.0、Thunderbird 160.0</p><p class="timeline-note"><a class="ref" href="#src-43">[43]</a><a class="ref" href="#src-27">[27]</a><a class="ref" href="#src-29">[29]</a></p></li>
+        <li><span class="timeline-day">2026年11月30日</span><p class="timeline-title">LibreOffice 26.2系のサポートが終了（予定）</p><p class="timeline-note">26.8系への移行を勧めている<a class="ref" href="#src-25">[25]</a></p></li>
+      </ol>
+
+      <section class="item-card">
+        <h3>LibreOffice の版番号は「年.月」</h3>
+        <p class="item-point">26.8 は2026年8月の版。版は .2 と .8 が並ぶ<a class="ref" href="#src-65">[65]</a></p>
+        <p>LibreOffice は、2024年1月31日に発表した24.2から、版番号を「年.月」（YY.M）の形に変えました<a class="ref" href="#src-66">[66]</a>。開発団体の公開計画では、24.2・24.8・25.2・25.8・26.2・26.8 と続き、次は27.2です<a class="ref" href="#src-65">[65]</a>。26.8 は2026年8月26日に公開され、生成AIの機能は入っていないと説明しています<a class="ref" href="#src-26">[26]</a>。開発団体は、26.8 が最初の8週で940万ダウンロードを超えたと公表しています<a class="ref" href="#src-67">[67]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>26.8 は206人が貢献し、うち155人がボランティアと説明している<a class="ref" href="#src-26">[26]</a></li>
+            <li>広告・テレメトリ・定額料金・アカウントはいずれもないと説明している<a class="ref" href="#src-26">[26]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>Windows 10 のサポート終了後は、ソフト側の対応も確かめる</h3>
+        <p class="item-point">LibreOffice 26.8 は、Windows 10 以降が必要<a class="ref" href="#src-25">[25]</a></p>
+        <p>Microsoft によると、Windows 10 のサポートは2025年10月14日に終了しました<a class="ref" href="#src-61">[61]</a>。同じページは、拡張セキュリティ更新（ESU）を使うと、2027年10月12日まで重要なセキュリティ更新が配信されると説明しています<a class="ref" href="#src-61">[61]</a>。ソフトの側では、LibreOffice 26.8 は Windows 10 以降が必要で<a class="ref" href="#src-25">[25]</a>、OBS Studio の Windows 版は Windows 10 と 11 に対応、Blender 5.3.0 は Windows 11・10・8.1 に対応と書いています<a class="ref" href="#src-22">[22]</a><a class="ref" href="#src-43">[43]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>EU のサイバーレジリエンス法：オープンソースには特別な扱い</h3>
+        <p class="item-point">収益化していないオープンソースの提供は、商業活動とみなさない<a class="ref" href="#src-68">[68]</a></p>
+        <p>EU のサイバーレジリエンス法（CRA）は、ソフトやハードなどデジタル要素のある製品を買う消費者と企業を守るための法律で、2024年12月10日に発効しました<a class="ref" href="#src-69">[69]</a>。主な義務は2027年12月11日から、報告の義務は2026年9月11日から適用されます<a class="ref" href="#src-69">[69]</a>。収益化していないオープンソースの提供は商業活動とみなさず、自分の責任でないプロジェクトにコードを寄せる開発者にも適用しません<a class="ref" href="#src-68">[68]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>新しい区分「オープンソース・ソフトウェア・スチュワード」は、商業向けのOSSを継続して支える法人<a class="ref" href="#src-68">[68]</a></li>
+            <li>スチュワードはセキュリティ方針などの義務を負うが、行政上の罰金の対象外<a class="ref" href="#src-68">[68]</a></li>
+            <li>スチュワードの報告義務は、2027年12月11日から<a class="ref" href="#src-64">[64]</a></li>
+            <li>欧州委員会は、2026年7月27日に実務の手引きを公表した<a class="ref" href="#src-69">[69]</a></li>
+            <li>義務の対象は製造者などで、使うだけの人に新しい義務を課す法律ではないと考えられる（筆者の見解）</li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>表の各ソフトの画面が日本語で使えるかどうか（公式の言語一覧で一つずつは確かめていない）</li>
+          <li>SILL の項目ごとに付いている区分（推奨の印など）の意味の、公式の説明</li>
+          <li>デンマークのデジタル化省の試験のその後（省の公式発表は見つからなかった）</li>
+          <li>シュレースヴィヒ＝ホルシュタイン州の、2026年の移行の進み具合</li>
+          <li>日本の自治体・官公庁が LibreOffice などを採用した、2024〜2026年の新しい公式発表</li>
+          <li>「検索広告から偽のダウンロードサイトへ」という手口についての、公的機関の注意喚起</li>
+          <li>Windows 10 の ESU が個人向けか法人向けか（Microsoft のサポート終了のページでは読み取れなかった）</li>
+          <li>経済産業省の事例集に、令和4年8月1日版より新しい改訂があるかどうか</li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（69件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月17日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://opensource.org/osd" target="_blank" rel="noopener">The Open Source Definition（1.9版）</a>（Open Source Initiative）</li>
+          <li id="src-2"><a href="https://www.meti.go.jp/policy/netsecurity/wg1/ossjirei_20220801.pdf" target="_blank" rel="noopener">OSSの利活用及びそのセキュリティ確保に向けた管理手法に関する事例集（令和4年8月1日、PDF）</a>（経済産業省）</li>
+          <li id="src-3"><a href="https://www.mozilla.org/en-US/MPL/2.0/FAQ/" target="_blank" rel="noopener">MPL 2.0 FAQ</a>（Mozilla）</li>
+          <li id="src-4"><a href="https://www.gnu.org/licenses/gpl-faq.ja.html" target="_blank" rel="noopener">GNUライセンスに関して良く聞かれる質問</a>（GNUプロジェクト（フリーソフトウェア財団））</li>
+          <li id="src-5"><a href="https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/I/Presse/PI/2025/cds/251204_cds_open-source" target="_blank" rel="noopener">LibreOffice ersetzt Microsoft: Schon fast 80 Prozent der Arbeitsplätze auf quelloffene Office-Lösung umgestellt（2025年12月4日）</a>（ドイツ シュレースヴィヒ＝ホルシュタイン州 首相府）</li>
+          <li id="src-6"><a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/case/end_user/07/" target="_blank" rel="noopener">国民のためのサイバーセキュリティサイト 事例7 有名サイトからダウンロードしたはずなのに・・・</a>（総務省）</li>
+          <li id="src-7"><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-0411" target="_blank" rel="noopener">CVE-2025-0411 の記録</a>（米国立標準技術研究所（NIST）NVD）</li>
+          <li id="src-8"><a href="https://www.gnu.org/philosophy/free-sw.ja.html" target="_blank" rel="noopener">自由ソフトウェアとは?</a>（GNUプロジェクト（フリーソフトウェア財団））</li>
+          <li id="src-9"><a href="https://www.gnu.org/licenses/gpl-3.0.txt" target="_blank" rel="noopener">GNU General Public License version 3（2007年6月29日）</a>（フリーソフトウェア財団）</li>
+          <li id="src-10"><a href="https://www.videolan.org/legal.html" target="_blank" rel="noopener">Legal</a>（VideoLAN）</li>
+          <li id="src-11"><a href="https://www.7-zip.org/license.txt" target="_blank" rel="noopener">License for use and distribution（license.txt）</a>（7-Zip）</li>
+          <li id="src-12"><a href="https://www.blender.org/about/license/" target="_blank" rel="noopener">License</a>（Blender Foundation）</li>
+          <li id="src-13"><a href="https://www.apache.org/licenses/LICENSE-2.0.txt" target="_blank" rel="noopener">Apache License, Version 2.0</a>（Apache Software Foundation）</li>
+          <li id="src-14"><a href="https://opensource.org/license/mit" target="_blank" rel="noopener">The MIT License</a>（Open Source Initiative）</li>
+          <li id="src-15"><a href="https://vscodium.com/" target="_blank" rel="noopener">VSCodium - Open Source Binaries of VSCode</a>（VSCodium）</li>
+          <li id="src-16"><a href="https://inkscape.org/about/license/" target="_blank" rel="noopener">Licensing</a>（Inkscape）</li>
+          <li id="src-17"><a href="https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" target="_blank" rel="noopener">LICENSE（Noto Sans CJK）</a>（Noto CJK（notofonts、GitHub））</li>
+          <li id="src-18"><a href="https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/README.md" target="_blank" rel="noopener">Source Han Sans README</a>（Adobe（GitHub））</li>
+          <li id="src-19"><a href="https://moji.or.jp/ipafont/" target="_blank" rel="noopener">IPAexフォントおよびIPAフォントについて</a>（一般社団法人 文字情報技術促進協議会）</li>
+          <li id="src-20"><a href="https://moji.or.jp/ipafont/license/" target="_blank" rel="noopener">IPAフォントライセンスv1.0</a>（一般社団法人 文字情報技術促進協議会）</li>
+          <li id="src-21"><a href="https://code.gouv.fr/sill/" target="_blank" rel="noopener">SILL（2026年11月17日に公開データで確認）</a>（フランス政府 DINUM（code.gouv.fr））</li>
+          <li id="src-22"><a href="https://obsproject.com/download" target="_blank" rel="noopener">Download</a>（OBS Project）</li>
+          <li id="src-23"><a href="https://www.7-zip.org/history.txt" target="_blank" rel="noopener">HISTORY of the 7-Zip（history.txt）</a>（7-Zip）</li>
+          <li id="src-24"><a href="https://www.data.gouv.fr/fr/datasets/socle-interministeriel-de-logiciels-libres/" target="_blank" rel="noopener">Socle interministériel de logiciels libres（データセットのページ）</a>（data.gouv.fr（フランス政府））</li>
+          <li id="src-25"><a href="https://blog.documentfoundation.org/blog/2026/11/12/announcement-of-libreoffice-26-8-3/" target="_blank" rel="noopener">Announcement of LibreOffice 26.8.3（2026年11月12日）</a>（The Document Foundation）</li>
+          <li id="src-26"><a href="https://blog.documentfoundation.org/blog/2026/08/26/libreoffice-26-8/" target="_blank" rel="noopener">LibreOffice 26.8 brings professional typography, deeper support for the world's writing systems, and no artificial intelligence（2026年8月26日）</a>（The Document Foundation）</li>
+          <li id="src-27"><a href="https://www.firefox.com/en-US/firefox/160.0/releasenotes/" target="_blank" rel="noopener">Firefox 160.0 Release Notes</a>（Mozilla）</li>
+          <li id="src-28"><a href="https://www.thunderbird.net/en-US/about" target="_blank" rel="noopener">About</a>（Thunderbird）</li>
+          <li id="src-29"><a href="https://www.thunderbird.net/en-US/thunderbird/160.0/releasenotes/" target="_blank" rel="noopener">Thunderbird 160.0 Release Notes</a>（Thunderbird）</li>
+          <li id="src-30"><a href="https://www.videolan.org/vlc/" target="_blank" rel="noopener">Official download of VLC media player</a>（VideoLAN）</li>
+          <li id="src-31"><a href="https://www.videolan.org/news.html" target="_blank" rel="noopener">News</a>（VideoLAN）</li>
+          <li id="src-32"><a href="https://obsproject.com/" target="_blank" rel="noopener">Open Broadcaster Software | OBS</a>（OBS Project）</li>
+          <li id="src-33"><a href="https://raw.githubusercontent.com/obsproject/obs-studio/master/COPYING" target="_blank" rel="noopener">COPYING</a>（OBS Project（GitHub））</li>
+          <li id="src-34"><a href="https://github.com/obsproject/obs-studio/releases" target="_blank" rel="noopener">obs-studio の Releases</a>（OBS Project（GitHub））</li>
+          <li id="src-35"><a href="https://www.audacityteam.org/" target="_blank" rel="noopener">Audacity | Free, Open Source Audio Editor and Recorder</a>（Audacity（Muse Group））</li>
+          <li id="src-36"><a href="https://www.audacityteam.org/about/license/" target="_blank" rel="noopener">License</a>（Audacity（Muse Group））</li>
+          <li id="src-37"><a href="https://github.com/audacity/audacity/releases" target="_blank" rel="noopener">audacity の Releases</a>（Audacity（GitHub））</li>
+          <li id="src-38"><a href="https://www.gimp.org/downloads/" target="_blank" rel="noopener">Downloads</a>（GIMP）</li>
+          <li id="src-39"><a href="https://krita.org/en/download/" target="_blank" rel="noopener">Download</a>（Krita）</li>
+          <li id="src-40"><a href="https://gitlab.com/inkscape/inkscape/-/raw/master/COPYING" target="_blank" rel="noopener">COPYING</a>（Inkscape（GitLab））</li>
+          <li id="src-41"><a href="https://inkscape.org/release/" target="_blank" rel="noopener">Download Inkscape 1.4.4</a>（Inkscape）</li>
+          <li id="src-42"><a href="https://www.blender.org/about/" target="_blank" rel="noopener">About</a>（Blender Foundation）</li>
+          <li id="src-43"><a href="https://www.blender.org/download/" target="_blank" rel="noopener">Download</a>（Blender Foundation）</li>
+          <li id="src-44"><a href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">Download</a>（7-Zip）</li>
+          <li id="src-45"><a href="https://keepassxc.org/download/" target="_blank" rel="noopener">Download</a>（KeePassXC）</li>
+          <li id="src-46"><a href="https://github.com/keepassxreboot/keepassxc/releases" target="_blank" rel="noopener">keepassxc の Releases</a>（KeePassXC（GitHub））</li>
+          <li id="src-47"><a href="https://raw.githubusercontent.com/microsoft/vscode/main/README.md" target="_blank" rel="noopener">microsoft/vscode README</a>（Microsoft（GitHub））</li>
+          <li id="src-48"><a href="https://code.visualstudio.com/License/" target="_blank" rel="noopener">Visual Studio Code License</a>（Microsoft）</li>
+          <li id="src-49"><a href="https://raw.githubusercontent.com/bitwarden/clients/main/LICENSE.txt" target="_blank" rel="noopener">bitwarden/clients の LICENSE.txt</a>（Bitwarden（GitHub））</li>
+          <li id="src-50"><a href="https://www.city.aizuwakamatsu.fukushima.jp/docs/2008021400159/" target="_blank" rel="noopener">OSSオフィスソフトとODF文書を導入しています</a>（会津若松市）</li>
+          <li id="src-51"><a href="https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/I/Presse/PI/2024/CdS/240403_cds_it-arbeitsplatz" target="_blank" rel="noopener">Einstieg in den Umstieg: Schleswig-Holstein setzt auf einen digital souveränen IT-Arbeitsplatz in der Landesverwaltung（2024年4月3日）</a>（ドイツ シュレースヴィヒ＝ホルシュタイン州 首相府）</li>
+          <li id="src-52"><a href="https://www.digmin.dk/digitalisering/nyheder/nyhedsarkiv/2025/jun/digitaliseringsministeriet-saetter-gang-i-pilotprojekt-om-digital-suveraenitet" target="_blank" rel="noopener">Digitaliseringsministeriet sætter gang i pilotprojekt om digital suverænitet（2025年6月19日）</a>（デンマーク デジタル化省）</li>
+          <li id="src-53"><a href="https://www.digital.go.jp/news/907c8e5d-2f4f-4bd7-9400-37c9f4221d7d" target="_blank" rel="noopener">ガバメントAI「源内」をOSS（オープンソースソフトウェア）として公開しました（2026年4月24日）</a>（デジタル庁）</li>
+          <li id="src-54"><a href="https://www.schleswig-holstein.de/DE/landesregierung/themen/digitalisierung/linux-plus1/Projekt/verwaltungsarbeitsplatz" target="_blank" rel="noopener">Verwaltungsarbeitsplatz（プロジェクトの説明）</a>（ドイツ シュレースヴィヒ＝ホルシュタイン州）</li>
+          <li id="src-55"><a href="https://www.city.aizuwakamatsu.fukushima.jp/docs/2008021400326/" target="_blank" rel="noopener">リブレオフィス導入までの経過</a>（会津若松市）</li>
+          <li id="src-56"><a href="https://www.ipa.go.jp/security/anshin/attention/2024/mgdayori20241119.html" target="_blank" rel="noopener">安心相談窓口だより「パソコンに偽のウイルス感染警告を表示させるサポート詐欺に注意」（2024年11月19日）</a>（情報処理推進機構（IPA））</li>
+          <li id="src-57"><a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/end_user/general/03/" target="_blank" rel="noopener">国民のためのサイバーセキュリティサイト サポート切れソフトウェアを利用しないようにしよう</a>（総務省）</li>
+          <li id="src-58"><a href="https://www.jpcert.or.jp/newsflash/2024040101.html" target="_blank" rel="noopener">XZ Utilsに悪意のあるコードが挿入された問題（CVE-2024-3094）について（2024年4月1日）</a>（JPCERT/CC）</li>
+          <li id="src-59"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3094" target="_blank" rel="noopener">CVE-2024-3094 の記録</a>（米国立標準技術研究所（NIST）NVD）</li>
+          <li id="src-60"><a href="https://www.gimp.org/news/2025/03/16/gimp-3-0-released/" target="_blank" rel="noopener">GIMP 3.0 Released（2025年3月16日）</a>（GIMP）</li>
+          <li id="src-61"><a href="https://www.microsoft.com/ja-jp/windows/end-of-support" target="_blank" rel="noopener">Windows 10、Windows 8.1、Windows 7 のサポート終了</a>（Microsoft）</li>
+          <li id="src-62"><a href="https://www.blender.org/press/blender-5-0-release/" target="_blank" rel="noopener">Blender 5.0 Release</a>（Blender Foundation）</li>
+          <li id="src-63"><a href="https://www.gimp.org/news/2026/03/14/gimp-3-2-released/" target="_blank" rel="noopener">GIMP 3.2 Released（2026年3月14日）</a>（GIMP）</li>
+          <li id="src-64"><a href="https://digital-strategy.ec.europa.eu/en/policies/cra-reporting" target="_blank" rel="noopener">Cyber Resilience Act - Reporting obligations</a>（欧州委員会）</li>
+          <li id="src-65"><a href="https://wiki.documentfoundation.org/ReleasePlan" target="_blank" rel="noopener">ReleasePlan</a>（The Document Foundation Wiki）</li>
+          <li id="src-66"><a href="https://blog.documentfoundation.org/blog/2024/01/31/libreoffice-24-2/" target="_blank" rel="noopener">LibreOffice 24.2 Community available for all operating systems（2024年1月31日）</a>（The Document Foundation）</li>
+          <li id="src-67"><a href="https://blog.documentfoundation.org/blog/2026/11/04/libreoffice-project-and-community-recap-october-2026/" target="_blank" rel="noopener">LibreOffice project and community recap: October 2026（2026年11月4日）</a>（The Document Foundation）</li>
+          <li id="src-68"><a href="https://digital-strategy.ec.europa.eu/en/policies/cra-open-source" target="_blank" rel="noopener">Cyber Resilience Act - Open source</a>（欧州委員会）</li>
+          <li id="src-69"><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener">Cyber Resilience Act</a>（欧州委員会）</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（3件）</summary>
+        <ol class="sources">
+          <li>木の机に置いたノートパソコンと手帳<br>写真: Free-Photos（Pixabay）／<a href="https://commons.wikimedia.org/wiki/File:Home-office-336377.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>）</li>
+          <li>ウェブページのソースコード（HTML と JavaScript）<br>写真: Martin Vorel／<a href="https://commons.wikimedia.org/wiki/File:Programming_code.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>サーバーが並ぶ部屋の通路（イギリス国立公文書館）<br>写真: The National Archives (UK)／<a href="https://commons.wikimedia.org/wiki/File:A_view_of_the_server_room_at_The_National_Archives.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月17日時点の情報をもとにまとめたものです。各ソフトの最新版・対応OS・ライセンスや、公的なリストの内容は、変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../feed.xml">RSS（新着記事）</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
