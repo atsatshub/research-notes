@@ -6,7 +6,23 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 18 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>定番ソフトのまとめ：用途別の無料・有料の選び方、費用の比べ方、2025〜2026年の値上げと終了</title>
+    <link>https://atsatshub.github.io/research-notes/articles/teiban-soft-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/teiban-soft-2026.html</guid>
+    <pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事・学習の道具</category>
+    <description>OS標準・無料・有料の3段で考える選び方と用途別の一覧表、Microsoft 365とOffice 2024の価格と5年の費用、PDF・画像・動画の無料と有料の例、総務省の見解にもとづくセキュリティ対策、ビデオ会議と保存容量、サブスクの相談件数と解約の注意、2025〜2026年の値上げ・終了・無料化</description>
+  </item>
+  <item>
+    <title>国や公的機関の無料ウェブツール：防災・地図・税・年金・調べものに使える23選と、偽サイトの見分け方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/koteki-web-tool.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/koteki-web-tool.html</guid>
+    <pubDate>Wed, 18 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事・学習の道具</category>
+    <description>国・公的機関のウェブツール23件の用途別一覧（防災・地図・住まい・税・年金・医療・仕事・統計・法令・論文・翻訳）、使う前に確かめる3つの点、2026年5月からの新しい防災気象情報、確定申告のe-Tax利用率、偽メール・偽サイトの見分け方とフィッシングの件数、2024〜2026年に始まった・変わったこと</description>
+  </item>
   <item>
     <title>基本情報技術者試験の基本：科目A・Bの中身、合格率、2026年12月からの休止と新制度の案</title>
     <link>https://atsatshub.github.io/research-notes/articles/kihon-joho-gijutsusha-2026.html</link>
@@ -230,22 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>プラント</category>
     <description>呼び径・配管クラス・フランジ・スチームトラップ・玉形弁・安全弁・多管式熱交換器・キャビテーション・設計圧力・耐圧試験・防液堤・保有空地・インターロック・危険場所の区分・アイソメ図など100語を、法令や公的な解説をもとに説明</description>
-  </item>
-  <item>
-    <title>核融合発電は実現できるのか？ 仕組み、必要な条件、ITERと日本の計画、世界の記録、残る課題（2026年版）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kakuyugo-hatsuden.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>重水素と三重水素の反応と燃料1gで石油約8トン分のエネルギー、1億度以上などの条件、ITERの新計画（燃料の運転は2039年）、日本の「2030年代の発電実証」目標と原型炉案、NIFの点火やJETの69MJ、民間企業の目標、三重水素・材料・コスト・規制の課題</description>
-  </item>
-  <item>
-    <title>プラントとは何かを分かりやすく解説：工場との違い、種類、中にある設備、プラントの一生、日本のどこにあるか</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-towa.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-towa.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>装置産業という考え方、製油所19か所・エチレンプラント12基・ごみ焼却施設991施設などの種類と数、中にある設備、許可・完成検査・保安検査・定期修理・廃止というプラントの一生、全国76地区の特別防災区域、働く人と安全の仕組み</description>
   </item>
 </channel>
 </rss>
