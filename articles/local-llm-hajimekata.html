@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f55c9">
+  <title>ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）｜雑学アーカイブ</title>
+  <meta name="description" content="自分のパソコンで大規模言語モデルを動かす「ローカルLLM」を、モデルとツールの公式の説明でまとめました。クラウドとの違い、良い点と弱い点、メモリ・VRAM・NPUの目安、ツールとモデルの選び方、始め方、安全と決まり。2026年11月18日調査。">
+  <link rel="canonical" href="https://atsatshub.github.io/research-notes/articles/local-llm-hajimekata.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="雑学アーカイブ">
+  <meta property="og:title" content="ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）">
+  <meta property="og:description" content="自分のパソコンで大規模言語モデルを動かす「ローカルLLM」を、モデルとツールの公式の説明でまとめました。クラウドとの違い、良い点と弱い点、メモリ・VRAM・NPUの目安、ツールとモデルの選び方、始め方、安全と決まり。2026年11月18日調査。">
+  <meta property="og:url" content="https://atsatshub.github.io/research-notes/articles/local-llm-hajimekata.html">
+  <meta property="og:image" content="https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/keyboard-dark.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="雑学アーカイブ 新着記事" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js"></script>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）","description":"自分のパソコンで大規模言語モデルを動かす「ローカルLLM」を、モデルとツールの公式の説明でまとめました。クラウドとの違い、良い点と弱い点、メモリ・VRAM・NPUの目安、ツールとモデルの選び方、始め方、安全と決まり。2026年11月18日調査。","inLanguage":"ja","datePublished":"2026-11-18","dateModified":"2026-11-18","mainEntityOfPage":"https://atsatshub.github.io/research-notes/articles/local-llm-hajimekata.html","image":["https://atsatshub.github.io/research-notes/assets/ogp.png","https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/keyboard-dark.jpg","https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/desktop-inside.jpg","https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/memory-module.jpg","https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/graphics-card.jpg","https://atsatshub.github.io/research-notes/articles/images/local-llm-hajimekata/mac-mini-back.jpg"],"author":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html"},"publisher":{"@type":"Organization","name":"雑学アーカイブ","url":"https://atsatshub.github.io/research-notes/about.html","logo":{"@type":"ImageObject","url":"https://atsatshub.github.io/research-notes/assets/apple-touch-icon.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"トップ","item":"https://atsatshub.github.io/research-notes/"},{"@type":"ListItem","position":2,"name":"仕事・学習の道具","item":"https://atsatshub.github.io/research-notes/?cat=%E4%BB%95%E4%BA%8B%E3%83%BB%E5%AD%A6%E7%BF%92%E3%81%AE%E9%81%93%E5%85%B7"},{"@type":"ListItem","position":3,"name":"ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <nav class="site-nav" aria-label="サイト内"><a class="nav-link" href="../index.html">記事一覧</a><a class="nav-link" href="../about.html">このサイトについて</a></nav>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <article>
+      <p class="breadcrumb"><a href="../index.html">トップ</a> › <a href="../index.html?cat=%E4%BB%95%E4%BA%8B%E3%83%BB%E5%AD%A6%E7%BF%92%E3%81%AE%E9%81%93%E5%85%B7">仕事・学習の道具</a></p>
+
+      <h1>ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）</h1>
+
+      <ul class="article-meta">
+        <li>調査日: <time datetime="2026-11-18">2026年11月18日</time></li>
+        <li><span class="tag">仕事・学習の道具</span></li>
+      </ul>
+
+      <section class="summary" aria-label="要点まとめ">
+        <p class="summary-title">要点まとめ</p>
+        <ul>
+          <li>自分のパソコンで動かせば、入力した文を運営元に送らずに使える<a class="ref" href="#src-1">[1]</a></li>
+          <li>Gemma 4の小さい版は、4bitで<strong>2.9〜4.5GB</strong>（重みだけ）が目安<a class="ref" href="#src-2">[2]</a></li>
+          <li>会話が長いほど、表の値より多くのメモリが要る<a class="ref" href="#src-2">[2]</a><a class="ref" href="#src-3">[3]</a></li>
+          <li>始め方は、ツールを入れ、小さいモデルを取得して話しかけるだけ<a class="ref" href="#src-3">[3]</a></li>
+          <li>外からつながる設定にせず、モデルは信頼できる公開元から入れる<a class="ref" href="#src-1">[1]</a><a class="ref" href="#src-4">[4]</a></li>
+        </ul>
+      </section>
+
+      <nav class="toc" aria-label="この記事の目次">
+        <p class="toc-title">目次</p>
+        <ol>
+          <li><a href="#sec-1">ローカルLLMとは：クラウドのAIとの違い</a></li>
+          <li><a href="#sec-2">良い点と弱い点</a></li>
+          <li><a href="#sec-3">必要なパソコンの目安（メモリ・VRAM・NPU）</a></li>
+          <li><a href="#sec-4">ツールとモデルの選び方</a></li>
+          <li><a href="#sec-5">始め方の手順</a></li>
+          <li><a href="#sec-6">安全と決まり</a></li>
+          <li><a href="#sec-7">2025〜2026年の動き</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ol>
+      </nav>
+
+      <button type="button" class="expand-all" hidden>くわしくをすべて開く</button>
+
+      <p>文章で質問すると答えを返すAIは、大規模言語モデル（LLM）という仕組みで動いています。インターネットの向こうで動くAIでは、入力した文（プロンプト）は運営元のサーバーで処理されます。たとえばOllamaは、自社のクラウドのモデルを使うときは、サービスを提供するためにプロンプトと答えを処理すると説明しています<a class="ref" href="#src-1">[1]</a>。これに対し、モデルのファイルを自分のパソコンに置いて動かす使い方を「ローカルLLM」と呼びます。この記事では、Google・OpenAI・Metaなどのモデルの公開元と、Ollama・LM Studioなどのツールの公式の説明をもとに、自分のパソコンで動くかどうかの目安、何から入れればよいか、気をつけることをまとめました。メモ帳アプリと組み合わせる使い方は、<a href="obsidian-ai-2026.html">Obsidianと生成AIの記事</a>でも紹介しています。</p>
+
+      <figure class="photo">
+        <img src="images/local-llm-hajimekata/keyboard-dark.jpg" width="960" height="718" loading="lazy" alt="暗い中で、白く光るキーボードのキーが斜めに並んで写っている">
+        <figcaption>暗い部屋で光るノートパソコンのキーボード</figcaption>
+      </figure>
+
+      <h2 id="sec-1">ローカルLLMとは：クラウドのAIとの違い</h2>
+
+      <p>違いは、入力した文がどこで処理されるかです。ツールの公式の説明をもとに、通り道を図にしました。</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 360" width="340" height="360" role="img" aria-label="入力した文の通り道の図。上はクラウドのAIサービス：自分のパソコンから、入力した文がインターネットを通って運営元のサーバーに送られ、サーバーのモデルが処理して答えが返ってくる。下はローカルLLM：自分のパソコンの中に、アプリ（Ollamaなど）とモデルのファイルがあり、メモリとGPUで計算する。入力も答えもパソコンの中で処理され、インターネットを使うのはモデルの取得などのときだけ。Ollamaは初期設定で、このパソコンの中（127.0.0.1）だけで待ち受ける" font-family="inherit"><text x="8" y="18" font-size="13" font-weight="700" style="fill:var(--text)">クラウドのAIサービス</text><rect x="8" y="30" width="104" height="56" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text x="60" y="54" font-size="12" text-anchor="middle" style="fill:var(--text)">自分の</text><text x="60" y="71" font-size="12" text-anchor="middle" style="fill:var(--text)">パソコン</text><rect x="228" y="30" width="104" height="56" rx="8" style="fill:var(--surface);stroke:var(--accent)"/><text x="280" y="54" font-size="12" text-anchor="middle" style="fill:var(--text)">運営元の</text><text x="280" y="71" font-size="12" text-anchor="middle" style="fill:var(--text)">サーバー</text><line x1="116" y1="50" x2="222" y2="50" stroke-width="2" style="stroke:var(--accent)"/><path d="M215 45 L223 50 L215 55" stroke-width="2" style="stroke:var(--accent);fill:none"/><text x="170" y="43" font-size="11" text-anchor="middle" style="fill:var(--text)">入力した文</text><line x1="224" y1="70" x2="118" y2="70" stroke-width="2" style="stroke:var(--text-muted)"/><path d="M125 65 L117 70 L125 75" stroke-width="2" style="stroke:var(--text-muted);fill:none"/><text x="170" y="86" font-size="11" text-anchor="middle" style="fill:var(--text-muted)">答え</text><text x="8" y="110" font-size="11" style="fill:var(--text-muted)">文はインターネットを通り、サーバーのモデルが処理</text><line x1="8" y1="124" x2="332" y2="124" stroke-width="1" stroke-dasharray="4 3" style="stroke:var(--border)"/><text x="8" y="146" font-size="13" font-weight="700" style="fill:var(--text)">ローカルLLM</text><rect x="8" y="156" width="228" height="150" rx="10" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="20" y="176" font-size="12" font-weight="700" style="fill:var(--text)">自分のパソコン</text><rect x="20" y="186" width="98" height="50" rx="6" style="fill:var(--surface);stroke:var(--border)"/><text x="69" y="207" font-size="11.5" text-anchor="middle" style="fill:var(--text)">アプリ</text><text x="69" y="224" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">（Ollamaなど）</text><rect x="126" y="186" width="98" height="50" rx="6" style="fill:var(--surface);stroke:var(--border)"/><text x="175" y="207" font-size="11.5" text-anchor="middle" style="fill:var(--text)">モデルの</text><text x="175" y="224" font-size="11.5" text-anchor="middle" style="fill:var(--text)">ファイル</text><rect x="20" y="244" width="204" height="30" rx="6" style="fill:var(--surface);stroke:var(--border)"/><text x="122" y="264" font-size="11.5" text-anchor="middle" style="fill:var(--text)">メモリ・GPUで計算</text><text x="122" y="295" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:var(--accent)">入力も答えも、この中で処理</text><rect x="252" y="186" width="80" height="50" rx="25" style="fill:var(--surface);stroke:var(--border)"/><text x="292" y="207" font-size="11" text-anchor="middle" style="fill:var(--text)">インター</text><text x="292" y="223" font-size="11" text-anchor="middle" style="fill:var(--text)">ネット</text><line x1="237" y1="211" x2="251" y2="211" stroke-width="2" stroke-dasharray="3 3" style="stroke:var(--text-muted)"/><text x="292" y="254" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">モデルの取得</text><text x="292" y="270" font-size="10.5" text-anchor="middle" style="fill:var(--text-muted)">などのときだけ</text><text x="8" y="330" font-size="11" style="fill:var(--text-muted)">Ollamaは初期設定で、このパソコンの中</text><text x="8" y="347" font-size="11" style="fill:var(--text-muted)">（127.0.0.1）だけで待ち受ける</text></svg>
+        <figcaption>入力した文の通り道（Ollama・Google・Microsoftの説明をもとに筆者が作図）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>モデルは「重み」の入った大きなファイル</h3>
+        <p class="item-point">パラメータが多いほど賢くなりやすいが、重くなる</p>
+        <p>モデルの中身は、重みなどの「パラメータ」と呼ばれる大量の数値です<a class="ref" href="#src-5">[5]</a>。モデルの大きさは、このパラメータの数で表します。例えばPhi-4は、140億パラメータ（14B）のモデルです<a class="ref" href="#src-6">[6]</a>。Googleは、パラメータの数とビット数（数値の精度）が大きいモデルほど一般に能力が高い一方、計算・メモリ・電力の費用も大きくなると説明しています<a class="ref" href="#src-2">[2]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>「量子化」で、数値の精度を下げて小さくする</h3>
+        <p class="item-point">4bitにすると、16bitの約4分の1のメモリで済む</p>
+        <figure class="bar-chart">
+          <figcaption class="chart-title">Gemma 4 E4Bを動かすのに要るメモリの目安 <span class="chart-sub">（GB。重みだけ。Google）</span><a class="ref" href="#src-2">[2]</a></figcaption>
+          <div role="img" aria-label="Gemma 4 E4Bを動かすのに要るメモリの目安（重みだけ、Google）：16bit（BF16）17.9GB、8bit 8.9GB、4bit（Q4_0）4.5GB">
+            <div class="bar-row"><span class="bar-label">16bit</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">17.9</span></div>
+            <div class="bar-row"><span class="bar-label">8bit</span><span class="bar-track"><span class="bar" style="width:49.7%"></span></span><span class="bar-value">8.9</span></div>
+            <div class="bar-row is-key"><span class="bar-label">4bit</span><span class="bar-track"><span class="bar" style="width:25.1%"></span></span><span class="bar-value">4.5</span></div>
+          </div>
+        </figure>
+        <p>量子化は、モデルの数値を少ないビット数で表して、軽くする方法です。Googleは、ビット数の低いモデルは能力が下がるものの、用途によっては十分なことがあると説明しています<a class="ref" href="#src-2">[2]</a>。Appleが端末の中で動かすモデルは、1つの重みを2ビットに圧縮しています<a class="ref" href="#src-7">[7]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>GGUF（下で説明）の量子化の種類のうち「Q4_K」は4bitの一種で、実質は1重みあたり4.5ビット<a class="ref" href="#src-8">[8]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>「GGUF」は、モデルを配るためのファイル形式</h3>
+        <p class="item-point">読み込みが速くなるよう作られた形式</p>
+        <p>Hugging Face（モデルの共有サイト）は、GGUFを、モデルの読み書きが速く推論（答えを作ること）に向いた形式として説明しています。GGUFは、ローカルで動かすためのソフト「llama.cpp」の開発者が作りました<a class="ref" href="#src-8">[8]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>「26B A4B」のようなモデルも、全体をメモリに載せる</h3>
+        <p class="item-point">動かす部分が少なくても、必要なメモリは全体の大きさ</p>
+        <p>Gemma 4 26B A4Bは「MoE（専門家の混合）」という作りのモデルで、答えの文字のかたまり（トークン）を1つ作るごとに使うのは40億パラメータだけですが、260億パラメータ全部をメモリに載せる必要があります。Googleは、必要なメモリは40億より260億のモデルに近いと説明しています<a class="ref" href="#src-2">[2]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>「オープンウェイト」と「オープンソースAI」は違う</h3>
+        <p class="item-point">OSIの定義は、重みのほか学習データの情報も求める</p>
+        <p>オープンソースの考え方を広めている団体OSIは、2024年10月28日に「オープンソースAIの定義 1.0」を公表しました<a class="ref" href="#src-9">[9]</a>。定義は、目的を問わず許可なく使えることなどに加え、学習に使ったデータについて、詳しい人が同等のシステムを作れる程度の情報と、重みなどのパラメータを、OSIが認める条件で出すことを求めています<a class="ref" href="#src-5">[5]</a>。重みを公開したモデルを、OpenAIは「オープンウェイト」と呼んでいます<a class="ref" href="#src-10">[10]</a>。国立情報学研究所は、LLM-jp-4でこの定義に配慮し、第三者も手に入れられる学習データを用意したとしています<a class="ref" href="#src-11">[11]</a>。ソフトのライセンスの基本は、<a href="opensource-soft-erabikata.html">オープンソースのソフトの記事</a>にまとめています。</p>
+      </section>
+
+      <h2 id="sec-2">良い点と弱い点</h2>
+
+      <section class="item-card">
+        <h3>良い点：入力した文を運営元に送らない</h3>
+        <p class="item-point">Ollamaは、手元で動かす分はプロンプトを見ないと説明</p>
+        <p>Ollamaは、手元で動かすときは、運営元がプロンプトやデータを見ることはないと説明しています<a class="ref" href="#src-1">[1]</a>。Chromeに組み込まれたAI（Gemini Nano）も、使うときにデータをGoogleや第三者に送らないとしています<a class="ref" href="#src-12">[12]</a>。MicrosoftのFoundry Localも、答えを作る処理は端末の中だけで行うとしていますが、モデルの取得などにはネットを使います<a class="ref" href="#src-13">[13]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Ollamaにはクラウドのモデルもあり、クラウドの機能を切ると、ローカルだけで動く<a class="ref" href="#src-1">[1]</a></li>
+            <li>切るには、環境変数OLLAMA_NO_CLOUDを1にするなどして、Ollamaを再起動する<a class="ref" href="#src-1">[1]</a></li>
+            <li>AppleのFoundation Modelsは、Appleのサーバー側のモデルも使える<a class="ref" href="#src-14">[14]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>良い点：ネットにつながなくても使える</h3>
+        <p class="item-point">モデルを先に取得しておけば、オフラインで動く</p>
+        <p>LM Studioは、先にモデルのファイルを取得しておけば、完全にオフラインで動くと説明しています<a class="ref" href="#src-15">[15]</a>。Chromeの組み込みAIも、ネットが要るのは最初のモデルのダウンロードだけで、その後は接続なしで使えるとしています<a class="ref" href="#src-12">[12]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>良い点：手元で動かす分は、利用料がかからない</h3>
+        <p class="item-point">Ollamaの料金表では、ローカルでの実行は0ドル</p>
+        <p>Ollamaの料金表は、「Pay as you go（使った分だけ払う）」の区分を0ドルとし、その中に「モデルをローカルで動かす」を挙げています。自分の機材でモデルを動かすのは常に無制限だとしています<a class="ref" href="#src-16">[16]</a>。LM Studioは、2025年7月8日から、家庭でも職場でも無料で使えるようになりました<a class="ref" href="#src-17">[17]</a>。ただし、パソコンの購入費や電気代は自分の負担です（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Ollamaのクラウド向けの有料プランは、Proが月20ドル（年払いは年200ドル）、Maxが月100ドル<a class="ref" href="#src-16">[16]</a></li>
+            <li>料金は米ドル表記で、料金表に税の扱いの記載は見当たらなかった<a class="ref" href="#src-16">[16]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>弱い点：保存場所とメモリをたくさん使う</h3>
+        <p class="item-point">モデルは数十〜数百GBになることがある</p>
+        <p>Ollamaは、本体のインストールに4GB以上の空きが必要で、ほかにモデルの保存場所が要り、モデルは数十〜数百GBになりうると説明しています<a class="ref" href="#src-18">[18]</a>。Chromeの組み込みAIも、22GB以上の空き容量を条件にしています<a class="ref" href="#src-12">[12]</a>。LM Studioは、モデルを読み込むとは、重みなどを載せるためにパソコンのメモリを確保することだと説明しています<a class="ref" href="#src-19">[19]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>弱い点：小さいモデルほど、できることが限られる</h3>
+        <p class="item-point">もっともらしい誤りを答えることもある</p>
+        <p>Googleは、パラメータやビット数の少ないモデルは能力が下がると説明しています<a class="ref" href="#src-2">[2]</a>。MicrosoftはPhi-4の説明書きで、言語モデルは、もっともらしいが不正確・古い内容を作ることがあると注意しています<a class="ref" href="#src-6">[6]</a>。同じ説明書きは、Phi-4は主に英語で学習したため、英語以外の言語では性能が下がるとしています<a class="ref" href="#src-6">[6]</a>。日本語で使うなら、日本語に対応したモデルかどうかを確かめるのがよいでしょう（筆者の見解）。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>弱い点：電気代と、更新の手間がかかる</h3>
+        <p class="item-point">電力の公的な目安はなく、製品の値を見るしかない</p>
+        <p>ローカルLLMの消費電力について、公的な目安は見つかりませんでした。製品の公式の値では、Mac mini（M6、16GBのユニファイドメモリ）の消費電力は待機時4W・最大70Wです<a class="ref" href="#src-20">[20]</a>。パソコンに差して使うGeForce RTX 5060 Tiは、グラフィックボードの電力（Total Graphics Power）が180Wで、パソコン全体に600Wの電源を求めています<a class="ref" href="#src-21">[21]</a>。どちらもAIを動かしたときの実測ではありません。また、Ollamaは、新しいモデルに対応するため定期的に更新していて、インストーラーが最新の版に保つのを助けると説明しています<a class="ref" href="#src-18">[18]</a>。更新を続けるのは、使う人の役目になります（筆者の見解）。</p>
+      </section>
+
+      <figure class="photo">
+        <img src="images/local-llm-hajimekata/desktop-inside.jpg" width="720" height="960" loading="lazy" alt="ふたを外したパソコンの中に、赤いファンのグラフィックボードや配線、冷却装置が見える">
+        <figcaption>デスクトップパソコンの内部（赤いグラフィックボードを取り付けたところ）</figcaption>
+      </figure>
+
+      <h2 id="sec-3">必要なパソコンの目安（メモリ・VRAM・NPU）</h2>
+
+      <p>モデルの公開元とツールが目安として示しているのは、主にメモリの量です。まず、メモリの種類を整理します。</p>
+
+      <section class="item-card">
+        <h3>VRAM・RAM・ユニファイドメモリ</h3>
+        <p class="item-point">VRAMが足りないとRAMも使うが、答えが遅くなる</p>
+        <p>VRAMは、GPU（画像の処理などを受け持つ部品）専用のメモリです。Ollamaは、Gemma 4の一番小さい版（E2B）について、空きVRAM 8GB、Macではユニファイドメモリ（CPUとGPUで共有するメモリ）8GBを勧めています。VRAMが少ないとふつうのメモリ（RAM）も使えますが、答えが遅くなることがあるとしています<a class="ref" href="#src-3">[3]</a>。LM Studioは、WindowsではRAM 16GB以上と、GPU専用のVRAM 4GB以上を勧めています<a class="ref" href="#src-15">[15]</a>。</p>
+      </section>
+
+      <figure class="bar-chart">
+        <figcaption class="chart-title">Gemma 4の大きさごとに要るメモリの目安 <span class="chart-sub">（GB。4bit＝Q4_0、重みだけ。Google）</span><a class="ref" href="#src-2">[2]</a></figcaption>
+        <div role="img" aria-label="Gemma 4の大きさごとに要るメモリの目安（4bit＝Q4_0、重みだけ、Google）：E2B 2.9GB、E4B 4.5GB、12B 6.7GB、26B A4B 14.4GB、31B 17.5GB">
+          <div class="bar-row is-key"><span class="bar-label">E2B</span><span class="bar-track"><span class="bar" style="width:16.6%"></span></span><span class="bar-value">2.9</span></div>
+          <div class="bar-row"><span class="bar-label">E4B</span><span class="bar-track"><span class="bar" style="width:25.7%"></span></span><span class="bar-value">4.5</span></div>
+          <div class="bar-row"><span class="bar-label">12B</span><span class="bar-track"><span class="bar" style="width:38.3%"></span></span><span class="bar-value">6.7</span></div>
+          <div class="bar-row"><span class="bar-label">26B A4B</span><span class="bar-track"><span class="bar" style="width:82.3%"></span></span><span class="bar-value">14.4</span></div>
+          <div class="bar-row"><span class="bar-label">31B</span><span class="bar-track"><span class="bar" style="width:100%"></span></span><span class="bar-value">17.5</span></div>
+        </div>
+      </figure>
+      <p class="chart-note">Googleの表は、重みを読み込むのに要るGPUなどのメモリに、20%の余裕を足した値です。使うツールや環境で変わることがあるとしています<a class="ref" href="#src-2">[2]</a>。</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 340 196" width="340" height="196" role="img" aria-label="実際に要るメモリの内訳の図。重み（モデル本体）、会話の長さの分、ソフトなどの分の3つを足したものになる。Googleの表の値は重みの分だけで、会話の長さの分とソフトなどの分は含まない。会話が長いほどメモリが増える。VRAMが足りないときはふつうのメモリ（RAM）も使えるが、答えが遅くなることがある（Ollamaの説明）" font-family="inherit"><text x="8" y="18" font-size="12" style="fill:var(--text-muted)">実際に要るメモリ（VRAMなど）の内訳</text><rect x="8" y="30" width="150" height="46" rx="6" style="fill:var(--accent)"/><text x="83" y="58" font-size="12" font-weight="700" text-anchor="middle" style="fill:var(--accent-ink)">重み（モデル本体）</text><rect x="161" y="30" width="96" height="46" rx="6" style="fill:var(--accent-soft);stroke:var(--accent)"/><text x="209" y="50" font-size="11.5" text-anchor="middle" style="fill:var(--text)">会話の長さ</text><text x="209" y="66" font-size="11.5" text-anchor="middle" style="fill:var(--text)">の分</text><rect x="260" y="30" width="72" height="46" rx="6" style="fill:var(--surface);stroke:var(--border)"/><text x="296" y="50" font-size="11.5" text-anchor="middle" style="fill:var(--text)">ソフト</text><text x="296" y="66" font-size="11.5" text-anchor="middle" style="fill:var(--text)">などの分</text><path d="M8 84 V90 H158 V84" stroke-width="1.5" style="stroke:var(--accent);fill:none"/><path d="M161 84 V90 H332 V84" stroke-width="1.5" style="stroke:var(--text-muted);fill:none"/><text x="8" y="108" font-size="11.5" style="fill:var(--text)">Googleの表の値は</text><text x="8" y="124" font-size="11.5" style="fill:var(--text)">ここだけ</text><text x="332" y="108" font-size="11.5" text-anchor="end" style="fill:var(--text)">表には入っていない</text><text x="332" y="124" font-size="11.5" text-anchor="end" style="fill:var(--text)">会話が長いほど増える</text><line x1="8" y1="140" x2="332" y2="140" stroke-width="1" stroke-dasharray="4 3" style="stroke:var(--border)"/><text x="8" y="162" font-size="11" style="fill:var(--text-muted)">VRAMが足りないときは、ふつうのメモリ（RAM）</text><text x="8" y="180" font-size="11" style="fill:var(--text-muted)">も使えるが、答えが遅くなることがある（Ollama）</text></svg>
+        <figcaption>実際に要るメモリの内訳（GoogleとOllamaの説明をもとに筆者が作図）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>会話が長いほど、メモリが増える</h3>
+        <p class="item-point">表の値は「重みだけ」。会話の分は別に要る</p>
+        <p>Googleは、上の表は重みを読み込む分だけで、ソフトや、会話の文脈（コンテキストウィンドウ）に要るVRAMは含まないと説明しています。文脈の分は、入力と出力の長さ（トークン数）に応じて増えます<a class="ref" href="#src-2">[2]</a>。Ollamaも、長い文脈ほどメモリが要るとしています<a class="ref" href="#src-3">[3]</a>。LM Studioは、8GBのMacでも使えることはあるが、小さいモデルと控えめな文脈の長さにとどめるよう勧めています<a class="ref" href="#src-15">[15]</a>。</p>
+      </section>
+
+      <div class="table-wrap is-wide">
+        <table>
+          <caption>公開元が示すメモリの目安と、Ollamaで取得するファイルの大きさ（2026年11月18日閲覧）</caption>
+          <thead><tr><th scope="col">モデル</th><th scope="col">公開元が示すメモリの目安</th><th scope="col">Ollamaで取得するファイルの大きさ</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Gemma 4 E2B</th><td>2.9GB（4bit、重みだけ）<a class="ref" href="#src-2">[2]</a></td><td>4.6〜7.5GB（gemma4:e2b）<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">Gemma 4 E4B</th><td>4.5GB（4bit、重みだけ）<a class="ref" href="#src-2">[2]</a></td><td>6.6〜9.5GB（gemma4:e4b。gemma4の既定）<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">Gemma 4 12B</th><td>6.7GB（4bit、重みだけ）<a class="ref" href="#src-2">[2]</a></td><td>7.7〜8.0GB（gemma4:12b）<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">Gemma 4 31B</th><td>17.5GB（4bit、重みだけ）<a class="ref" href="#src-2">[2]</a></td><td>19〜20GB（gemma4:31b）<a class="ref" href="#src-22">[22]</a></td></tr>
+            <tr><th scope="row">gpt-oss-20b</th><td>16GBのメモリで動く（OpenAI）<a class="ref" href="#src-10">[10]</a></td><td>14GB（gpt-oss:20b）<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">gpt-oss-120b</th><td>80GBのGPU 1枚で動く（OpenAI）<a class="ref" href="#src-10">[10]</a></td><td>65GB（gpt-oss:120b）<a class="ref" href="#src-23">[23]</a></td></tr>
+            <tr><th scope="row">Muse Glimmer（300億パラメータ）</th><td>約4bitで20GB未満。会話の分や画像を読む部品なども含め、24GBか32GBに収める想定（Meta）<a class="ref" href="#src-24">[24]</a><a class="ref" href="#src-25">[25]</a></td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-note">2つの列は、測っているものが違います。左はGoogleなどが示す「動かすのに要るメモリ」、右はOllamaで取得するファイルの大きさです。Gemma 4では右の方が大きく、差の理由は公式の説明に見当たりませんでした。数字どうしを直接比べないでください。Ollamaは、gemma4:e2bの取得は約7.2GBとも説明しています<a class="ref" href="#src-3">[3]</a>。</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>手持ちのメモリと、公式の説明で目安に入るもの（筆者が整理）</caption>
+          <thead><tr><th scope="col">メモリ</th><th scope="col">公式の説明</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">8GB</th><td>Ollamaは、gemma4:e2bに空きVRAM（Macはユニファイドメモリ）8GBを勧める<a class="ref" href="#src-3">[3]</a>。LM Studioは、8GBのMacなら小さいモデルを、としている<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">16GB</th><td>gpt-oss-20bは16GBのメモリで動く（OpenAI）<a class="ref" href="#src-10">[10]</a>。LM Studioの推奨も16GB以上<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">24〜32GB</th><td>Muse Glimmerは24GBか32GBに収める想定（Meta）<a class="ref" href="#src-25">[25]</a>。Gemma 4 31Bの4bitは重みだけで17.5GB<a class="ref" href="#src-2">[2]</a></td></tr>
+            <tr><th scope="row">80GB</th><td>gpt-oss-120bは80GBのGPU 1枚で動く（OpenAI）<a class="ref" href="#src-10">[10]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="photo">
+        <img src="images/local-llm-hajimekata/memory-module.jpg" width="720" height="720" loading="lazy" alt="白い布の上に、黒い細長いメモリの基板が2枚、上下に並べて置かれている">
+        <figcaption>ノートパソコン用のメモリ（DDR5、8GB）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>WindowsやLinuxでは、GPUの種類を確かめる</h3>
+        <p class="item-point">OllamaはNVIDIA・AMDのGPUに対応</p>
+        <p>Ollamaは、NVIDIAのGPUでは、計算機能の世代（compute capability）が5.0以上で、ドライバーが550以降のものに対応するとしています。AMDのGPUはROCmやVulkanという仕組みで使えます<a class="ref" href="#src-26">[26]</a>。同じ製品名でもVRAMの量が違うことがあり、例えばGeForce RTX 5060 Tiは16GBと8GBの2種類です<a class="ref" href="#src-21">[21]</a>。買うときは、VRAMの量を確かめるのがよいでしょう（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>OllamaのWindows版は、Windows 10 22H2以降（HomeかPro）が必要<a class="ref" href="#src-18">[18]</a></li>
+            <li>Windows版の要件では、NVIDIAのカードがあるならドライバー551.61以降<a class="ref" href="#src-18">[18]</a></li>
+            <li>LM StudioのWindows版は、x64のCPUならAVX2という命令に対応している必要がある<a class="ref" href="#src-15">[15]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <figure class="photo">
+        <img src="images/local-llm-hajimekata/graphics-card.jpg" width="960" height="589" loading="lazy" alt="白い背景に、ファンが3つ付いた黒くて長いグラフィックボードが置かれている">
+        <figcaption>パソコンに差して使うグラフィックボード（GPU）</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>Macは、Appleシリコンかどうかで変わる</h3>
+        <p class="item-point">IntelのMacでは、OllamaはCPUだけで動く</p>
+        <p>Ollamaは、macOS 14（Sonoma）以降に対応し、AppleのMシリーズではCPUとGPUの両方、Intel（x86）のMacではCPUだけで動くとしています<a class="ref" href="#src-27">[27]</a>。LM Studioは、AppleシリコンのMacで、macOS 14.0以降が必要です。IntelのMacには、今のところ対応していません<a class="ref" href="#src-15">[15]</a>。MacBook Airのメモリは16GBからで、24GBか32GBも選べます<a class="ref" href="#src-28">[28]</a>。</p>
+      </section>
+
+      <figure class="photo">
+        <img src="images/local-llm-hajimekata/mac-mini-back.jpg" width="960" height="654" loading="lazy" alt="黒い台の上の銀色の小さな箱形のパソコンの背面に、電源やHDMIなどの差し込み口が並んでいる">
+        <figcaption>Mac mini（M4、2024年）の背面</figcaption>
+      </figure>
+
+      <section class="item-card">
+        <h3>NPUと「Copilot+ PC」</h3>
+        <p class="item-point">条件は、40TOPS以上のNPUとRAM 16GBなど</p>
+        <p>NPUは、AIの処理に特化した半導体で、Microsoftは、1秒に40兆回を超える計算（40 TOPS）ができるNPUをCopilot+ PCの条件にしています<a class="ref" href="#src-29">[29]</a>。ほかに、RAM 16GB（DDR5/LPDDR5）とストレージ256GBが必要です<a class="ref" href="#src-30">[30]</a>。NPUを使う例として、WindowsのAI機能「Phi Silica」はNPUとGPU（NVIDIA・AMD）で動き、CPUには対応していません<a class="ref" href="#src-31">[31]</a>。Foundry Localも、GPUやNPUがあれば使って速くするとしています<a class="ref" href="#src-13">[13]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>対象はRyzen AI 300・400、Core Ultra 200V・300V、Snapdragon Xの各シリーズ<a class="ref" href="#src-30">[30]</a></li>
+            <li>40TOPS以上のNPUがあっても、RAMが16GB未満などの機種はCopilot+ PCではない<a class="ref" href="#src-30">[30]</a></li>
+            <li>WindowsのAI機能は、Copilot+ PC以外の機材にも広がりつつある<a class="ref" href="#src-31">[31]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-4">ツールとモデルの選び方</h2>
+
+      <p>ローカルLLMは、「モデルを動かすツール」と「モデル」を組み合わせて使います。ツールは、使っているOS、画面で操作したいかコマンドでよいか、仕事で使うか、で選べます。</p>
+
+      <div class="table-wrap is-wide">
+        <table>
+          <caption>自分で試せる主なツール（2026年11月18日閲覧。順番に意味はない）</caption>
+          <thead><tr><th scope="col">ツール</th><th scope="col">使い方の形</th><th scope="col">ライセンス・規約</th><th scope="col">対応OS（公式の記載）</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Ollama</th><td>アプリとコマンド<a class="ref" href="#src-3">[3]</a></td><td>MIT<a class="ref" href="#src-32">[32]</a></td><td>Windows 10 22H2以降、macOS 14以降、Linux<a class="ref" href="#src-18">[18]</a><a class="ref" href="#src-27">[27]</a><a class="ref" href="#src-33">[33]</a></td></tr>
+            <tr><th scope="row">LM Studio</th><td>アプリ（タブで操作）<a class="ref" href="#src-19">[19]</a></td><td>独自の規約。個人と社内業務の目的で使える<a class="ref" href="#src-34">[34]</a></td><td>AppleシリコンのMac（macOS 14.0以降）、Windows（x64・ARM）、Linux<a class="ref" href="#src-15">[15]</a></td></tr>
+            <tr><th scope="row">llama.cpp</th><td>コマンド<a class="ref" href="#src-35">[35]</a></td><td>MIT<a class="ref" href="#src-36">[36]</a></td><td>PowerShell用とcurl用の、入れるコマンドを案内<a class="ref" href="#src-35">[35]</a></td></tr>
+            <tr><th scope="row">Jan</th><td>アプリ<a class="ref" href="#src-37">[37]</a></td><td>Apache 2.0<a class="ref" href="#src-37">[37]</a></td><td>Windows、macOS、Linux<a class="ref" href="#src-37">[37]</a></td></tr>
+            <tr><th scope="row">GPT4All</th><td>アプリ。GPUがなくても動くと説明<a class="ref" href="#src-38">[38]</a></td><td>MIT<a class="ref" href="#src-38">[38]</a></td><td>Windows、macOS 12.6以降、Linux（x86-64のみ）<a class="ref" href="#src-38">[38]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="item-card">
+        <h3>仕事で使うなら、規約を確かめる</h3>
+        <p class="item-point">LM Studioは、2025年7月から職場でも無料に</p>
+        <p>LM Studioは、2025年7月8日から、家庭でも職場でも無料で使えるようにしました<a class="ref" href="#src-17">[17]</a>。規約は、個人と社内業務の目的での利用を認める独自のものです<a class="ref" href="#src-34">[34]</a>。Ollama・llama.cppはMIT、JanはApache 2.0という、オープンソースのライセンスです<a class="ref" href="#src-32">[32]</a><a class="ref" href="#src-36">[36]</a><a class="ref" href="#src-37">[37]</a>。ツールのライセンスとは別に、モデルにもそれぞれライセンスがあります（下の表）。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>OSやブラウザに組み込まれたAIもある</h3>
+        <p class="item-point">主にアプリやサイトの作り手向けのしくみ</p>
+        <p>MicrosoftのFoundry Localは、2025年5月19日の開発者向けイベントで紹介され、2026年4月9日に一般提供が始まりました<a class="ref" href="#src-39">[39]</a><a class="ref" href="#src-40">[40]</a>。Microsoftは、いろいろなモデルを試すための道具ではなく、アプリに組み込んで出荷するためのものだと説明しています<a class="ref" href="#src-13">[13]</a>。ChromeやAppleの仕組みも、アプリやサイトから使うものです<a class="ref" href="#src-41">[41]</a><a class="ref" href="#src-14">[14]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Foundry Localは、Windows・Linux・macOSに対応<a class="ref" href="#src-40">[40]</a></li>
+            <li>Chromeの要約などのAPIは、Chrome 138の安定版から使える<a class="ref" href="#src-41">[41]</a></li>
+            <li>Chromeの組み込みAIは、空き22GBと、VRAM 4GB超かRAM 16GB以上・4コア以上が条件<a class="ref" href="#src-12">[12]</a></li>
+            <li>Chromeの組み込みAIは、AndroidとiOSのChromeでは、まだ使えない<a class="ref" href="#src-12">[12]</a></li>
+            <li>AppleのFoundation Modelsは、iOS・iPadOS・macOSなどの26.0以降が対象<a class="ref" href="#src-14">[14]</a></li>
+            <li>Appleの端末上のモデルは約30億パラメータで、2025年6月9日に発表<a class="ref" href="#src-7">[7]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <div class="table-wrap is-wide">
+        <table>
+          <caption>ローカルで動かせる主なモデル（2026年11月18日閲覧。順番に意味はない）</caption>
+          <thead><tr><th scope="col">モデル</th><th scope="col">公開元</th><th scope="col">公開</th><th scope="col">ライセンス</th><th scope="col">大きさの例</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Gemma 4</th><td>Google</td><td>2026年3月31日<a class="ref" href="#src-42">[42]</a></td><td>Apache 2.0<a class="ref" href="#src-43">[43]</a><a class="ref" href="#src-44">[44]</a></td><td>E2B・E4B・12B・26B A4B・31B（12Bは2026年6月3日）<a class="ref" href="#src-42">[42]</a></td></tr>
+            <tr><th scope="row">Qwen3.5</th><td>Qwenチーム</td><td>2026年2月16日（小さい版は3月2日）<a class="ref" href="#src-45">[45]</a></td><td>Apache 2.0（397B-A17Bの説明書きで確認）<a class="ref" href="#src-46">[46]</a></td><td>0.8B・2B・4B・9Bなど<a class="ref" href="#src-45">[45]</a></td></tr>
+            <tr><th scope="row">gpt-oss</th><td>OpenAI</td><td>2025年8月5日</td><td>Apache 2.0</td><td>20b・120b<a class="ref" href="#src-10">[10]</a></td></tr>
+            <tr><th scope="row">Muse Glimmer</th><td>Meta</td><td>2026年8月10日</td><td>Apache 2.0</td><td>300億パラメータ<a class="ref" href="#src-24">[24]</a></td></tr>
+            <tr><th scope="row">Llama 4</th><td>Meta</td><td>ライセンスの発効は2025年4月5日</td><td>独自のライセンス（条件あり）<a class="ref" href="#src-47">[47]</a></td><td>—</td></tr>
+            <tr><th scope="row">Mistral Small 4・Ministral 3</th><td>Mistral AI</td><td>—</td><td>Apache 2.0</td><td>Ministral 3は3B・8B・14B<a class="ref" href="#src-48">[48]</a></td></tr>
+            <tr><th scope="row">Phi-4</th><td>Microsoft</td><td>2024年12月12日</td><td>MIT</td><td>14B<a class="ref" href="#src-6">[6]</a></td></tr>
+            <tr><th scope="row">DeepSeek-R1</th><td>DeepSeek</td><td>—</td><td>MIT</td><td>LlamaとQwenをもとにした小さい版が6つ<a class="ref" href="#src-49">[49]</a></td></tr>
+            <tr><th scope="row">LLM-jp-4.1</th><td>国立情報学研究所</td><td>2026年9月28日</td><td>Apache 2.0</td><td>8B（約86億）・32B-A3B・33B<a class="ref" href="#src-50">[50]</a></td></tr>
+            <tr><th scope="row">GPT-OSS Swallow</th><td>東京科学大学・産業技術総合研究所</td><td>2026年2月20日</td><td>Apache 2.0（20Bの説明書きで確認）</td><td>20B・120B<a class="ref" href="#src-51">[51]</a><a class="ref" href="#src-52">[52]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-note">Qwenは、Qwen3.5のあとも、より新しい版を公開しています<a class="ref" href="#src-45">[45]</a>。新しい版のライセンスと必要なメモリは、今回確認できませんでした。</p>
+
+      <section class="item-card">
+        <h3>初めてなら、メモリの目安が小さいモデルから</h3>
+        <p class="item-point">公式の最初の手順も、小さい版を使っている（筆者の提案）</p>
+        <p>Ollamaの最初の手順はGemma 4の一番小さい版（E2B）を<a class="ref" href="#src-3">[3]</a>、llama.cppの説明はQwen3.5の0.8B版を例にしています<a class="ref" href="#src-35">[35]</a>。まず小さい版で、自分のパソコンで動くか、速さに不満がないかを試し、足りなければ大きい版に替えるのが、無理のない進め方だと考えられます（筆者の提案）。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>ライセンスは、モデルごとに違う</h3>
+        <p class="item-point">Llama 4は、条件付きの独自ライセンス</p>
+        <p>Llama 4のライセンスは、モデルやそれを含む製品を配布・提供するときに、関連するウェブサイトなどへ「Built with Llama」と目立つように表示することを求めています。また、Llama 4の公開日の時点で月間の利用者が7億人を超える事業者には、Metaの別の許諾を求めています<a class="ref" href="#src-47">[47]</a>。Gemma 4はApache 2.0ですが、Googleの「Gemma Terms of Use」という独自の規約は、付録に載った別のGemmaのモデルに適用されます<a class="ref" href="#src-44">[44]</a>。Mistral Large 4も、独自のライセンスです<a class="ref" href="#src-48">[48]</a>。仕事や公開するサービスに使う前に、モデルごとのライセンスを読むことが大切です（筆者の見解）。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>Llama 3.2の利用方針は、画像も扱うモデルの権利を、EUに住む個人などには与えないとしている<a class="ref" href="#src-53">[53]</a></li>
+            <li>Gemmaの利用規約は2026年4月1日が最終更新で、Gemma 4の条件は別ページとしている<a class="ref" href="#src-44">[44]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>国内の公開元のモデル</h3>
+        <p class="item-point">LLM-jp-4.1は、2026年9月にApache 2.0で公開</p>
+        <p>国立情報学研究所の大規模言語モデル研究開発センターは、2026年9月28日に「LLM-jp-4.1」を公開しました。2026年4月から順次公開しているLLM-jp-4を改良したもので、約86億パラメータの8Bなど3つのモデルを、Apache License 2.0で公開しています<a class="ref" href="#src-50">[50]</a>。東京科学大学と産業技術総合研究所のSwallowは、2026年2月20日にGPT-OSS SwallowとQwen3 Swallowを公開しました<a class="ref" href="#src-51">[51]</a><a class="ref" href="#src-52">[52]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>国立情報学研究所は、LLM-jp-4が日本語の評価でGPT-4oやQwen3-8Bを上回ったと発表（公開元の主張）<a class="ref" href="#src-11">[11]</a></li>
+            <li>OpenAIは、gpt-oss-20bは一般的な評価でo3-miniと同じくらいの結果と発表（公開元の主張）<a class="ref" href="#src-10">[10]</a></li>
+            <li>Swallowのモデルのダウンロードは323万（2026年11月時点、公開元の集計）<a class="ref" href="#src-52">[52]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <h2 id="sec-5">始め方の手順</h2>
+
+      <p>Ollamaの公式の手順をもとに、最初の会話までを並べました。始める前に、ストレージの空き（本体の4GB以上と、モデルの分）を確かめておきます<a class="ref" href="#src-18">[18]</a>。</p>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">手順1</span><p class="timeline-title">Ollamaを入れる</p><p class="timeline-note">Windowsは、OllamaSetup.exeを使うのが一番簡単で、管理者の権限なしで入る<a class="ref" href="#src-18">[18]</a>。macOSとLinuxは、公式の説明にあるコマンドでも入れられる<a class="ref" href="#src-33">[33]</a></p></li>
+        <li><span class="timeline-day">手順2</span><p class="timeline-title">小さいモデルを取得して起動する</p><p class="timeline-note">コマンドの画面（WindowsならPowerShellなど）で「ollama run gemma4:e2b」と入力する<a class="ref" href="#src-18">[18]</a>。初回は約7.2GBのモデルを取得する<a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">手順3</span><p class="timeline-title">話しかける</p><p class="timeline-note">取得が終わると、自分のパソコンの上で会話が始まる<a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">手順4</span><p class="timeline-title">終わる</p><p class="timeline-note">「/bye」と入力すると終わる<a class="ref" href="#src-3">[3]</a></p></li>
+        <li><span class="timeline-day">必要なら</span><p class="timeline-title">クラウドの機能を切る</p><p class="timeline-note">ローカルだけで使いたいときは、設定を変えてOllamaを再起動する<a class="ref" href="#src-1">[1]</a></p></li>
+      </ol>
+
+      <p>画面で操作したいときは、LM Studioの公式の手順が次のとおりです<a class="ref" href="#src-19">[19]</a>。</p>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">手順1</span><p class="timeline-title">LM Studioを入れる</p><p class="timeline-note">公式サイトから最新版を入れる<a class="ref" href="#src-19">[19]</a></p></li>
+        <li><span class="timeline-day">手順2</span><p class="timeline-title">「Discover」タブでモデルを取得する</p><p class="timeline-note">候補から選ぶか、名前で探す<a class="ref" href="#src-19">[19]</a></p></li>
+        <li><span class="timeline-day">手順3</span><p class="timeline-title">「Chat」タブでモデルを読み込む</p><p class="timeline-note">モデルの読み込み画面を開き、取得したモデルを選ぶ<a class="ref" href="#src-19">[19]</a></p></li>
+        <li><span class="timeline-day">手順4</span><p class="timeline-title">話しかける</p><p class="timeline-note">読み込みが終わると、Chatタブで会話できる<a class="ref" href="#src-19">[19]</a></p></li>
+      </ol>
+
+      <section class="item-card">
+        <h3>コマンドに慣れているなら、llama.cppも</h3>
+        <p class="item-point">1行のコマンドで、モデルの取得と実行ができる</p>
+        <p>llama.cppの説明では、入れたあとに「llama cli -hf ggml-org/Qwen3.5-0.8B-GGUF」と入力すると、Hugging Faceからモデルを取得して動かせます<a class="ref" href="#src-35">[35]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>やめるときは、モデルの置き場所も確かめる</h3>
+        <p class="item-point">保存先を変えたモデルは、自動では消えない</p>
+        <p>WindowsのOllamaは、設定の「アプリの追加と削除」から削除できます。モデルの保存先（OLLAMA_MODELS）を変えていた場合、取得したモデルは削除されないとしています<a class="ref" href="#src-18">[18]</a>。</p>
+      </section>
+
+      <h2 id="sec-6">安全と決まり</h2>
+
+      <section class="item-card">
+        <h3>外からつながる設定にしない</h3>
+        <p class="item-point">Ollamaは初期設定で、このパソコンの中だけで待ち受け</p>
+        <p>Ollamaは初期設定で、127.0.0.1（このパソコン自身）の11434番で待ち受けます。環境変数OLLAMA_HOSTで変えられます<a class="ref" href="#src-1">[1]</a>。Ciscoは2025年9月1日、インターネットから見えるOllamaのサーバーを<strong>1,100以上</strong>見つけ、その約20%では、許可なく使われるおそれのある状態でモデルが動いていたと報告しました<a class="ref" href="#src-54">[54]</a>。</p>
+      </section>
+
+      <div class="warning">
+        <p class="box-title">注意</p>
+        <p>OLLAMA_HOSTを変えて外からつながるようにすると、ほかの人に使われるおそれがあります<a class="ref" href="#src-54">[54]</a>。脆弱性の情報を扱うCERT/CC（米国カーネギーメロン大学のCERT Coordination Center）は、Ollamaを使う場所を、できるだけ自分のパソコンか信頼できるネットワークに限るよう勧めています<a class="ref" href="#src-4">[4]</a>。</p>
+      </div>
+
+      <section class="item-card">
+        <h3>ソフトを新しく保つ</h3>
+        <p class="item-point">2026年5月、JVNがOllamaの脆弱性を公表</p>
+        <p>JVN（JPCERT/CCとIPAの脆弱性情報サイト）は2026年5月11日、Ollamaのモデルを量子化する部分で、GGUFファイルの確かめ方が不十分なため、メモリの範囲外を読み書きされる脆弱性があると公表しました。モデルをアップロードする窓口に入れる第三者が、細工したファイルを送れるとしています<a class="ref" href="#src-55">[55]</a>。CERT/CCは2026年4月22日の時点で、修正版はまだないとし、回避策を勧めました<a class="ref" href="#src-4">[4]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>回避策は、モデルのアップロード機能を制限・無効にし、信頼できる出所のモデルだけを受け入れること<a class="ref" href="#src-4">[4]</a></li>
+            <li>2024年5月には、0.1.34より前のOllamaで、モデルの置き場所を求めるときの確認が不十分な脆弱性が公開された<a class="ref" href="#src-56">[56]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>モデルは、信頼できる公開元から入れる</h3>
+        <p class="item-point">pickle形式は、読み込むだけで危険なことがある</p>
+        <p>Hugging Faceは、pickle形式のファイルを読み込むと、任意のプログラムを実行される攻撃がありうるとし、信頼できる利用者や組織のモデルを使うよう勧めています<a class="ref" href="#src-57">[57]</a>。セキュリティ会社ReversingLabsは2025年2月6日、Hugging Face上で悪意のあるモデル2つを見つけたと報告しました。Hugging Faceの検査ツールは危険と判定しておらず、報告を受けたHugging Faceは24時間以内に削除しました<a class="ref" href="#src-58">[58]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>答えをうのみにしない</h3>
+        <p class="item-point">大事なことは、元の資料で確かめる（筆者の見解）</p>
+        <p>言語モデルは、もっともらしいが不正確・古い内容を作ることがあります<a class="ref" href="#src-6">[6]</a>。こうした誤り（ハルシネーション）について、総務省・経済産業省のAI事業者ガイドライン（第1.2版、2026年3月31日）は、資料を検索して答えに使う「RAG（検索拡張生成）」などで抑えることが期待されている、としています<a class="ref" href="#src-59">[59]</a>。</p>
+      </section>
+
+      <section class="item-card">
+        <h3>個人情報と、仕事のルール</h3>
+        <p class="item-point">ローカルでも、勤め先のルールに従う（筆者の見解）</p>
+        <p>個人情報保護委員会は2023年6月2日、生成AIサービスでは、入力した個人情報が機械学習に使われ、正確または不正確な内容で出力されるおそれがあると、利用者に注意を呼びかけました<a class="ref" href="#src-60">[60]</a>。事業者には、個人データを入力するなら、サービスの提供者がそれを機械学習に使わないことなどを十分に確かめるよう求めています<a class="ref" href="#src-60">[60]</a>。AI事業者ガイドラインも、AIを仕事で使う人に、個人情報を不適切に入力しないよう求めています<a class="ref" href="#src-59">[59]</a>。</p>
+        <details class="item-more">
+          <summary>くわしく</summary>
+          <ul>
+            <li>AI事業者ガイドラインは、仕事以外でAIを使う人（業務外利用者）を対象に含めていない<a class="ref" href="#src-59">[59]</a></li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="item-card">
+        <h3>AI法と、国の基本計画</h3>
+        <p class="item-point">AI法は2025年6月4日公布。国民には努力の規定</p>
+        <p>「人工知能関連技術の研究開発及び活用の推進に関する法律」（AI法、令和7年法律第53号）は2025年6月4日に公布され、e-Gov法令検索では2025年9月1日施行の版が現行です。第8条は、国民は理解と関心を深め、国などの施策に協力するよう努める、としています<a class="ref" href="#src-61">[61]</a>。この法律にもとづく最初の人工知能基本計画は2025年12月23日に<a class="ref" href="#src-62">[62]</a>、第Ⅱ期の計画は2026年7月14日に閣議決定されました<a class="ref" href="#src-63">[63]</a>。</p>
+      </section>
+
+      <h2 id="sec-7">2025〜2026年の動き</h2>
+
+      <ol class="timeline">
+        <li><span class="timeline-day">2025年2月</span><p class="timeline-title">Hugging Face上の悪意あるモデルの報告</p><p class="timeline-note">ReversingLabsが2月6日に公表<a class="ref" href="#src-58">[58]</a></p></li>
+        <li><span class="timeline-day">2025年4月</span><p class="timeline-title">Llama 4のライセンスが発効、Qwen3を公開</p><p class="timeline-note">4月5日・4月29日<a class="ref" href="#src-47">[47]</a><a class="ref" href="#src-64">[64]</a></p></li>
+        <li><span class="timeline-day">2025年5〜6月</span><p class="timeline-title">Foundry Localの紹介、AI法の公布、Appleが端末上のモデルを開発者に開放</p><p class="timeline-note">5月19日・6月4日・6月9日<a class="ref" href="#src-39">[39]</a><a class="ref" href="#src-61">[61]</a><a class="ref" href="#src-7">[7]</a></p></li>
+        <li><span class="timeline-day">2025年7〜8月</span><p class="timeline-title">LM Studioが職場でも無料に、OpenAIがgpt-ossを公開</p><p class="timeline-note">7月8日・8月5日<a class="ref" href="#src-17">[17]</a><a class="ref" href="#src-10">[10]</a></p></li>
+        <li><span class="timeline-day">2025年9月</span><p class="timeline-title">Ciscoが、ネットから見えるOllamaの調査を公表</p><p class="timeline-note">9月1日<a class="ref" href="#src-54">[54]</a></p></li>
+        <li><span class="timeline-day">2025年12月</span><p class="timeline-title">最初の人工知能基本計画を閣議決定</p><p class="timeline-note">12月23日<a class="ref" href="#src-62">[62]</a></p></li>
+        <li><span class="timeline-day">2026年2月</span><p class="timeline-title">Qwen3.5、GPT-OSS Swallowを公開</p><p class="timeline-note">2月16日・2月20日<a class="ref" href="#src-45">[45]</a><a class="ref" href="#src-51">[51]</a></p></li>
+        <li><span class="timeline-day">2026年3〜4月</span><p class="timeline-title">Gemma 4、AI事業者ガイドライン第1.2版、Foundry Localの一般提供</p><p class="timeline-note">Gemma 4とガイドラインはどちらも3月31日、Foundry Localは4月9日<a class="ref" href="#src-42">[42]</a><a class="ref" href="#src-59">[59]</a><a class="ref" href="#src-40">[40]</a></p></li>
+        <li><span class="timeline-day">2026年4〜5月</span><p class="timeline-title">Ollamaの脆弱性をCERT/CC・JVNが公表</p><p class="timeline-note">4月22日・5月11日<a class="ref" href="#src-4">[4]</a><a class="ref" href="#src-55">[55]</a></p></li>
+        <li><span class="timeline-day">2026年7月</span><p class="timeline-title">人工知能基本計画（第Ⅱ期）を閣議決定</p><p class="timeline-note">7月14日<a class="ref" href="#src-63">[63]</a></p></li>
+        <li><span class="timeline-day">2026年8〜9月</span><p class="timeline-title">MetaがMuse Glimmer、国立情報学研究所がLLM-jp-4.1を公開</p><p class="timeline-note">8月10日・9月28日。Muse GlimmerはOllamaやLM Studioでも動かせる<a class="ref" href="#src-24">[24]</a><a class="ref" href="#src-50">[50]</a><a class="ref" href="#src-65">[65]</a></p></li>
+      </ol>
+
+      <p>パソコンのソフト全般の選び方や値上げの動きは、<a href="teiban-soft-2026.html">定番ソフトのまとめの記事</a>にまとめています。</p>
+
+      <div class="note">
+        <p class="box-title">今回確認できなかった点</p>
+        <ul>
+          <li>モデルの大きさごとに要るメモリの、Ollama・LM Studioによる一般的な目安（Ollamaはgemma4:e2bの例のみ）</li>
+          <li>Googleの目安と、Ollamaで取得するファイルの大きさが違う理由</li>
+          <li>ローカルLLMの消費電力・電気代の公的な目安（製品の最大値などのみ確認）</li>
+          <li>OllamaやLM StudioがNPUを使えるかどうか（公式の対応表に記載が見当たらなかった）</li>
+          <li>Qwen3.5より新しいQwenの版の、ライセンスと必要なメモリ</li>
+          <li>Ollamaの脆弱性（2026年5月にJVNが公表）の修正版が出たかどうか</li>
+          <li>Ollamaの有料プランの料金の、税の扱い</li>
+        </ul>
+      </div>
+
+      <details class="sources-box" id="sources">
+        <summary>出典（65件）</summary>
+        <p class="sources-note">閲覧日はいずれも2026年11月18日</p>
+        <ol class="sources">
+          <li id="src-1"><a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">FAQ</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-2"><a href="https://ai.google.dev/gemma/docs/core" target="_blank" rel="noopener">Gemma 4 model overview</a>（Google AI for Developers）</li>
+          <li id="src-3"><a href="https://docs.ollama.com/quickstart" target="_blank" rel="noopener">Quickstart</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-4"><a href="https://kb.cert.org/vuls/id/518910" target="_blank" rel="noopener">VU#518910 Ollama GGUF Quantization Remote Memory Leak（2026年4月22日）</a>（CERT/CC）</li>
+          <li id="src-5"><a href="https://opensource.org/ai/open-source-ai-definition" target="_blank" rel="noopener">The Open Source AI Definition – 1.0</a>（Open Source Initiative）</li>
+          <li id="src-6"><a href="https://huggingface.co/microsoft/phi-4" target="_blank" rel="noopener">phi-4（モデルカード）</a>（Microsoft（Hugging Face））</li>
+          <li id="src-7"><a href="https://machinelearning.apple.com/research/apple-foundation-models-2025-updates" target="_blank" rel="noopener">Updates to Apple’s On-Device and Server Foundation Language Models（2025年6月9日）</a>（Apple Machine Learning Research）</li>
+          <li id="src-8"><a href="https://huggingface.co/docs/hub/gguf" target="_blank" rel="noopener">GGUF（Hub のドキュメント）</a>（Hugging Face）</li>
+          <li id="src-9"><a href="https://opensource.org/blog/the-open-source-initiative-announces-the-release-of-the-industrys-first-open-source-ai-definition" target="_blank" rel="noopener">The Open Source Initiative Announces the Release of the Industry’s First Open Source AI Definition（2024年10月28日）</a>（Open Source Initiative）</li>
+          <li id="src-10"><a href="https://openai.com/index/introducing-gpt-oss/" target="_blank" rel="noopener">Introducing gpt-oss（2025年8月5日）</a>（OpenAI）</li>
+          <li id="src-11"><a href="https://www.nii.ac.jp/news/upload/nii_newsrelease_20260403.pdf" target="_blank" rel="noopener">プレスリリース「LLM-jp-4 8Bモデル」「LLM-jp-4 32B-A3Bモデル」を公開（2026年4月3日、PDF）</a>（国立情報学研究所）</li>
+          <li id="src-12"><a href="https://developer.chrome.com/docs/ai/get-started" target="_blank" rel="noopener">Get started with built-in AI</a>（Google（Chrome for Developers））</li>
+          <li id="src-13"><a href="https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/what-is-foundry-local" target="_blank" rel="noopener">What is Foundry Local?</a>（Microsoft Learn）</li>
+          <li id="src-14"><a href="https://developer.apple.com/documentation/foundationmodels" target="_blank" rel="noopener">Foundation Models（フレームワークの文書）</a>（Apple Developer）</li>
+          <li id="src-15"><a href="https://lmstudio.ai/docs/app/system-requirements" target="_blank" rel="noopener">System Requirements</a>（LM Studio（公式ドキュメント））</li>
+          <li id="src-16"><a href="https://ollama.com/pricing" target="_blank" rel="noopener">Pricing</a>（Ollama）</li>
+          <li id="src-17"><a href="https://lmstudio.ai/blog/free-for-work" target="_blank" rel="noopener">LM Studio is free for use at work（2025年7月8日）</a>（LM Studio（公式ブログ））</li>
+          <li id="src-18"><a href="https://docs.ollama.com/windows" target="_blank" rel="noopener">Windows</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-19"><a href="https://lmstudio.ai/docs/app/basics" target="_blank" rel="noopener">Get started with LM Studio</a>（LM Studio（公式ドキュメント））</li>
+          <li id="src-20"><a href="https://support.apple.com/en-us/103253" target="_blank" rel="noopener">Mac mini power consumption and thermal output (BTU) information</a>（Apple サポート）</li>
+          <li id="src-21"><a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/" target="_blank" rel="noopener">GeForce RTX 5060 Family</a>（NVIDIA）</li>
+          <li id="src-22"><a href="https://ollama.com/library/gemma4" target="_blank" rel="noopener">gemma4（モデルの一覧）</a>（Ollama）</li>
+          <li id="src-23"><a href="https://ollama.com/library/gpt-oss" target="_blank" rel="noopener">gpt-oss（モデルの一覧）</a>（Ollama）</li>
+          <li id="src-24"><a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank" rel="noopener">Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device（2026年8月10日）</a>（Meta（AI Research ブログ））</li>
+          <li id="src-25"><a href="https://huggingface.co/meta-models/Muse-Glimmer-30B" target="_blank" rel="noopener">Muse Glimmer Model Card</a>（Meta（Hugging Face））</li>
+          <li id="src-26"><a href="https://docs.ollama.com/gpu" target="_blank" rel="noopener">Hardware support</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-27"><a href="https://docs.ollama.com/macos" target="_blank" rel="noopener">macOS</a>（Ollama（公式ドキュメント））</li>
+          <li id="src-28"><a href="https://www.apple.com/macbook-air/specs/" target="_blank" rel="noopener">MacBook Air - Tech Specs</a>（Apple）</li>
+          <li id="src-29"><a href="https://learn.microsoft.com/en-us/windows/ai/npu-devices/" target="_blank" rel="noopener">Copilot+ PCs developer guide</a>（Microsoft Learn）</li>
+          <li id="src-30"><a href="https://support.microsoft.com/en-us/topic/windows-next-generation-ai-device-hardware-requirements-35782169-6eab-4d63-a5c5-c498c3037364" target="_blank" rel="noopener">Windows next-generation AI device hardware requirements</a>（Microsoft サポート）</li>
+          <li id="src-31"><a href="https://learn.microsoft.com/en-us/windows/ai/apis/" target="_blank" rel="noopener">Windows AI APIs</a>（Microsoft Learn）</li>
+          <li id="src-32"><a href="https://github.com/ollama/ollama/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>（Ollama（GitHub））</li>
+          <li id="src-33"><a href="https://github.com/ollama/ollama" target="_blank" rel="noopener">ollama（README）</a>（Ollama（GitHub））</li>
+          <li id="src-34"><a href="https://lmstudio.ai/app-terms" target="_blank" rel="noopener">App Terms of Use</a>（LM Studio）</li>
+          <li id="src-35"><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener">llama.cpp（README）</a>（ggml-org（GitHub））</li>
+          <li id="src-36"><a href="https://github.com/ggml-org/llama.cpp/blob/master/LICENSE" target="_blank" rel="noopener">llama.cpp LICENSE</a>（ggml-org（GitHub））</li>
+          <li id="src-37"><a href="https://github.com/janhq/jan" target="_blank" rel="noopener">Jan（README・LICENSE）</a>（Menlo Research（GitHub））</li>
+          <li id="src-38"><a href="https://github.com/nomic-ai/gpt4all" target="_blank" rel="noopener">GPT4All（README・LICENSE）</a>（Nomic（GitHub））</li>
+          <li id="src-39"><a href="https://blogs.windows.com/windowsdeveloper/2025/05/19/advancing-windows-for-ai-development-new-platform-capabilities-and-tools-introduced-at-build-2025/" target="_blank" rel="noopener">Advancing Windows for AI development: New platform capabilities and tools introduced at Build 2025（2025年5月19日）</a>（Microsoft（Windows Developer Blog））</li>
+          <li id="src-40"><a href="https://devblogs.microsoft.com/foundry/foundry-local-ga/" target="_blank" rel="noopener">Foundry Local is now Generally Available（2026年4月9日）</a>（Microsoft Foundry Blog）</li>
+          <li id="src-41"><a href="https://developer.chrome.com/docs/ai/built-in-apis" target="_blank" rel="noopener">Built-in AI APIs</a>（Google（Chrome for Developers））</li>
+          <li id="src-42"><a href="https://ai.google.dev/gemma/docs/releases" target="_blank" rel="noopener">Gemma releases</a>（Google AI for Developers）</li>
+          <li id="src-43"><a href="https://ai.google.dev/gemma/apache_2" target="_blank" rel="noopener">Apache License 2.0（Gemma 4 license）</a>（Google AI for Developers）</li>
+          <li id="src-44"><a href="https://ai.google.dev/gemma/terms" target="_blank" rel="noopener">Gemma Terms of Use</a>（Google AI for Developers）</li>
+          <li id="src-45"><a href="https://github.com/QwenLM/Qwen3.5" target="_blank" rel="noopener">Qwen（README.md）</a>（Qwen Team（GitHub））</li>
+          <li id="src-46"><a href="https://huggingface.co/Qwen/Qwen3.5-397B-A17B" target="_blank" rel="noopener">Qwen3.5-397B-A17B（モデルカード）</a>（Qwen Team（Hugging Face））</li>
+          <li id="src-47"><a href="https://www.llama.com/llama4/license/" target="_blank" rel="noopener">Llama 4 Community License Agreement</a>（Meta）</li>
+          <li id="src-48"><a href="https://docs.mistral.ai/getting-started/models/" target="_blank" rel="noopener">Models</a>（Mistral AI（公式ドキュメント））</li>
+          <li id="src-49"><a href="https://huggingface.co/deepseek-ai/DeepSeek-R1" target="_blank" rel="noopener">DeepSeek-R1（モデルカード）</a>（DeepSeek（Hugging Face））</li>
+          <li id="src-50"><a href="https://llm-jp.nii.ac.jp/news/llm-jp-4-1/" target="_blank" rel="noopener">大規模言語モデル「LLM-jp-4.1」シリーズを公開（2026年9月28日）</a>（国立情報学研究所 大規模言語モデル研究開発センター（LLM-jp））</li>
+          <li id="src-51"><a href="https://huggingface.co/tokyotech-llm/GPT-OSS-Swallow-20B-RL-v0.1" target="_blank" rel="noopener">GPT-OSS-Swallow-20B-RL-v0.1（モデルカード）</a>（tokyotech-llm（Hugging Face））</li>
+          <li id="src-52"><a href="https://swallow-llm.github.io/index.ja.html" target="_blank" rel="noopener">Swallow LLM</a>（Swallow LLM（東京科学大学・産業技術総合研究所））</li>
+          <li id="src-53"><a href="https://www.llama.com/llama3_2/use-policy/" target="_blank" rel="noopener">Llama 3.2 Acceptable Use Policy</a>（Meta）</li>
+          <li id="src-54"><a href="https://blogs.cisco.com/security/detecting-exposed-llm-servers-shodan-case-study-on-ollama" target="_blank" rel="noopener">Detecting Exposed LLM Servers: A Shodan Case Study on Ollama（2025年9月1日）</a>（Cisco Blogs）</li>
+          <li id="src-55"><a href="https://jvn.jp/vu/JVNVU90880682/" target="_blank" rel="noopener">JVNVU#90880682 Ollamaにおける境界外の読み取りおよび書き込みの脆弱性（2026年5月11日）</a>（JVN（JPCERT/CC・IPA））</li>
+          <li id="src-56"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-37032" target="_blank" rel="noopener">CVE-2024-37032</a>（NIST NVD）</li>
+          <li id="src-57"><a href="https://huggingface.co/docs/hub/security-pickle" target="_blank" rel="noopener">Pickle Scanning（Hub のドキュメント）</a>（Hugging Face）</li>
+          <li id="src-58"><a href="https://www.reversinglabs.com/blog/rl-identifies-malware-ml-model-hosted-on-hugging-face" target="_blank" rel="noopener">Malicious ML models discovered on Hugging Face platform（2025年2月6日）</a>（ReversingLabs）</li>
+          <li id="src-59"><a href="https://www.soumu.go.jp/main_content/001099163.pdf" target="_blank" rel="noopener">AI事業者ガイドライン（第1.2版、令和8年3月31日、PDF）</a>（総務省・経済産業省）</li>
+          <li id="src-60"><a href="https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" target="_blank" rel="noopener">生成AIサービスの利用に関する注意喚起等（令和5年6月2日、PDF）</a>（個人情報保護委員会）</li>
+          <li id="src-61"><a href="https://laws.e-gov.go.jp/law/507AC0000000053" target="_blank" rel="noopener">人工知能関連技術の研究開発及び活用の推進に関する法律</a>（e-Gov法令検索）</li>
+          <li id="src-62"><a href="https://www8.cao.go.jp/cstp/stmain/20260619ai.html" target="_blank" rel="noopener">人工知能基本計画（素案）についての意見募集</a>（内閣府）</li>
+          <li id="src-63"><a href="https://www8.cao.go.jp/cstp/ai/index.html" target="_blank" rel="noopener">AI戦略</a>（内閣府）</li>
+          <li id="src-64"><a href="https://qwenlm.github.io/blog/qwen3/" target="_blank" rel="noopener">Qwen3: Think Deeper, Act Faster（2025年4月29日）</a>（Qwen Team）</li>
+          <li id="src-65"><a href="https://developer.meta.com/ai/resources/blog/build-with-muse-glimmer/" target="_blank" rel="noopener">Muse Glimmer: an open-weight model built for local agents</a>（Meta（AI Developers ブログ））</li>
+        </ol>
+      </details>
+
+      <details class="sources-box" id="photo-credits">
+        <summary>写真・画像の出典（5件）</summary>
+        <ol class="sources">
+          <li>暗い部屋で光るノートパソコンのキーボード<br>写真: The indian dev／<a href="https://commons.wikimedia.org/wiki/File:Keyboard_in_dark.png" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>デスクトップパソコンの内部（赤いグラフィックボードを取り付けたところ）<br>写真: Kurt Kaiser／<a href="https://commons.wikimedia.org/wiki/File:Inside_a_desktop_computer_with_MSI_graphics_card.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>）</li>
+          <li>ノートパソコン用のメモリ（DDR5、8GB）<br>写真: ITEagle Europe（Sebastiaan Broekhoven）／<a href="https://commons.wikimedia.org/wiki/File:TWSC_8GB_DDR5-4800_SO-DIMM_memory_module_-_rear_view.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>パソコンに差して使うグラフィックボード（GPU）<br>写真: Jacek Halicki／<a href="https://commons.wikimedia.org/wiki/File:2023_MSI_GeForce_RTX_2080_Gaming_X_Trio_(3).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>）</li>
+          <li>Mac mini（M4、2024年）の背面<br>写真: AzureSaturn／<a href="https://commons.wikimedia.org/wiki/File:Mac_mini_(M4,_2024)_-_Backside.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>（<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>）</li>
+        </ol>
+      </details>
+
+      <aside class="disclaimer">
+        <p>
+          この記事は2026年11月18日時点の情報をもとにまとめたものです。ソフトやモデルの版、対応する機材、ライセンス、料金は、変わることがあります。
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="footer-brand" href="../index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" style="fill:var(--accent)"/><rect x="13" y="15" width="38" height="11" rx="3.5" style="fill:var(--accent-ink)"/><path d="M17 30h30v14.5A4.5 4.5 0 0 1 42.5 49h-21A4.5 4.5 0 0 1 17 44.5z" style="fill:var(--accent-ink)"/><rect x="26" y="35" width="12" height="4.5" rx="2.25" style="fill:var(--accent)"/></svg>雑学アーカイブ</a>
+      <p class="footer-tagline">気になったことを、調べて、短くまとめる。</p>
+      <ul class="footer-nav">
+        <li><a href="../index.html">記事一覧</a></li>
+        <li><a href="../about.html">このサイトについて</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../feed.xml">RSS（新着記事）</a></li>
+        <li><a href="https://github.com/atsatshub/research-notes/issues" target="_blank" rel="noopener">お問い合わせ（GitHub）</a></li>
+      </ul>
+      <p>掲載情報は各記事の調査日時点のものです。正確性には注意していますが、内容を保証するものではありません。</p>
+      <p class="copyright">© 2026 雑学アーカイブ</p>
+    </div>
+  </footer>
+  <script src="../assets/article.js" defer></script>
+</body>
+</html>
