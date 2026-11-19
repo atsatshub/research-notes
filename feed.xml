@@ -6,7 +6,23 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Wed, 18 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 19 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>危険物取扱者乙4とは：できること、試験の中身と合格率、合格後の手続きと保安講習（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kikenbutsu-otsu4.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kikenbutsu-otsu4.html</guid>
+    <pubDate>Thu, 19 Nov 2026 00:00:00 +0900</pubDate>
+    <category>資格・語学</category>
+    <description>乙4で扱える第4類の危険物（ガソリン・灯油など）と指定数量、甲・乙・丙の違いと立会い・危険物保安監督者、試験の科目と合格基準・手数料・電子申請、乙4の合格率の推移（令和元〜7年度）、免状の申請と保安講習、事故の傾向、2025〜2026年の変更</description>
+  </item>
+  <item>
+    <title>オンライン英会話を録音してAIで復習する方法：自分と相手の声を録る道具、文字起こし、AIでの添削、研究にもとづく復習のしかた（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/online-eikaiwa-tools.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/online-eikaiwa-tools.html</guid>
+    <pubDate>Thu, 19 Nov 2026 00:00:00 +0900</pubDate>
+    <category>資格・語学</category>
+    <description>レッスンを録音して文字に起こし、AIで添削してもらい、単語帳・音読で復習する流れ、Windows・Mac・iPhone・Androidで自分と相手の両方の声を録る方法、英会話サービスの録音の規約、Whisper・Wordなどの文字起こし、AIに入れたデータの扱い、指示文の例、書き起こし・間隔反復・シャドーイングの研究</description>
+  </item>
   <item>
     <title>ローカルLLMの始め方：自分のパソコンでAIを動かす利点と弱点、必要なメモリ、ツールとモデルの選び方（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/local-llm-hajimekata.html</link>
@@ -230,22 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>資格・語学</category>
     <description>11問・約20分の問題の形式、当日の流れと本人確認書類、採点のしくみと0〜200点のスコアの見方、受験料6,930円（税込）と日程、2025年度の平均点とL&amp;Rとの関係、企業での使われ方、公式の準備方法</description>
-  </item>
-  <item>
-    <title>プラント業界の仕事の進め方：プロジェクトの流れ、契約の形、チームの体制、調達と建設、管理の手法</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-shigoto-susumekata.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-shigoto-susumekata.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>FS・FEED・入札から設計・調達・建設・試運転・引き渡し・保証期間までの流れ、ランプサムと実費精算などの契約の形、プロジェクトマネージャーを頂点とする体制、調達と建設の進め方、WBS・クリティカルパス・アーンドバリュー、見積りの精度、LNGプラントの期間の例、海外勤務</description>
-  </item>
-  <item>
-    <title>プラント業界で使われる英語の略語一覧：約80語を分野別に（契約・設計・安全・計装・検査・保全・規格）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-ryakugo.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-ryakugo.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>EPC・FEED・LSTK・FID・P&amp;ID・HAZOP・SIL・SIS・DCS・PLC・FIC・NDT・FAT・RBI・ASME・APIなど約80語を7分野に分け、英語の正式名と意味を整理。計装の記号の読み方とまぎらわしい略語も</description>
   </item>
 </channel>
 </rss>
