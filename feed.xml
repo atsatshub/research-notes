@@ -6,7 +6,15 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Thu, 19 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>仕事でのAIの使い方の例：メール・要約・議事録・Excelなど場面別の指示文、書き方の型、使う前の決まりと確かめ方（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/ai-shigoto-tsukaikata.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/ai-shigoto-tsukaikata.html</guid>
+    <pubDate>Fri, 20 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事・学習の道具</category>
+    <description>生成AIの仕事での利用状況（令和8年版情報通信白書）、メール・要約・議事録・Excel・アイデア出し・翻訳・校正など場面別の使い方と指示文の例、指示文の書き方の型、社内ルールと入れてはいけない情報、出力の確かめ方、Office・Google Workspaceに組み込まれたAI、2025〜2026年の変化</description>
+  </item>
   <item>
     <title>危険物取扱者乙4とは：できること、試験の中身と合格率、合格後の手続きと保安講習（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/kikenbutsu-otsu4.html</link>
@@ -238,14 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>プラント</category>
     <description>着工前の許可と届出、杭・基礎・鉄骨、大型クレーンでの据付とモジュール工法、配管・電気計装・保温塗装と耐圧試験、完成検査・落成検査、試運転への引き渡し、現場の安全管理と1日の流れ、規模の例</description>
-  </item>
-  <item>
-    <title>TOEIC Speaking Testとは：問題の形式、採点とスコア、受験料、申込みから結果まで（2026年）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/toeic-speaking-2026.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/toeic-speaking-2026.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>資格・語学</category>
-    <description>11問・約20分の問題の形式、当日の流れと本人確認書類、採点のしくみと0〜200点のスコアの見方、受験料6,930円（税込）と日程、2025年度の平均点とL&amp;Rとの関係、企業での使われ方、公式の準備方法</description>
   </item>
 </channel>
 </rss>
