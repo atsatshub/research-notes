@@ -6,7 +6,15 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Fri, 20 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>付き合ってから結婚するまでの流れ：顔合わせ・婚姻届・結婚後の手続きと、期間・お金の目安</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kekkon-made-no-nagare.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kekkon-made-no-nagare.html</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
+    <category>暮らし・健康</category>
+    <description>交際期間（国の調査で平均4.3年）と婚姻件数・平均初婚年齢、出会いから新生活までの流れの図、プロポーズ・両家の顔合わせ・結納の実施率、婚約の法律上の扱い、婚姻届の条件とチェックリスト、結婚後の手続きと期限、結婚式の費用と新婚世帯の補助・贈与の非課税、2024〜2026年の変更</description>
+  </item>
   <item>
     <title>仕事でのAIの使い方の例：メール・要約・議事録・Excelなど場面別の指示文、書き方の型、使う前の決まりと確かめ方（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/ai-shigoto-tsukaikata.html</link>
@@ -238,14 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>暮らし・健康</category>
     <description>リスト型攻撃の仕組み、令和7年の不正アクセス7,190件と手口、強いパスワードの条件と定期変更が不要な理由、管理ツールと紙のメモ、2段階認証とパスキー、漏えいの確かめ方と漏れたときの対応、相談窓口</description>
-  </item>
-  <item>
-    <title>プラント建設工事の全体的な流れ：準備工事から据付・配管・検査・試運転まで</title>
-    <link>https://atsatshub.github.io/research-notes/articles/plant-kensetsu-nagare.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-kensetsu-nagare.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>プラント</category>
-    <description>着工前の許可と届出、杭・基礎・鉄骨、大型クレーンでの据付とモジュール工法、配管・電気計装・保温塗装と耐圧試験、完成検査・落成検査、試運転への引き渡し、現場の安全管理と1日の流れ、規模の例</description>
   </item>
 </channel>
 </rss>
