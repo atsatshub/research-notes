@@ -6,7 +6,15 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Mon, 23 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>ふるさと納税のおすすめ返礼品：人気の分類と、届く時期・保存・量で選ぶ（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/furusato-henreihin-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/furusato-henreihin-2026.html</guid>
+    <pubDate>Tue, 24 Nov 2026 00:00:00 +0900</pubDate>
+    <category>お金・税金</category>
+    <description>ポータル各社の2025年ランキングと民間調査から、よく選ばれる返礼品を紹介。米・肉・魚介・果物・日用品・宿泊・体験の代表17品の寄附額・量・届く時期・保存方法、今申し込むといつ届くか、返礼品のルールと一時所得、偽サイトの注意</description>
+  </item>
   <item>
     <title>関西の工場見学・社会科見学：兵庫・大阪を中心に、料金・予約・試飲と、無料で行ける施設（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/factory-tours-kansai-2026.html</link>
@@ -238,14 +246,6 @@
     <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
     <category>暮らし・健康</category>
     <description>定期健康診断・特定健診・人間ドックの違い、判定の言葉と基準範囲の意味、血圧・脂質・血糖・肝臓・腎臓の保健指導判定値と受診勧奨判定値、すぐ受診する目安、会社の義務と二次健康診断等給付、2027年4月からの項目の変更</description>
-  </item>
-  <item>
-    <title>デスクワークの疲れを減らす方法：机・椅子・画面の目安、休憩のとり方、目と体のケア</title>
-    <link>https://atsatshub.github.io/research-notes/articles/desk-work-tsukare.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/desk-work-tsukare.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>暮らし・健康</category>
-    <description>画面との距離40cm以上・照度300ルクス以上などの目安、自宅で働くとき、1時間ごとの作業休止、座りすぎ対策とスタンディングデスクの根拠、座ったままできるストレッチ、目の疲れとドライアイの対策、ブルーライトカット眼鏡の根拠</description>
   </item>
 </channel>
 </rss>
