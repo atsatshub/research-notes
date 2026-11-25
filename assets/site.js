@@ -400,6 +400,8 @@
       btn.setAttribute("aria-expanded", state ? "true" : "false");
       btn.setAttribute("aria-label", state ? "メニューを閉じる" : "メニューを開く");
       btn.classList.toggle("is-open", state);
+      // 開いている間は、画面の下の「続きから読む」の案内と「↑」ボタンをメニューの上に重ねない
+      document.documentElement.classList.toggle("menu-open", state);
       if (state) fillCategories();
     }
 
@@ -418,6 +420,25 @@
         tocList.appendChild(li);
       });
       tocSec.appendChild(tocList);
+    }
+
+    // 記事ページ: ヘッダーの「目次」ボタン（横の目次が出ない幅で使う）。
+    // 押すとメニューを先頭（この記事の目次）から開き、いま読んでいる章に移る準備をする
+    var tocBtn = null;
+    if (toc) {
+      tocBtn = el("button", { type: "button", class: "tools-btn toc-btn", "aria-controls": "site-menu", "aria-label": "この記事の目次を開く" }, "目次");
+      tocBtn.addEventListener("click", function () {
+        if (!panel.hidden) {
+          open(false);
+          return;
+        }
+        open(true);
+        panel.scrollTop = 0;
+        var cur = tocList.querySelector("a.is-current") || tocList.querySelector("a");
+        if (cur) cur.focus({ preventScroll: true });
+        else panel.focus();
+      });
+      nav.classList.add("has-toc-btn");
     }
 
     // 2. 記事を探す（トップページの検索へ。トップではその場で絞り込む）
@@ -562,7 +583,7 @@
       open(false);
     });
     document.addEventListener("click", function (e) {
-      if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) open(false);
+      if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target) && !(tocBtn && tocBtn.contains(e.target))) open(false);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && !panel.hidden) {
@@ -571,6 +592,7 @@
       }
     });
 
+    if (tocBtn) nav.appendChild(tocBtn);
     nav.appendChild(btn);
     header.appendChild(panel);
     document.body.appendChild(scrim);
@@ -831,12 +853,20 @@
     document.body.appendChild(toTop);
 
     var ticking = false;
+    var lastY = window.scrollY;
+    var goingDown = false;
     function update() {
       ticking = false;
+      var y = window.scrollY;
       var max = document.documentElement.scrollHeight - window.innerHeight;
-      var ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      var ratio = max > 0 ? Math.min(1, y / max) : 0;
       bar.style.transform = "scaleX(" + ratio + ")";
-      toTop.hidden = window.scrollY < 800;
+      // 「↑」は、上へ戻し始めたときとページの最後で出す（下へ読み進めている間は、表やグラフの右端に重ねない）
+      if (Math.abs(y - lastY) > 4) {
+        goingDown = y > lastY;
+        lastY = y;
+      }
+      toTop.hidden = y < 800 || (goingDown && y < max - 80);
       if (sideToc) {
         // いま読んでいる章 = 見出しが画面の上（固定ヘッダーのすぐ下）を過ぎた、いちばん後ろの章
         var current = -1;
@@ -1016,10 +1046,15 @@
     "税金・お金の手続き": "お金・税金",
     "資格試験": "資格・語学",
     "英語学習": "資格・語学",
-    "クルマ": "暮らし・健康",
+    "クルマ": "住まい・車・買い物",
     "BIM・建設ソフト": "仕事・学習の道具",
     "おでかけ・見学": "おでかけ・旅行",
-    "旅行・きっぷ": "おでかけ・旅行"
+    "旅行・きっぷ": "おでかけ・旅行",
+    // 2026年11月の整理
+    "年代別にやっておくこと": "年代・人生の節目",
+    "仕事の基礎知識": "仕事・キャリア",
+    "学び直し・キャリア": "仕事・キャリア",
+    "プラント": "プラント・工場設備"
   };
 
   function setupIndex(box) {
@@ -1142,6 +1177,7 @@
     var view = state.view; // "" = カテゴリ別、"new" = 新しい順、"old" = 古い順
     var flatLimit = FLAT_PAGE;
     var onlySaved = !!state.saved; // 「保存した記事」だけを出しているか
+    var chipList = []; // カテゴリのボタン（件数を書き換えるため）
     input.value = state.q;
 
     // カテゴリの見出しがない並び（新しい順・古い順）で見せるカテゴリ名
@@ -1237,6 +1273,11 @@
     // カテゴリの絞り込みと、検索語（すべての語を、カードか記事の中の見出し・要点に含む）に合うか
     function matches(it, terms) {
       if (active && it.group.name !== active) return false;
+      return matchesAnyCategory(it, terms);
+    }
+
+    // カテゴリを問わずに当たるか（カテゴリのボタンの件数に使う）
+    function matchesAnyCategory(it, terms) {
       if (onlySaved && saved.indexOf(it.slug) === -1) return false;
       return terms.every(function (t) {
         return it.text.indexOf(t) !== -1 || (!!it.deep && it.deep.text.indexOf(t) !== -1);
@@ -1315,6 +1356,7 @@
       var filtering = terms.length > 0 || !!active || onlySaved;
       var flat = view === "new" || view === "old";
       var shown = 0;
+      var groupsShown = 0;
       flatList.hidden = !flat;
       if (flat) {
         flatOrder().forEach(function (it) {
@@ -1350,10 +1392,31 @@
           });
           if (g.moreBtn) g.moreBtn.hidden = filtering || g.expanded || visible === 0;
           shown += visible;
+          if (visible) groupsShown++;
         });
       }
       if (majorTitle) majorTitle.textContent = flat ? (view === "old" ? "記事一覧（古い順）" : "記事一覧（新しい順）") : majorTitleText;
-      if (catNote) catNote.textContent = flat ? "全" + total + "件" : groups.length + "カテゴリ・全" + total + "件";
+      // 見出しの横の件数は、絞り込み中は「いま並んでいる数」にする
+      if (catNote) {
+        if (!filtering) catNote.textContent = flat ? "全" + total + "件" : groups.length + "カテゴリ・全" + total + "件";
+        else catNote.textContent = flat ? shown + "件を表示" : groupsShown + "カテゴリ・" + shown + "件を表示";
+      }
+      // 検索語があるとき（または保存した記事だけのとき）は、カテゴリのボタンの件数を「当たった件数」にし、0件のボタンは薄くする
+      var countHits = terms.length > 0 || onlySaved;
+      var perGroup = {};
+      var hitTotal = 0;
+      if (countHits) {
+        allItems.forEach(function (it) {
+          if (!matchesAnyCategory(it, terms)) return;
+          perGroup[it.group.name] = (perGroup[it.group.name] || 0) + 1;
+          hitTotal++;
+        });
+      }
+      chipList.forEach(function (c) {
+        var n = !countHits ? c.total : c.value ? perGroup[c.value] || 0 : hitTotal;
+        c.count.textContent = String(n);
+        c.btn.classList.toggle("is-empty", countHits && n === 0);
+      });
       var deepNote = terms.length && deepState === "ready" ? "。記事の中の見出し・要点も検索" : "";
       if (onlySaved && !terms.length && !active) count.textContent = "保存した記事 " + shown + "件（全" + total + "件）";
       else count.textContent = filtering ? shown + "件見つかりました（全" + total + "件" + deepNote + "）" : "全" + total + "件の記事";
@@ -1388,18 +1451,29 @@
       render();
     }
 
-    function chip(label, value, n) {
-      var b = el("button", { type: "button", class: "chip", "data-value": value, "aria-pressed": value === active ? "true" : "false" }, label);
-      b.appendChild(el("span", { class: "chip-count" }, String(n)));
-      b.addEventListener("click", function () {
-        setCategory(value);
-      });
-      chipsWrap.appendChild(b);
+    // 一覧の先頭が画面の下のほうにあるとき（スマホなど）は、一覧の見出しまで画面を送る
+    function revealList() {
+      var target = major || document.querySelector(".article-list");
+      if (!target) return;
+      if (target.getBoundingClientRect().top < window.innerHeight * 0.55) return;
+      target.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
     }
 
-    chip("すべて", "", total);
+    function chip(label, value, n) {
+      var b = el("button", { type: "button", class: "chip", "data-value": value, "aria-pressed": value === active ? "true" : "false" }, label);
+      var c = el("span", { class: "chip-count" }, String(n));
+      b.appendChild(c);
+      b.addEventListener("click", function () {
+        setCategory(value);
+        revealList();
+      });
+      chipsWrap.appendChild(b);
+      return { btn: b, count: c, value: value, total: n };
+    }
+
+    chipList.push(chip("すべて", "", total));
     groups.forEach(function (g) {
-      chip(g.name, g.name, g.items.length);
+      chipList.push(chip(g.name, g.name, g.items.length));
     });
 
     // 件数の行: 左に件数と「前回から N件追加」、右に「保存した記事」「おまかせで1本読む」
@@ -1459,6 +1533,14 @@
     }
 
     input.addEventListener("input", render);
+    // Enter（スマホのキーボードの「検索」）で、キーボードを閉じて結果の先頭まで画面を送る
+    input.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" || e.isComposing) return;
+      e.preventDefault();
+      if (!input.value.trim()) return;
+      input.blur();
+      revealList();
+    });
     // 検索用データは、検索欄に入ったとき（または打ち始めたとき）に読む
     input.addEventListener("focus", loadDeep);
     input.addEventListener("input", loadDeep);

@@ -223,8 +223,10 @@ hr {
   padding: 0 16px;
 }
 
-main {
-  padding: 24px 0 48px;
+/* main は .container も付くので、上下の余白は main.container で指定する（左右は .container の 16px） */
+main.container {
+  padding-top: 24px;
+  padding-bottom: 48px;
 }
 
 .site-header {
@@ -396,6 +398,38 @@ main {
 .hero .hero-links {
   margin-top: 12px;
   font-size: 0.9rem;
+}
+
+/* スマホ: サイト名とロゴはヘッダーにあるので、紹介枠では読み上げ用に残して見た目は省き、検索欄を上に寄せる */
+@media (max-width: 639px) {
+  main.container {
+    padding-top: 16px;
+  }
+
+  .hero {
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+
+  .hero h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hero-points {
+    margin-top: 10px;
+  }
+
+  .hero .hero-links {
+    margin-top: 8px;
+  }
 }
 
 /* 記事一覧 */
@@ -1474,7 +1508,7 @@ article strong {
     font-size: 1.4rem;
   }
 
-  main {
+  main.container {
     padding-top: 40px;
   }
 }
@@ -1717,6 +1751,17 @@ article h3[id],
   opacity: 0.85;
 }
 
+/* 検索語に当たる記事が0件のカテゴリ（押せるが、薄く見せる） */
+.chip.is-empty:not([aria-pressed="true"]) {
+  opacity: 0.5;
+}
+
+/* メニューを開いている間は、画面の下の案内と「↑」をメニューに重ねない */
+.menu-open .resume-toast,
+.menu-open .to-top {
+  visibility: hidden;
+}
+
 /* カテゴリごとの「残りN件を表示」 */
 .more-row {
   margin: 4px 0 8px;
@@ -1820,6 +1865,24 @@ article h3[id],
 
 .menu-icon span:nth-child(3) {
   top: 10px;
+}
+
+/* 記事ページの「目次」ボタン（横の目次が出る広い画面では出さない） */
+.toc-btn {
+  padding: 6px 12px;
+}
+
+@media (min-width: 1280px) {
+  .toc-btn {
+    display: none;
+  }
+}
+
+/* スマホの記事ページでは「記事一覧」の代わりに「目次」を出す（一覧へはサイト名とメニューから戻れる） */
+@media (max-width: 479px) {
+  .site-nav.has-toc-btn .nav-link {
+    display: none;
+  }
 }
 
 .menu-btn.is-open .menu-icon span:nth-child(1) {
@@ -2011,11 +2074,15 @@ article h3[id],
 /* ---------- カテゴリのアイコン（見出し・メニュー・写真のない記事のサムネイル） ----------
    index.html の見出し h3.article-group-title の data-icon と同じキーで指定する。
    絵は自作の線画（24×24）。mask で切り抜き、文字色やアクセント色で塗る */
-[data-icon="age"] { /* 年代別（階段） */
+[data-icon="age"] { /* 年代・人生の節目（階段） */
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 20h5v-5h5v-5h5V5h3'/%3E%3Cpath d='M3 20h18'/%3E%3C/svg%3E");
 }
 
-[data-icon="life"] { /* 暮らし・健康（家） */
+[data-icon="life"] { /* 暮らし・健康（ハート） */
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z'/%3E%3C/svg%3E");
+}
+
+[data-icon="home"] { /* 住まい・車・買い物（家） */
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-7 9 7'/%3E%3Cpath d='M5 9.5V20h14V9.5'/%3E%3Cpath d='M10 20v-5.5h4V20'/%3E%3C/svg%3E");
 }
 
@@ -2023,12 +2090,8 @@ article h3[id],
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M8.5 7l3.5 4.5L15.5 7'/%3E%3Cpath d='M12 11.5V17.5'/%3E%3Cpath d='M9 12.5h6'/%3E%3Cpath d='M9 15h6'/%3E%3C/svg%3E");
 }
 
-[data-icon="work"] { /* 仕事の基礎知識（かばん） */
+[data-icon="work"] { /* 仕事・キャリア（かばん） */
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='7' width='18' height='13' rx='2'/%3E%3Cpath d='M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7'/%3E%3Cpath d='M3 13h18'/%3E%3C/svg%3E");
-}
-
-[data-icon="career"] { /* 学び直し・キャリア（角帽） */
-  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9l10-5 10 5-10 5z'/%3E%3Cpath d='M6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5'/%3E%3Cpath d='M22 9v6'/%3E%3C/svg%3E");
 }
 
 [data-icon="exam"] { /* 資格・語学（チェックした用紙） */
@@ -2047,7 +2110,7 @@ article h3[id],
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3h6'/%3E%3Cpath d='M10 3v6.5L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.5V3'/%3E%3Cpath d='M7.2 15h9.6'/%3E%3C/svg%3E");
 }
 
-[data-icon="plant"] { /* プラント（工場） */
+[data-icon="plant"] { /* プラント・工場設備（工場） */
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21V12l5 3v-3l5 3v-3l4 2.5V4h3v17z'/%3E%3Cpath d='M7 18h2'/%3E%3Cpath d='M12 18h2'/%3E%3C/svg%3E");
 }
 
