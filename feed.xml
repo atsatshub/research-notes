@@ -6,7 +6,15 @@
   <description>暮らしの制度やお得、おでかけ、学び、仕事の道具まで。気になったことを調べて、要点から読める形でまとめています。</description>
   <language>ja</language>
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Tue, 24 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 25 Nov 2026 00:00:00 +0900</lastBuildDate>
+  <item>
+    <title>謎解きのコツと練習法：よく出る謎の型、覚えておきたい表、行き詰まったときの考え方（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/nazotoki-kotsu-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/nazotoki-kotsu-2026.html</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
+    <category>おでかけ・旅行</category>
+    <description>謎検の公式の出題予告と出版社の説明、ローマ字・十二支などの公的な表、ひらめきの心理学の研究から、謎解きのコツと練習法を紹介。よく出る謎の型と自作の例題4問、行き詰まったときの考え方、チームでの進め方、公式の練習教材と価格</description>
+  </item>
   <item>
     <title>ふるさと納税のおすすめ返礼品：人気の分類と、届く時期・保存・量で選ぶ（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/furusato-henreihin-2026.html</link>
@@ -238,14 +246,6 @@
     <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
     <category>身近な科学</category>
     <description>データセンターの定義と種類、受電・UPS・発電機・冷却・通信の設備、液冷などの冷却、世界と日本の電力消費の見通し（IEA・広域機関）、PUEと省エネ法の新しい基準、立地の集中とGX戦略地域、電力・水・廃熱の課題</description>
-  </item>
-  <item>
-    <title>健康診断の結果の見方：数値の意味と再検査の目安（判定値の一覧つき）</title>
-    <link>https://atsatshub.github.io/research-notes/articles/kenshin-kekka-mikata.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kenshin-kekka-mikata.html</guid>
-    <pubDate>Tue, 10 Nov 2026 00:00:00 +0900</pubDate>
-    <category>暮らし・健康</category>
-    <description>定期健康診断・特定健診・人間ドックの違い、判定の言葉と基準範囲の意味、血圧・脂質・血糖・肝臓・腎臓の保健指導判定値と受診勧奨判定値、すぐ受診する目安、会社の義務と二次健康診断等給付、2027年4月からの項目の変更</description>
   </item>
 </channel>
 </rss>
