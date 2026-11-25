@@ -8,6 +8,30 @@
   <atom:link href="https://atsatshub.github.io/research-notes/feed.xml" rel="self" type="application/rss+xml"/>
   <lastBuildDate>Wed, 25 Nov 2026 00:00:00 +0900</lastBuildDate>
   <item>
+    <title>AIを使った資格試験の勉強法：過去問の解き直し・確かめ問題・暗記カードの作り方と、AIの間違いの確かめ方（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/ai-benkyo-shikaku-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/ai-benkyo-shikaku-2026.html</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
+    <category>仕事・学習の道具</category>
+    <description>研究と公式資料をもとに、AIを資格試験の勉強に使う流れを紹介。過去問を自分で解き、AIにはヒントを頼み、公式の解答で確かめ、暗記カードで間隔を空けて解き直す手順と指示文の例、本番の問題を漏らさない決まり、入力の設定と著作権</description>
+  </item>
+  <item>
+    <title>プラントの仕事に役立つ資格：法律で必要な資格の見分け方、試験・合格率・受験料と取る順番（2026年版）</title>
+    <link>https://atsatshub.github.io/research-notes/articles/plant-shikaku-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/plant-shikaku-2026.html</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
+    <category>資格・語学</category>
+    <description>プラントで働く人向けに、法律で必要な資格と、あると評価される資格を分けて整理。ボイラー技士・高圧ガス・電験三種などの試験と合格率、技能講習の費用、施工管理技士の受検資格の見直し、溶接・非破壊試験・技術士、仕事別の取る順番の例</description>
+  </item>
+  <item>
+    <title>会社員の確定申告（令和8年分）：申告が要る人・得する人、書類、スマホとe-Taxでの出し方</title>
+    <link>https://atsatshub.github.io/research-notes/articles/kakutei-shinkoku-2026.html</link>
+    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/kakutei-shinkoku-2026.html</guid>
+    <pubDate>Wed, 25 Nov 2026 00:00:00 +0900</pubDate>
+    <category>お金・税金</category>
+    <description>会社員が令和8年分（2027年2月16日〜3月15日）の確定申告を自分で出すための手引き。申告が必要な人と得する人、令和8年分の改正、医療費・ふるさと納税・株・副業、マイナポータル連携、スマホでのe-Tax、還付と納付、間違えたとき</description>
+  </item>
+  <item>
     <title>謎解きのコツと練習法：よく出る謎の型、覚えておきたい表、行き詰まったときの考え方（2026年版）</title>
     <link>https://atsatshub.github.io/research-notes/articles/nazotoki-kotsu-2026.html</link>
     <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/nazotoki-kotsu-2026.html</guid>
@@ -222,30 +246,6 @@
     <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
     <category>身近な科学</category>
     <description>衝突の検知から膨らんでしぼむまでの流れ、膨らむ条件と種類、シートベルトとの関係と着用・非着用の致死率、正しい乗り方と子どもの座席、タカタ製エアバッグのリコール、保安基準と衝突被害軽減ブレーキの義務化</description>
-  </item>
-  <item>
-    <title>飛行機の窓にはなぜ小さな穴がある？ 窓・与圧・座席に隠れた航空機の安全設計</title>
-    <link>https://atsatshub.github.io/research-notes/articles/hikoki-mado-anzen.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/hikoki-mado-anzen.html</guid>
-    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>客室の窓のパネルと小さな穴の役割、窓の角が丸い理由とコメット機の事故、上空の気圧と与圧・酸素マスク、離着陸時の日よけ・背もたれ・シートベルトの理由、脱出90秒・座席16g・雷・ETOPS、モバイルバッテリーの新ルール、事故率</description>
-  </item>
-  <item>
-    <title>トンネルを掘っても地上の建物が崩れないのはなぜ？ 工法・支え方・計測と、陥没事故の教訓</title>
-    <link>https://atsatshub.github.io/research-notes/articles/tunnel-jiban.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/tunnel-jiban.html</guid>
-    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>掘ると地中で起きること（土圧・水圧・アーチの働き）、NATM・シールド・開削・推進の使い分け、シールド工法の支え方、沈下の計測と家屋調査、大深度地下の定義、外環・博多駅前・新横浜の陥没の原因と教訓</description>
-  </item>
-  <item>
-    <title>データセンターとは？ 中の設備、電気と冷却、日本の立地と最新の動き</title>
-    <link>https://atsatshub.github.io/research-notes/articles/data-center.html</link>
-    <guid isPermaLink="true">https://atsatshub.github.io/research-notes/articles/data-center.html</guid>
-    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
-    <category>身近な科学</category>
-    <description>データセンターの定義と種類、受電・UPS・発電機・冷却・通信の設備、液冷などの冷却、世界と日本の電力消費の見通し（IEA・広域機関）、PUEと省エネ法の新しい基準、立地の集中とGX戦略地域、電力・水・廃熱の課題</description>
   </item>
 </channel>
 </rss>
